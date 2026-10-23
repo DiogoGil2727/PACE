@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PACE — Find your pace. Find your people.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7FAF8;--surface:#fff;--green:#75C99A;--green-d:#174B35;--green-l:#EAF7EF;--text:#19251F;--muted:#6B7971;--line:#E2EAE4;--danger:#B3261E;
+--r:14px;--sh:0 1px 2px rgba(23,75,53,.06),0 6px 20px rgba(23,75,53,.07);--f:'Manrope','Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:light}}
+html{scroll-padding-top:72px;height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{line-height:1.15;margin:0;letter-spacing:-.02em;color:var(--green-d)}
+p{margin:0}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--green-d);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:1.5px solid transparent;font-weight:700;transition:transform .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn[disabled]{opacity:.6;cursor:default}
+.btn-p{background:var(--green-d);color:#fff}.btn-p:hover{background:#0f3624}
+.btn-g{background:var(--green);color:var(--green-d)}.btn-g:hover{background:#63bd8b}
+.btn-o{background:#fff;border-color:var(--line);color:var(--green-d)}.btn-o:hover{border-color:var(--green)}
+.btn-w{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.7);color:#fff}.btn-w:hover{background:rgba(255,255,255,.26)}
+.btn-sm{min-height:38px;padding:0 16px;font-size:.92rem}
+svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* header */
+header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:16px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;font-weight:800;font-size:1.3rem;color:var(--green-d);letter-spacing:.02em}
+.logo{width:30px;height:30px;border-radius:9px;background:var(--green-d);display:grid;place-items:center;color:var(--green)}
+nav.main{display:flex;gap:2px;margin-left:auto;align-items:center}
+nav.main button{background:none;border:0;padding:8px 11px;border-radius:999px;font-weight:600;font-size:.92rem;color:var(--muted);white-space:nowrap}
+nav.main button:hover{color:var(--green-d);background:var(--green-l)}
+nav.main button[aria-current="page"]{color:var(--green-d);background:var(--green-l)}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:12px;width:44px;height:44px;place-items:center}
+@media (max-width:1100px){nav.main{display:none}.burger{display:grid}.bar .btn-sm.reg{display:none}}
+.drawer{position:fixed;inset:0;z-index:50;background:rgba(15,40,28,.45);display:none}
+.drawer.open{display:block}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(320px,86vw);background:#fff;padding:20px;display:flex;flex-direction:column;gap:4px;overflow:auto}
+.drawer .panel button.nv{text-align:left;background:none;border:0;padding:12px 12px;border-radius:12px;font-weight:600}
+.drawer .panel button.nv[aria-current="page"]{background:var(--green-l);color:var(--green-d)}
+/* hero */
+.hero{position:relative;min-height:min(86vh,720px);display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:#2f7d5b}
+.hero .art,.hero img.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(95deg,rgba(10,40,26,.72) 0%,rgba(10,40,26,.35) 55%,rgba(10,40,26,.08) 100%)}
+.hero .in{position:relative;z-index:2;padding:96px 20px 72px;max-width:1180px;margin:0 auto;width:100%}
+.hero h1{color:#fff;font-size:clamp(3.2rem,10vw,6.5rem);font-weight:800;letter-spacing:.01em}
+.hero .slogan{font-size:clamp(1.15rem,2.6vw,1.6rem);font-weight:600;margin-top:10px;color:#CFF0DC}
+.hero .lead{max-width:540px;margin-top:18px;font-size:1.08rem;color:#F1FAF5}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+/* sections */
+section.sec{padding:80px 0}
+.head{max-width:640px;margin-bottom:32px}
+.head h2{font-size:clamp(1.8rem,4vw,2.6rem)}
+.head p{color:var(--muted);margin-top:10px;font-size:1.05rem}
+.tools{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+.field{position:relative;flex:1 1 240px}
+.field svg.i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
+input,select{width:100%;min-height:46px;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:0 14px}
+.field input{padding-left:44px}
+select{width:auto;min-width:170px;padding-right:10px}
+input:focus,select:focus{border-color:var(--green);outline:none;box-shadow:0 0 0 3px rgba(117,201,154,.3)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--sh);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px)}
+.thumb{position:relative;height:170px;overflow:hidden}
+.thumb svg{width:100%;height:100%;display:block}
+.thumb .tag{position:absolute;left:12px;top:12px;background:rgba(255,255,255,.92);color:var(--green-d);font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:999px}
+.card .body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card h3{font-size:1.2rem}
+.meta{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:.93rem}
+.meta svg.i{width:16px;height:16px}
+.note{font-size:.82rem;color:var(--muted)}
+.card .btn{margin-top:auto}
+.empty{border:1.5px dashed var(--line);border-radius:18px;padding:44px 24px;text-align:center;background:#fff;color:var(--muted)}
+.empty h3{margin-bottom:8px}
+.empty .btn{margin-top:16px}
+/* steps */
+.steps{background:var(--green-l)}
+.steps ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.steps li{counter-increment:s;padding-top:18px;border-top:2px solid var(--green-d)}
+.steps li::before{content:counter(s);font-weight:800;font-size:2rem;color:var(--green-d)}
+.steps h3{font-size:1.2rem;margin:6px 0}
+.steps p{color:#3d5a4b}
+@media (max-width:760px){.steps ol{grid-template-columns:1fr}}
+.final{text-align:center;background:var(--green-d);color:#fff;border-radius:24px;padding:64px 24px}
+.final h2{color:#fff;max-width:620px;margin:0 auto 24px;font-size:clamp(1.8rem,4vw,2.5rem)}
+/* page shells */
+.page{padding:56px 0 80px;min-height:60vh}
+.page h1{font-size:clamp(2rem,5vw,3rem);margin-bottom:12px}
+.badge{display:inline-block;background:var(--green-l);color:var(--green-d);font-weight:700;font-size:.82rem;padding:4px 12px;border-radius:999px}
+.box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--sh);max-width:560px}
+form .row{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+label{font-weight:600;font-size:.93rem}
+.err{color:var(--danger);font-size:.85rem;min-height:1em}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.two{grid-template-columns:1fr}}
+.alert{background:var(--green-l);border-left:4px solid var(--green);padding:12px 14px;border-radius:10px;font-size:.92rem;color:var(--green-d);margin-bottom:18px}
+/* footer */
+footer{background:#fff;border-top:1px solid var(--line);padding:48px 0 36px;margin-top:0}
+footer .links{display:flex;flex-wrap:wrap;gap:6px 20px;margin:18px 0}
+footer .links button,footer .links a{background:none;border:0;padding:6px 0;color:var(--green-d);font-weight:600;text-decoration:none}
+footer .links button:hover,footer .links a:hover{text-decoration:underline}
+footer .disc{color:var(--muted);font-size:.88rem;max-width:720px}
+/* modal + toast */
+.modal{position:fixed;inset:0;z-index:60;background:rgba(15,40,28,.5);display:grid;place-items:center;padding:20px}
+.modal .dlg{background:#fff;border-radius:20px;padding:28px;max-width:460px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.modal h2{font-size:1.5rem;margin-bottom:10px}
+.modal .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--green-d);color:#fff;padding:12px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:.25s;z-index:80;font-weight:600;max-width:90vw;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.skel{height:300px;border-radius:18px;background:linear-gradient(90deg,#edf3ef 25%,#f7faf8 50%,#edf3ef 75%);background-size:200% 100%;animation:sk 1.2s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.av{display:inline-grid;place-items:center;border-radius:50%;color:#fff;font-weight:700;flex:none;overflow:hidden}.rb{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--green-l);color:var(--green-d)}.r-Admin{background:var(--green-d);color:#fff}.r-Moderador{background:#CFE9DA}.r-Mentor{background:#FFF1CC;color:#6a4b00}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.com-w{max-width:1280px;padding:16px 20px 40px}.chead{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:14px}.chead .thumb{height:70px}.chead .ci{padding:14px 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.chead h1{font-size:1.5rem}.chead .ac{margin-left:auto;display:flex;flex-wrap:wrap;gap:8px}.tabs{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto}.tabs button{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-weight:600;white-space:nowrap}.tabs button[aria-selected=true]{background:var(--green-d);color:#fff;border-color:var(--green-d)}.tabs .mob{display:none}.com{display:grid;grid-template-columns:250px minmax(0,1fr) 270px;gap:14px;align-items:start}.sb,.dt{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;max-height:calc(100vh - 100px);overflow:auto;position:sticky;top:76px}.sb h2,.dt h2{font-size:1rem;margin-bottom:8px}.dt h3{font-size:.95rem;margin:14px 0 4px}.dt .meta{margin-bottom:6px}.ml{list-style:none;margin:0 0 10px;padding:0}.chb{display:block;width:100%;text-align:left;background:none;border:0;padding:8px 10px;border-radius:10px;font-weight:600;color:var(--muted)}.chb[aria-current=page]{background:var(--green-l);color:var(--green-d)}.mem{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:6px 8px;border-radius:12px;text-align:left;position:relative}.mem:hover{background:var(--green-l)}.mn{display:flex;flex-direction:column;font-weight:600;font-size:.93rem;line-height:1.3}.ctr{background:#fff;border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;height:calc(100vh - 190px);min-height:460px}.dm{padding:8px 16px;background:var(--green-l);border-radius:18px 18px 0 0}.msgs{flex:1;overflow-y:auto;padding:6px 16px 14px}.msg{display:flex;gap:10px;padding:2px 0}.msg:not(.cont){margin-top:12px}.msg .sp{width:40px;flex:none}.avb{background:none;border:0;padding:0;height:40px}.mb{min-width:0;flex:1}.mh{display:flex;align-items:center;flex-wrap:wrap;gap:6px}.an{background:none;border:0;padding:0;font-weight:700;color:var(--green-d);text-align:left}.mh time{font-size:.78rem;color:var(--muted)}.mb p{white-space:pre-wrap;overflow-wrap:anywhere}.ma{display:flex;gap:12px}.ma button{background:none;border:0;padding:2px 0;font-size:.78rem;color:var(--muted);text-decoration:underline}.day{display:flex;justify-content:center;margin:16px 0 4px}.day span{font-size:.78rem;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:2px 12px}.blk{margin:8px 0}.comp{display:flex;gap:10px;padding:12px;border-top:1px solid var(--line);align-items:flex-end}.comp textarea{flex:1;min-height:46px;max-height:120px;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;resize:none;font:inherit}.comp span{flex:1;color:var(--muted)}.pf{display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin:20px 0 0}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.chips span{background:var(--green-l);color:var(--green-d);font-weight:600;font-size:.85rem;padding:4px 12px;border-radius:999px}.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin:16px 0}.kv dt{color:var(--muted)}.kv dd{margin:0;font-weight:600}.ac2{display:flex;flex-wrap:wrap;gap:8px}.com>*,.comp textarea{min-width:0}@media (max-width:1023px){.com{grid-template-columns:minmax(0,1fr)}.comp{flex-wrap:wrap}.com>*{display:none}.com[data-t=chat]>.ctr,.com[data-t=atividades]>.ctr{display:flex}.com[data-t=membros]>.sb,.com[data-t=detalhes]>.dt{display:block}.sb,.dt{position:static;max-height:none}.tabs .mob{display:block}.ctr{height:calc(100vh - 250px)}}.acard{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--green-l);display:flex;flex-direction:column;gap:6px;margin-top:6px;max-width:420px}.acard.canc{opacity:.6}.grid .acard{max-width:none;background:#fff;box-shadow:var(--sh);margin:0}.ah{display:flex;justify-content:space-between;align-items:center}.tg{display:inline-block;background:var(--green-d);color:#fff;font-size:.75rem;font-weight:700;padding:2px 10px;border-radius:999px}.ab{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}.ck{display:flex;align-items:center;gap:6px;font-weight:500}.ck input{width:auto;min-height:0}.dlg{max-height:90vh;overflow:auto}.map{height:90px;border-radius:12px;background:repeating-linear-gradient(45deg,#EAF7EF,#EAF7EF 10px,#dff1e6 10px,#dff1e6 20px);display:grid;place-items:center;color:var(--muted);font-size:.85rem;margin:10px 0}textarea#a-ds,textarea#s-b,textarea#rp-t{min-height:80px;border:1.5px solid var(--line);border-radius:12px;padding:10px;font:inherit;width:100%}.bn{display:none}.burger{margin-left:0}.nbtn{position:relative;display:inline-grid;place-items:center;width:44px;height:44px;flex:none;padding:0;border-radius:50%;background:#fff;border:1.5px solid var(--line);color:var(--green-d)}.nbtn:hover,.nbtn[aria-current]{background:var(--green-l);border-color:var(--green)}.nb{position:absolute;top:-5px;right:-5px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--danger);color:#fff;font-size:.72rem;font-weight:800;line-height:1;display:grid;place-items:center;border:2px solid #fff}
+.sysm{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--green-l);border-radius:12px;padding:8px 12px;margin:10px 0;font-size:.92rem;color:var(--green-d)}.sysm svg.i{width:16px;height:16px}.sysm button{background:none;border:0;padding:0;margin-left:auto;font-weight:700;text-decoration:underline;color:var(--green-d)}
+.com[data-t=atividades]{grid-template-columns:minmax(0,1fr)}.com[data-t=atividades]>.actp{display:block}.actp{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;min-width:0}.ah2{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:18px}.ah2 h2{font-size:1.5rem}.fl{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-bottom:20px}.chip{background:#fff;border:1.5px solid var(--line);border-radius:999px;min-height:40px;padding:0 16px;font-weight:600}.chip:hover{border-color:var(--green)}.chip[aria-pressed=true]{background:var(--green-d);color:#fff;border-color:var(--green-d)}.fl .ck{margin-left:8px}
+.tile .tdate{display:flex;align-items:center;gap:14px;padding:14px 16px}.tile .dn{display:grid;place-items:center;background:#fff;border-radius:12px;width:54px;height:58px;color:var(--green-d);line-height:1;flex:none}.tile .dn b{font-size:1.5rem;display:block}.tile .dn span{font-size:.72rem;text-transform:uppercase;font-weight:700}.tile .tw{display:flex;flex-direction:column;gap:4px;font-size:.88rem;color:var(--green-d);font-weight:600;text-transform:capitalize}.tile .tw .tg{align-self:flex-start;text-transform:none}.tile .fv{margin-left:auto;background:#fff;border:0;border-radius:50%;width:38px;height:38px;font-size:1.1rem;color:var(--green-d);flex:none}.tdesc{color:var(--muted);font-size:.92rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.pg{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:6px}.pg span{display:block;height:100%;background:var(--green)}.tile .ab{margin-top:auto}
+@media (max-width:760px){.badge.reg{display:none}}
+nav.main button{padding:8px 8px;font-size:.88rem}
+@media (max-width:1280px){nav.main{display:none}.burger{display:grid}.bar .btn-sm.reg{display:none}.nbtn{margin-left:auto}}
+@media (max-width:760px){.bn{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:25;background:#fff;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}.bn button{flex:1;min-height:56px;background:none;border:0;font-size:.74rem;font-weight:600;color:var(--muted)}.bn button[aria-current]{color:var(--green-d);box-shadow:inset 0 3px 0 var(--green)}body{padding-bottom:64px}}
+/* additions: login + avatar chip */
+.chipu{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:3px 14px 3px 3px;font-weight:700;color:var(--green-d);margin-left:8px;max-width:180px}.chipu span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.chipu:hover{border-color:var(--green)}
+@media (max-width:1280px){.chipu{margin-left:auto}.nbtn{margin-left:0}.burger{margin-left:0}}
+@media (max-width:520px){.chipu span{display:none}.chipu{padding:3px}}
+.gbtn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;color:var(--text)}.gbtn:hover{border-color:var(--green)}.gbtn b{font-size:1.15rem;background:linear-gradient(90deg,#4285F4 25%,#EA4335 25% 50%,#FBBC05 50% 75%,#34A853 75%);-webkit-background-clip:text;background-clip:text;color:transparent}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {getAuth,onAuthStateChanged,GoogleAuthProvider,signInWithPopup,signInWithRedirect,signOut} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {getFirestore,doc,getDoc,setDoc,updateDoc,addDoc,collection,onSnapshot,query,orderBy,limit,runTransaction,arrayUnion,arrayRemove,serverTimestamp,writeBatch} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import {getDatabase,ref as rref,push,onChildAdded,query as rquery,limitToLast,serverTimestamp as rtime} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+
+/* ============ FIREBASE ============ */
+const firebaseConfig={
+  apiKey:"AIzaSyDwxoHADhbynmBlZ4dwS5X2uo800_ihFPg",
+  authDomain:"pace-9a435.firebaseapp.com",
+  databaseURL:"https://pace-9a435-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId:"pace-9a435",
+  storageBucket:"pace-9a435.firebasestorage.app",
+  messagingSenderId:"786937813391",
+  appId:"1:786937813391:web:3a84a09e548ba6abb853fa",
+  measurementId:"G-EQ1S7XCL8J"
+};
+const fbApp=initializeApp(firebaseConfig),auth=getAuth(fbApp),db=getFirestore(fbApp),rdb=getDatabase(fbApp);
+
+/* ============ CONFIG CENTRAL ============ */
+const CONFIG={
+  name:"PACE",
+  slogan:"Find your pace. Find your people.",
+  HERO_IMAGE_URL:"2.JPG",
+  instagramUrl:"",
+  contactEmail:""
+};
+/* ============ DADOS ESTÁTICOS ============ */
+const RACES=[
+ {id:"cascais",slug:"ironman-703-cascais",name:"IRONMAN 70.3 Cascais",country:"Portugal",city:"Cascais",eventDate:"2027-10-23",dateConfirmed:true,imageURL:"cascais.png",tone:["#2E86A8","#9BD6C0"]},
+ {id:"malaga",slug:"ironman-703-malaga",name:"IRONMAN 70.3 Málaga",country:"Espanha",city:"Málaga",eventDate:"2027-10-31",dateConfirmed:true,imageURL:"malaga.png",tone:["#D9A35B","#75C99A"]}
+];
+const NAV=[["home","Início"],["minhas","As minhas provas"],["treinos","Explorar treinos"],["recuperacao","Recuperação"],["bikefit","Bike fit"],["calendario","Calendário"],["favoritos","Favoritos"],["notificacoes","Notificações"],["perfil","Perfil"],["definicoes","Definições"]];
+const PROT=['minhas','treinos','calendario','favoritos','notificacoes','perfil','definicoes','canal','atleta'];
+const INFO={
+ sobre:["Sobre","PACE é uma plataforma social gratuita para atletas amadores que vão participar em provas IRONMAN 70.3. Ajuda a encontrar pessoas na mesma prova, com objetivos semelhantes, e a combinar treinos presenciais."],
+ contacto:["Contacto","Ainda não existe um contacto oficial configurado. Quando existir, será definido em CONFIG.contactEmail."],
+ privacidade:["Privacidade","Texto legal por redigir. O início de sessão é feito com a tua conta Google. Guardamos o nome, a foto, o username, a cidade, o perfil desportivo, as tuas atividades e as mensagens dos canais. O email não é guardado no perfil nem aparece em perfis públicos."],
+ termos:["Termos","Texto legal por redigir antes de qualquer lançamento público."],
+ seguranca:["Segurança nos treinos","Guia por redigir. Princípios previstos: encontrar-se em locais públicos, avisar alguém do percurso, respeitar o código da estrada e não partilhar moradas privadas."]
+};
+const COUNTRIES=["Portugal","Espanha"];
+const GOALS={fin:'Terminar a prova',s7:'Sub 7h',s6:'Sub 6h',s530:'Sub 5h30',s5:'Sub 5h',cus:'Objetivo personalizado'},ROLES=['Admin','Moderador','Mentor','Atleta'],SPORTS={bike:'Bike',run:'Run',swim:'Natação em águas abertas'};
+const SAFE={bike:'Usa capacete, respeita o código da estrada e leva material de reparação.',run:'Leva água, usa roupa visível e respeita o teu ritmo.',swim:'Nada sempre acompanhado, com boia de segurança, e confirma as condições do mar.'};
+/* ============ ESTADO ============ */
+const S={route:"home",param:null,q:"",country:"",sort:"rel",user:null,auth:null,ready:false,pendingRace:null,loading:true,tab:'chat',sf:'',det:null,edit:null,draft:{},af:{vag:false,beg:false},tmpPhoto:'',pendAct:null,_vk:''};
+let USERS={},ACT=[],NT=[];const CHAT={};
+const F={q:'',sp:'',beg:false,vag:false,o:'d',n:'',km:'',c:'',d:'',g:'',org:''};
+const $=(s,e=document)=>e.querySelector(s);
+const esc=t=>String(t==null?'':t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ICONS={search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',pin:'<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',cal:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',x:'<path d="M18 6 6 18M6 6l12 12"/>',arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',bolt:'<path d="m13 2-9 12h7l-1 8 9-12h-7Z"/>',check:'<path d="M20 6 9 17l-5-5"/>',bell:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>'};
+const ic=n=>`<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n]}</svg>`;
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("show"),3200)}
+const UID=()=>S.user?S.user.id:null;
+const ath=id=>id==='me'?S.user:(USERS[id]||null);
+const needOnb=()=>!!(S.user&&!S.user.onboarded);
+const myChannels=()=>new Set((S.user&&S.user.channels)||[]);
+const isMember=id=>myChannels().has(id);
+const FAV={has:k=>!!(S.user&&(S.user.favs||[]).includes(k))};
+const BL={has:id=>!!(S.user&&(S.user.blocked||[]).includes(id))};
+const memberCount=id=>Object.values(USERS).filter(u=>(u.channels||[]).includes(id)).length;
+const errMsg=e=>e&&e.code==='permission-denied'?'Sem permissão (verifica as regras do Firebase).':(e&&e.message)||'Erro inesperado.';
+function go(r,p=null,np){closeModal();if(!np&&(r!==S.route||p!==S.param))try{history.pushState({r,p},'','#/'+r+(p?'/'+p:''))}catch(_){}S.route=r;S.param=p;S.tab='chat';S.sf='';render();window.scrollTo(0,0);document.title=(r==="home"?CONFIG.name+" — "+CONFIG.slogan:pageTitle()+" · "+CONFIG.name)}
+function pageTitle(){const n=NAV.find(x=>x[0]===S.route);return n?n[1]:S.route==="registo"?"Perfil":S.route==="info"?INFO[S.param][0]:S.route==='canal'?(RACES.find(x=>x.id===S.param)||{name:'Canal'}).name:S.route==='atleta'?'Perfil':"Página não encontrada"}
+const hasDates=()=>RACES.some(r=>r.dateConfirmed&&r.eventDate);
+/* ============ AUTENTICAÇÃO ============ */
+const provider=new GoogleAuthProvider();
+async function signIn(){
+ try{await signInWithPopup(auth,provider)}
+ catch(e){
+  if(e.code==='auth/popup-blocked'||e.code==='auth/operation-not-supported-in-this-environment'){try{await signInWithRedirect(auth,provider)}catch(_){toast('Não foi possível iniciar sessão.')}}
+  else if(e.code==='auth/unauthorized-domain')toast('Domínio não autorizado: adiciona-o em Authentication > Settings > Authorized domains.');
+  else if(e.code!=='auth/popup-closed-by-user'&&e.code!=='auth/cancelled-popup-request')toast('Não foi possível entrar: '+(e.code||e.message));
+ }}
+let unsubs=[];
+function stopSubs(){unsubs.forEach(f=>{try{f()}catch(_){}});unsubs=[];USERS={};ACT=[];NT=[];unsubChat()}
+function subErr(e){console.warn(e);toast(errMsg(e))}
+onAuthStateChanged(auth,async u=>{
+ stopSubs();S.auth=u;S.user=null;
+ if(!u){S.ready=true;S.loading=false;render();return}
+ try{
+  const uref=doc(db,'users',u.uid),s=await getDoc(uref);
+  if(!s.exists())await setDoc(uref,{name:u.displayName||'',photoURL:u.photoURL||'',photo:'',username:'',city:'',country:'Portugal',role:'Atleta',sports:[],goal:'',gt:'',zone:'',hid:false,raceId:'',channels:[],favs:[],blocked:[],bio:'',onboarded:false,createdAt:serverTimestamp()});
+  else if(u.photoURL&&s.data().photoURL!==u.photoURL)updateDoc(uref,{photoURL:u.photoURL}).catch(()=>{});
+  let first=true;
+  unsubs.push(onSnapshot(collection(db,'users'),snap=>{
+   snap.docChanges().forEach(ch=>{if(ch.type==='removed')delete USERS[ch.doc.id];else USERS[ch.doc.id]={id:ch.doc.id,...ch.doc.data()}});
+   S.user=USERS[u.uid]||null;
+   if(first){first=false;afterLogin()}else render(true)
+  },subErr));
+  unsubs.push(onSnapshot(collection(db,'activities'),snap=>{
+   ACT=snap.docs.map(d=>({id:d.id,p:[],st:'ok',...d.data()}));
+   if(S.pendAct&&A(S.pendAct)){const p=S.pendAct;S.pendAct=null;go('canal',A(p).race,true);showDet(p);return}
+   refresh()
+  },subErr));
+  unsubs.push(onSnapshot(query(collection(db,'users',u.uid,'notifs'),orderBy('ts','desc'),limit(50)),snap=>{NT=snap.docs.map(d=>({id:d.id,...d.data()}));render(true)},subErr));
+ }catch(e){S.ready=true;S.loading=false;render();subErr(e)}
+});
+async function afterLogin(){
+ S.ready=true;S.loading=false;
+ if(!S.user){render();return}
+ if(needOnb()){go('registo',null,true);return}
+ if(S.pendingRace){const id=S.pendingRace;S.pendingRace=null;await joinRace(id);toast('Entraste no canal');go('canal',id);return}
+ if(S.route==='registo')go('home',null,true);else render()}
+async function joinRace(id){const up={channels:arrayUnion(id)};if(!S.user.raceId)up.raceId=id;try{await updateDoc(doc(db,'users',UID()),up)}catch(e){subErr(e)}}
+function resizeImg(file,size=256){return new Promise((res,rej)=>{const img=new Image(),u=URL.createObjectURL(file);img.onload=()=>{const c=document.createElement('canvas');c.width=c.height=size;const x=c.getContext('2d'),m=Math.min(img.width,img.height);x.drawImage(img,(img.width-m)/2,(img.height-m)/2,m,m,0,0,size,size);URL.revokeObjectURL(u);res(c.toDataURL('image/jpeg',.82))};img.onerror=()=>rej(new Error('Imagem inválida.'));img.src=u})}
+/* ============ COMPONENTES ============ */
+function waves(t){return `<svg viewBox="0 0 400 170" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ilustração"><defs><linearGradient id="g${t[0].slice(1)}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${t[0]}"/><stop offset="1" stop-color="${t[1]}"/></linearGradient></defs><rect width="400" height="170" fill="url(#g${t[0].slice(1)})"/><circle cx="310" cy="52" r="26" fill="#fff" opacity=".8"/><path d="M0 110c40-14 80 14 120 0s80-14 120 0 80 14 160 0v60H0z" fill="#fff" opacity=".35"/><path d="M0 130c50-12 90 12 140 0s90-12 140 0 80 10 120 0v40H0z" fill="#174B35" opacity=".55"/></svg>`}
+const hue=s=>['#174B35','#2E86A8','#B5651D','#6B4FA0','#C2477A','#3A7D44'][[...String(s)].reduce((n,c)=>n+c.charCodeAt(0),0)%6];
+const photoOf=a=>(a&&(a.photo||a.photoURL))||'';
+const av=(a,z=40)=>{const p=photoOf(a);return p?`<span class='av' style='width:${z}px;height:${z}px;background:${hue(a.id)}' aria-hidden='true'><img src='${esc(p)}' alt='' referrerpolicy='no-referrer' style='width:100%;height:100%;object-fit:cover'></span>`:`<span class='av' style='width:${z}px;height:${z}px;background:${hue(a.id)};font-size:${z*.38}px' aria-hidden='true'>${esc((a.name||'?').split(' ').map(w=>w[0]).slice(0,2).join(''))}</span>`};
+const rb=r=>`<span class='rb r-${esc(r)}'>${esc(r)}</span>`;
+const isPast=a=>new Date(a.date+'T'+(a.tm||'23:59'))<new Date();
+const nAct=id=>ACT.filter(a=>a.race===id&&a.st==='ok'&&!isPast(a)).length;
+function racedate(r){if(!(r.dateConfirmed&&r.eventDate))return 'Data por confirmar';const d=Math.ceil((new Date(r.eventDate)-new Date())/864e5);return new Date(r.eventDate).toLocaleDateString('pt-PT',{day:'numeric',month:'long',year:'numeric'})+(d>=0?' · faltam '+d+' dias':'')}
+function raceCard(r){
+ return `<article class="card"><div class="thumb">${r.imageURL?`<img src="${esc(r.imageURL)}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">`:waves(r.tone)}<span class="tag"></span></div>
+ <div class="body"><h3>${esc(r.name)}</h3>
+ <div class="meta">${ic("pin")}${esc(r.city)}, ${esc(r.country)}</div>
+ <div class="meta">${ic("cal")}${racedate(r)}</div>
+ ${S.user?`<div class="meta">${ic("users")}${memberCount(r.id)} atletas · ${nAct(r.id)} treinos</div>`:''}
+ <button class="btn btn-p" data-act="enter" data-id="${r.id}">Entrar no canal ${ic("arrow")}</button> <button class="btn btn-o btn-sm" data-act="fav" data-k="r:${r.id}" aria-pressed="${FAV.has('r:'+r.id)}">${FAV.has('r:'+r.id)?'Guardada':'Guardar'}</button></div></article>`}
+function filtered(){
+ let l=RACES.filter(r=>(!S.q||(r.name+" "+r.city).toLowerCase().includes(S.q.toLowerCase()))&&(!S.country||r.country===S.country));
+ if(S.sort==="date"&&hasDates())l=[...l].sort((a,b)=>(a.eventDate||"9").localeCompare(b.eventDate||"9"));
+ else l=[...l].sort((a,b)=>memberCount(b.id)-memberCount(a.id));
+ return l}
+function raceGrid(){
+ if(S.loading)return `<div class="grid"><div class="skel"></div><div class="skel"></div></div>`;
+ const l=filtered();
+ if(!l.length)return `<div class="empty"><h3>Nenhuma prova encontrada</h3><p>Experimenta outro nome ou remove o filtro de país.</p><button class="btn btn-o" data-act="clear">Limpar filtros</button></div>`;
+ return `<div class="grid">${l.map(raceCard).join("")}</div>`}
+const gbtn=(t='Continuar com Google')=>`<button class='gbtn' data-act='login'><b>G</b> ${t}</button>`;
+/* ============ VISTAS ============ */
+function header(){
+ const u=S.user;
+ return `<header class="top"><div class="wrap bar"><button class="brand" data-act="go" data-r="home" aria-label="${esc(CONFIG.name)} — início"><span class="logo">${ic("bolt")}</span>${esc(CONFIG.name)}</button>
+ <nav class="main" aria-label="Principal">${NAV.filter(x=>x[0]!=='notificacoes').map(([k,l])=>`<button data-act="go" data-r="${k}" ${S.route===k?'aria-current="page"':""}>${l}</button>`).join("")}</nav>
+ ${u?`<button class="chipu" data-act="go" data-r="perfil" aria-label="O meu perfil">${av(u,34)}<span>${esc(u.username||u.name)}</span></button>`:`<button class="btn btn-g btn-sm reg" data-act="login">Entrar com Google</button>`}
+ ${u?`<button class="nbtn" data-act="go" data-r="notificacoes" aria-label="Notificações${unread()?' ('+unread()+' novas)':''}" ${S.route==='notificacoes'?'aria-current="page"':''}>${ic("bell")}${unread()?`<span class="nb">${unread()}</span>`:''}</button>`:''}
+ <button class="burger" data-act="menu" aria-label="Abrir menu" aria-expanded="false">${ic("menu")}</button></div></header>
+ <div class="drawer" id="drawer"><div class="panel" role="dialog" aria-label="Menu"><button class="btn btn-o btn-sm" data-act="menu" style="align-self:flex-end" aria-label="Fechar menu">${ic("x")}</button>
+ ${NAV.map(([k,l])=>`<button class="nv" data-act="go" data-r="${k}" ${S.route===k?'aria-current="page"':""}>${l}</button>`).join("")}
+ ${u?`<button class="btn btn-o" data-act="logout" style="margin-top:12px">Terminar sessão</button>`:`<button class="btn btn-g" data-act="login" style="margin-top:12px">Entrar com Google</button>`}</div></div>`}
+function footer(){
+ return `<footer><div class="wrap"><strong style="color:var(--green-d);font-size:1.2rem">${esc(CONFIG.name)}</strong> <span style="color:var(--muted)">— ${esc(CONFIG.slogan)}</span>
+ <div class="links">${Object.entries(INFO).map(([k,v])=>`<button data-act="info" data-k="${k}">${v[0]}</button>`).join("")}
+ ${CONFIG.instagramUrl?`<a href="${esc(CONFIG.instagramUrl)}" target="_blank" rel="noopener">Instagram</a>`:`<button data-act="toast" data-m="Instagram ainda não configurado (CONFIG.instagramUrl).">Instagram</button>`}</div>
+ <p class="disc">PACE é um projeto independente e não tem qualquer afiliação oficial com a IRONMAN. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares.</p></div></footer>`}
+function bnav(){return `<nav class="bn" aria-label="Navegação móvel">${[['home','Início'],['treinos','Treinos'],['calendario','Calendário'],['notificacoes','Avisos'+(unread()?' ('+unread()+')':'')],['perfil','Perfil']].map(([k,l])=>`<button data-act="go" data-r="${k}" ${S.route===k?'aria-current="page"':''}>${l}</button>`).join("")}</nav>`}
+function home(){
+ const hero=CONFIG.HERO_IMAGE_URL?`<img class="photo" src="${esc(CONFIG.HERO_IMAGE_URL)}" alt="">`:
+ `<svg class="art" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFE8D2"/><stop offset=".55" stop-color="#F3F8E9"/></linearGradient><linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4FB3A5"/><stop offset="1" stop-color="#1D6B66"/></linearGradient></defs><rect width="1200" height="700" fill="url(#sk)"/><circle cx="900" cy="250" r="80" fill="#FFF4C9"/><path d="M0 380c150-60 260 10 420-20s300-60 460-10 220 20 320-10v360H0z" fill="#75C99A" opacity=".55"/><rect y="400" width="1200" height="300" fill="url(#sea)"/><path d="M0 470c100-18 200 18 300 0s200-18 300 0 200 18 300 0 200-18 300 0v230H0z" fill="#fff" opacity=".12"/><path d="M0 560c120-20 240 20 360 0s240-20 360 0 240 20 480 0v140H0z" fill="#174B35" opacity=".5"/></svg>`;
+ return `<section class="hero">${hero}<div class="in"><h1>${esc(CONFIG.name)}</h1><p class="slogan">${esc(CONFIG.slogan)}</p>
+ <p class="lead">Encontra atletas que vão à mesma prova. Combina treinos. Chega à linha de partida com uma equipa.</p>
+ <div class="cta"><button class="btn btn-g" data-act="scroll">Explorar provas</button>${S.user?'':`<button class="btn btn-w" data-act="login">Entrar com Google</button>`}</div></div></section>
+ <section class="sec" id="provas"><div class="wrap"><div class="head"><h2>A tua próxima prova começa aqui.</h2><p>Encontra os atletas que vão à mesma prova que tu e prepara-a em conjunto, treino a treino.</p></div>
+ <div class="tools"><div class="field">${ic("search")}<input id="q" type="search" placeholder="Pesquisar por nome ou cidade" aria-label="Pesquisar provas" value="${esc(S.q)}"></div>
+ <select id="country" aria-label="Filtrar por país"><option value="">Todos os países</option>${COUNTRIES.map(c=>`<option ${S.country===c?"selected":""}>${c}</option>`).join("")}</select>
+ <select id="sort" aria-label="Ordenar"><option value="rel" ${S.sort==="rel"?"selected":""}>Relevância</option>${hasDates()?`<option value="date" ${S.sort==="date"?"selected":""}>Data</option>`:""}</select></div>
+ <div id="grid">${raceGrid()}</div>
+ <section class="sec steps"><div class="wrap"><div class="head"><h2>Três passos até à linha de partida</h2></div><ol>
+ <li><h3>Escolhe a prova</h3><p>Entra no canal da prova em que vais participar.</p></li>
+ <li><h3>Encontra atletas como tu</h3><p>Descobre quem tem objetivos e ritmos semelhantes.</p></li>
+ <li><h3>Combina treinos</h3><p>Organiza saídas de bike, corrida e natação em águas abertas.</p></li></ol></div></section>
+ ${S.user?'':`<section class="sec"><div class="wrap"><div class="final"><h2>Uma prova é mais fácil quando não a preparas sozinho.</h2><button class="btn btn-g" data-act="login">Encontrar a minha comunidade</button></div></div></section>`}`}
+function needLogin(){return `<div class="wrap page"><h1>Entra para continuar</h1><div class="box"><p style="margin-bottom:18px;color:var(--muted)">Esta área é só para atletas com sessão iniciada. Entra com a tua conta Google para criares o teu perfil e participares nos canais.</p>${gbtn()}</div></div>`}
+function register(){
+ if(!S.auth)return needLogin();
+ if(needOnb())return onboarding();
+ return `<div class="wrap page"><h1>Sessão iniciada</h1><div class="box"><p>Olá, ${esc(S.user.name)}.</p><div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap"><button class="btn btn-p" data-act="go" data-r="home">Ver provas</button></div></div></div>`}
+const optList=(m,v,blank)=>(blank?`<option value=''>${blank}</option>`:'')+Object.entries(m).map(([k,t])=>`<option value='${k}' ${v===k?'selected':''}>${t}</option>`).join('');
+const sportChecks=(name,sel)=>Object.entries(SPORTS).map(([k,v])=>`<label style='font-weight:500;display:flex;gap:8px;align-items:center'><input type='checkbox' name='${name}' value='${k}' ${(sel||[]).includes(k)?'checked':''} style='width:auto;min-height:0'> ${v}</label>`).join('');
+function onboarding(){const u=S.user;return `<div class='wrap page'><h1>Bem-vindo à PACE</h1><div class='box'><p style='margin-bottom:16px;color:var(--muted)'>Completa o teu perfil. O nome, o username e a cidade são obrigatórios; o resto podes mudar depois nas definições.</p>
+ <div class='pf' style='margin:0 0 16px'>${av(S.tmpPhoto?{id:u.id,name:u.name,photo:S.tmpPhoto}:u,72)}<div><label class='btn btn-o btn-sm' for='o-ph' style='cursor:pointer'>Escolher foto</label><input id='o-ph' type='file' accept='image/*' class='sr'><p class='note' style='margin-top:6px'>Usamos a foto da tua conta Google se não escolheres outra.</p></div></div>
+ <form id='onb' novalidate>
+ <div class='row'><label for='o-n'>Nome</label><input id='o-n' autocomplete='name' value='${esc(u.name)}'><span class='err' data-e='n'></span></div>
+ <div class='row'><label for='o-un'>Username</label><input id='o-un' autocomplete='username' placeholder='ex.: ana_run'><span class='err' data-e='un'></span></div>
+ <div class='two'><div class='row'><label for='o-c'>País</label><select id='o-c' style='width:100%'>${COUNTRIES.map(c=>`<option>${c}</option>`).join('')}</select></div><div class='row'><label for='o-city'>Cidade/zona</label><input id='o-city'><span class='err' data-e='city'></span></div></div>
+ <div class='row'><label for='o-r'>Prova-alvo</label><select id='o-r' style='width:100%'><option value=''>Ainda não sei</option>${RACES.map(x=>`<option value='${x.id}' ${S.pendingRace===x.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select></div>
+ <fieldset class='row' style='border:0;padding:0;margin:0 0 16px'><legend style='font-weight:600;font-size:.93rem;margin-bottom:6px'>Modalidades</legend>${sportChecks('sp',[])}</fieldset>
+ <div class='row'><label for='o-g'>Objetivo de tempo</label><select id='o-g' style='width:100%'>${optList(GOALS,'','Sem objetivo')}</select></div>
+ <div class='row'><label for='o-gt'>Tempo personalizado (se escolheste Objetivo personalizado, ex.: 5h45)</label><input id='o-gt'></div>
+ <div class='row'><label style='font-weight:500;display:flex;gap:8px;align-items:center'><input type='checkbox' id='o-h' style='width:auto;min-height:0'> Ocultar o objetivo no perfil público</label></div>
+ <div class='row'><label for='o-z'>Zona de treino</label><input id='o-z' placeholder='ex.: Marginal Cascais–Oeiras'></div>
+ <div style='display:flex;gap:10px;flex-wrap:wrap'><button class='btn btn-p' type='submit'>Concluir</button><button class='btn btn-o' type='button' data-act='logout'>Terminar sessão</button></div></form></div></div>`}
+async function finishOnb(){
+ const g=id=>$('#'+id),v=id=>g(id).value.trim(),er={},un=v('o-un').toLowerCase();
+ if(v('o-n').length<2)er.n='Indica o teu nome.';
+ if(!/^[a-z0-9_]{3,20}$/.test(un))er.un='3 a 20 caracteres: letras, números ou _.';
+ if(!v('o-city'))er.city='Indica a tua cidade ou zona.';
+ const paint=()=>document.querySelectorAll('#onb [data-e]').forEach(s=>s.textContent=er[s.dataset.e]||'');
+ paint();const k=Object.keys(er)[0];
+ if(k){({n:'o-n',un:'o-un',city:'o-city'}[k]&&g({n:'o-n',un:'o-un',city:'o-city'}[k]).focus());return}
+ const uid=UID(),rid=g('o-r').value,btn=$('#onb button[type=submit]');btn.disabled=true;
+ const data={name:v('o-n').slice(0,60),username:un,city:v('o-city').slice(0,60),country:g('o-c').value,sports:[...document.querySelectorAll('[name=sp]:checked')].map(c=>c.value),goal:g('o-g').value,gt:v('o-gt').slice(0,20),zone:v('o-z').slice(0,80),hid:g('o-h').checked,onboarded:true};
+ if(S.tmpPhoto)data.photo=S.tmpPhoto;
+ if(rid){data.channels=arrayUnion(rid);data.raceId=rid}
+ try{
+  await runTransaction(db,async tx=>{
+   const nr=doc(db,'usernames',un),ns=await tx.get(nr);
+   if(ns.exists()&&ns.data().uid!==uid)throw new Error('taken');
+   if(!ns.exists())tx.set(nr,{uid});
+   tx.update(doc(db,'users',uid),data)});
+  S.tmpPhoto='';S.pendingRace=null;toast('Perfil criado');
+  if(rid)go('canal',rid);else go('home')
+ }catch(e){btn.disabled=false;if(e.message==='taken'){er.un='Esse username já existe.';paint();g('o-un').focus()}else subErr(e)}}
+/* ============ PERFIS, CANAIS, CHAT ============ */
+let chatUnsub=null,chatRace=null;
+function unsubChat(){if(chatUnsub){try{chatUnsub()}catch(_){}}chatUnsub=null;chatRace=null}
+function subChat(raceId){
+ if(chatRace===raceId)return;unsubChat();chatRace=raceId;CHAT[raceId]=[];
+ chatUnsub=onChildAdded(rquery(rref(rdb,'chats/'+raceId+'/messages'),limitToLast(100)),snap=>{
+  const val=snap.val();if(!val)return;
+  CHAT[raceId].push({k:snap.key,...val});
+  if(S.route==='canal'&&S.param===raceId&&S.tab==='chat')paintMsgs()
+ },e=>{console.warn(e);toast('Não foi possível ler o chat (regras da Realtime Database).')})}
+function syncChat(){if(S.route==='canal'&&S.auth&&S.param&&RACES.some(r=>r.id===S.param))subChat(S.param);else if(chatRace)unsubChat()}
+function dayLabel(ts){const d=new Date(ts),t=new Date(),y=new Date();y.setDate(t.getDate()-1);return d.toDateString()===t.toDateString()?'Hoje':d.toDateString()===y.toDateString()?'Ontem':d.toLocaleDateString('pt-PT',{day:'numeric',month:'long'})}
+const hm=ts=>new Date(ts).toTimeString().slice(0,5);
+function msgsHtml(id){
+ const L=CHAT[id]||[];if(!L.length)return `<div class='empty' style='margin-top:16px'>Ainda não há mensagens. Sê o primeiro a escrever.</div>`;
+ let h='',pd=null,pa=null;
+ L.forEach(m=>{
+  const a=ath(m.uid)||{id:m.uid,name:m.name||'Atleta',role:'Atleta'},ts=m.ts||Date.now(),dk=new Date(ts).toDateString();
+  if(dk!==pd){h+=`<div class='day'><span>${dayLabel(ts)}</span></div>`;pd=dk;pa=null}
+  if(BL.has(m.uid)){if(pa!=='b'+m.uid){h+=`<p class='note blk'>Mensagens de ${esc(a.name)} ocultas (bloqueado).</p>`;pa='b'+m.uid}return}
+  if(m.act){const x=A(m.act);if(x){h+=`<p class='sysm'>${ic('bolt')}<span><strong>${esc(a.name)}</strong> criou uma atividade de ${SPORTS[x.sport]}: ${esc(x.title)}.</span><button data-act='sf' data-s='' data-t='atividades'>Ver atividades</button></p>`;pa=null}return}
+  const f=pa!==m.uid;pa=m.uid;
+  h+=`<div class='msg${f?'':' cont'}'>${f?`<button class='avb' data-act='atleta' data-id='${esc(a.id)}' aria-label='Perfil de ${esc(a.name)}'>${av(a)}</button>`:`<span class='sp'></span>`}<div class='mb'>${f?`<div class='mh'><button class='an' data-act='atleta' data-id='${esc(a.id)}'>${esc(a.name)}</button>${rb(a.role||'Atleta')}<time>${hm(ts)}</time></div>`:''}<p>${esc(m.text)}</p><div class='ma'><button data-act='copy' data-k='${esc(m.k)}'>Copiar</button>${m.uid!==UID()?`<button data-act='rep' data-uid='${esc(m.uid)}' data-k='${esc(m.k)}'>Denunciar</button>`:''}</div></div></div>`});
+ return h}
+function paintMsgs(){const el=$('#msgs');if(!el)return;const near=el.scrollHeight-el.scrollTop-el.clientHeight<80;el.innerHTML=msgsHtml(S.param);if(near)el.scrollTop=el.scrollHeight}
+async function sendMsg(){
+ const i=$('#cin');if(!i)return;const x=i.value.trim();
+ if(!x)return toast('Escreve algo antes de enviar.');
+ if(!isMember(S.param))return toast('Entra no canal para escrever.');
+ i.value='';
+ try{await push(rref(rdb,'chats/'+S.param+'/messages'),{uid:UID(),name:(S.user.name||'Atleta').slice(0,40),text:x.slice(0,500),ts:rtime()})}
+ catch(e){i.value=x;toast('Não foi possível enviar a mensagem.')}}
+function subch(){const L=[['Chat geral','','chat'],['Bike','bike','atividades'],['Run','run','atividades'],['Open-water swim','swim','atividades'],['Atividades','','atividades']];return `<h2 style='margin-top:18px'>Neste canal</h2>`+L.map(([l,k,tb])=>`<button class='chb' data-act='sf' data-s='${k}' data-t='${tb}' ${S.tab===tb&&S.sf===k?"aria-current='page'":''}>${l}</button>`).join('')+`<p class='note'>Bike, Run e Open-water filtram as atividades; o chat é comum a todo o canal.</p>`}
+function canal(){
+ const r=RACES.find(x=>x.id===S.param);if(!r){S.route='404';return view()}
+ const j=isMember(r.id),t=S.tab,m=Object.values(USERS).filter(u=>(u.channels||[]).includes(r.id)&&u.onboarded).sort((a,b)=>ROLES.indexOf(a.role||'Atleta')-ROLES.indexOf(b.role||'Atleta')||(a.name||'').localeCompare(b.name||''));
+ const tb=(k,l,c)=>`<button role='tab' class='${c||''}' data-act='tab' data-t='${k}' aria-selected='${t===k}'>${l}</button>`;
+ return `<div class='wrap com-w'><div class='chead'><div class='thumb'>${waves(r.tone)}</div><div class='ci'><div><span class='note'>${CONFIG.name} / ${r.country} / ${esc(r.name)}</span><h1>${esc(r.name)}</h1><span class='meta'>${ic('pin')}${esc(r.city)}, ${r.country} · ${m.length} atletas · ${nAct(r.id)} treinos</span></div><div class='ac'><button class='btn btn-o btn-sm' data-act='atl'>Ver atletas</button><button class='btn btn-o btn-sm' data-act='share'>Partilhar canal</button>${j?`<button class='btn btn-o btn-sm' data-act='leave' data-id='${r.id}'>Sair do canal</button>`:`<button class='btn btn-p btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button>`}</div></div></div><div class='tabs' role='tablist'>${tb('chat','Chat')}${tb('atividades','Atividades')}${tb('membros','Membros','mob')}${tb('detalhes','Detalhes','mob')}</div>${t==='atividades'?`<div class='com' data-t='atividades'><section class='actp'>${acList(r.id)}</section></div>`:`<div class='com' data-t='${t}'><aside class='sb' aria-label='Canais e membros'><h2>Canais</h2>${RACES.map(x=>`<button class='chb' data-act='canal' data-id='${x.id}' ${x.id===r.id?`aria-current='page'`:''}>${esc(x.name)}</button>`).join('')}${subch()}<h2 style='margin-top:18px'>Membros</h2><ul class='ml'>${m.map(a=>`<li><button class='mem' data-act='atleta' data-id='${esc(a.id)}'>${av(a,36)}<span class='mn'>${esc(a.name)}<small>${rb(a.role||'Atleta')}</small></span></button></li>`).join('')||`<li class='note'>Ainda sem membros.</li>`}</ul></aside><section class='ctr'><p class='note dm'>Chat em tempo real: todos os membros com sessão iniciada veem as mensagens. Sê respeitador.</p><div class='msgs' id='msgs' tabindex='0' aria-live='polite'>${msgsHtml(r.id)}</div>${j?`<div class='comp'><textarea id='cin' rows='1' maxlength='500' placeholder='Escreve uma mensagem' aria-label='Mensagem'></textarea><button class='btn btn-g btn-sm' data-act='newact'>Atividade</button><button class='btn btn-p btn-sm' data-act='send'>Enviar</button></div>`:`<div class='comp'><span>Entra no canal para escrever.</span><button class='btn btn-g btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button></div>`}</section><aside class='dt'><h2>Sobre a prova</h2><p class='meta'>${ic('pin')}${esc(r.city)}, ${r.country}</p><p class='meta'>${ic('cal')}${racedate(r)}</p><p class='meta'>${ic('users')}${m.length} atletas · ${nAct(r.id)} treinos</p><p class='note'>Site oficial: não configurado.</p><h3>Próximos treinos</h3>${upc(r.id)}<h3>Cargos</h3><p class='note'>Admin, Moderador e Mentor são atribuídos pela equipa PACE. Todos os outros são Atletas.</p></aside></div>`}</div>`}
+function atleta(id){
+ const a=ath(id);if(!a){S.route='404';return view()}
+ const r=RACES.find(x=>x.id===a.raceId),me=S.user&&a.id===S.user.id,bl=BL.has(a.id),since=a.createdAt&&a.createdAt.toDate?a.createdAt.toDate().toLocaleDateString('pt-PT',{month:'long',year:'numeric'}):'agora';
+ return `<div class='wrap page'><button class='btn btn-o btn-sm' data-act='back'>Voltar</button><div class='pf'>${av(a,96)}<div><h1>${esc(a.name)}</h1><p class='meta'>@${esc(a.username)} · ${esc(a.city||'')}${a.country?', '+esc(a.country):''} ${rb(a.role||'Atleta')}</p></div></div><div class='box' style='max-width:720px;margin-top:20px'><p>${esc(a.bio||'Sem biografia.')}</p>${a.zone?`<p class='note'>Zona de treino: ${esc(a.zone)}</p>`:''}<div class='chips'>${(a.sports||[]).map(s=>`<span>${SPORTS[s]}</span>`).join('')||`<span>Modalidades por definir</span>`}</div><dl class='kv'><dt>Prova-alvo</dt><dd>${r?`<button class='an' data-act='canal' data-id='${r.id}'>${esc(r.name)}</button>`:'Por definir'}</dd><dt>Objetivo</dt><dd>${a.hid&&!me?'Oculto pelo atleta':((a.goal&&r?'Objetivo '+esc(r.city)+' · ':'')+(a.goal==='cus'?'Personalizado'+(a.gt?' · '+esc(a.gt):''):GOALS[a.goal]||'Sem objetivo definido'))}</dd><dt>Treinos organizados</dt><dd>${ACT.filter(x=>x.org===a.id&&x.st==='ok').length}</dd><dt>Treinos em que participou</dt><dd>${ACT.filter(x=>x.p.includes(a.id)&&x.st==='ok').length}</dd><dt>Membro desde</dt><dd>${esc(since)}</dd></dl><div class='ac2'>${me?`<button class='btn btn-p btn-sm' data-act='go' data-r='definicoes'>Editar perfil</button><button class='btn btn-o btn-sm' data-act='hg'>${a.hid?'Mostrar objetivo':'Ocultar objetivo'}</button>`:`<button class='btn btn-p btn-sm' data-act='vt' data-id='${esc(a.id)}'>Ver treinos</button><button class='btn btn-o btn-sm' data-act='share'>Partilhar perfil</button><button class='btn btn-o btn-sm' data-act='rep' data-uid='${esc(a.id)}'>Denunciar</button><button class='btn btn-o btn-sm' data-act='blk' data-id='${esc(a.id)}'>${bl?'Desbloquear':'Bloquear'}</button>`}</div></div><p class='note' style='margin-top:12px'>O email e outros dados privados nunca aparecem em perfis públicos.</p></div>`}
+function minhas(){const l=RACES.filter(r=>isMember(r.id));return `<div class='wrap page'><h1>As minhas provas</h1><p style='color:var(--muted);margin-bottom:24px'>Canais em que és membro.</p>${l.length?`<div class='grid'>${l.map(raceCard).join('')}</div>`:`<div class='empty'><h3>Ainda não entraste em nenhum canal</h3><p>Escolhe uma prova para encontrar atletas.</p><button class='btn btn-p' data-act='go' data-r='home'>Explorar provas</button></div>`}</div>`}
+function defs(){
+ const u=S.user;
+ return `<div class='wrap page'><h1>Definições</h1><div class='box' style='max-width:620px'>
+ <div class='pf' style='margin:0 0 16px'>${av(u,72)}<div><label class='btn btn-o btn-sm' for='s-ph' style='cursor:pointer'>Alterar foto</label><input id='s-ph' type='file' accept='image/*' class='sr'>${u.photo?` <button class='btn btn-o btn-sm' data-act='rmphoto'>Usar foto do Google</button>`:''}</div></div>
+ <p class='note' style='margin-bottom:12px'>Username: <strong>@${esc(u.username)}</strong> (não pode ser alterado)</p>
+ <form id='setf' novalidate>
+ <div class='row'><label for='s-n'>Nome</label><input id='s-n' value='${esc(u.name)}'><span class='err' data-e='n'></span></div>
+ <div class='two'><div class='row'><label for='s-c'>País</label><select id='s-c' style='width:100%'>${COUNTRIES.map(c=>`<option ${u.country===c?'selected':''}>${c}</option>`).join('')}</select></div><div class='row'><label for='s-city'>Cidade/zona</label><input id='s-city' value='${esc(u.city)}'><span class='err' data-e='city'></span></div></div>
+ <div class='row'><label for='s-b'>Biografia</label><textarea id='s-b' maxlength='200'>${esc(u.bio)}</textarea></div>
+ <fieldset class='row' style='border:0;padding:0;margin:0 0 16px'><legend style='font-weight:600;font-size:.93rem;margin-bottom:6px'>Modalidades</legend>${sportChecks('ss',u.sports)}</fieldset>
+ <div class='row'><label for='s-g'>Objetivo de tempo</label><select id='s-g' style='width:100%'>${optList(GOALS,u.goal,'Sem objetivo')}</select></div>
+ <div class='row'><label for='s-gt'>Tempo personalizado (ex.: 5h45)</label><input id='s-gt' value='${esc(u.gt)}'></div>
+ <div class='row'><label for='s-z'>Zona de treino</label><input id='s-z' value='${esc(u.zone)}'></div>
+ <label class='ck'><input type='checkbox' id='s-h' ${u.hid?'checked':''}> Ocultar o objetivo no perfil público</label>
+ <div class='acts' style='display:flex;gap:10px;flex-wrap:wrap;margin-top:18px'><button class='btn btn-p' type='submit'>Guardar</button><button class='btn btn-o' type='button' data-act='logout'>Terminar sessão</button></div></form>
+ <p class='note' style='margin-top:16px'>Idioma: português europeu (pt-PT).</p></div></div>`}
+async function saveSettings(){
+ const g=id=>$('#'+id),v=id=>g(id).value.trim(),er={};
+ if(v('s-n').length<2)er.n='Indica o teu nome.';if(!v('s-city'))er.city='Indica a tua cidade ou zona.';
+ document.querySelectorAll('#setf [data-e]').forEach(s=>s.textContent=er[s.dataset.e]||'');if(Object.keys(er).length)return;
+ try{await updateDoc(doc(db,'users',UID()),{name:v('s-n').slice(0,60),country:g('s-c').value,city:v('s-city').slice(0,60),bio:v('s-b').slice(0,200),sports:[...document.querySelectorAll('[name=ss]:checked')].map(c=>c.value),goal:g('s-g').value,gt:v('s-gt').slice(0,20),zone:v('s-z').slice(0,80),hid:g('s-h').checked});toast('Perfil guardado')}catch(e){subErr(e)}}
+/* ============ ATIVIDADES ============ */
+const A=id=>ACT.find(x=>x.id===id),full=a=>a.max>0&&a.p.length>=a.max,fmt=a=>new Date(a.date+'T12:00').toLocaleDateString('pt-PT',{weekday:'short',day:'numeric',month:'short'})+' · '+a.tm,perf=a=>a.sport==='bike'?(a.spd?a.spd+' km/h':''):a.sport==='run'?(a.pace?a.pace+' min/km':''):(a.dur?a.dur+' min':''),vag=a=>a.max?`${a.p.length}/${a.max} confirmados · ${full(a)?'Lotado':(a.max-a.p.length)+' vagas'}`:`${a.p.length} confirmados · Sem limite`;
+const byDate=(a,b)=>(a.date+a.tm).localeCompare(b.date+b.tm);
+async function notifyUsers(uids,x){[...new Set(uids)].filter(Boolean).forEach(u=>addDoc(collection(db,'users',u,'notifs'),{x,r:false,ts:serverTimestamp()}).catch(()=>{}))}
+const unread=()=>NT.filter(n=>!n.r).length;
+async function jact(id){
+ if(!S.user)return toast('Inicia sessão para participar.');
+ const uid=UID();
+ try{
+  await runTransaction(db,async tx=>{
+   const r=doc(db,'activities',id),s=await tx.get(r);
+   if(!s.exists())throw 'Atividade não encontrada.';
+   const d=s.data(),p=d.p||[];
+   if(d.st!=='ok')throw 'Atividade cancelada.';
+   if(p.includes(uid))throw 'Já estás inscrito.';
+   if(d.max>0&&p.length>=d.max)throw 'Atividade lotada.';
+   tx.update(r,{p:arrayUnion(uid)})});
+  const a=A(id);toast('Inscrição confirmada');
+  notifyUsers([uid],'Inscrição confirmada: '+(a?a.title:''));
+  if(a&&a.org!==uid)notifyUsers([a.org],S.user.name+' vai participar em "'+a.title+'".')
+ }catch(e){toast(typeof e==='string'?e:errMsg(e))}}
+async function lact(id){try{await updateDoc(doc(db,'activities',id),{p:arrayRemove(UID())});toast('Desististe da atividade')}catch(e){subErr(e)}}
+async function cact(id){const a=A(id);if(!a||a.org!==UID())return;try{await updateDoc(doc(db,'activities',id),{st:'canc'});notifyUsers(a.p,'A atividade "'+a.title+'" foi cancelada.');toast('Atividade cancelada')}catch(e){subErr(e)}}
+function actCard(id){const a=A(id);if(!a)return '';const o=ath(a.org),me=S.user&&a.p.includes(UID());return `<div class='acard${a.st==='canc'?' canc':''}'><div class='ah'><span class='tg'>${SPORTS[a.sport]}</span><span class='note'>${a.st==='canc'?'Cancelada':''}</span></div><strong>${esc(a.title)}</strong><div class='meta'>${ic('cal')}${fmt(a)}</div><div class='meta'>${ic('pin')}${esc(a.place)}</div><div class='meta'>${a.dist} km${perf(a)?' · '+perf(a):''} · ${a.diff}</div><div class='meta'>${ic('users')}${vag(a)}</div><div class='meta'>${o?av(o,22)+' '+esc(o.name):''}</div><div class='ab'>${a.st==='canc'?'':me?`<button class='btn btn-g btn-sm' disabled>Vou participar</button><button class='btn btn-o btn-sm' data-act='lact' data-id='${id}'>Desistir</button>`:full(a)?`<button class='btn btn-o btn-sm' disabled>Lotado</button>`:`<button class='btn btn-p btn-sm' data-act='jact' data-id='${id}'>Participar</button>`}<button class='btn btn-o btn-sm' data-act='det' data-id='${id}'>Ver detalhes</button><button class='btn btn-o btn-sm' data-act='fav' data-k='a:${id}'>${FAV.has('a:'+id)?'Guardada':'Guardar'}</button></div></div>`}
+function xtra(a){const l=[a.elev?'Ganho de elevação: '+a.elev+' m':'',a.tipo?'Tipo: '+a.tipo:'',a.mat?'Material: '+a.mat:'',a.pr?'Parte da preparação para a prova':'',a.nota?'Notas: '+a.nota:''].filter(Boolean);return l.length?`<p class='note'>${l.map(esc).join(' · ')}</p>`:''}
+function showDet(id){
+ const a=A(id);if(!a)return;const o=ath(a.org),me=S.user&&a.p.includes(UID());
+ modal(`<span class='tg'>${SPORTS[a.sport]}</span><h2 style='margin-top:8px'>${esc(a.title)}</h2>${a.st==='canc'?`<p class='err'>Atividade cancelada.</p>`:''}<div class='meta'>${ic('cal')}${fmt(a)}</div><div class='meta'>${ic('pin')}${esc(a.place)}${a.addr?' · '+esc(a.addr):''}</div><p style='margin-top:10px'>${esc(a.desc)}</p><div class='meta' style='margin-top:8px'>${a.dist} km${perf(a)?' · '+perf(a):''} · ${a.diff}${a.beg?' · Indicado para iniciantes':''}</div>${xtra(a)}<p class='note' style='margin:8px 0'>Organizador: <button class='an' data-act='atleta' data-id='${a.org}'>${o?esc(o.name):''}</button></p><p><strong>${vag(a)}</strong></p><div class='chips'>${a.p.map(x=>{const q=ath(x);return q?`<button class='an' data-act='atleta' data-id='${x}'>${esc(q.name)}</button>`:''}).join('')}</div><div class='alert'>${SAFE[a.sport]} Usa sempre pontos de encontro públicos, nunca moradas privadas.</div><div class='acts'>${a.st!=='ok'?'':me?`<button class='btn btn-o' data-act='lact' data-id='${id}'>Desistir</button>`:full(a)?`<button class='btn btn-o' disabled>Lotado</button>`:`<button class='btn btn-p' data-act='jact' data-id='${id}'>Participar</button>`}<button class='btn btn-o' data-act='share'>Copiar link</button><button class='btn btn-o' data-act='ics' data-id='${id}'>Adicionar ao calendário</button>${a.org===UID()&&a.st==='ok'?`<button class='btn btn-o' data-act='eact' data-id='${id}'>Editar</button><button class='btn btn-o' data-act='cact' data-id='${id}'>Cancelar atividade</button>`:''}<button class='btn btn-o' data-act='close'>Fechar</button></div>`,'det');
+ S.det=id}
+const RW=(id,l,x='',t='text')=>`<div class='row'><label for='a-${id}'>${l}</label><input id='a-${id}' type='${t}' ${x}><span class='err' data-e='${id}'></span></div>`;
+function sf(sp){return sp==='bike'?`<div class='row'><label for='a-v'>Velocidade média (km/h, opcional)</label><input id='a-v' inputmode='decimal'><span class='err' data-e='v'></span></div>`:sp==='run'?`<div class='row'><label for='a-p'>Ritmo (min/km, ex.: 5:30, opcional)</label><input id='a-p'><span class='err' data-e='p'></span></div>`:`<div class='row'><label for='a-d'>Duração (minutos, opcional)</label><input id='a-d' inputmode='numeric'><span class='err' data-e='d'></span></div>`}
+function restore(){Object.entries(S.draft).forEach(([k,v])=>{const e=$('#'+k);if(e)e.type==='checkbox'?e.checked=v:e.value=v})}
+function draftOf(a){return{'a-s':a.sport,'a-t':a.title,'a-dt':a.date,'a-tm':a.tm,'a-pl':a.place,'a-ad':a.addr||'','a-k':a.dist,'a-v':a.spd||'','a-p':a.pace||'','a-d':a.dur||'','a-ds':a.desc,'a-m':a.max||'','a-u':!a.max,'a-df':a.diff,'a-b':a.beg,'a-el':a.elev||'','a-ty':a.tipo||'','a-ma':a.mat||'','a-no':a.nota||'','a-pr':!!a.pr}}
+function actForm(ed){if(ed){S.draft=draftOf(A(ed))}else if(S.edit)S.draft={};S.edit=ed||null;const sp=S.draft['a-s']||'bike';modal(`<h2>${S.edit?'Editar':'Nova'} atividade</h2><p class='note' style='margin-bottom:12px'>O rascunho é guardado se cancelares.</p><form id='af' novalidate><div class='row'><label for='a-s'>Modalidade</label><select id='a-s' style='width:100%'>${Object.entries(SPORTS).map(([k,v])=>`<option value='${k}'>${v}</option>`).join('')}</select></div>${RW('t','Título')}<div class='two'>${RW('dt','Data','','date')}${RW('tm','Hora de encontro','','time')}</div>${RW('pl','Local de encontro (público)')}${RW('ad','Morada do ponto de encontro (opcional)')}${RW('k','Distância (km)','inputmode=decimal')}<div id='sfw'>${sf(sp)}</div><div class='row'><label for='a-ds'>Descrição</label><textarea id='a-ds'></textarea><span class='err' data-e='ds'></span></div>${RW('m','Limite de participantes','inputmode=numeric')}<label class='ck'><input type='checkbox' id='a-u'> Sem limite</label><div class='row' style='margin-top:12px'><label for='a-df'>Dificuldade</label><select id='a-df' style='width:100%'><option>Fácil</option><option selected>Moderado</option><option>Difícil</option></select></div><div class='two'>${RW('el','Ganho de elevação (m, opcional)','inputmode=numeric')}<div class='row'><label for='a-ty'>Tipo de treino (opcional)</label><select id='a-ty' style='width:100%'><option value=''>—</option><option>Ritmo constante</option><option>Intervalos</option><option>Longo</option><option>Técnica</option><option>Recuperação</option></select></div></div>${RW('ma','Material necessário (opcional)')}${RW('no','Notas adicionais (opcional)')}<label class='ck'><input type='checkbox' id='a-pr'> Faz parte da preparação para esta prova</label><label class='ck'><input type='checkbox' id='a-b'> Indicado para iniciantes</label><div class='acts'><button class='btn btn-p' type='submit'>${S.edit?'Guardar':'Publicar'}</button><button class='btn btn-o' type='button' data-act='close'>Cancelar</button></div></form>`);restore();$('#a-t').focus()}
+async function pubAct(){
+ const g=id=>$('#'+id),v=id=>g(id)?g(id).value.trim():'',er={},sp=v('a-s'),today=new Date().toISOString().slice(0,10),un=g('a-u').checked,mx=parseInt(v('a-m'),10);
+ if(v('a-t').length<3)er.t='Indica um título.';if(!v('a-dt')||v('a-dt')<today)er.dt='Escolhe uma data a partir de hoje.';if(!v('a-tm'))er.tm='Indica a hora.';if(!v('a-pl'))er.pl='Indica o local de encontro.';if(!(parseFloat(v('a-k'))>0))er.k='Indica a distância em km.';if(v('a-ds').length<10)er.ds='Descreve o treino (mínimo 10 caracteres).';
+ if(!un&&!(mx>=2))er.m='Indica o limite (mínimo 2) ou escolhe Sem limite.';else if(!un&&S.edit&&mx<A(S.edit).p.length)er.m='Já há '+A(S.edit).p.length+' inscritos.';
+ if(sp==='bike'&&v('a-v')&&!(parseFloat(v('a-v'))>0))er.v='Valor inválido.';if(sp==='run'&&v('a-p')&&!/^\d{1,2}:[0-5]\d$/.test(v('a-p')))er.p='Usa o formato 5:30.';if(sp==='swim'&&v('a-d')&&!(parseInt(v('a-d'),10)>0))er.d='Valor inválido.';
+ document.querySelectorAll('#af [data-e]').forEach(s=>s.textContent=er[s.dataset.e]||'');
+ const k=Object.keys(er)[0];if(k){const e=$('#af [data-e='+k+']').parentNode.querySelector('input,textarea');e&&e.focus();return}
+ const base={sport:sp,title:v('a-t').slice(0,80),date:v('a-dt'),tm:v('a-tm'),place:v('a-pl').slice(0,120),addr:v('a-ad').slice(0,160),dist:parseFloat(v('a-k')),spd:parseFloat(v('a-v'))||0,pace:v('a-p'),dur:parseInt(v('a-d'),10)||'',diff:v('a-df'),max:un?0:mx,beg:g('a-b').checked,desc:v('a-ds').slice(0,600),elev:parseInt(v('a-el'),10)||'',tipo:v('a-ty'),mat:v('a-ma').slice(0,120),nota:v('a-no').slice(0,200),pr:g('a-pr').checked};
+ const btn=$('#af button[type=submit]');btn.disabled=true;
+ try{
+  if(S.edit){
+   const o=A(S.edit),id=S.edit;await updateDoc(doc(db,'activities',id),base);
+   S.edit=null;S.draft={};closeModal();notifyUsers(o.p.filter(x=>x!==UID()),'Atividade alterada: '+base.title);toast('Atividade atualizada');showDet(id);return}
+  const uid=UID(),ref=await addDoc(collection(db,'activities'),{...base,race:S.param,org:uid,p:[uid],st:'ok',createdAt:serverTimestamp()});
+  push(rref(rdb,'chats/'+S.param+'/messages'),{uid,name:(S.user.name||'Atleta').slice(0,40),text:('Criou uma atividade: '+base.title).slice(0,500),ts:rtime(),act:ref.id}).catch(()=>{});
+  S.draft={};closeModal();toast('Atividade publicada')
+ }catch(e){btn.disabled=false;subErr(e)}}
+function acList(id){const r=RACES.find(x=>x.id===id),f=S.af;return `<div class='ah2'><div><h2>Atividades · ${esc(r.name)}</h2><p class='note'>Escolhe um treino e participa.</p></div><button class='btn btn-g' data-act='newact'>${ic('bolt')} Nova atividade</button></div><div class='fl'>${[['','Todas'],...Object.entries(SPORTS)].map(([k,v])=>`<button class='chip' data-act='sf' data-s='${k}' data-t='atividades' aria-pressed='${S.sf===k}'>${v}</button>`).join('')}<label class='ck'><input type='checkbox' id='p-v' ${f.vag?'checked':''}> Com vagas</label><label class='ck'><input type='checkbox' id='p-b' ${f.beg?'checked':''}> Para iniciantes</label></div><div id='pl'>${plist(id)}</div>`}
+const SPT={bike:'#DCEFF5',run:'#FBEBCF',swim:'#D6EFE4'};
+function actTile(id){const a=A(id),o=ath(a.org),me=S.user&&a.p.includes(UID()),d=new Date(a.date+'T12:00'),pct=a.max?Math.min(100,Math.round(a.p.length/a.max*100)):0,fv=FAV.has('a:'+id);return `<article class='card tile'><div class='tdate' style='background:${SPT[a.sport]}'><div class='dn'><b>${d.getDate()}</b><span>${d.toLocaleDateString('pt-PT',{month:'short'}).replace('.','')}</span></div><div class='tw'><span class='tg'>${SPORTS[a.sport]}</span><span>${d.toLocaleDateString('pt-PT',{weekday:'long'})} · ${a.tm}</span></div><button class='fv' data-act='fav' data-k='a:${id}' aria-pressed='${fv}' aria-label='${fv?'Remover dos favoritos':'Guardar nos favoritos'}'>${fv?'★':'☆'}</button></div><div class='body'><h3>${esc(a.title)}</h3><div class='meta'>${ic('pin')}${esc(a.place)}</div><div class='meta'>${a.dist} km${perf(a)?' · '+perf(a):''} · ${a.diff}${a.beg?' · Iniciantes':''}</div><p class='tdesc'>${esc(a.desc)}</p><div><div class='meta'>${ic('users')}${vag(a)}</div>${a.max?`<div class='pg' aria-hidden='true'><span style='width:${pct}%'></span></div>`:''}</div><div class='meta'>${o?av(o,22)+' '+esc(o.name):''}</div><div class='ab'>${me?`<button class='btn btn-g btn-sm' disabled>Vou participar</button><button class='btn btn-o btn-sm' data-act='lact' data-id='${id}'>Desistir</button>`:full(a)?`<button class='btn btn-o btn-sm' disabled>Lotado</button>`:`<button class='btn btn-p btn-sm' data-act='jact' data-id='${id}'>Participar</button>`}<button class='btn btn-o btn-sm' data-act='det' data-id='${id}'>Ver detalhes</button></div></div></article>`}
+function plist(id){const f=S.af,l=ACT.filter(a=>a.race===id&&a.st==='ok'&&!isPast(a)&&(!S.sf||a.sport===S.sf)&&(!f.vag||!full(a))&&(!f.beg||a.beg)).sort(byDate);return `<p class='note' style='margin-bottom:14px'>${l.length} ${l.length===1?'atividade':'atividades'}, por ordem de data</p>`+(l.length?`<div class='grid'>${l.map(a=>actTile(a.id)).join('')}</div>`:`<div class='empty'><h3>Nenhuma atividade encontrada</h3><p>Altera os filtros ou propõe um treino.</p><button class='btn btn-g' data-act='newact'>Nova atividade</button></div>`)}
+function upc(id){const l=ACT.filter(a=>a.race===id&&a.st==='ok'&&!isPast(a)).sort(byDate).slice(0,3);return l.length?l.map(a=>`<button class='an' data-act='det' data-id='${a.id}'>${esc(a.title)}</button><p class='note'>${fmt(a)}</p>`).join(''):`<p class='note'>Sem treinos marcados.</p>`}
+/* ============ EXPLORAR, CALENDÁRIO, FAVORITOS, AVISOS ============ */
+const EM=(t,p,b,r)=>`<div class='empty'><h3>${t}</h3><p>${p}</p><button class='btn btn-p' data-act='go' data-r='${r}'>${b}</button></div>`;
+function compat(a){const u=S.user;if(!u)return 0;const o=ath(a.org);return((u.sports||[]).includes(a.sport)?2:0)+(u.goal&&o&&o.goal===u.goal?2:0)+(isMember(a.race)?1:0)}
+function xlist(){const l=ACT.filter(a=>{const rc=RACES.find(r=>r.id===a.race),o=ath(a.org);return a.st==='ok'&&!isPast(a)&&(!F.sp||a.sport===F.sp)&&(!F.beg||a.beg)&&(!F.vag||!full(a))&&(!F.n||a.diff===F.n)&&(!F.km||a.dist<=parseFloat(F.km))&&(!F.c||(rc&&rc.city===F.c))&&(!F.d||a.date>=F.d)&&(!F.g||(o&&o.goal===F.g))&&(!F.org||a.org===F.org||a.p.includes(F.org))&&(!F.q||(a.title+' '+a.place).toLowerCase().includes(F.q.toLowerCase()))});l.sort(F.o==='v'?(a,b)=>(b.max?b.max-b.p.length:99)-(a.max?a.max-a.p.length:99):F.o==='c'?(a,b)=>compat(b)-compat(a):byDate);return l.length?`<div class='grid'>${l.map(a=>actTile(a.id)).join('')}</div>`:EM('Nenhum treino encontrado','Altera os filtros ou cria um treino num canal.','Ir para os meus canais','minhas')}
+function explorar(){const sel=(id,l,o,v)=>`<select id='${id}' aria-label='${l}'><option value=''>${l}</option>${o.map(([k,t])=>`<option value='${k}' ${v===k?'selected':''}>${t}</option>`).join('')}</select>`;return `<div class='wrap page'><h1>Explorar treinos</h1><p style='color:var(--muted);margin-bottom:24px'>Treinos de todos os canais. A compatibilidade usa regras simples: modalidade, objetivo e canais em que estás.</p>${F.org?`<p class='note' style='margin-bottom:12px'>Treinos de ${esc((ath(F.org)||{}).name||'')} <button class='an' data-act='nox'>Limpar</button></p>`:''}<div class='tools'><div class='field'>${ic('search')}<input id='x-q' type='search' placeholder='Pesquisar treinos' aria-label='Pesquisar treinos' value='${esc(F.q)}'></div>${sel('x-s','Todas as modalidades',Object.entries(SPORTS),F.sp)}${sel('x-n','Qualquer nível',['Fácil','Moderado','Difícil'].map(x=>[x,x]),F.n)}${sel('x-c','Qualquer cidade',[...new Set(RACES.map(r=>r.city))].map(x=>[x,x]),F.c)}${sel('x-g','Qualquer objetivo',Object.entries(GOALS),F.g)}<input id='x-km' type='number' min='1' placeholder='Distância máx. (km)' aria-label='Distância máxima em km' value='${esc(F.km)}'><input id='x-d' type='date' aria-label='A partir de' value='${esc(F.d)}'><select id='x-o' aria-label='Ordenar'><option value='d'>Data mais próxima</option><option value='v' ${F.o==='v'?'selected':''}>Mais vagas</option><option value='c' ${F.o==='c'?'selected':''}>Maior compatibilidade</option></select><label class='ck'><input type='checkbox' id='x-b' ${F.beg?'checked':''}> Para iniciantes</label><label class='ck'><input type='checkbox' id='x-v' ${F.vag?'checked':''}> Com vagas</label></div><div id='xl'>${xlist()}</div></div>`}
+function cal(){const l=ACT.filter(a=>a.st==='ok'&&!isPast(a)).sort(byDate);let h='',pd='';l.forEach(a=>{if(a.date!==pd){pd=a.date;h+=`<h2 style='margin:20px 0 8px'>${new Date(a.date+'T12:00').toLocaleDateString('pt-PT',{weekday:'long',day:'numeric',month:'long'})}</h2>`}h+=`<div style='max-width:520px;margin-bottom:10px'>${actCard(a.id)}</div>`});return `<div class='wrap page'><h1>Calendário</h1><p style='color:var(--muted)'>Próximos treinos, por data.</p>${h||EM('Sem treinos marcados','Cria o primeiro treino num canal.','Ir para os meus canais','minhas')}</div>`}
+function favs(){const r=RACES.filter(x=>FAV.has('r:'+x.id)),a=ACT.filter(x=>FAV.has('a:'+x.id));return `<div class='wrap page'><h1>Favoritos</h1>${r.length||a.length?(r.length?`<h2 style='margin:16px 0'>Provas</h2><div class='grid'>${r.map(raceCard).join('')}</div>`:'')+(a.length?`<h2 style='margin:16px 0'>Atividades</h2><div class='grid'>${a.map(x=>actCard(x.id)).join('')}</div>`:''):EM('Ainda sem favoritos','Guarda provas e treinos para os encontrares aqui.','Explorar provas','home')}</div>`}
+function notif(){return `<div class='wrap page'><h1>Notificações</h1><p style='color:var(--muted);margin-bottom:16px'>Avisos sobre os teus treinos e inscrições.</p>${NT.length?`<ul style='list-style:none;padding:0;display:grid;gap:8px;max-width:640px'>${NT.map(n=>`<li class='box' style='padding:12px 16px;${n.r?'':'border-left:4px solid var(--green)'}'>${n.r?'':'<span class="badge">Nova</span> '}${esc(n.x)}</li>`).join('')}</ul><button class='btn btn-o' style='margin-top:16px' data-act='nt'>Marcar tudo como lido</button>`:EM('Sem notificações','Quando alguém aderir ou alterar um treino, aparece aqui.','Explorar treinos','treinos')}</div>`}
+function recup(){return `<div class='wrap page'><h1>Recuperação</h1><p style='color:var(--muted);max-width:620px;margin-bottom:24px'>Espaço para recuperar entre treinos. Ainda não há conselhos médicos: os conteúdos serão preparados com profissionais antes de existirem.</p><div class='grid'>${REC.map((r,i)=>`<article class='card'><div class='thumb' style='height:110px'>${waves(TN[i%3])}<span class='tag'>Em breve</span></div><div class='body'><h3>${r[0]}</h3><p class='meta'>${r[1]}</p></div></article>`).join('')}</div></div>`}
+const TN=[['#2E86A8','#9BD6C0'],['#D9A35B','#75C99A'],['#3A7D44','#CFE9DA']];
+const REC=[['Sono e descanso','Rotinas de descanso entre treinos.'],['Mobilidade','Alongamento e amplitude de movimento.'],['Recuperação muscular','Estratégias para depois do esforço.'],['Fisioterapia','Orientação de profissionais, quando existir.'],['Nutrição e hidratação','Alimentação e líquidos para treinar.'],['Prevenção de lesões','Hábitos para treinar com segurança.']];
+const PROS=[['p1','Bike fit (demo) — Lisboa','Lisboa','Portugal','Estudo de posição: selim, guiador e pedais.',['Estudo de posição','Bike fit para triatlo']],['p2','Bike fit (demo) — Cascais','Cascais','Portugal','Ajuste para triatlo e contrarrelógio.',['Posição aero','Cleats e calços']],['p3','Bike fit (demo) — Málaga','Málaga','Espanha','Avaliação de posição em bicicleta de estrada.',['Bike fit estrada','Estudo de posição']]].map(([id,name,city,country,desc,services])=>({id,name,city,country,desc,services}));
+let BS='';
+function bflist(q){const l=PROS.filter(b=>(!q||(b.city+' '+b.country).toLowerCase().includes(q.toLowerCase()))&&(!BS||b.services.includes(BS)));return l.length?`<div class='grid'>${l.map((b,i)=>`<article class='card'><div class='thumb' style='height:110px'>${waves(TN[i%3])}<span class='tag'>Dados demonstrativos</span></div><div class='body'><h3>${esc(b.name)}</h3><div class='meta'>${ic('pin')}${esc(b.city)}, ${esc(b.country)}</div><p>${esc(b.desc)}</p><p class='note'>Contacto, preços e parceria: por confirmar.</p><button class='btn btn-o btn-sm' data-act='pro' data-id='${b.id}'>Ver detalhes</button></div></article>`).join('')}</div>`:EM('Sem resultados','Tenta outra cidade, país ou serviço.','Ver todos','bikefit')}
+function proDet(id){const b=PROS.find(x=>x.id===id);modal(`<span class='badge'>Dados demonstrativos</span><h2 style='margin-top:8px'>${esc(b.name)}</h2><div class='meta'>${ic('pin')}${esc(b.city)}, ${esc(b.country)}</div><p style='margin-top:8px'>${esc(b.desc)}</p><div class='chips'>${b.services.map(x=>`<span>${esc(x)}</span>`).join('')}</div><p class='note' style='margin:10px 0'>Contacto, preços, avaliações e estado de parceiro: por confirmar. Não existe nenhuma parceria real.</p><div class='acts'><button class='btn btn-o' data-act='close'>Fechar</button></div>`)}
+function bikefit(){BS='';return `<div class='wrap page'><h1>Bike fit</h1><div class='thumb' style='height:130px;border-radius:14px;overflow:hidden;margin:16px 0'>${waves(['#3A7D44','#CFE9DA'])}</div><p style='color:var(--muted);max-width:620px;margin-bottom:24px'>O bike fit ajusta a posição na bicicleta (selim, guiador, pedais) ao teu corpo e objetivo, para treinares com mais conforto. O diretório só tem entradas demonstrativas, sem parceiros nem avaliações.</p><div class='tools'><div class='field'>${ic('search')}<input id='bf-q' type='search' placeholder='Cidade ou país' aria-label='Pesquisar por cidade'></div><select id='bf-s' aria-label='Serviço'><option value=''>Todos os serviços</option>${[...new Set(PROS.flatMap(p=>p.services))].map(x=>`<option>${x}</option>`).join('')}</select></div><div id='bfl'>${bflist('')}</div></div>`}
+/* ============ ROTEAMENTO / RENDER ============ */
+function view(){
+ if(!S.ready)return `<div class="wrap page"><div class="skel"></div></div>`;
+ if(needOnb())return register();
+ if(PROT.includes(S.route)&&!S.user)return needLogin();
+ switch(S.route){
+  case"home":return home();
+  case"registo":return register();
+  case'canal':return canal();case'atleta':return atleta(S.param);case'perfil':return atleta('me');case'minhas':return minhas();
+  case'treinos':return explorar();
+  case'recuperacao':return recup();
+  case'bikefit':return bikefit();
+  case"definicoes":return defs();case"calendario":return cal();case"favoritos":return favs();case"notificacoes":return notif();
+  case"info":return `<div class="wrap page"><h1>${INFO[S.param][0]}</h1><p style="max-width:620px;color:var(--muted)">${INFO[S.param][1]}</p></div>`;
+  default:return `<div class="wrap page"><h1>Página não encontrada</h1><p style="color:var(--muted);margin-bottom:20px">Esta página não existe. Volta às provas e continua a partir daí.</p><button class="btn btn-p" data-act="go" data-r="home">Voltar ao início</button></div>`}
+}
+function render(keep){
+ const ae=document.activeElement,fo=keep&&ae&&ae.id&&$('#app').contains(ae)?{id:ae.id,s:ae.selectionStart,e:ae.selectionEnd}:null,vals={};
+ if(keep)document.querySelectorAll('#app input[id],#app textarea[id],#app select[id]').forEach(e=>{if(e.type!=='file')vals[e.id]=e.type==='checkbox'?e.checked:e.value});
+ const vk=S.route+'|'+S.param+'|'+S.tab+'|'+needOnb()+'|'+!!S.user,mg=$('#msgs'),near=!mg||mg.scrollHeight-mg.scrollTop-mg.clientHeight<80,top=mg?mg.scrollTop:0,sameView=keep&&vk===S._vk;
+ $("#app").innerHTML=header()+"<main>"+view()+"</main>"+footer()+bnav();
+ if(sameView){Object.entries(vals).forEach(([id,v])=>{const el=document.getElementById(id);if(!el)return;if(el.type==='checkbox')el.checked=v;else el.value=v});
+  if(fo){const el=document.getElementById(fo.id);if(el){el.focus();try{el.setSelectionRange(fo.s,fo.e)}catch(_){}}}}
+ S._vk=vk;
+ const m2=$('#msgs');if(m2)m2.scrollTop=(sameView&&!near)?top:m2.scrollHeight;
+ syncChat()}
+function refresh(){render(true);const m=$('#modal');if(m&&m.dataset.k==='det'&&S.det){if(A(S.det))showDet(S.det);else closeModal()}}
+function modal(html,key){closeModal();const m=document.createElement("div");m.className="modal";m.id="modal";m.dataset.k=key||'';m.innerHTML=`<div class="dlg" role="dialog" aria-modal="true">${html}</div>`;document.body.appendChild(m);const b=m.querySelector("button");b&&b.focus()}
+function closeModal(){const m=$("#modal");m&&m.remove();S.det=null}
+async function enter(id){
+ const r=RACES.find(x=>x.id===id);S.pendingRace=id;
+ if(S.user){if(!isMember(id)){await joinRace(id);toast('Entraste no canal')}S.pendingRace=null;return go('canal',id)}
+ modal(`<h2>Entrar em ${esc(r.name)}</h2><p>Inicia sessão com a tua conta Google para entrares no canal, falares com outros atletas e combinares treinos.</p><div class="acts">${gbtn()}<button class="btn btn-o" data-act="close">Agora não</button></div>`)}
+function share(){const h=(S.det&&$('#modal'))?'#/atividade/'+S.det:(location.hash||'#/home'),u=location.href.split('#')[0]+h;try{navigator.clipboard.writeText(u).then(()=>toast('Ligação copiada'),()=>toast(u))}catch(_){toast(u)}}
+function ics(id){const a=A(id),p=n=>String(n).padStart(2,'0'),st=new Date(a.date+'T'+a.tm),en=new Date(st.getTime()+(a.dur?a.dur:120)*6e4),f=d=>d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'T'+p(d.getHours())+p(d.getMinutes())+'00',cl=x=>String(x).replace(/[,;\n]/g,' ');const t=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PACE//PT','BEGIN:VEVENT','UID:'+a.id+'@pace','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z','DTSTART:'+f(st),'DTEND:'+f(en),'SUMMARY:'+cl(a.title),'LOCATION:'+cl(a.place),'END:VEVENT','END:VCALENDAR'].join('\r\n');try{const u=URL.createObjectURL(new Blob([t],{type:'text/calendar'})),l=document.createElement('a');l.href=u;l.download='treino-'+a.id+'.ics';document.body.appendChild(l);l.click();l.remove();toast('Ficheiro .ics gerado')}catch(_){toast('Não foi possível gerar o .ics')}}
+function fromHash(){const m=location.hash.match(/^#\/(\w+)(?:\/([\w-]+))?/);if(!m)return;const r=m[1],p=m[2]||null;if(r==='atividade'){S.pendAct=p;return}if(r==='info'&&!INFO[p])return;if(['canal','atleta','info','registo'].includes(r)||NAV.some(n=>n[0]===r))go(r,p,true)}
+/* ============ EVENTOS ============ */
+document.addEventListener("click",async e=>{
+ const t=e.target.closest("[data-act]");if(!t)return;
+ const a=t.dataset.act,d=t.dataset;
+ switch(a){
+  case'go':closeModal();$("#drawer")&&$("#drawer").classList.remove("open");go(d.r);break;
+  case'menu':{const dr=$("#drawer");dr.classList.toggle("open");const bg=$(".burger");bg.setAttribute("aria-expanded",dr.classList.contains("open"));break}
+  case'login':closeModal();$("#drawer")&&$("#drawer").classList.remove("open");signIn();break;
+  case'logout':closeModal();$("#drawer")&&$("#drawer").classList.remove("open");try{await signOut(auth);toast('Sessão terminada');go('home')}catch(_){toast('Não foi possível terminar a sessão.')}break;
+  case'enter':enter(d.id);break;
+  case'close':closeModal();break;
+  case'info':go("info",d.k);break;
+  case'toast':toast(d.m);break;
+  case'newact':if(!isMember(S.param))return toast('Entra no canal para criar atividades.');actForm();break;
+  case'det':showDet(d.id);break;
+  case'jact':jact(d.id);break;
+  case'lact':lact(d.id);break;
+  case'cact':cact(d.id);break;
+  case'eact':closeModal();actForm(d.id);break;
+  case'canal':go('canal',d.id);break;
+  case'atleta':go('atleta',d.id);break;
+  case'tab':S.tab=d.t;render();break;
+  case'atl':S.tab='membros';render();{const sb=$('.sb');sb&&sb.scrollIntoView({block:'start'})}break;
+  case'leave':try{const up={channels:arrayRemove(d.id)};if(S.user.raceId===d.id)up.raceId='';await updateDoc(doc(db,'users',UID()),up);toast('Saíste do canal')}catch(er){subErr(er)}break;
+  case'send':sendMsg();break;
+  case'copy':{const m=(CHAT[S.param]||[]).find(x=>x.k===d.k);if(m)try{navigator.clipboard.writeText(m.text).then(()=>toast('Texto copiado'),()=>toast('Não foi possível copiar'))}catch(_){toast('Não foi possível copiar')}break}
+  case'rep':modal(`<h2>Denunciar</h2><p class='note' style='margin-bottom:10px'>A denúncia é enviada à equipa PACE para revisão.</p><label for='rp-t'>Motivo</label><textarea id='rp-t' maxlength='300' placeholder='Descreve o problema'></textarea><div class='acts'><button class='btn btn-p' data-act='sendrep' data-uid='${esc(d.uid||'')}' data-k='${esc(d.k||'')}'>Enviar denúncia</button><button class='btn btn-o' data-act='close'>Cancelar</button></div>`);break;
+  case'sendrep':{const tx=($('#rp-t')||{}).value||'';if(tx.trim().length<3)return toast('Indica o motivo.');try{await addDoc(collection(db,'reports'),{by:UID(),target:d.uid||'',msgKey:d.k||'',race:S.param&&S.route==='canal'?S.param:'',text:tx.trim().slice(0,300),ts:serverTimestamp()});closeModal();toast('Denúncia enviada')}catch(er){subErr(er)}break}
+  case'blk':try{const has=BL.has(d.id);await updateDoc(doc(db,'users',UID()),{blocked:has?arrayRemove(d.id):arrayUnion(d.id)});toast(has?'Atleta desbloqueado':'Atleta bloqueado: as mensagens ficam ocultas')}catch(er){subErr(er)}break;
+  case'back':history.length>1?history.back():go('home');break;
+  case'share':share();break;
+  case'hg':try{await updateDoc(doc(db,'users',UID()),{hid:!S.user.hid})}catch(er){subErr(er)}break;
+  case'clear':S.q="";S.country="";S.sort="rel";render();break;
+  case'scroll':{const el=$("#provas");el&&el.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});break}
+  case'sf':S.sf=d.s;S.tab=d.t;render();break;
+  case'fav':{if(!S.user)return toast('Inicia sessão para guardar favoritos.');const k=d.k,has=FAV.has(k);try{await updateDoc(doc(db,'users',UID()),{favs:has?arrayRemove(k):arrayUnion(k)});toast(has?'Removido dos favoritos':'Guardado nos favoritos')}catch(er){subErr(er)}break}
+  case'vt':F.org=d.id;go('treinos');break;
+  case'nox':F.org='';render();break;
+  case'ics':ics(d.id);break;
+  case'pro':proDet(d.id);break;
+  case'nt':{const b=writeBatch(db);NT.filter(n=>!n.r).forEach(n=>b.update(doc(db,'users',UID(),'notifs',n.id),{r:true}));try{await b.commit()}catch(er){subErr(er)}break}
+  case'rmphoto':try{await updateDoc(doc(db,'users',UID()),{photo:''});toast('A usar a foto do Google')}catch(er){subErr(er)}break;
+ }
+});
+document.addEventListener("keydown",e=>{if(e.target.id==='cin'&&e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();return}if(e.key==="Escape"){closeModal();const d=$("#drawer");d&&d.classList.remove("open")}});
+const XM={'x-n':'n','x-km':'km','x-c':'c','x-d':'d','x-g':'g'};
+['input','change'].forEach(ev=>document.addEventListener(ev,async e=>{
+ const t=e.target,i=t.id;
+ if(i==='q'){S.q=t.value;$("#grid").innerHTML=raceGrid()}
+ else if(i==='country'){S.country=t.value;$("#grid").innerHTML=raceGrid()}
+ else if(i==='sort'){S.sort=t.value;$("#grid").innerHTML=raceGrid()}
+ else if(i==='x-q'){F.q=t.value;$('#xl').innerHTML=xlist()}
+ else if(i==='x-s'||i==='x-o'||i==='x-b'||i==='x-v'){if(i==='x-s')F.sp=t.value;if(i==='x-o')F.o=t.value;if(i==='x-b')F.beg=t.checked;if(i==='x-v')F.vag=t.checked;$('#xl').innerHTML=xlist()}
+ else if(XM[i]){F[XM[i]]=t.value;$('#xl').innerHTML=xlist()}
+ else if(i==='bf-q')$('#bfl').innerHTML=bflist(t.value);
+ else if(i==='bf-s'){BS=t.value;$('#bfl').innerHTML=bflist($('#bf-q').value)}
+ else if(i==='p-v'||i==='p-b'){S.af[i==='p-v'?'vag':'beg']=t.checked;const p=$('#pl');p&&(p.innerHTML=plist(S.param))}
+ else if(i==='s-ph'&&ev==='change'&&t.files[0]){try{const d=await resizeImg(t.files[0]);await updateDoc(doc(db,'users',UID()),{photo:d});toast('Foto atualizada')}catch(er){toast(errMsg(er))}t.value=''}
+ else if(i==='o-ph'&&ev==='change'&&t.files[0]){try{S.tmpPhoto=await resizeImg(t.files[0]);const keep={};['o-n','o-un','o-c','o-city','o-r','o-g','o-gt','o-z'].forEach(k=>keep[k]=$('#'+k).value);const sp=[...document.querySelectorAll('[name=sp]:checked')].map(c=>c.value),h=$('#o-h').checked;render();Object.entries(keep).forEach(([k,v])=>$('#'+k).value=v);document.querySelectorAll('[name=sp]').forEach(c=>c.checked=sp.includes(c.value));$('#o-h').checked=h}catch(er){toast(errMsg(er))}}
+ if(t.closest&&t.closest('#af')){if(i==='a-s'){S.draft['a-s']=t.value;$('#sfw').innerHTML=sf(t.value);restore()}else S.draft[i]=t.type==='checkbox'?t.checked:t.value}
+}));
+document.addEventListener("submit",e=>{
+ e.preventDefault();const id=e.target.id;
+ if(id==='af')pubAct();else if(id==='onb')finishOnb();else if(id==='setf')saveSettings()});
+/* ============ ARRANQUE ============ */
+try{history.replaceState({r:'home',p:null},'')}catch(_){}
+addEventListener('popstate',e=>{closeModal();const s=e.state||{r:'home',p:null};go(s.r,s.p,true)});
+render();fromHash();
+</script>
+</body>
+</html>
