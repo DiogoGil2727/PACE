@@ -135,6 +135,7 @@ nav.main button{padding:8px 8px;font-size:.88rem}
 .gbtn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;color:var(--text)}.gbtn:hover{border-color:var(--green)}.gbtn b{font-size:1.15rem;background:linear-gradient(90deg,#4285F4 25%,#EA4335 25% 50%,#FBBC05 50% 75%,#34A853 75%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .lang{width:auto;min-width:0;min-height:38px;padding:0 8px;border-radius:999px;font-weight:700;font-size:.88rem;background:#fff;cursor:pointer}select.lang{min-width:0}.lang-d{display:none;margin:12px 0 0;align-self:flex-start}@media (max-width:520px){.bar>.lang{display:none}.lang-d{display:block}}
 .nm-Admin{color:#B3261E!important}.nm-Moderador{color:#1D6FB8!important}.nm-Mentor{color:#A8730A!important}.r-Admin{background:#F8D9D6;color:#8C1D18}.r-Moderador{background:#D6E8F7;color:#14507F}.r-Mentor{background:#FFF1CC;color:#6a4b00}.lnk{background:none;border:0;padding:4px 0;color:var(--muted);font-size:.82rem;text-decoration:underline}.lnk:hover{color:var(--green-d)}
+.trt{margin-top:6px;padding:6px 10px;background:var(--green-l);border-left:3px solid var(--green);border-radius:8px;color:var(--green-d)}.mb .note{display:block;margin-top:2px}.ma button:disabled{opacity:.6;cursor:default;text-decoration:none}
 </style>
 </head>
 <body>
@@ -199,7 +200,7 @@ const INFO={
 <h2>Para que usamos os dados</h2>
 <p>Para criar e mostrar o teu perfil, ligar-te a atletas da mesma prova, permitir o chat e a organização de treinos, enviar-te avisos sobre os teus treinos e tratar denúncias de comportamento abusivo. Não vendemos os teus dados e não os usamos para publicidade.</p>
 <h2>Serviços de terceiros</h2>
-<p>A PACE usa serviços da Google: Firebase (autenticação e base de dados, em servidores na Europa quando indicado) e Google Fonts (tipo de letra). Ao carregar a página, o teu endereço IP é visto por estes serviços. Não usamos cookies de publicidade nem de rastreamento; o navegador guarda localmente apenas o necessário para manteres a sessão iniciada.</p>
+<p>A PACE usa serviços da Google: Firebase (autenticação e base de dados, em servidores na Europa quando indicado) e Google Fonts (tipo de letra). Ao carregar a página, o teu endereço IP é visto por estes serviços. Não usamos cookies de publicidade nem de rastreamento; o navegador guarda localmente apenas o necessário para manteres a sessão iniciada. Se usares o botão Traduzir no chat, o texto dessa mensagem é traduzido no teu navegador quando este o permite ou, caso contrário, enviado para um serviço de tradução externo (MyMemory), que o processa para devolver a tradução.</p>
 <h2>Durante quanto tempo</h2>
 <p>Mantemos os dados enquanto a tua conta existir. Podes pedir a eliminação da conta e dos dados associados a qualquer momento.</p>
 <h2>Os teus direitos</h2>
@@ -258,351 +259,358 @@ const GOALS={fin:'Terminar a prova',s7:'Sub 7h',s6:'Sub 6h',s530:'Sub 5h30',s5:'
 const SAFE={bike:'Usa capacete, respeita o código da estrada e leva material de reparação.',run:'Leva água, usa roupa visível e respeita o teu ritmo.',swim:'Nada sempre acompanhado, com boia de segurança, e confirma as condições do mar.'};
 /* ============ IDIOMAS (PT / EN / FR) ============ */
 let L='pt';
-try{const s=localStorage.getItem('pace_lang');if(s==='pt'||s==='en'||s==='fr')L=s}catch(_){}
-document.documentElement.lang={pt:'pt-PT',en:'en',fr:'fr'}[L];
-const LOC=()=>({pt:'pt-PT',en:'en-GB',fr:'fr-FR'}[L]);
+try{const s=localStorage.getItem('pace_lang');if(s==='pt'||s==='en'||s==='fr'||s==='es')L=s}catch(_){}
+document.documentElement.lang={pt:'pt-PT',en:'en',fr:'fr',es:'es'}[L];
+const LOC=()=>({pt:'pt-PT',en:'en-GB',fr:'fr-FR',es:'es-ES'}[L]);
 /* [português, inglês, francês] — o texto original do site está em português */
 const ROWS=[
-["Início","Home","Accueil"],
-["As minhas provas","My races","Mes courses"],
-["Explorar treinos","Explore workouts","Explorer les entraînements"],
-["Calendário","Calendar","Calendrier"],
-["Favoritos","Favorites","Favoris"],
-["Notificações","Notifications","Notifications"],
-["Treinos","Workouts","Entraînements"],
-["Avisos","Alerts","Alertes"],
-["Perfil","Profile","Profil"],
-["Principal","Main","Principal"],
-["Navegação móvel","Mobile navigation","Navigation mobile"],
-["O meu perfil","My profile","Mon profil"],
-["Abrir menu","Open menu","Ouvrir le menu"],
-["Fechar menu","Close menu","Fermer le menu"],
-["Idioma","Language","Langue"],
-["Membro","Member","Membre"],
-["Abrir canal","Open channel","Ouvrir le canal"],
-["Tenho um código","I have a code","J\'ai un code"],
-["Submeter código","Redeem code","Saisir un code"],
-["Código","Code","Code"],
-["Introduz o código que recebeste da equipa PACE.","Enter the code you received from the PACE team.","Saisis le code reçu de l\'équipe PACE."],
-["Submeter","Submit","Valider"],
-["Código inválido ou já utilizado.","Invalid or already used code.","Code invalide ou déjà utilisé."],
-["Gerar código de cargo","Generate role code","Générer un code de rôle"],
-["Cada código funciona uma única vez.","Each code works only once.","Chaque code ne fonctionne qu'une seule fois."],
-["Cargo","Role","Rôle"],
-["Gerar código","Generate code","Générer un code"],
-["Código gerado (uso único):","Generated code (single use):","Code généré (usage unique) :"],
-["Copiar código","Copy code","Copier le code"],
-["Código copiado","Code copied","Code copié"],
-["Ilustração","Illustration","Illustration"],
-["Menu","Menu","Menu"],
-["Mensagem","Message","Message"],
-["Username:","Username:","Nom d'utilisateur :"],
-["Terminar sessão","Log out","Se déconnecter"],
-["Login","Sign in","Se connecter"],
-["Encontra atletas que vão à mesma prova. Combina treinos. Chega à linha de partida com uma equipa.","Find athletes heading to the same race. Plan workouts together. Reach the start line with a team.","Trouve des athlètes qui participent à la même course. Organise des entraînements. Arrive sur la ligne de départ avec une équipe."],
-["Explorar provas","Explore races","Explorer les courses"],
-["A tua próxima prova começa aqui.","Your next race starts here.","Ta prochaine course commence ici."],
-["Encontra os atletas que vão à mesma prova que tu e prepara-a em conjunto, treino a treino.","Find the athletes doing the same race as you and prepare for it together, workout by workout.","Trouve les athlètes qui font la même course que toi et prépare-la avec eux, entraînement après entraînement."],
-["Pesquisar por nome ou cidade","Search by name or city","Rechercher par nom ou ville"],
-["Pesquisar provas","Search races","Rechercher des courses"],
-["Filtrar por país","Filter by country","Filtrer par pays"],
-["Todos os países","All countries","Tous les pays"],
-["Ordenar","Sort","Trier"],
-["Relevância","Relevance","Pertinence"],
-["Data","Date","Date"],
-["Três passos até à linha de partida","Three steps to the start line","Trois étapes jusqu'à la ligne de départ"],
-["Escolhe a prova","Choose your race","Choisis ta course"],
-["Entra no canal da prova em que vais participar.","Join the channel of the race you're entering.","Rejoins le canal de la course à laquelle tu participes."],
-["Encontra atletas como tu","Find athletes like you","Trouve des athlètes comme toi"],
-["Descobre quem tem objetivos e ritmos semelhantes.","Discover who has similar goals and pace.","Découvre qui a des objectifs et un rythme similaires."],
-["Combina treinos","Plan workouts","Organise des entraînements"],
-["Organiza saídas de bike, corrida e natação em águas abertas.","Set up bike rides, runs and open-water swims.","Organise des sorties vélo, course à pied et natation en eau libre."],
-["Uma prova é mais fácil quando não a preparas sozinho.","A race is easier when you don't prepare alone.","Une course est plus facile quand on ne la prépare pas seul."],
-["Encontrar a minha comunidade","Find my community","Trouver ma communauté"],
-["Espanha","Spain","Espagne"],
-["Entrar no canal","Join channel","Rejoindre le canal"],
-["Guardada","Saved","Enregistrée"],
-["Guardar","Save","Enregistrer"],
-["Data por confirmar","Date to be confirmed","Date à confirmer"],
-["Nenhuma prova encontrada","No races found","Aucune course trouvée"],
-["Experimenta outro nome ou remove o filtro de país.","Try another name or remove the country filter.","Essaie un autre nom ou retire le filtre de pays."],
-["Limpar filtros","Clear filters","Effacer les filtres"],
-["Faz login para continuar","Sign in to continue","Connecte-toi pour continuer"],
-["Esta área é só para atletas com sessão iniciada. Faz login para criares o teu perfil e participares nos canais.","This area is for signed-in athletes only. Sign in to create your profile and join channels.","Cet espace est réservé aux athlètes connectés. Connecte-toi pour créer ton profil et rejoindre les canaux."],
-["Sessão iniciada","Signed in","Connecté"],
-["Ver provas","View races","Voir les courses"],
-["Bem-vindo à PACE","Welcome to PACE","Bienvenue sur PACE"],
-["Completa o teu perfil. O nome, o username e a cidade são obrigatórios; o resto podes mudar depois no teu perfil.","Complete your profile. Name, username and city are required; you can change the rest later in your profile.","Complète ton profil. Le nom, le nom d'utilisateur et la ville sont obligatoires ; tu pourras modifier le reste plus tard."],
-["Escolher foto","Choose photo","Choisir une photo"],
-["Usamos a foto da tua conta se não escolheres outra.","We'll use your account photo if you don't pick another.","Nous utiliserons la photo de ton compte si tu n'en choisis pas une autre."],
-["Nome","Name","Nom"],
-["Username","Username","Nom d'utilisateur"],
-["ex.: ana_run","e.g. ana_run","ex. : ana_run"],
-["País","Country","Pays"],
-["Cidade/zona","City/area","Ville/zone"],
-["Prova-alvo","Target race","Course cible"],
-["Ainda não sei","I don't know yet","Je ne sais pas encore"],
-["Objetivo de tempo","Time goal","Objectif de temps"],
-["Sem objetivo","No goal","Pas d'objectif"],
-["Tempo personalizado (se escolheste Objetivo personalizado, ex.: 5h45)","Custom time (if you chose Custom goal, e.g. 5h45)","Temps personnalisé (si tu as choisi Objectif personnalisé, ex. : 5h45)"],
-["Ocultar o objetivo no perfil público","Hide my goal on my public profile","Masquer mon objectif sur mon profil public"],
-["Zona de treino","Training area","Zone d'entraînement"],
-["ex.: Marginal Cascais–Oeiras","e.g. Cascais–Oeiras coastal road","ex. : Marginal Cascais–Oeiras"],
-["Concluir","Finish","Terminer"],
-["Terminar a prova","Finish the race","Terminer la course"],
-["Objetivo personalizado","Custom goal","Objectif personnalisé"],
-["Indica o teu nome.","Enter your name.","Indique ton nom."],
-["3 a 20 caracteres: letras, números ou _.","3 to 20 characters: letters, numbers or _.","3 à 20 caractères : lettres, chiffres ou _."],
-["Indica a tua cidade ou zona.","Enter your city or area.","Indique ta ville ou ta zone."],
-["Esse username já existe.","That username is already taken.","Ce nom d'utilisateur existe déjà."],
-["Perfil criado","Profile created","Profil créé"],
-["Entraste no canal","You joined the channel","Tu as rejoint le canal"],
-["Perfil guardado","Profile saved","Profil enregistré"],
-["Ainda não há mensagens. Sê o primeiro a escrever.","No messages yet. Be the first to write.","Pas encore de messages. Sois le premier à écrire."],
-["Hoje","Today","Aujourd'hui"],
-["Ontem","Yesterday","Hier"],
-["Ver atividades","View activities","Voir les activités"],
-["Copiar","Copy","Copier"],
-["Denunciar","Report","Signaler"],
-["Escreve algo antes de enviar.","Write something before sending.","Écris quelque chose avant d'envoyer."],
-["Entra no canal para escrever.","Join the channel to write.","Rejoins le canal pour écrire."],
-["Entra no canal para criar atividades.","Join the channel to create activities.","Rejoins le canal pour créer des activités."],
-["Não foi possível enviar a mensagem.","Could not send the message.","Impossible d'envoyer le message."],
-["Não foi possível ler o chat (regras da Realtime Database).","Could not read the chat (Realtime Database rules).","Impossible de lire le chat (règles de la Realtime Database)."],
-["Ver atletas","View athletes","Voir les athlètes"],
-["Partilhar canal","Share channel","Partager le canal"],
-["Sair do canal","Leave channel","Quitter le canal"],
-["Atividades","Activities","Activités"],
-["Membros","Members","Membres"],
-["Detalhes","Details","Détails"],
-["Ainda sem membros.","No members yet.","Pas encore de membres."],
-["Chat em tempo real: todos os membros com sessão iniciada veem as mensagens. Sê respeitador.","Real-time chat: all signed-in members can see the messages. Be respectful.","Chat en temps réel : tous les membres connectés voient les messages. Sois respectueux."],
-["Escreve uma mensagem","Write a message","Écris un message"],
-["Atividade","Activity","Activité"],
-["Enviar","Send","Envoyer"],
-["Sobre a prova","About the race","À propos de la course"],
-["Site oficial: não configurado.","Official website: not set.","Site officiel : non configuré."],
-["Próximos treinos","Upcoming workouts","Prochains entraînements"],
-["Cargos","Roles","Rôles"],
-["Admin, Moderador e Mentor são atribuídos pela equipa PACE. Todos os outros são Atletas.","Admin, Moderator and Mentor roles are assigned by the PACE team. Everyone else is an Athlete.","Les rôles Admin, Modérateur et Mentor sont attribués par l'équipe PACE. Tous les autres sont Athlètes."],
-["Sem treinos marcados.","No workouts scheduled.","Aucun entraînement prévu."],
-["Moderador","Moderator","Modérateur"],
-["Atleta","Athlete","Athlète"],
-["Voltar","Back","Retour"],
-["Sem biografia.","No bio.","Pas de biographie."],
-["Triatlo","Triathlon","Triathlon"],
-["Por definir","Not set","À définir"],
-["Objetivo","Goal","Objectif"],
-["Oculto pelo atleta","Hidden by the athlete","Masqué par l'athlète"],
-["Personalizado","Custom","Personnalisé"],
-["Sem objetivo definido","No goal set","Aucun objectif défini"],
-["Treinos organizados","Workouts organized","Entraînements organisés"],
-["Treinos em que participou","Workouts joined","Entraînements rejoints"],
-["Membro desde","Member since","Membre depuis"],
-["agora","now","maintenant"],
-["Editar perfil","Edit profile","Modifier le profil"],
-["Mostrar objetivo","Show goal","Afficher l'objectif"],
-["Ocultar objetivo","Hide goal","Masquer l'objectif"],
-["Ver treinos","View workouts","Voir les entraînements"],
-["Partilhar perfil","Share profile","Partager le profil"],
-["Desbloquear","Unblock","Débloquer"],
-["Bloquear","Block","Bloquer"],
-["O email e outros dados privados nunca aparecem em perfis públicos.","Email and other private data never appear on public profiles.","L'e-mail et les autres données privées n'apparaissent jamais sur les profils publics."],
-["Canais em que és membro.","Channels you're a member of.","Canaux dont tu es membre."],
-["Ainda não entraste em nenhum canal","You haven't joined any channel yet","Tu n'as encore rejoint aucun canal"],
-["Escolhe uma prova para encontrar atletas.","Pick a race to find athletes.","Choisis une course pour trouver des athlètes."],
-["Alterar foto","Change photo","Changer la photo"],
-["Usar a foto da conta","Use account photo","Utiliser la photo du compte"],
-["(não pode ser alterado)","(cannot be changed)","(ne peut pas être modifié)"],
-["Biografia","Bio","Biographie"],
-["Tempo personalizado (ex.: 5h45)","Custom time (e.g. 5h45)","Temps personnalisé (ex. : 5h45)"],
-["Foto atualizada","Photo updated","Photo mise à jour"],
-["A usar a foto da conta","Using account photo","Utilisation de la photo du compte"],
-["Natação em águas abertas","Open-water swimming","Natation en eau libre"],
-["Usa capacete, respeita o código da estrada e leva material de reparação.","Wear a helmet, follow traffic rules and carry repair gear.","Porte un casque, respecte le code de la route et emporte du matériel de réparation."],
-["Leva água, usa roupa visível e respeita o teu ritmo.","Bring water, wear visible clothing and respect your own pace.","Emporte de l'eau, porte des vêtements visibles et respecte ton rythme."],
-["Nada sempre acompanhado, com boia de segurança, e confirma as condições do mar.","Always swim accompanied, with a safety buoy, and check sea conditions.","Nage toujours accompagné, avec une bouée de sécurité, et vérifie les conditions de la mer."],
-["Usa sempre pontos de encontro públicos, nunca moradas privadas.","Always use public meeting points, never private addresses.","Utilise toujours des points de rendez-vous publics, jamais des adresses privées."],
-["Inscrição confirmada","Registration confirmed","Inscription confirmée"],
-["Atividade não encontrada.","Activity not found.","Activité introuvable."],
-["Atividade cancelada.","Activity cancelled.","Activité annulée."],
-["Já estás inscrito.","You're already registered.","Tu es déjà inscrit."],
-["Atividade lotada.","Activity is full.","Activité complète."],
-["Desististe da atividade","You left the activity","Tu t'es désinscrit de l'activité"],
-["Atividade cancelada","Activity cancelled","Activité annulée"],
-["Inicia sessão para participar.","Sign in to join.","Connecte-toi pour participer."],
-["Cancelada","Cancelled","Annulée"],
-["Vou participar","I'm going","J'y participe"],
-["Desistir","Withdraw","Se désinscrire"],
-["Lotado","Full","Complet"],
-["Participar","Join","Participer"],
-["Ver detalhes","View details","Voir les détails"],
-["Fácil","Easy","Facile"],
-["Moderado","Moderate","Modéré"],
-["Difícil","Hard","Difficile"],
-["Indicado para iniciantes","Suitable for beginners","Adapté aux débutants"],
-["Parte da preparação para a prova","Part of race preparation","Fait partie de la préparation à la course"],
-["Organizador:","Organizer:","Organisateur :"],
-["Sem limite","No limit","Sans limite"],
-["Copiar link","Copy link","Copier le lien"],
-["Adicionar ao calendário","Add to calendar","Ajouter au calendrier"],
-["Editar","Edit","Modifier"],
-["Cancelar atividade","Cancel activity","Annuler l'activité"],
-["Fechar","Close","Fermer"],
-["Ligação copiada","Link copied","Lien copié"],
-["Ficheiro .ics gerado","Calendar file (.ics) created","Fichier .ics généré"],
-["Não foi possível gerar o .ics","Could not create the .ics file","Impossible de générer le fichier .ics"],
-["Nova atividade","New activity","Nouvelle activité"],
-["Editar atividade","Edit activity","Modifier l'activité"],
-["O rascunho é guardado se cancelares.","Your draft is kept if you cancel.","Le brouillon est conservé si tu annules."],
-["Modalidade","Sport","Discipline"],
-["Título","Title","Titre"],
-["Hora de encontro","Meeting time","Heure de rendez-vous"],
-["Local de encontro (público)","Meeting place (public)","Lieu de rendez-vous (public)"],
-["Morada do ponto de encontro (opcional)","Meeting point address (optional)","Adresse du point de rendez-vous (facultatif)"],
-["Distância (km)","Distance (km)","Distance (km)"],
-["Velocidade média (km/h, opcional)","Average speed (km/h, optional)","Vitesse moyenne (km/h, facultatif)"],
-["Ritmo (min/km, ex.: 5:30, opcional)","Pace (min/km, e.g. 5:30, optional)","Allure (min/km, ex. : 5:30, facultatif)"],
-["Duração (minutos, opcional)","Duration (minutes, optional)","Durée (minutes, facultatif)"],
-["Descrição","Description","Description"],
-["Limite de participantes","Participant limit","Limite de participants"],
-["Dificuldade","Difficulty","Difficulté"],
-["Ganho de elevação (m, opcional)","Elevation gain (m, optional)","Dénivelé positif (m, facultatif)"],
-["Tipo de treino (opcional)","Workout type (optional)","Type d'entraînement (facultatif)"],
-["Ritmo constante","Steady pace","Allure constante"],
-["Intervalos","Intervals","Fractionné"],
-["Longo","Long","Sortie longue"],
-["Técnica","Technique","Technique"],
-["Recuperação","Recovery","Récupération"],
-["Material necessário (opcional)","Required gear (optional)","Matériel nécessaire (facultatif)"],
-["Notas adicionais (opcional)","Additional notes (optional)","Notes supplémentaires (facultatif)"],
-["Faz parte da preparação para esta prova","Part of preparation for this race","Fait partie de la préparation à cette course"],
-["Publicar","Publish","Publier"],
-["Cancelar","Cancel","Annuler"],
-["Indica um título.","Enter a title.","Indique un titre."],
-["Escolhe uma data a partir de hoje.","Pick a date from today onwards.","Choisis une date à partir d'aujourd'hui."],
-["Indica a hora.","Enter the time.","Indique l'heure."],
-["Indica o local de encontro.","Enter the meeting place.","Indique le lieu de rendez-vous."],
-["Indica a distância em km.","Enter the distance in km.","Indique la distance en km."],
-["Descreve o treino (mínimo 10 caracteres).","Describe the workout (at least 10 characters).","Décris l'entraînement (10 caractères minimum)."],
-["Indica o limite (mínimo 2) ou escolhe Sem limite.","Enter the limit (minimum 2) or choose No limit.","Indique la limite (minimum 2) ou choisis Sans limite."],
-["Valor inválido.","Invalid value.","Valeur invalide."],
-["Usa o formato 5:30.","Use the format 5:30.","Utilise le format 5:30."],
-["Atividade atualizada","Activity updated","Activité mise à jour"],
-["Atividade publicada","Activity published","Activité publiée"],
-["Escolhe um treino e participa.","Pick a workout and join in.","Choisis un entraînement et participe."],
-["Todas","All","Toutes"],
-["Com vagas","With spots left","Avec des places"],
-["Para iniciantes","For beginners","Pour débutants"],
-["Iniciantes","Beginners","Débutants"],
-["Nenhuma atividade encontrada","No activities found","Aucune activité trouvée"],
-["Altera os filtros ou propõe um treino.","Change the filters or propose a workout.","Modifie les filtres ou propose un entraînement."],
-["Remover dos favoritos","Remove from favorites","Retirer des favoris"],
-["Guardar nos favoritos","Save to favorites","Ajouter aux favoris"],
-["Treinos de todos os canais. A compatibilidade usa regras simples: modalidade, objetivo e canais em que estás.","Workouts from all channels. Compatibility uses simple rules: sport, goal and the channels you're in.","Entraînements de tous les canaux. La compatibilité utilise des règles simples : discipline, objectif et canaux dont tu fais partie."],
-["Limpar","Clear","Effacer"],
-["Pesquisar treinos","Search workouts","Rechercher des entraînements"],
-["Todas as modalidades","All sports","Toutes les disciplines"],
-["Qualquer nível","Any level","Tous niveaux"],
-["Qualquer cidade","Any city","Toutes les villes"],
-["Qualquer objetivo","Any goal","Tous objectifs"],
-["Distância máx. (km)","Max distance (km)","Distance max. (km)"],
-["Distância máxima em km","Maximum distance in km","Distance maximale en km"],
-["A partir de","From","À partir du"],
-["Data mais próxima","Nearest date","Date la plus proche"],
-["Mais vagas","Most spots","Plus de places"],
-["Maior compatibilidade","Best match","Meilleure compatibilité"],
-["Nenhum treino encontrado","No workouts found","Aucun entraînement trouvé"],
-["Altera os filtros ou cria um treino num canal.","Change the filters or create a workout in a channel.","Modifie les filtres ou crée un entraînement dans un canal."],
-["Ir para os meus canais","Go to my channels","Aller à mes canaux"],
-["Próximos treinos, por data.","Upcoming workouts, by date.","Prochains entraînements, par date."],
-["Sem treinos marcados","No workouts scheduled","Aucun entraînement prévu"],
-["Cria o primeiro treino num canal.","Create the first workout in a channel.","Crée le premier entraînement dans un canal."],
-["Provas","Races","Courses"],
-["Ainda sem favoritos","No favorites yet","Pas encore de favoris"],
-["Guarda provas e treinos para os encontrares aqui.","Save races and workouts to find them here.","Enregistre des courses et des entraînements pour les retrouver ici."],
-["Avisos sobre os teus treinos e inscrições.","Updates about your workouts and registrations.","Avis sur tes entraînements et inscriptions."],
-["Nova","New","Nouvelle"],
-["Marcar tudo como lido","Mark all as read","Tout marquer comme lu"],
-["Sem notificações","No notifications","Aucune notification"],
-["Quando alguém aderir ou alterar um treino, aparece aqui.","When someone joins or changes a workout, it shows up here.","Quand quelqu'un rejoint ou modifie un entraînement, cela apparaît ici."],
-["Página não encontrada","Page not found","Page introuvable"],
-["Esta página não existe. Volta às provas e continua a partir daí.","This page doesn't exist. Go back to the races and continue from there.","Cette page n'existe pas. Reviens aux courses et continue à partir de là."],
-["Voltar ao início","Back to home","Retour à l'accueil"],
-["Agora não","Not now","Pas maintenant"],
-["Escreve-nos para","Write to us at","Écris-nous à"],
-["A denúncia é enviada à equipa PACE para revisão.","Your report is sent to the PACE team for review.","Le signalement est envoyé à l'équipe PACE pour examen."],
-["Motivo","Reason","Motif"],
-["Descreve o problema","Describe the problem","Décris le problème"],
-["Enviar denúncia","Send report","Envoyer le signalement"],
-["Indica o motivo.","Enter the reason.","Indique le motif."],
-["Denúncia enviada","Report sent","Signalement envoyé"],
-["Atleta desbloqueado","Athlete unblocked","Athlète débloqué"],
-["Atleta bloqueado: as mensagens ficam ocultas","Athlete blocked: their messages are hidden","Athlète bloqué : ses messages sont masqués"],
-["Texto copiado","Text copied","Texte copié"],
-["Não foi possível copiar","Could not copy","Impossible de copier"],
-["Saíste do canal","You left the channel","Tu as quitté le canal"],
-["Removido dos favoritos","Removed from favorites","Retiré des favoris"],
-["Guardado nos favoritos","Saved to favorites","Ajouté aux favoris"],
-["Inicia sessão para guardar favoritos.","Sign in to save favorites.","Connecte-toi pour enregistrer des favoris."],
-["Sessão terminada","Signed out","Déconnecté"],
-["Não foi possível terminar a sessão.","Could not sign out.","Impossible de se déconnecter."],
-["Não foi possível iniciar sessão.","Could not sign in.","Impossible de se connecter."],
-["Sem permissão (verifica as regras do Firebase).","No permission (check the Firebase rules).","Pas d'autorisation (vérifie les règles Firebase)."],
-["Erro inesperado.","Unexpected error.","Erreur inattendue."],
-["Domínio não autorizado: adiciona-o em Authentication > Settings > Authorized domains.","Unauthorized domain: add it under Authentication > Settings > Authorized domains.","Domaine non autorisé : ajoute-le dans Authentication > Settings > Authorized domains."],
-["Sobre","About","À propos"],
-["Contacto","Contact","Contact"],
-["Privacidade","Privacy","Confidentialité"],
-["Termos","Terms","Conditions"],
-["Segurança nos treinos","Workout safety","Sécurité à l'entraînement"],
-["Instagram ainda não configurado (CONFIG.instagramUrl).","Instagram not set up yet (CONFIG.instagramUrl).","Instagram pas encore configuré (CONFIG.instagramUrl)."],
-["PACE é um projeto independente e não tem qualquer afiliação oficial com a IRONMAN. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares.","PACE is an independent project and has no official affiliation with IRONMAN. IRONMAN and IRONMAN 70.3 are trademarks of their respective owners.","PACE est un projet indépendant et n'a aucune affiliation officielle avec IRONMAN. IRONMAN et IRONMAN 70.3 sont des marques de leurs titulaires respectifs."],
-["Faz login para entrares no canal, falares com outros atletas e combinares treinos.","Sign in to join the channel, chat with other athletes and plan workouts.","Connecte-toi pour rejoindre le canal, discuter avec d'autres athlètes et organiser des entraînements."],
-["Ainda não existe um contacto oficial configurado. Quando existir, será definido em CONFIG.contactEmail.","There is no official contact set up yet. Once there is, it will be defined in CONFIG.contactEmail.","Aucun contact officiel n'est encore configuré. Il sera défini dans CONFIG.contactEmail."]
+["Início","Home","Accueil","Inicio"],
+["As minhas provas","My races","Mes courses","Mis carreras"],
+["Explorar treinos","Explore workouts","Explorer les entraînements","Explorar entrenamientos"],
+["Calendário","Calendar","Calendrier","Calendario"],
+["Favoritos","Favorites","Favoris","Favoritos"],
+["Notificações","Notifications","Notifications","Notificaciones"],
+["Treinos","Workouts","Entraînements","Entrenos"],
+["Avisos","Alerts","Alertes","Avisos"],
+["Perfil","Profile","Profil","Perfil"],
+["Principal","Main","Principal","Principal"],
+["Navegação móvel","Mobile navigation","Navigation mobile","Navegación móvil"],
+["O meu perfil","My profile","Mon profil","Mi perfil"],
+["Abrir menu","Open menu","Ouvrir le menu","Abrir menú"],
+["Fechar menu","Close menu","Fermer le menu","Cerrar menú"],
+["Idioma","Language","Langue","Idioma"],
+["Membro","Member","Membre","Miembro"],
+["Abrir canal","Open channel","Ouvrir le canal","Abrir canal"],
+["Tenho um código","I have a code","J'ai un code","Tengo un código"],
+["Submeter código","Redeem code","Saisir un code","Introducir código"],
+["Código","Code","Code","Código"],
+["Introduz o código que recebeste da equipa PACE.","Enter the code you received from the PACE team.","Saisis le code reçu de l'équipe PACE.","Introduce el código que recibiste del equipo PACE."],
+["Submeter","Submit","Valider","Enviar"],
+["Código inválido ou já utilizado.","Invalid or already used code.","Code invalide ou déjà utilisé.","Código no válido o ya utilizado."],
+["Gerar código de cargo","Generate role code","Générer un code de rôle","Generar código de rol"],
+["Cada código funciona uma única vez.","Each code works only once.","Chaque code ne fonctionne qu'une seule fois.","Cada código solo funciona una vez."],
+["Cargo","Role","Rôle","Rol"],
+["Gerar código","Generate code","Générer un code","Generar código"],
+["Código gerado (uso único):","Generated code (single use):","Code généré (usage unique) :","Código generado (un solo uso):"],
+["Copiar código","Copy code","Copier le code","Copiar código"],
+["Código copiado","Code copied","Code copié","Código copiado"],
+["Ilustração","Illustration","Illustration","Ilustración"],
+["Menu","Menu","Menu","Menú"],
+["Mensagem","Message","Message","Mensaje"],
+["Username:","Username:","Nom d'utilisateur :","Usuario:"],
+["Terminar sessão","Log out","Se déconnecter","Cerrar sesión"],
+["Login","Sign in","Se connecter","Iniciar sesión"],
+["Encontra atletas que vão à mesma prova. Combina treinos. Chega à linha de partida com uma equipa.","Find athletes heading to the same race. Plan workouts together. Reach the start line with a team.","Trouve des athlètes qui participent à la même course. Organise des entraînements. Arrive sur la ligne de départ avec une équipe.","Encuentra atletas que van a la misma carrera. Organiza entrenamientos. Llega a la línea de salida con un equipo."],
+["Explorar provas","Explore races","Explorer les courses","Explorar carreras"],
+["A tua próxima prova começa aqui.","Your next race starts here.","Ta prochaine course commence ici.","Tu próxima carrera empieza aquí."],
+["Encontra os atletas que vão à mesma prova que tu e prepara-a em conjunto, treino a treino.","Find the athletes doing the same race as you and prepare for it together, workout by workout.","Trouve les athlètes qui font la même course que toi et prépare-la avec eux, entraînement après entraînement.","Encuentra a los atletas que van a la misma carrera que tú y prepárala con ellos, entrenamiento a entrenamiento."],
+["Pesquisar por nome ou cidade","Search by name or city","Rechercher par nom ou ville","Buscar por nombre o ciudad"],
+["Pesquisar provas","Search races","Rechercher des courses","Buscar carreras"],
+["Filtrar por país","Filter by country","Filtrer par pays","Filtrar por país"],
+["Todos os países","All countries","Tous les pays","Todos los países"],
+["Ordenar","Sort","Trier","Ordenar"],
+["Relevância","Relevance","Pertinence","Relevancia"],
+["Data","Date","Date","Fecha"],
+["Três passos até à linha de partida","Three steps to the start line","Trois étapes jusqu'à la ligne de départ","Tres pasos hasta la línea de salida"],
+["Escolhe a prova","Choose your race","Choisis ta course","Elige tu carrera"],
+["Entra no canal da prova em que vais participar.","Join the channel of the race you're entering.","Rejoins le canal de la course à laquelle tu participes.","Únete al canal de la carrera en la que vas a participar."],
+["Encontra atletas como tu","Find athletes like you","Trouve des athlètes comme toi","Encuentra atletas como tú"],
+["Descobre quem tem objetivos e ritmos semelhantes.","Discover who has similar goals and pace.","Découvre qui a des objectifs et un rythme similaires.","Descubre quién tiene objetivos y ritmos parecidos."],
+["Combina treinos","Plan workouts","Organise des entraînements","Organiza entrenamientos"],
+["Organiza saídas de bike, corrida e natação em águas abertas.","Set up bike rides, runs and open-water swims.","Organise des sorties vélo, course à pied et natation en eau libre.","Organiza salidas de bici, carrera a pie y natación en aguas abiertas."],
+["Uma prova é mais fácil quando não a preparas sozinho.","A race is easier when you don't prepare alone.","Une course est plus facile quand on ne la prépare pas seul.","Una carrera es más fácil cuando no la preparas solo."],
+["Encontrar a minha comunidade","Find my community","Trouver ma communauté","Encontrar mi comunidad"],
+["Espanha","Spain","Espagne","España"],
+["Entrar no canal","Join channel","Rejoindre le canal","Unirme al canal"],
+["Guardada","Saved","Enregistrée","Guardada"],
+["Guardar","Save","Enregistrer","Guardar"],
+["Data por confirmar","Date to be confirmed","Date à confirmer","Fecha por confirmar"],
+["Nenhuma prova encontrada","No races found","Aucune course trouvée","No se ha encontrado ninguna carrera"],
+["Experimenta outro nome ou remove o filtro de país.","Try another name or remove the country filter.","Essaie un autre nom ou retire le filtre de pays.","Prueba con otro nombre o quita el filtro de país."],
+["Limpar filtros","Clear filters","Effacer les filtres","Borrar filtros"],
+["Faz login para continuar","Sign in to continue","Connecte-toi pour continuer","Inicia sesión para continuar"],
+["Esta área é só para atletas com sessão iniciada. Faz login para criares o teu perfil e participares nos canais.","This area is for signed-in athletes only. Sign in to create your profile and join channels.","Cet espace est réservé aux athlètes connectés. Connecte-toi pour créer ton profil et rejoindre les canaux.","Esta zona es solo para atletas con la sesión iniciada. Inicia sesión para crear tu perfil y participar en los canales."],
+["Sessão iniciada","Signed in","Connecté","Sesión iniciada"],
+["Ver provas","View races","Voir les courses","Ver carreras"],
+["Bem-vindo à PACE","Welcome to PACE","Bienvenue sur PACE","Bienvenido a PACE"],
+["Completa o teu perfil. O nome, o username e a cidade são obrigatórios; o resto podes mudar depois no teu perfil.","Complete your profile. Name, username and city are required; you can change the rest later in your profile.","Complète ton profil. Le nom, le nom d'utilisateur et la ville sont obligatoires ; tu pourras modifier le reste plus tard.","Completa tu perfil. El nombre, el usuario y la ciudad son obligatorios; el resto puedes cambiarlo después en tu perfil."],
+["Escolher foto","Choose photo","Choisir une photo","Elegir foto"],
+["Usamos a foto da tua conta se não escolheres outra.","We'll use your account photo if you don't pick another.","Nous utiliserons la photo de ton compte si tu n'en choisis pas une autre.","Usaremos la foto de tu cuenta si no eliges otra."],
+["Nome","Name","Nom","Nombre"],
+["Username","Username","Nom d'utilisateur","Usuario"],
+["ex.: ana_run","e.g. ana_run","ex. : ana_run","p. ej.: ana_run"],
+["País","Country","Pays","País"],
+["Cidade/zona","City/area","Ville/zone","Ciudad/zona"],
+["Prova-alvo","Target race","Course cible","Carrera objetivo"],
+["Ainda não sei","I don't know yet","Je ne sais pas encore","Todavía no lo sé"],
+["Objetivo de tempo","Time goal","Objectif de temps","Objetivo de tiempo"],
+["Sem objetivo","No goal","Pas d'objectif","Sin objetivo"],
+["Tempo personalizado (se escolheste Objetivo personalizado, ex.: 5h45)","Custom time (if you chose Custom goal, e.g. 5h45)","Temps personnalisé (si tu as choisi Objectif personnalisé, ex. : 5h45)","Tiempo personalizado (si elegiste Objetivo personalizado, p. ej.: 5h45)"],
+["Ocultar o objetivo no perfil público","Hide my goal on my public profile","Masquer mon objectif sur mon profil public","Ocultar mi objetivo en el perfil público"],
+["Zona de treino","Training area","Zone d'entraînement","Zona de entrenamiento"],
+["ex.: Marginal Cascais–Oeiras","e.g. Cascais–Oeiras coastal road","ex. : Marginal Cascais–Oeiras","p. ej.: paseo marítimo Cascais–Oeiras"],
+["Concluir","Finish","Terminer","Terminar"],
+["Terminar a prova","Finish the race","Terminer la course","Terminar la carrera"],
+["Objetivo personalizado","Custom goal","Objectif personnalisé","Objetivo personalizado"],
+["Indica o teu nome.","Enter your name.","Indique ton nom.","Indica tu nombre."],
+["3 a 20 caracteres: letras, números ou _.","3 to 20 characters: letters, numbers or _.","3 à 20 caractères : lettres, chiffres ou _.","De 3 a 20 caracteres: letras, números o _."],
+["Indica a tua cidade ou zona.","Enter your city or area.","Indique ta ville ou ta zone.","Indica tu ciudad o zona."],
+["Esse username já existe.","That username is already taken.","Ce nom d'utilisateur existe déjà.","Ese nombre de usuario ya existe."],
+["Perfil criado","Profile created","Profil créé","Perfil creado"],
+["Entraste no canal","You joined the channel","Tu as rejoint le canal","Te has unido al canal"],
+["Perfil guardado","Profile saved","Profil enregistré","Perfil guardado"],
+["Ainda não há mensagens. Sê o primeiro a escrever.","No messages yet. Be the first to write.","Pas encore de messages. Sois le premier à écrire.","Todavía no hay mensajes. Sé el primero en escribir."],
+["Hoje","Today","Aujourd'hui","Hoy"],
+["Ontem","Yesterday","Hier","Ayer"],
+["Ver atividades","View activities","Voir les activités","Ver actividades"],
+["Copiar","Copy","Copier","Copiar"],
+["Denunciar","Report","Signaler","Denunciar"],
+["Escreve algo antes de enviar.","Write something before sending.","Écris quelque chose avant d'envoyer.","Escribe algo antes de enviar."],
+["Entra no canal para escrever.","Join the channel to write.","Rejoins le canal pour écrire.","Únete al canal para escribir."],
+["Entra no canal para criar atividades.","Join the channel to create activities.","Rejoins le canal pour créer des activités.","Únete al canal para crear actividades."],
+["Não foi possível enviar a mensagem.","Could not send the message.","Impossible d'envoyer le message.","No se pudo enviar el mensaje."],
+["Não foi possível ler o chat (regras da Realtime Database).","Could not read the chat (Realtime Database rules).","Impossible de lire le chat (règles de la Realtime Database).","No se pudo leer el chat (reglas de la Realtime Database)."],
+["Ver atletas","View athletes","Voir les athlètes","Ver atletas"],
+["Partilhar canal","Share channel","Partager le canal","Compartir canal"],
+["Sair do canal","Leave channel","Quitter le canal","Salir del canal"],
+["Atividades","Activities","Activités","Actividades"],
+["Membros","Members","Membres","Miembros"],
+["Detalhes","Details","Détails","Detalles"],
+["Ainda sem membros.","No members yet.","Pas encore de membres.","Todavía no hay miembros."],
+["Chat em tempo real: todos os membros com sessão iniciada veem as mensagens. Sê respeitador.","Real-time chat: all signed-in members can see the messages. Be respectful.","Chat en temps réel : tous les membres connectés voient les messages. Sois respectueux.","Chat en tiempo real: todos los miembros con la sesión iniciada ven los mensajes. Sé respetuoso."],
+["Escreve uma mensagem","Write a message","Écris un message","Escribe un mensaje"],
+["Atividade","Activity","Activité","Actividad"],
+["Enviar","Send","Envoyer","Enviar"],
+["Sobre a prova","About the race","À propos de la course","Sobre la carrera"],
+["Site oficial: não configurado.","Official website: not set.","Site officiel : non configuré.","Sitio web oficial: no configurado."],
+["Próximos treinos","Upcoming workouts","Prochains entraînements","Próximos entrenamientos"],
+["Cargos","Roles","Rôles","Roles"],
+["Admin, Moderador e Mentor são atribuídos pela equipa PACE. Todos os outros são Atletas.","Admin, Moderator and Mentor roles are assigned by the PACE team. Everyone else is an Athlete.","Les rôles Admin, Modérateur et Mentor sont attribués par l'équipe PACE. Tous les autres sont Athlètes.","Los roles de Admin, Moderador y Mentor los asigna el equipo PACE. Todos los demás son Atletas."],
+["Sem treinos marcados.","No workouts scheduled.","Aucun entraînement prévu.","No hay entrenamientos programados."],
+["Moderador","Moderator","Modérateur","Moderador"],
+["Atleta","Athlete","Athlète","Atleta"],
+["Voltar","Back","Retour","Volver"],
+["Sem biografia.","No bio.","Pas de biographie.","Sin biografía."],
+["Triatlo","Triathlon","Triathlon","Triatlón"],
+["Por definir","Not set","À définir","Sin definir"],
+["Objetivo","Goal","Objectif","Objetivo"],
+["Oculto pelo atleta","Hidden by the athlete","Masqué par l'athlète","Oculto por el atleta"],
+["Personalizado","Custom","Personnalisé","Personalizado"],
+["Sem objetivo definido","No goal set","Aucun objectif défini","Sin objetivo definido"],
+["Treinos organizados","Workouts organized","Entraînements organisés","Entrenamientos organizados"],
+["Treinos em que participou","Workouts joined","Entraînements rejoints","Entrenamientos en los que participó"],
+["Membro desde","Member since","Membre depuis","Miembro desde"],
+["agora","now","maintenant","ahora"],
+["Editar perfil","Edit profile","Modifier le profil","Editar perfil"],
+["Mostrar objetivo","Show goal","Afficher l'objectif","Mostrar objetivo"],
+["Ocultar objetivo","Hide goal","Masquer l'objectif","Ocultar objetivo"],
+["Ver treinos","View workouts","Voir les entraînements","Ver entrenamientos"],
+["Partilhar perfil","Share profile","Partager le profil","Compartir perfil"],
+["Desbloquear","Unblock","Débloquer","Desbloquear"],
+["Bloquear","Block","Bloquer","Bloquear"],
+["O email e outros dados privados nunca aparecem em perfis públicos.","Email and other private data never appear on public profiles.","L'e-mail et les autres données privées n'apparaissent jamais sur les profils publics.","El correo electrónico y otros datos privados nunca aparecen en los perfiles públicos."],
+["Canais em que és membro.","Channels you're a member of.","Canaux dont tu es membre.","Canales de los que eres miembro."],
+["Ainda não entraste em nenhum canal","You haven't joined any channel yet","Tu n'as encore rejoint aucun canal","Todavía no te has unido a ningún canal"],
+["Escolhe uma prova para encontrar atletas.","Pick a race to find athletes.","Choisis une course pour trouver des athlètes.","Elige una carrera para encontrar atletas."],
+["Alterar foto","Change photo","Changer la photo","Cambiar foto"],
+["Usar a foto da conta","Use account photo","Utiliser la photo du compte","Usar la foto de la cuenta"],
+["(não pode ser alterado)","(cannot be changed)","(ne peut pas être modifié)","(no se puede cambiar)"],
+["Biografia","Bio","Biographie","Biografía"],
+["Tempo personalizado (ex.: 5h45)","Custom time (e.g. 5h45)","Temps personnalisé (ex. : 5h45)","Tiempo personalizado (p. ej.: 5h45)"],
+["Foto atualizada","Photo updated","Photo mise à jour","Foto actualizada"],
+["A usar a foto da conta","Using account photo","Utilisation de la photo du compte","Usando la foto de la cuenta"],
+["Natação em águas abertas","Open-water swimming","Natation en eau libre","Natación en aguas abiertas"],
+["Usa capacete, respeita o código da estrada e leva material de reparação.","Wear a helmet, follow traffic rules and carry repair gear.","Porte un casque, respecte le code de la route et emporte du matériel de réparation.","Usa casco, respeta el código de circulación y lleva material de reparación."],
+["Leva água, usa roupa visível e respeita o teu ritmo.","Bring water, wear visible clothing and respect your own pace.","Emporte de l'eau, porte des vêtements visibles et respecte ton rythme.","Lleva agua, usa ropa visible y respeta tu ritmo."],
+["Nada sempre acompanhado, com boia de segurança, e confirma as condições do mar.","Always swim accompanied, with a safety buoy, and check sea conditions.","Nage toujours accompagné, avec une bouée de sécurité, et vérifie les conditions de la mer.","Nada siempre acompañado, con boya de seguridad, y comprueba las condiciones del mar."],
+["Usa sempre pontos de encontro públicos, nunca moradas privadas.","Always use public meeting points, never private addresses.","Utilise toujours des points de rendez-vous publics, jamais des adresses privées.","Usa siempre puntos de encuentro públicos, nunca domicilios privados."],
+["Inscrição confirmada","Registration confirmed","Inscription confirmée","Inscripción confirmada"],
+["Atividade não encontrada.","Activity not found.","Activité introuvable.","Actividad no encontrada."],
+["Atividade cancelada.","Activity cancelled.","Activité annulée.","Actividad cancelada."],
+["Já estás inscrito.","You're already registered.","Tu es déjà inscrit.","Ya estás inscrito."],
+["Atividade lotada.","Activity is full.","Activité complète.","La actividad está completa."],
+["Desististe da atividade","You left the activity","Tu t'es désinscrit de l'activité","Te has dado de baja de la actividad"],
+["Atividade cancelada","Activity cancelled","Activité annulée","Actividad cancelada"],
+["Inicia sessão para participar.","Sign in to join.","Connecte-toi pour participer.","Inicia sesión para participar."],
+["Cancelada","Cancelled","Annulée","Cancelada"],
+["Vou participar","I'm going","J'y participe","Voy a participar"],
+["Desistir","Withdraw","Se désinscrire","Darme de baja"],
+["Lotado","Full","Complet","Completo"],
+["Participar","Join","Participer","Participar"],
+["Ver detalhes","View details","Voir les détails","Ver detalles"],
+["Fácil","Easy","Facile","Fácil"],
+["Moderado","Moderate","Modéré","Moderado"],
+["Difícil","Hard","Difficile","Difícil"],
+["Indicado para iniciantes","Suitable for beginners","Adapté aux débutants","Indicado para principiantes"],
+["Parte da preparação para a prova","Part of race preparation","Fait partie de la préparation à la course","Parte de la preparación para la carrera"],
+["Organizador:","Organizer:","Organisateur :","Organizador:"],
+["Sem limite","No limit","Sans limite","Sin límite"],
+["Copiar link","Copy link","Copier le lien","Copiar enlace"],
+["Adicionar ao calendário","Add to calendar","Ajouter au calendrier","Añadir al calendario"],
+["Editar","Edit","Modifier","Editar"],
+["Cancelar atividade","Cancel activity","Annuler l'activité","Cancelar actividad"],
+["Fechar","Close","Fermer","Cerrar"],
+["Ligação copiada","Link copied","Lien copié","Enlace copiado"],
+["Ficheiro .ics gerado","Calendar file (.ics) created","Fichier .ics généré","Archivo de calendario (.ics) generado"],
+["Não foi possível gerar o .ics","Could not create the .ics file","Impossible de générer le fichier .ics","No se pudo generar el archivo .ics"],
+["Nova atividade","New activity","Nouvelle activité","Nueva actividad"],
+["Editar atividade","Edit activity","Modifier l'activité","Editar actividad"],
+["O rascunho é guardado se cancelares.","Your draft is kept if you cancel.","Le brouillon est conservé si tu annules.","El borrador se guarda si cancelas."],
+["Modalidade","Sport","Discipline","Modalidad"],
+["Título","Title","Titre","Título"],
+["Hora de encontro","Meeting time","Heure de rendez-vous","Hora de encuentro"],
+["Local de encontro (público)","Meeting place (public)","Lieu de rendez-vous (public)","Lugar de encuentro (público)"],
+["Morada do ponto de encontro (opcional)","Meeting point address (optional)","Adresse du point de rendez-vous (facultatif)","Dirección del punto de encuentro (opcional)"],
+["Distância (km)","Distance (km)","Distance (km)","Distancia (km)"],
+["Velocidade média (km/h, opcional)","Average speed (km/h, optional)","Vitesse moyenne (km/h, facultatif)","Velocidad media (km/h, opcional)"],
+["Ritmo (min/km, ex.: 5:30, opcional)","Pace (min/km, e.g. 5:30, optional)","Allure (min/km, ex. : 5:30, facultatif)","Ritmo (min/km, p. ej.: 5:30, opcional)"],
+["Duração (minutos, opcional)","Duration (minutes, optional)","Durée (minutes, facultatif)","Duración (minutos, opcional)"],
+["Descrição","Description","Description","Descripción"],
+["Limite de participantes","Participant limit","Limite de participants","Límite de participantes"],
+["Dificuldade","Difficulty","Difficulté","Dificultad"],
+["Ganho de elevação (m, opcional)","Elevation gain (m, optional)","Dénivelé positif (m, facultatif)","Desnivel positivo (m, opcional)"],
+["Tipo de treino (opcional)","Workout type (optional)","Type d'entraînement (facultatif)","Tipo de entrenamiento (opcional)"],
+["Ritmo constante","Steady pace","Allure constante","Ritmo constante"],
+["Intervalos","Intervals","Fractionné","Intervalos"],
+["Longo","Long","Sortie longue","Largo"],
+["Técnica","Technique","Technique","Técnica"],
+["Recuperação","Recovery","Récupération","Recuperación"],
+["Material necessário (opcional)","Required gear (optional)","Matériel nécessaire (facultatif)","Material necesario (opcional)"],
+["Notas adicionais (opcional)","Additional notes (optional)","Notes supplémentaires (facultatif)","Notas adicionales (opcional)"],
+["Faz parte da preparação para esta prova","Part of preparation for this race","Fait partie de la préparation à cette course","Forma parte de la preparación para esta carrera"],
+["Publicar","Publish","Publier","Publicar"],
+["Cancelar","Cancel","Annuler","Cancelar"],
+["Indica um título.","Enter a title.","Indique un titre.","Indica un título."],
+["Escolhe uma data a partir de hoje.","Pick a date from today onwards.","Choisis une date à partir d'aujourd'hui.","Elige una fecha a partir de hoy."],
+["Indica a hora.","Enter the time.","Indique l'heure.","Indica la hora."],
+["Indica o local de encontro.","Enter the meeting place.","Indique le lieu de rendez-vous.","Indica el lugar de encuentro."],
+["Indica a distância em km.","Enter the distance in km.","Indique la distance en km.","Indica la distancia en km."],
+["Descreve o treino (mínimo 10 caracteres).","Describe the workout (at least 10 characters).","Décris l'entraînement (10 caractères minimum).","Describe el entrenamiento (mínimo 10 caracteres)."],
+["Indica o limite (mínimo 2) ou escolhe Sem limite.","Enter the limit (minimum 2) or choose No limit.","Indique la limite (minimum 2) ou choisis Sans limite.","Indica el límite (mínimo 2) o elige Sin límite."],
+["Valor inválido.","Invalid value.","Valeur invalide.","Valor no válido."],
+["Usa o formato 5:30.","Use the format 5:30.","Utilise le format 5:30.","Usa el formato 5:30."],
+["Atividade atualizada","Activity updated","Activité mise à jour","Actividad actualizada"],
+["Atividade publicada","Activity published","Activité publiée","Actividad publicada"],
+["Escolhe um treino e participa.","Pick a workout and join in.","Choisis un entraînement et participe.","Elige un entrenamiento y participa."],
+["Todas","All","Toutes","Todas"],
+["Com vagas","With spots left","Avec des places","Con plazas"],
+["Para iniciantes","For beginners","Pour débutants","Para principiantes"],
+["Iniciantes","Beginners","Débutants","Principiantes"],
+["Nenhuma atividade encontrada","No activities found","Aucune activité trouvée","No se ha encontrado ninguna actividad"],
+["Altera os filtros ou propõe um treino.","Change the filters or propose a workout.","Modifie les filtres ou propose un entraînement.","Cambia los filtros o propón un entrenamiento."],
+["Remover dos favoritos","Remove from favorites","Retirer des favoris","Quitar de favoritos"],
+["Guardar nos favoritos","Save to favorites","Ajouter aux favoris","Guardar en favoritos"],
+["Treinos de todos os canais. A compatibilidade usa regras simples: modalidade, objetivo e canais em que estás.","Workouts from all channels. Compatibility uses simple rules: sport, goal and the channels you're in.","Entraînements de tous les canaux. La compatibilité utilise des règles simples : discipline, objectif et canaux dont tu fais partie.","Entrenamientos de todos los canales. La compatibilidad usa reglas sencillas: modalidad, objetivo y los canales en los que estás."],
+["Limpar","Clear","Effacer","Borrar"],
+["Pesquisar treinos","Search workouts","Rechercher des entraînements","Buscar entrenamientos"],
+["Todas as modalidades","All sports","Toutes les disciplines","Todas las modalidades"],
+["Qualquer nível","Any level","Tous niveaux","Cualquier nivel"],
+["Qualquer cidade","Any city","Toutes les villes","Cualquier ciudad"],
+["Qualquer objetivo","Any goal","Tous objectifs","Cualquier objetivo"],
+["Distância máx. (km)","Max distance (km)","Distance max. (km)","Distancia máx. (km)"],
+["Distância máxima em km","Maximum distance in km","Distance maximale en km","Distancia máxima en km"],
+["A partir de","From","À partir du","Desde"],
+["Data mais próxima","Nearest date","Date la plus proche","Fecha más próxima"],
+["Mais vagas","Most spots","Plus de places","Más plazas"],
+["Maior compatibilidade","Best match","Meilleure compatibilité","Mayor compatibilidad"],
+["Nenhum treino encontrado","No workouts found","Aucun entraînement trouvé","No se ha encontrado ningún entrenamiento"],
+["Altera os filtros ou cria um treino num canal.","Change the filters or create a workout in a channel.","Modifie les filtres ou crée un entraînement dans un canal.","Cambia los filtros o crea un entrenamiento en un canal."],
+["Ir para os meus canais","Go to my channels","Aller à mes canaux","Ir a mis canales"],
+["Próximos treinos, por data.","Upcoming workouts, by date.","Prochains entraînements, par date.","Próximos entrenamientos, por fecha."],
+["Sem treinos marcados","No workouts scheduled","Aucun entraînement prévu","No hay entrenamientos programados"],
+["Cria o primeiro treino num canal.","Create the first workout in a channel.","Crée le premier entraînement dans un canal.","Crea el primer entrenamiento en un canal."],
+["Provas","Races","Courses","Carreras"],
+["Ainda sem favoritos","No favorites yet","Pas encore de favoris","Todavía no hay favoritos"],
+["Guarda provas e treinos para os encontrares aqui.","Save races and workouts to find them here.","Enregistre des courses et des entraînements pour les retrouver ici.","Guarda carreras y entrenamientos para encontrarlos aquí."],
+["Avisos sobre os teus treinos e inscrições.","Updates about your workouts and registrations.","Avis sur tes entraînements et inscriptions.","Avisos sobre tus entrenamientos e inscripciones."],
+["Nova","New","Nouvelle","Nueva"],
+["Marcar tudo como lido","Mark all as read","Tout marquer comme lu","Marcar todo como leído"],
+["Sem notificações","No notifications","Aucune notification","Sin notificaciones"],
+["Quando alguém aderir ou alterar um treino, aparece aqui.","When someone joins or changes a workout, it shows up here.","Quand quelqu'un rejoint ou modifie un entraînement, cela apparaît ici.","Cuando alguien se una o cambie un entrenamiento, aparecerá aquí."],
+["Página não encontrada","Page not found","Page introuvable","Página no encontrada"],
+["Esta página não existe. Volta às provas e continua a partir daí.","This page doesn't exist. Go back to the races and continue from there.","Cette page n'existe pas. Reviens aux courses et continue à partir de là.","Esta página no existe. Vuelve a las carreras y continúa desde ahí."],
+["Voltar ao início","Back to home","Retour à l'accueil","Volver al inicio"],
+["Agora não","Not now","Pas maintenant","Ahora no"],
+["Escreve-nos para","Write to us at","Écris-nous à","Escríbenos a"],
+["A denúncia é enviada à equipa PACE para revisão.","Your report is sent to the PACE team for review.","Le signalement est envoyé à l'équipe PACE pour examen.","La denuncia se envía al equipo PACE para su revisión."],
+["Motivo","Reason","Motif","Motivo"],
+["Descreve o problema","Describe the problem","Décris le problème","Describe el problema"],
+["Enviar denúncia","Send report","Envoyer le signalement","Enviar denuncia"],
+["Indica o motivo.","Enter the reason.","Indique le motif.","Indica el motivo."],
+["Denúncia enviada","Report sent","Signalement envoyé","Denuncia enviada"],
+["Atleta desbloqueado","Athlete unblocked","Athlète débloqué","Atleta desbloqueado"],
+["Atleta bloqueado: as mensagens ficam ocultas","Athlete blocked: their messages are hidden","Athlète bloqué : ses messages sont masqués","Atleta bloqueado: sus mensajes quedan ocultos"],
+["Texto copiado","Text copied","Texte copié","Texto copiado"],
+["Não foi possível copiar","Could not copy","Impossible de copier","No se pudo copiar"],
+["Saíste do canal","You left the channel","Tu as quitté le canal","Has salido del canal"],
+["Removido dos favoritos","Removed from favorites","Retiré des favoris","Quitado de favoritos"],
+["Guardado nos favoritos","Saved to favorites","Ajouté aux favoris","Guardado en favoritos"],
+["Inicia sessão para guardar favoritos.","Sign in to save favorites.","Connecte-toi pour enregistrer des favoris.","Inicia sesión para guardar favoritos."],
+["Sessão terminada","Signed out","Déconnecté","Sesión cerrada"],
+["Não foi possível terminar a sessão.","Could not sign out.","Impossible de se déconnecter.","No se pudo cerrar la sesión."],
+["Não foi possível iniciar sessão.","Could not sign in.","Impossible de se connecter.","No se pudo iniciar sesión."],
+["Sem permissão (verifica as regras do Firebase).","No permission (check the Firebase rules).","Pas d'autorisation (vérifie les règles Firebase).","Sin permiso (comprueba las reglas de Firebase)."],
+["Erro inesperado.","Unexpected error.","Erreur inattendue.","Error inesperado."],
+["Domínio não autorizado: adiciona-o em Authentication > Settings > Authorized domains.","Unauthorized domain: add it under Authentication > Settings > Authorized domains.","Domaine non autorisé : ajoute-le dans Authentication > Settings > Authorized domains.","Dominio no autorizado: añádelo en Authentication > Settings > Authorized domains."],
+["Sobre","About","À propos","Acerca de"],
+["Contacto","Contact","Contact","Contacto"],
+["Privacidade","Privacy","Confidentialité","Privacidad"],
+["Termos","Terms","Conditions","Términos"],
+["Segurança nos treinos","Workout safety","Sécurité à l'entraînement","Seguridad en los entrenamientos"],
+["Instagram ainda não configurado (CONFIG.instagramUrl).","Instagram not set up yet (CONFIG.instagramUrl).","Instagram pas encore configuré (CONFIG.instagramUrl).","Instagram aún no está configurado (CONFIG.instagramUrl)."],
+["PACE é um projeto independente e não tem qualquer afiliação oficial com a IRONMAN. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares.","PACE is an independent project and has no official affiliation with IRONMAN. IRONMAN and IRONMAN 70.3 are trademarks of their respective owners.","PACE est un projet indépendant et n'a aucune affiliation officielle avec IRONMAN. IRONMAN et IRONMAN 70.3 sont des marques de leurs titulaires respectifs.","PACE es un proyecto independiente y no tiene ninguna afiliación oficial con IRONMAN. IRONMAN e IRONMAN 70.3 son marcas de sus respectivos titulares."],
+["Faz login para entrares no canal, falares com outros atletas e combinares treinos.","Sign in to join the channel, chat with other athletes and plan workouts.","Connecte-toi pour rejoindre le canal, discuter avec d'autres athlètes et organiser des entraînements.","Inicia sesión para unirte al canal, hablar con otros atletas y organizar entrenamientos."],
+["Ainda não existe um contacto oficial configurado. Quando existir, será definido em CONFIG.contactEmail.","There is no official contact set up yet. Once there is, it will be defined in CONFIG.contactEmail.","Aucun contact officiel n'est encore configuré. Il sera défini dans CONFIG.contactEmail.","Todavía no hay un contacto oficial configurado. Cuando exista, se definirá en CONFIG.contactEmail."],
+["Traduzir","Translate","Traduire","Traducir"],
+["A traduzir…","Translating…","Traduction…","Traduciendo…"],
+["Ocultar tradução","Hide translation","Masquer la traduction","Ocultar traducción"],
+["Ver tradução","Show translation","Voir la traduction","Ver traducción"],
+["A mensagem já está no teu idioma.","This message is already in your language.","Ce message est déjà dans ta langue.","El mensaje ya está en tu idioma."],
+["Não foi possível traduzir a mensagem.","Could not translate the message.","Impossible de traduire le message.","No se pudo traducir el mensaje."]
 ];
-const D={en:{},fr:{}};ROWS.forEach(r=>{D.en[r[0]]=r[1];D.fr[r[0]]=r[2]});
+const D={en:{},fr:{},es:{}};ROWS.forEach(r=>{D.en[r[0]]=r[1];D.fr[r[0]]=r[2];D.es[r[0]]=r[3]});
 /* padrões com partes dinâmicas: [regex, inglês, francês, grupos a traduzir] */
 const PAT=[
-[/^Cargo atualizado: (.+)$/,"Role updated: $1","Rôle mis à jour : $1",[1]],
-[/^Olá, (.+)\.$/,"Hello, $1.","Bonjour, $1."],
-[/^1 atletas$/,"1 athlete","1 athlète"],
-[/^1 treinos$/,"1 workout","1 entraînement"],
-[/^(\d+) atletas$/,"$1 athletes","$1 athlètes"],
-[/^(\d+) treinos$/,"$1 workouts","$1 entraînements"],
-[/^faltam (\d+) dias$/,"$1 days to go","dans $1 jours"],
-[/^(\d+)\/(\d+) confirmados$/,"$1/$2 confirmed","$1/$2 confirmés"],
-[/^(\d+) confirmados$/,"$1 confirmed","$1 confirmés"],
-[/^(\d+) vagas$/,"$1 spots left","$1 places restantes"],
-[/^(.+), Espanha$/,"$1, Spain","$1, Espagne"],
-[/^Objetivo (.+)$/,"Goal $1","Objectif $1"],
-[/^Treinos de (.+)$/,"$1's workouts","Entraînements de $1"],
-[/^Zona de treino: (.+)$/,"Training area: $1","Zone d'entraînement : $1"],
-[/^Mensagens de (.+) ocultas \(bloqueado\)\.$/,"Messages from $1 hidden (blocked).","Messages de $1 masqués (bloqué)."],
-[/^criou uma atividade de (.+?): (.*)\.$/,"created a $1 activity: $2.","a créé une activité de $1 : $2.",[1]],
-[/^(.+?) \/ (.+?) \/ (.*)$/,"$1 / $2 / $3","$1 / $2 / $3",[2]],
-[/^1 atividade, por ordem de data$/,"1 activity, in date order","1 activité, par ordre de date"],
-[/^(\d+) atividades, por ordem de data$/,"$1 activities, in date order","$1 activités, par ordre de date"],
-[/^Inscrição confirmada: (.*)$/,"Registration confirmed: $1","Inscription confirmée : $1"],
-[/^(.+) vai participar em "(.*)"\.$/,"$1 will join \"$2\".","$1 participera à « $2 »."],
-[/^A atividade "(.*)" foi cancelada\.$/,"The activity \"$1\" was cancelled.","L'activité « $1 » a été annulée."],
-[/^Atividade alterada: (.*)$/,"Activity changed: $1","Activité modifiée : $1"],
-[/^Já há (\d+) inscritos\.$/,"There are already $1 registered.","Il y a déjà $1 inscrits."],
-[/^Entrar em (.+)$/,"Join $1","Rejoindre $1"],
-[/^Avisos \((\d+)\)$/,"Alerts ($1)","Alertes ($1)"],
-[/^Notificações \((\d+) novas?\)$/,"Notifications ($1 new)","Notifications ($1 nouvelles)"],
-[/^Perfil de (.+)$/,"$1's profile","Profil de $1"],
-[/^Ganho de elevação: (.+)$/,"Elevation gain: $1","Dénivelé positif : $1"],
-[/^Tipo: (.+)$/,"Type: $1","Type : $1",[1]],
-[/^Material: (.+)$/,"Gear: $1","Matériel : $1"],
-[/^Notas: (.+)$/,"Notes: $1","Notes : $1"],
-[/^(.+) — início$/,"$1 — home","$1 — accueil"],
-[/^Não foi possível entrar: (.*)$/,"Could not sign in: $1","Connexion impossible : $1"]
+[/^Cargo atualizado: (.+)$/,"Role updated: $1","Rôle mis à jour : $1",[1],"Rol actualizado: $1"],
+[/^Olá, (.+)\.$/,"Hello, $1.","Bonjour, $1.",null,"Hola, $1."],
+[/^1 atletas$/,"1 athlete","1 athlète",null,"1 atleta"],
+[/^1 treinos$/,"1 workout","1 entraînement",null,"1 entrenamiento"],
+[/^(\d+) atletas$/,"$1 athletes","$1 athlètes",null,"$1 atletas"],
+[/^(\d+) treinos$/,"$1 workouts","$1 entraînements",null,"$1 entrenamientos"],
+[/^faltam (\d+) dias$/,"$1 days to go","dans $1 jours",null,"faltan $1 días"],
+[/^(\d+)\/(\d+) confirmados$/,"$1/$2 confirmed","$1/$2 confirmés",null,"$1/$2 confirmados"],
+[/^(\d+) confirmados$/,"$1 confirmed","$1 confirmés",null,"$1 confirmados"],
+[/^(\d+) vagas$/,"$1 spots left","$1 places restantes",null,"$1 plazas libres"],
+[/^(.+), Espanha$/,"$1, Spain","$1, Espagne",null,"$1, España"],
+[/^Objetivo (.+)$/,"Goal $1","Objectif $1",null,"Objetivo $1"],
+[/^Treinos de (.+)$/,"$1's workouts","Entraînements de $1",null,"Entrenamientos de $1"],
+[/^Zona de treino: (.+)$/,"Training area: $1","Zone d'entraînement : $1",null,"Zona de entrenamiento: $1"],
+[/^Mensagens de (.+) ocultas \(bloqueado\)\.$/,"Messages from $1 hidden (blocked).","Messages de $1 masqués (bloqué).",null,"Mensajes de $1 ocultos (bloqueado)."],
+[/^criou uma atividade de (.+?): (.*)\.$/,"created a $1 activity: $2.","a créé une activité de $1 : $2.",[1],"ha creado una actividad de $1: $2."],
+[/^(.+?) \/ (.+?) \/ (.*)$/,"$1 / $2 / $3","$1 / $2 / $3",[2],"$1 / $2 / $3"],
+[/^1 atividade, por ordem de data$/,"1 activity, in date order","1 activité, par ordre de date",null,"1 actividad, por orden de fecha"],
+[/^(\d+) atividades, por ordem de data$/,"$1 activities, in date order","$1 activités, par ordre de date",null,"$1 actividades, por orden de fecha"],
+[/^Inscrição confirmada: (.*)$/,"Registration confirmed: $1","Inscription confirmée : $1",null,"Inscripción confirmada: $1"],
+[/^(.+) vai participar em "(.*)"\.$/,"$1 will join \"$2\".","$1 participera à « $2 ».",null,"$1 participará en «$2»."],
+[/^A atividade "(.*)" foi cancelada\.$/,"The activity \"$1\" was cancelled.","L'activité « $1 » a été annulée.",null,"La actividad «$1» ha sido cancelada."],
+[/^Atividade alterada: (.*)$/,"Activity changed: $1","Activité modifiée : $1",null,"Actividad modificada: $1"],
+[/^Já há (\d+) inscritos\.$/,"There are already $1 registered.","Il y a déjà $1 inscrits.",null,"Ya hay $1 inscritos."],
+[/^Entrar em (.+)$/,"Join $1","Rejoindre $1",null,"Unirme a $1"],
+[/^Avisos \((\d+)\)$/,"Alerts ($1)","Alertes ($1)",null,"Avisos ($1)"],
+[/^Notificações \((\d+) novas?\)$/,"Notifications ($1 new)","Notifications ($1 nouvelles)",null,"Notificaciones ($1 nuevas)"],
+[/^Perfil de (.+)$/,"$1's profile","Profil de $1",null,"Perfil de $1"],
+[/^Ganho de elevação: (.+)$/,"Elevation gain: $1","Dénivelé positif : $1",null,"Desnivel positivo: $1"],
+[/^Tipo: (.+)$/,"Type: $1","Type : $1",[1],"Tipo: $1"],
+[/^Material: (.+)$/,"Gear: $1","Matériel : $1",null,"Material: $1"],
+[/^Notas: (.+)$/,"Notes: $1","Notes : $1",null,"Notas: $1"],
+[/^(.+) — início$/,"$1 — home","$1 — accueil",null,"$1 — inicio"],
+[/^Não foi possível entrar: (.*)$/,"Could not sign in: $1","Connexion impossible : $1",null,"No se pudo iniciar sesión: $1"],
+[/^Traduzido de (.+)$/,"Translated from $1","Traduit de $1",null,"Traducido de $1"]
 ];
 function trCore(t){
  const d=D[L];if(d&&d[t]!=null)return d[t];
  if(t.includes(' · '))return t.split(' · ').map(trCore).join(' · ');
- for(const p of PAT){const m=t.match(p[0]);if(m){const tg=p[3]||[],a=m.slice(1).map((g,i)=>tg.includes(i+1)?trCore(g):g);return (L==='en'?p[1]:p[2]).replace(/\$(\d)/g,(_,n)=>a[n-1])}}
+ for(const p of PAT){const m=t.match(p[0]);if(m){const tg=p[3]||[],a=m.slice(1).map((g,i)=>tg.includes(i+1)?trCore(g):g);return (L==='en'?p[1]:L==='fr'?p[2]:p[4]).replace(/\$(\d)/g,(_,n)=>a[n-1])}}
  return t}
 function tr(s){
  if(L==='pt'||!s)return s;
@@ -623,12 +631,12 @@ function trNode(n){
 new MutationObserver(ms=>{if(L==='pt')return;ms.forEach(m=>m.addedNodes.forEach(trNode))}).observe(document.body,{childList:true,subtree:true});
 function setTitle(){document.title=S.route==="home"?CONFIG.name+" — "+CONFIG.slogan:tr(pageTitle())+" · "+CONFIG.name}
 function setLang(l){
- if(l!=='pt'&&l!=='en'&&l!=='fr')return;
+ if(l!=='pt'&&l!=='en'&&l!=='fr'&&l!=='es')return;
  L=l;try{localStorage.setItem('pace_lang',l)}catch(_){}
- document.documentElement.lang={pt:'pt-PT',en:'en',fr:'fr'}[l];
+ document.documentElement.lang={pt:'pt-PT',en:'en',fr:'fr',es:'es'}[l];
  const m=document.getElementById('modal');if(m&&m.dataset.k!=='det')closeModal();
  refresh();setTitle()}
-function langSel(){return `<select class="lang" aria-label="Idioma">${[['pt','PT'],['en','EN'],['fr','FR']].map(([k,v])=>`<option value="${k}" ${L===k?'selected':''}>${v}</option>`).join('')}</select>`}
+function langSel(){return `<select class="lang" aria-label="Idioma">${[['pt','PT'],['en','EN'],['fr','FR'],['es','ES']].map(([k,v])=>`<option value="${k}" ${L===k?'selected':''}>${v}</option>`).join('')}</select>`}
 /* páginas legais traduzidas (o português está em INFO) */
 const INFOT={
 en:{
@@ -651,7 +659,7 @@ privacidade:`<p class="upd">Last updated: October 2026</p>
 <h2>What we use the data for</h2>
 <p>To create and show your profile, connect you with athletes in the same race, enable chat and workout organization, send you notices about your workouts and handle reports of abusive behavior. We do not sell your data and do not use it for advertising.</p>
 <h2>Third-party services</h2>
-<p>PACE uses Google services: Firebase (authentication and database, on servers in Europe where indicated) and Google Fonts (typeface). When the page loads, your IP address is seen by these services. We do not use advertising or tracking cookies; the browser stores locally only what is needed to keep you signed in.</p>
+<p>PACE uses Google services: Firebase (authentication and database, on servers in Europe where indicated) and Google Fonts (typeface). When the page loads, your IP address is seen by these services. We do not use advertising or tracking cookies; the browser stores locally only what is needed to keep you signed in. If you use the Translate button in the chat, that message's text is translated in your browser when it supports this or, otherwise, sent to an external translation service (MyMemory), which processes it to return the translation.</p>
 <h2>How long we keep it</h2>
 <p>We keep the data while your account exists. You can request deletion of your account and associated data at any time.</p>
 <h2>Your rights</h2>
@@ -725,7 +733,7 @@ privacidade:`<p class="upd">Dernière mise à jour : octobre 2026</p>
 <h2>À quoi servent les données</h2>
 <p>À créer et afficher ton profil, te mettre en relation avec des athlètes de la même course, permettre le chat et l'organisation d'entraînements, t'envoyer des avis sur tes entraînements et traiter les signalements de comportements abusifs. Nous ne vendons pas tes données et ne les utilisons pas à des fins publicitaires.</p>
 <h2>Services tiers</h2>
-<p>PACE utilise des services Google : Firebase (authentification et base de données, sur des serveurs en Europe lorsque c'est indiqué) et Google Fonts (police de caractères). Au chargement de la page, ton adresse IP est vue par ces services. Nous n'utilisons pas de cookies publicitaires ni de suivi ; le navigateur ne conserve localement que ce qui est nécessaire pour garder ta session ouverte.</p>
+<p>PACE utilise des services Google : Firebase (authentification et base de données, sur des serveurs en Europe lorsque c'est indiqué) et Google Fonts (police de caractères). Au chargement de la page, ton adresse IP est vue par ces services. Nous n'utilisons pas de cookies publicitaires ni de suivi ; le navigateur ne conserve localement que ce qui est nécessaire pour garder ta session ouverte. Si tu utilises le bouton Traduire du chat, le texte de ce message est traduit dans ton navigateur lorsqu'il le permet ou, sinon, envoyé à un service de traduction externe (MyMemory), qui le traite pour renvoyer la traduction.</p>
 <h2>Durée de conservation</h2>
 <p>Nous conservons les données tant que ton compte existe. Tu peux demander la suppression de ton compte et des données associées à tout moment.</p>
 <h2>Tes droits</h2>
@@ -779,6 +787,7 @@ seguranca:`<p>S'entraîner en groupe est plus amusant et plus sûr, à condition
 <h2>Si quelque chose ne va pas</h2>
 <p>En cas d'urgence, appelle le 112. Si quelqu'un se comporte de façon inappropriée ou si tu te sens en danger, éloigne-toi et signale la personne sur PACE avec le bouton Signaler, ou bloque-la sur son profil.</p>`
 }};
+INFOT.es={"sobre":"<p>PACE es una plataforma social gratuita para atletas aficionados que participan en carreras IRONMAN 70.3. Te ayuda a encontrar personas que van a la misma carrera que tú, con objetivos parecidos, y a organizar entrenamientos presenciales de bici, carrera a pie y natación en aguas abiertas.</p>\n<h2>Cómo funciona</h2>\n<p>Cada carrera tiene su propio canal. Al unirte, ves quién más va a la carrera, hablas con ellos en el chat y puedes crear o apuntarte a entrenamientos programados en el calendario. Todo gira en torno a una idea sencilla: una carrera es más fácil cuando no la preparas solo.</p>\n<h2>Para quién es</h2>\n<p>Para quien entrena por gusto: quien va a hacer su primer 70.3, quien quiere mejorar su tiempo y quien solo busca compañía para las salidas largas. No hace falta ser rápido, hace falta querer entrenar acompañado.</p>\n<h2>Independencia</h2>\n<p>PACE es un proyecto independiente y no tiene ninguna afiliación oficial con IRONMAN. IRONMAN e IRONMAN 70.3 son marcas de sus respectivos titulares. Los entrenamientos los organizan los propios atletas, no PACE.</p>","privacidade":"<p class=\"upd\">Última actualización: octubre de 2026</p>\n<p>Esta página explica qué datos personales trata PACE, para qué, y cómo puedes controlarlos. PACE es un proyecto independiente y es responsable del tratamiento de los datos descritos a continuación.</p>\n<h2>Qué datos recogemos</h2>\n<ul><li><strong>Cuenta:</strong> el inicio de sesión se hace con tu cuenta de Google. Recibimos el nombre y la foto de la cuenta. El correo electrónico solo sirve para la autenticación, lo gestiona el servicio de autenticación y no aparece en tu perfil ni se muestra a otros atletas.</li>\n<li><strong>Perfil:</strong> nombre de usuario, país, ciudad o zona, biografía, carrera objetivo, objetivo de tiempo, zona de entrenamiento y la foto que elijas.</li>\n<li><strong>Uso:</strong> canales de los que eres miembro, entrenamientos que creas o en los que participas, favoritos, atletas que bloqueas, notificaciones y denuncias que haces.</li>\n<li><strong>Mensajes:</strong> los mensajes que escribes en el chat de los canales.</li></ul>\n<h2>Quién ve qué</h2>\n<p>Tu perfil y los mensajes de los canales son visibles para los demás atletas con la sesión iniciada. Puedes ocultar tu objetivo de tiempo en el perfil público. El correo electrónico y otros datos privados nunca aparecen en los perfiles públicos. Evita escribir direcciones, teléfonos u otros datos sensibles en mensajes, descripciones de entrenamientos y biografía.</p>\n<h2>Para qué usamos los datos</h2>\n<p>Para crear y mostrar tu perfil, conectarte con atletas de la misma carrera, permitir el chat y la organización de entrenamientos, enviarte avisos sobre tus entrenamientos y tramitar denuncias de comportamientos abusivos. No vendemos tus datos ni los usamos para publicidad.</p>\n<h2>Servicios de terceros</h2>\n<p>PACE usa servicios de Google: Firebase (autenticación y base de datos, en servidores en Europa cuando así se indica) y Google Fonts (tipo de letra). Al cargar la página, estos servicios ven tu dirección IP. No usamos cookies de publicidad ni de seguimiento; el navegador guarda localmente solo lo necesario para mantener tu sesión iniciada. Si usas el botón Traducir del chat, el texto de ese mensaje se traduce en tu navegador cuando este lo admite o, si no, se envía a un servicio de traducción externo (MyMemory), que lo procesa para devolver la traducción.</p>\n<h2>Durante cuánto tiempo</h2>\n<p>Conservamos los datos mientras tu cuenta exista. Puedes pedir la eliminación de la cuenta y de los datos asociados en cualquier momento.</p>\n<h2>Tus derechos</h2>\n<p>Conforme al RGPD, tienes derecho de acceso, rectificación, supresión, limitación, oposición y portabilidad de tus datos. Puedes corregir la mayor parte de la información directamente en Editar perfil. Para el resto de solicitudes usa la página Contacto. Si consideras que el tratamiento infringe la ley, puedes presentar una reclamación ante la autoridad portuguesa de protección de datos (CNPD).</p>\n<h2>Edad mínima</h2>\n<p>PACE está dirigida a personas de 18 años o más.</p>\n<h2>Cambios</h2>\n<p>Si esta política cambia de forma relevante, actualizaremos la fecha en la parte superior de esta página.</p>","termos":"<p class=\"upd\">Última actualización: octubre de 2026</p>\n<p>Al crear una cuenta y usar PACE aceptas estos términos. Si no estás de acuerdo, no uses el servicio.</p>\n<h2>1. El servicio</h2>\n<p>PACE es una plataforma gratuita que permite a atletas aficionados conocerse, conversar y organizar entrenamientos para carreras IRONMAN 70.3. PACE no organiza entrenamientos, no es una entidad deportiva y no ofrece asesoramiento médico, de entrenamiento ni de nutrición.</p>\n<h2>2. Cuenta</h2>\n<p>Inicias sesión con tu cuenta de Google. Eres responsable de tu cuenta y de la veracidad de la información del perfil. Solo puedes tener una cuenta, y el nombre de usuario no se puede cambiar una vez creado.</p>\n<h2>3. Conducta</h2>\n<p>Trata a los demás con respeto. No está permitido acosar, amenazar, discriminar, enviar spam, publicar contenido ilegal u ofensivo, ni compartir datos personales de terceros sin autorización. Puedes denunciar mensajes y perfiles y bloquear atletas.</p>\n<h2>4. Tu contenido</h2>\n<p>Lo que publicas (mensajes, descripciones de entrenamientos, biografía, foto) sigue siendo tuyo. Al publicarlo, permites que PACE lo muestre a otros atletas dentro del servicio. Garantizas que tienes derecho a publicarlo.</p>\n<h2>5. Entrenamientos presenciales y responsabilidad</h2>\n<p>Los entrenamientos se acuerdan y se realizan entre atletas, por iniciativa propia. Participas por tu cuenta y riesgo y debes valorar si estás en condiciones físicas de hacerlo. PACE no verifica la identidad, la aptitud ni el comportamiento de los atletas y, en la medida permitida por la ley, no se responsabiliza de lesiones, accidentes, pérdidas o conflictos ocurridos antes, durante o después de un entrenamiento. Lee la página Seguridad en los entrenamientos.</p>\n<h2>6. Moderación</h2>\n<p>Podemos eliminar contenido, limitar o suspender cuentas que infrinjan estos términos o pongan en riesgo a otros atletas.</p>\n<h2>7. Disponibilidad</h2>\n<p>El servicio se ofrece tal cual, puede sufrir interrupciones o cambios y no garantizamos que esté siempre disponible ni libre de errores.</p>\n<h2>8. Marcas</h2>\n<p>PACE no tiene afiliación con IRONMAN. IRONMAN e IRONMAN 70.3 son marcas de sus respectivos titulares.</p>\n<h2>9. Cambios y ley aplicable</h2>\n<p>Podemos actualizar estos términos; el uso continuado tras el cambio implica su aceptación. Se aplica la ley portuguesa.</p>","seguranca":"<p>Entrenar en grupo es más divertido y más seguro, siempre que se tomen algunas precauciones. PACE conecta atletas, pero cada uno es responsable de su propia seguridad. Estos principios se aplican a todos los entrenamientos.</p>\n<h2>Antes de salir</h2>\n<ul><li>Quedad en lugares públicos y conocidos, preferiblemente de día.</li>\n<li>Avisa a alguien de confianza del recorrido, de la hora prevista y de con quién vas.</li>\n<li>No compartas domicilios privados. Usa puntos de encuentro públicos.</li>\n<li>Lee la descripción, la distancia, el ritmo y la dificultad. Si no estás seguro de poder seguir el ritmo, pregunta en el chat o elige un entrenamiento para principiantes.</li>\n<li>Consulta la meteorología y el estado del mar o de la carretera. Si las condiciones son malas, aplázalo.</li>\n<li>Lleva el móvil cargado, agua y documentación. Si tienes problemas de salud, habla antes con tu médico.</li></ul>\n<h2>Bici</h2>\n<ul><li>Usa casco, luces y ropa visible.</li>\n<li>Respeta el código de circulación y no corras riesgos para seguir al grupo.</li>\n<li>Lleva material de reparación, una cámara de repuesto y lo esencial para un pinchazo.</li>\n<li>En grupo, mantén las distancias y avisa a los demás de obstáculos y paradas.</li></ul>\n<h2>Carrera a pie</h2>\n<ul><li>Lleva agua y usa ropa visible, sobre todo al amanecer y al atardecer.</li>\n<li>Respeta tu ritmo; nadie está obligado a seguir a los más rápidos.</li>\n<li>En carretera, corre de cara al tráfico cuando no haya acera.</li></ul>\n<h2>Natación en aguas abiertas</h2>\n<ul><li>Nada siempre acompañado, nunca solo.</li>\n<li>Usa boya de seguridad y gorro de color vivo.</li>\n<li>Comprueba las condiciones del mar, la corriente y la temperatura del agua antes de entrar.</li>\n<li>Acordad una señal de ayuda y sal del agua a la primera señal de cansancio o de frío excesivo.</li></ul>\n<h2>Si algo sale mal</h2>\n<p>En caso de emergencia, llama al 112. Si alguien se comporta de forma inadecuada o te sientes inseguro, aléjate y denuncia a la persona en PACE con el botón Denunciar, o bloquéala en su perfil.</p>"};
 function infoBody(k){if(k==='contacto')return contactBody();const o=INFOT[L];return (o&&o[k])||INFO[k][1]}
 function contactBody(){return CONFIG.contactEmail?`<p>Escreve-nos para <a href="mailto:${esc(CONFIG.contactEmail)}">${esc(CONFIG.contactEmail)}</a>.</p>`:INFO.contacto[1]}
 /* defesa: garante tipos e formatos das atividades lidas da base de dados */
@@ -973,6 +982,67 @@ function subChat(raceId){
 function syncChat(){if(S.route==='canal'&&S.auth&&S.param&&RACES.some(r=>r.id===S.param))subChat(S.param);else if(chatRace)unsubChat()}
 function dayLabel(ts){const d=new Date(ts),t=new Date(),y=new Date();y.setDate(t.getDate()-1);return d.toDateString()===t.toDateString()?'Hoje':d.toDateString()===y.toDateString()?'Ontem':d.toLocaleDateString(LOC(),{day:'numeric',month:'long'})}
 const hm=ts=>new Date(ts).toTimeString().slice(0,5);
+/* ============ TRADUÇÃO DE MENSAGENS DO CHAT ============ */
+const TRS={},TRP={},LNAME={pt:'Português',en:'English',fr:'Français',es:'Español'};
+const TRW={
+ pt:'que não nao com uma uns os as dos das é são vou estou está também mais muito obrigado obrigada olá bom boa vamos alguém amanhã hoje treino pelo pela mas meu minha você aqui já ainda tenho vai quem num numa isso esse essa',
+ es:'que no con una unos los las del es son voy estoy está también más muy gracias hola buen buena vamos alguien mañana hoy entrenamiento pero mi mis aquí ya todavía tengo quién esto ese esa',
+ fr:"que pas avec une les des est sont je suis vais aussi plus très merci bonjour salut bon bonne allons quelqu'un demain aujourd'hui entraînement mais mon mes ici déjà encore ai qui ça cette ce",
+ en:"the and is are i am will going to with for you we it this that thanks thank hello hi good let's someone tomorrow today training but my here already still not of in on at have can who what"};
+const TRSET={};Object.keys(TRW).forEach(k=>TRSET[k]=new Set(TRW[k].split(' ')));
+function guessLang(t){
+ const w=t.toLowerCase().split(/[^a-zà-ÿ']+/).filter(Boolean),c={};
+ Object.keys(TRSET).forEach(k=>c[k]=w.filter(x=>TRSET[k].has(x)).length);
+ const mx=Math.max(...Object.values(c));
+ return mx<1?[]:Object.keys(c).filter(k=>c[k]===mx)}
+async function trDetect(t){
+ if(self.LanguageDetector){try{const d=await self.LanguageDetector.create(),r=await d.detect(t);if(r&&r[0]&&r[0].confidence>=.6)return [String(r[0].detectedLanguage).split('-')[0].toLowerCase()]}catch(_){}}
+ return guessLang(t)}
+function trChunks(t,max=350){
+ const out=[];let cur='';
+ (t.match(/[^.!?…\n]+[.!?…]*\s*/g)||[t]).map(s=>s.trim()).filter(Boolean).forEach(s=>{
+  while(s.length>max){if(cur){out.push(cur);cur=''}out.push(s.slice(0,max));s=s.slice(max)}
+  if(cur&&(cur+' '+s).length>max){out.push(cur);cur=s}else cur=cur?cur+' '+s:s});
+ if(cur)out.push(cur);return out}
+async function trMyMemory(t,src,tgt){
+ const out=[],ta=document.createElement('textarea');
+ for(const p of trChunks(t)){
+  const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(p)+'&langpair='+src+'|'+tgt);
+  if(!r.ok)throw new Error('http '+r.status);
+  const j=await r.json(),x=j&&j.responseData&&j.responseData.translatedText;
+  if(!x||+j.responseStatus!==200||/MYMEMORY WARNING|INVALID/i.test(x))throw new Error('mymemory');
+  ta.innerHTML=x;out.push(ta.value)}
+ return out.join(' ')}
+async function translateText(text,tgt){
+ const g=await trDetect(text);
+ if(g.length===1&&g[0]===tgt)return {same:true};
+ const src=g.find(x=>x!==tgt)||(tgt==='en'?'pt':'en');
+ if(self.Translator){try{
+  const av=await self.Translator.availability({sourceLanguage:src,targetLanguage:tgt});
+  if(av&&av!=='unavailable'){const tl=await self.Translator.create({sourceLanguage:src,targetLanguage:tgt});return {text:await tl.translate(text),src}}
+ }catch(_){}}
+ return {text:await trMyMemory(text,src,tgt),src}}
+function trBtn(m){
+ const s=TRS[m.k],ok=s&&s.L===L,busy=ok&&s.busy;
+ const lb=busy?'A traduzir…':ok&&s.text!=null?(s.on?'Ocultar tradução':'Ver tradução'):'Traduzir';
+ return `<button data-act='trm' data-k='${esc(m.k)}' ${busy?'disabled':''}>${lb}</button>`}
+function trBlock(m){
+ const s=TRS[m.k];if(!s||s.L!==L||!s.on||s.text==null)return '';
+ return `<p class='trt' translate='no' lang='${L}'>${esc(s.text)}</p><span class='note'>Traduzido de ${esc(LNAME[s.src]||String(s.src).toUpperCase())}</span>`}
+async function trMsg(k){
+ const race=S.param,m=(CHAT[race]||[]).find(x=>x.k===k);if(!m)return;
+ const s=TRS[k];
+ if(s&&s.L===L&&s.text!=null){s.on=!s.on;paintMsgs();return}
+ if(TRP[k])return;
+ TRP[k]=1;const lg=L;TRS[k]={L:lg,busy:1};paintMsgs();
+ try{
+  const r=await translateText(m.text,lg);
+  if(r.same){delete TRS[k];toast('A mensagem já está no teu idioma.')}
+  else TRS[k]={L:lg,text:r.text,src:r.src,on:true}
+ }catch(e){console.warn(e);delete TRS[k];toast('Não foi possível traduzir a mensagem.')}
+ finally{delete TRP[k]}
+ if(S.route==='canal'&&S.param===race)paintMsgs()}
+
 function msgsHtml(id){
  const L=CHAT[id]||[];if(!L.length)return `<div class='empty' style='margin-top:16px'>Ainda não há mensagens. Sê o primeiro a escrever.</div>`;
  let h='',pd=null,pa=null;
@@ -982,7 +1052,7 @@ function msgsHtml(id){
   if(BL.has(m.uid)){if(pa!=='b'+m.uid){h+=`<p class='note blk'>Mensagens de ${esc(a.name)} ocultas (bloqueado).</p>`;pa='b'+m.uid}return}
   if(m.act){const x=A(m.act);if(x){h+=`<p class='sysm'>${ic('bolt')}<span><strong>${esc(a.name)}</strong> criou uma atividade de ${SPORTS[x.sport]}: ${esc(x.title)}.</span><button data-act='sf' data-s='' data-t='atividades'>Ver atividades</button></p>`;pa=null}return}
   const f=pa!==m.uid;pa=m.uid;
-  h+=`<div class='msg${f?'':' cont'}'>${f?`<button class='avb' data-act='atleta' data-id='${esc(a.id)}' aria-label='Perfil de ${esc(a.name)}'>${av(a)}</button>`:`<span class='sp'></span>`}<div class='mb'>${f?`<div class='mh'><button class='an nm-${roleOf(a)}' data-act='atleta' data-id='${esc(a.id)}'>${esc(a.name)}</button>${rb(a.role||'Atleta')}<time>${hm(ts)}</time></div>`:''}<p translate='no'>${esc(m.text)}</p><div class='ma'><button data-act='copy' data-k='${esc(m.k)}'>Copiar</button>${m.uid!==UID()?`<button data-act='rep' data-uid='${esc(m.uid)}' data-k='${esc(m.k)}'>Denunciar</button>`:''}</div></div></div>`});
+  h+=`<div class='msg${f?'':' cont'}'>${f?`<button class='avb' data-act='atleta' data-id='${esc(a.id)}' aria-label='Perfil de ${esc(a.name)}'>${av(a)}</button>`:`<span class='sp'></span>`}<div class='mb'>${f?`<div class='mh'><button class='an nm-${roleOf(a)}' data-act='atleta' data-id='${esc(a.id)}'>${esc(a.name)}</button>${rb(a.role||'Atleta')}<time>${hm(ts)}</time></div>`:''}<p translate='no'>${esc(m.text)}</p>${trBlock(m)}<div class='ma'><button data-act='copy' data-k='${esc(m.k)}'>Copiar</button>${m.uid!==UID()?trBtn(m):''}${m.uid!==UID()?`<button data-act='rep' data-uid='${esc(m.uid)}' data-k='${esc(m.k)}'>Denunciar</button>`:''}</div></div></div>`});
  return h}
 function paintMsgs(){const el=$('#msgs');if(!el)return;const near=el.scrollHeight-el.scrollTop-el.clientHeight<80;el.innerHTML=msgsHtml(S.param);if(near)el.scrollTop=el.scrollHeight}
 async function sendMsg(){
@@ -1173,6 +1243,7 @@ document.addEventListener("click",async e=>{
   case'atl':S.tab='membros';render();{const sb=$('.sb');sb&&sb.scrollIntoView({block:'start'})}break;
   case'leave':try{const up={channels:arrayRemove(d.id)};if(S.user.raceId===d.id)up.raceId='';await updateDoc(doc(db,'users',UID()),up);toast('Saíste do canal')}catch(er){subErr(er)}break;
   case'send':sendMsg();break;
+  case'trm':trMsg(d.k);break;
   case'copy':{const m=(CHAT[S.param]||[]).find(x=>x.k===d.k);if(m)try{navigator.clipboard.writeText(m.text).then(()=>toast('Texto copiado'),()=>toast('Não foi possível copiar'))}catch(_){toast('Não foi possível copiar')}break}
   case'rep':modal(`<h2>Denunciar</h2><p class='note' style='margin-bottom:10px'>A denúncia é enviada à equipa PACE para revisão.</p><label for='rp-t'>Motivo</label><textarea id='rp-t' maxlength='300' placeholder='Descreve o problema'></textarea><div class='acts'><button class='btn btn-p' data-act='sendrep' data-uid='${esc(d.uid||'')}' data-k='${esc(d.k||'')}'>Enviar denúncia</button><button class='btn btn-o' data-act='close'>Cancelar</button></div>`);break;
   case'sendrep':{const tx=($('#rp-t')||{}).value||'';if(tx.trim().length<3)return toast('Indica o motivo.');try{await addDoc(collection(db,'reports'),{by:UID(),target:d.uid||'',msgKey:d.k||'',race:S.param&&S.route==='canal'?S.param:'',text:tx.trim().slice(0,300),ts:serverTimestamp()});closeModal();toast('Denúncia enviada')}catch(er){subErr(er)}break}
