@@ -134,6 +134,7 @@ nav.main button{padding:8px 8px;font-size:.88rem}
 @media (max-width:520px){.chipu span{display:none}.chipu{padding:3px}}
 .gbtn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;color:var(--text)}.gbtn:hover{border-color:var(--green)}.gbtn b{font-size:1.15rem;background:linear-gradient(90deg,#4285F4 25%,#EA4335 25% 50%,#FBBC05 50% 75%,#34A853 75%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .lang{width:auto;min-width:0;min-height:38px;padding:0 8px;border-radius:999px;font-weight:700;font-size:.88rem;background:#fff;cursor:pointer}select.lang{min-width:0}.lang-d{display:none;margin:12px 0 0;align-self:flex-start}@media (max-width:520px){.bar>.lang{display:none}.lang-d{display:block}}
+.nm-Admin{color:#B3261E!important}.nm-Moderador{color:#1D6FB8!important}.nm-Mentor{color:#A8730A!important}.r-Admin{background:#F8D9D6;color:#8C1D18}.r-Moderador{background:#D6E8F7;color:#14507F}.r-Mentor{background:#FFF1CC;color:#6a4b00}.lnk{background:none;border:0;padding:4px 0;color:var(--muted);font-size:.82rem;text-decoration:underline}.lnk:hover{color:var(--green-d)}
 </style>
 </head>
 <body>
@@ -168,6 +169,10 @@ const CONFIG={
 };
 /* ============ DADOS ESTÁTICOS ============ */
 const RACES=[
+ {id:"vilamoura",slug:"ironman-703-vilamoura-algarve",name:"IRONMAN 70.3 Vilamoura-Algarve",country:"Portugal",city:"Vilamoura",eventDate:"2027-04-03",dateConfirmed:true,imageURL:"vilamoura.jpg",tone:["#2E86A8","#9BD6C0"]},
+ {id:"valencia",slug:"ironman-703-valencia",name:"IRONMAN 70.3 Valencia",country:"Espanha",city:"Valencia",eventDate:"2027-04-18",dateConfirmed:true,imageURL:"valencia.jpg",tone:["#D9A35B","#75C99A"]},
+ {id:"mallorca",slug:"ironman-703-alcudia-mallorca",name:"IRONMAN 70.3 Alcúdia-Mallorca",country:"Espanha",city:"Alcúdia, Mallorca",eventDate:"2027-05-08",dateConfirmed:true,imageURL:"mallorca.jpeg",tone:["#2E86A8","#9BD6C0"]},
+ {id:"vitoria-gasteiz",slug:"ironman-703-vitoria-gasteiz",name:"IRONMAN 70.3 Vitoria-Gasteiz",country:"Espanha",city:"Vitoria-Gasteiz",eventDate:"2027-07-11",dateConfirmed:true,imageURL:"vitoria.png",tone:["#D9A35B","#75C99A"]},
  {id:"cascais",slug:"ironman-703-cascais",name:"IRONMAN 70.3 Cascais",country:"Portugal",city:"Cascais",eventDate:"2027-10-23",dateConfirmed:true,imageURL:"cascais.png",tone:["#2E86A8","#9BD6C0"]},
  {id:"malaga",slug:"ironman-703-malaga",name:"IRONMAN 70.3 Málaga",country:"Espanha",city:"Málaga",eventDate:"2027-10-31",dateConfirmed:true,imageURL:"malaga.png",tone:["#D9A35B","#75C99A"]}
 ];
@@ -273,6 +278,21 @@ const ROWS=[
 ["Abrir menu","Open menu","Ouvrir le menu"],
 ["Fechar menu","Close menu","Fermer le menu"],
 ["Idioma","Language","Langue"],
+["Membro","Member","Membre"],
+["Abrir canal","Open channel","Ouvrir le canal"],
+["Tenho um código","I have a code","J\'ai un code"],
+["Submeter código","Redeem code","Saisir un code"],
+["Código","Code","Code"],
+["Introduz o código que recebeste da equipa PACE.","Enter the code you received from the PACE team.","Saisis le code reçu de l\'équipe PACE."],
+["Submeter","Submit","Valider"],
+["Código inválido ou já utilizado.","Invalid or already used code.","Code invalide ou déjà utilisé."],
+["Gerar código de cargo","Generate role code","Générer un code de rôle"],
+["Cada código funciona uma única vez.","Each code works only once.","Chaque code ne fonctionne qu'une seule fois."],
+["Cargo","Role","Rôle"],
+["Gerar código","Generate code","Générer un code"],
+["Código gerado (uso único):","Generated code (single use):","Code généré (usage unique) :"],
+["Copiar código","Copy code","Copier le code"],
+["Código copiado","Code copied","Code copié"],
 ["Ilustração","Illustration","Illustration"],
 ["Menu","Menu","Menu"],
 ["Mensagem","Message","Message"],
@@ -544,6 +564,7 @@ const ROWS=[
 const D={en:{},fr:{}};ROWS.forEach(r=>{D.en[r[0]]=r[1];D.fr[r[0]]=r[2]});
 /* padrões com partes dinâmicas: [regex, inglês, francês, grupos a traduzir] */
 const PAT=[
+[/^Cargo atualizado: (.+)$/,"Role updated: $1","Rôle mis à jour : $1",[1]],
 [/^Olá, (.+)\.$/,"Hello, $1.","Bonjour, $1."],
 [/^1 atletas$/,"1 athlete","1 athlète"],
 [/^1 treinos$/,"1 workout","1 entraînement"],
@@ -843,17 +864,18 @@ function waves(t){return `<svg viewBox="0 0 400 170" preserveAspectRatio="xMidYM
 const hue=s=>['#174B35','#2E86A8','#B5651D','#6B4FA0','#C2477A','#3A7D44'][[...String(s)].reduce((n,c)=>n+c.charCodeAt(0),0)%6];
 const photoOf=a=>(a&&(a.photo||a.photoURL))||'';
 const av=(a,z=40)=>{const p=photoOf(a);return p?`<span class='av' style='width:${z}px;height:${z}px;background:${hue(a.id)}' aria-hidden='true'><img src='${esc(p)}' alt='' referrerpolicy='no-referrer' style='width:100%;height:100%;object-fit:cover'></span>`:`<span class='av' style='width:${z}px;height:${z}px;background:${hue(a.id)};font-size:${z*.38}px' aria-hidden='true'>${esc((a.name||'?').split(' ').map(w=>w[0]).slice(0,2).join(''))}</span>`};
-const rb=r=>`<span class='rb r-${esc(r)}'>${esc(r)}</span>`;
+const roleOf=a=>ROLES.includes(a&&a.role)?a.role:'Atleta';
+const rb=r=>{r=ROLES.includes(r)?r:'Atleta';return `<span class='rb r-${r}'>${r}</span>`};
 const isPast=a=>new Date(a.date+'T'+(a.tm||'23:59'))<new Date();
 const nAct=id=>ACT.filter(a=>a.race===id&&a.st==='ok'&&!isPast(a)).length;
 function racedate(r){if(!(r.dateConfirmed&&r.eventDate))return 'Data por confirmar';const d=Math.ceil((new Date(r.eventDate)-new Date())/864e5);return new Date(r.eventDate).toLocaleDateString(LOC(),{day:'numeric',month:'long',year:'numeric'})+(d>=0?' · faltam '+d+' dias':'')}
 function raceCard(r){
- return `<article class="card"><div class="thumb">${r.imageURL?`<img src="${esc(r.imageURL)}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">`:waves(r.tone)}<span class="tag"></span></div>
+ return `<article class="card"><div class="thumb">${r.imageURL?`<img src="${esc(r.imageURL)}" data-rid="${r.id}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">`:waves(r.tone)}${isMember(r.id)?'<span class="tag">Membro</span>':''}</div>
  <div class="body"><h3>${esc(r.name)}</h3>
  <div class="meta">${ic("pin")}${esc(r.city)}, ${esc(r.country)}</div>
  <div class="meta">${ic("cal")}${racedate(r)}</div>
  ${S.user?`<div class="meta">${ic("users")}${memberCount(r.id)} atletas · ${nAct(r.id)} treinos</div>`:''}
- <button class="btn btn-p" data-act="enter" data-id="${r.id}">Entrar no canal ${ic("arrow")}</button> <button class="btn btn-o btn-sm" data-act="fav" data-k="r:${r.id}" aria-pressed="${FAV.has('r:'+r.id)}">${FAV.has('r:'+r.id)?'Guardada':'Guardar'}</button></div></article>`}
+ <button class="btn btn-p" data-act="enter" data-id="${r.id}">${isMember(r.id)?'Abrir canal':'Entrar no canal'} ${ic("arrow")}</button> <button class="btn btn-o btn-sm" data-act="fav" data-k="r:${r.id}" aria-pressed="${FAV.has('r:'+r.id)}">${FAV.has('r:'+r.id)?'Guardada':'Guardar'}</button></div></article>`}
 function filtered(){
  let l=RACES.filter(r=>(!S.q||(r.name+" "+r.city).toLowerCase().includes(S.q.toLowerCase()))&&(!S.country||r.country===S.country));
  if(S.sort==="date"&&hasDates())l=[...l].sort((a,b)=>(a.eventDate||"9").localeCompare(b.eventDate||"9"));
@@ -960,7 +982,7 @@ function msgsHtml(id){
   if(BL.has(m.uid)){if(pa!=='b'+m.uid){h+=`<p class='note blk'>Mensagens de ${esc(a.name)} ocultas (bloqueado).</p>`;pa='b'+m.uid}return}
   if(m.act){const x=A(m.act);if(x){h+=`<p class='sysm'>${ic('bolt')}<span><strong>${esc(a.name)}</strong> criou uma atividade de ${SPORTS[x.sport]}: ${esc(x.title)}.</span><button data-act='sf' data-s='' data-t='atividades'>Ver atividades</button></p>`;pa=null}return}
   const f=pa!==m.uid;pa=m.uid;
-  h+=`<div class='msg${f?'':' cont'}'>${f?`<button class='avb' data-act='atleta' data-id='${esc(a.id)}' aria-label='Perfil de ${esc(a.name)}'>${av(a)}</button>`:`<span class='sp'></span>`}<div class='mb'>${f?`<div class='mh'><button class='an' data-act='atleta' data-id='${esc(a.id)}'>${esc(a.name)}</button>${rb(a.role||'Atleta')}<time>${hm(ts)}</time></div>`:''}<p translate='no'>${esc(m.text)}</p><div class='ma'><button data-act='copy' data-k='${esc(m.k)}'>Copiar</button>${m.uid!==UID()?`<button data-act='rep' data-uid='${esc(m.uid)}' data-k='${esc(m.k)}'>Denunciar</button>`:''}</div></div></div>`});
+  h+=`<div class='msg${f?'':' cont'}'>${f?`<button class='avb' data-act='atleta' data-id='${esc(a.id)}' aria-label='Perfil de ${esc(a.name)}'>${av(a)}</button>`:`<span class='sp'></span>`}<div class='mb'>${f?`<div class='mh'><button class='an nm-${roleOf(a)}' data-act='atleta' data-id='${esc(a.id)}'>${esc(a.name)}</button>${rb(a.role||'Atleta')}<time>${hm(ts)}</time></div>`:''}<p translate='no'>${esc(m.text)}</p><div class='ma'><button data-act='copy' data-k='${esc(m.k)}'>Copiar</button>${m.uid!==UID()?`<button data-act='rep' data-uid='${esc(m.uid)}' data-k='${esc(m.k)}'>Denunciar</button>`:''}</div></div></div>`});
  return h}
 function paintMsgs(){const el=$('#msgs');if(!el)return;const near=el.scrollHeight-el.scrollTop-el.clientHeight<80;el.innerHTML=msgsHtml(S.param);if(near)el.scrollTop=el.scrollHeight}
 async function sendMsg(){
@@ -974,11 +996,11 @@ function canal(){
  const r=RACES.find(x=>x.id===S.param);if(!r){S.route='404';return view()}
  const j=isMember(r.id),t=S.tab,m=Object.values(USERS).filter(u=>(u.channels||[]).includes(r.id)&&u.onboarded).sort((a,b)=>ROLES.indexOf(a.role||'Atleta')-ROLES.indexOf(b.role||'Atleta')||(a.name||'').localeCompare(b.name||''));
  const tb=(k,l,c)=>`<button role='tab' class='${c||''}' data-act='tab' data-t='${k}' aria-selected='${t===k}'>${l}</button>`;
- return `<div class='wrap com-w'><div class='chead'><div class='thumb'>${waves(r.tone)}</div><div class='ci'><div><span class='note'>${CONFIG.name} / ${r.country} / ${esc(r.name)}</span><h1>${esc(r.name)}</h1><span class='meta'>${ic('pin')}${esc(r.city)}, ${r.country} · ${m.length} atletas · ${nAct(r.id)} treinos</span></div><div class='ac'><button class='btn btn-o btn-sm' data-act='atl'>Ver atletas</button><button class='btn btn-o btn-sm' data-act='share'>Partilhar canal</button>${j?`<button class='btn btn-o btn-sm' data-act='leave' data-id='${r.id}'>Sair do canal</button>`:`<button class='btn btn-p btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button>`}</div></div></div><div class='tabs' role='tablist'>${tb('chat','Chat')}${tb('atividades','Atividades')}${tb('membros','Membros','mob')}${tb('detalhes','Detalhes','mob')}</div>${t==='atividades'?`<div class='com' data-t='atividades'><section class='actp'>${acList(r.id)}</section></div>`:`<div class='com' data-t='${t}'><aside class='sb' aria-label='Membros'><h2>Membros</h2><ul class='ml'>${m.map(a=>`<li><button class='mem' data-act='atleta' data-id='${esc(a.id)}'>${av(a,36)}<span class='mn'>${esc(a.name)}<small>${rb(a.role||'Atleta')}</small></span></button></li>`).join('')||`<li class='note'>Ainda sem membros.</li>`}</ul></aside><section class='ctr'><p class='note dm'>Chat em tempo real: todos os membros com sessão iniciada veem as mensagens. Sê respeitador.</p><div class='msgs' id='msgs' tabindex='0' aria-live='polite'>${msgsHtml(r.id)}</div>${j?`<div class='comp'><textarea id='cin' rows='1' maxlength='500' placeholder='Escreve uma mensagem' aria-label='Mensagem'></textarea><button class='btn btn-g btn-sm' data-act='newact'>Atividade</button><button class='btn btn-p btn-sm' data-act='send'>Enviar</button></div>`:`<div class='comp'><span>Entra no canal para escrever.</span><button class='btn btn-g btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button></div>`}</section><aside class='dt'><h2>Sobre a prova</h2><p class='meta'>${ic('pin')}${esc(r.city)}, ${r.country}</p><p class='meta'>${ic('cal')}${racedate(r)}</p><p class='meta'>${ic('users')}${m.length} atletas · ${nAct(r.id)} treinos</p><p class='note'>Site oficial: não configurado.</p><h3>Próximos treinos</h3>${upc(r.id)}<h3>Cargos</h3><p class='note'>Admin, Moderador e Mentor são atribuídos pela equipa PACE. Todos os outros são Atletas.</p></aside></div>`}</div>`}
+ return `<div class='wrap com-w'><div class='chead'><div class='thumb'>${waves(r.tone)}</div><div class='ci'><div><span class='note'>${CONFIG.name} / ${r.country} / ${esc(r.name)}</span><h1>${esc(r.name)}</h1><span class='meta'>${ic('pin')}${esc(r.city)}, ${r.country} · ${m.length} atletas · ${nAct(r.id)} treinos</span></div><div class='ac'><button class='btn btn-o btn-sm' data-act='atl'>Ver atletas</button><button class='btn btn-o btn-sm' data-act='share'>Partilhar canal</button>${j?`<button class='btn btn-o btn-sm' data-act='leave' data-id='${r.id}'>Sair do canal</button>`:`<button class='btn btn-p btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button>`}</div></div></div><div class='tabs' role='tablist'>${tb('chat','Chat')}${tb('atividades','Atividades')}${tb('membros','Membros','mob')}${tb('detalhes','Detalhes','mob')}</div>${t==='atividades'?`<div class='com' data-t='atividades'><section class='actp'>${acList(r.id)}</section></div>`:`<div class='com' data-t='${t}'><aside class='sb' aria-label='Membros'><h2>Membros</h2><ul class='ml'>${m.map(a=>`<li><button class='mem' data-act='atleta' data-id='${esc(a.id)}'>${av(a,36)}<span class='mn'><span class='nm-${roleOf(a)}'>${esc(a.name)}</span><small>${rb(a.role||'Atleta')}</small></span></button></li>`).join('')||`<li class='note'>Ainda sem membros.</li>`}</ul></aside><section class='ctr'><p class='note dm'>Chat em tempo real: todos os membros com sessão iniciada veem as mensagens. Sê respeitador.</p><div class='msgs' id='msgs' tabindex='0' aria-live='polite'>${msgsHtml(r.id)}</div>${j?`<div class='comp'><textarea id='cin' rows='1' maxlength='500' placeholder='Escreve uma mensagem' aria-label='Mensagem'></textarea><button class='btn btn-g btn-sm' data-act='newact'>Atividade</button><button class='btn btn-p btn-sm' data-act='send'>Enviar</button></div>`:`<div class='comp'><span>Entra no canal para escrever.</span><button class='btn btn-g btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button></div>`}</section><aside class='dt'><h2>Sobre a prova</h2><p class='meta'>${ic('pin')}${esc(r.city)}, ${r.country}</p><p class='meta'>${ic('cal')}${racedate(r)}</p><p class='meta'>${ic('users')}${m.length} atletas · ${nAct(r.id)} treinos</p><p class='note'>Site oficial: não configurado.</p><h3>Próximos treinos</h3>${upc(r.id)}<h3>Cargos</h3><p class='note'>Admin, Moderador e Mentor são atribuídos pela equipa PACE. Todos os outros são Atletas.</p></aside></div>`}</div>`}
 function atleta(id){
  const a=ath(id);if(!a){S.route='404';return view()}
  const r=RACES.find(x=>x.id===a.raceId),me=S.user&&a.id===S.user.id,bl=BL.has(a.id),since=a.createdAt&&a.createdAt.toDate?a.createdAt.toDate().toLocaleDateString(LOC(),{month:'long',year:'numeric'}):'agora';
- return `<div class='wrap page'><button class='btn btn-o btn-sm' data-act='back'>Voltar</button><div class='pf'>${av(a,96)}<div><h1>${esc(a.name)}</h1><p class='meta'>@${esc(a.username)} · ${esc(a.city||'')}${a.country?', '+esc(a.country):''} ${rb(a.role||'Atleta')}</p></div></div><div class='box' style='max-width:720px;margin-top:20px'>${a.bio?`<p translate='no'>${esc(a.bio)}</p>`:`<p>Sem biografia.</p>`}${a.zone?`<p class='note'>Zona de treino: ${esc(a.zone)}</p>`:''}<div class='chips'><span>Triatlo</span></div><dl class='kv'><dt>Prova-alvo</dt><dd>${r?`<button class='an' data-act='canal' data-id='${r.id}'>${esc(r.name)}</button>`:'Por definir'}</dd><dt>Objetivo</dt><dd>${a.hid&&!me?'Oculto pelo atleta':((a.goal&&r?'Objetivo '+esc(r.city)+' · ':'')+(a.goal==='cus'?'Personalizado'+(a.gt?' · '+esc(a.gt):''):GOALS[a.goal]||'Sem objetivo definido'))}</dd><dt>Treinos organizados</dt><dd>${ACT.filter(x=>x.org===a.id&&x.st==='ok').length}</dd><dt>Treinos em que participou</dt><dd>${ACT.filter(x=>x.p.includes(a.id)&&x.st==='ok').length}</dd><dt>Membro desde</dt><dd>${esc(since)}</dd></dl><div class='ac2'>${me?`<button class='btn btn-p btn-sm' data-act='go' data-r='definicoes'>Editar perfil</button><button class='btn btn-o btn-sm' data-act='hg'>${a.hid?'Mostrar objetivo':'Ocultar objetivo'}</button>`:`<button class='btn btn-p btn-sm' data-act='vt' data-id='${esc(a.id)}'>Ver treinos</button><button class='btn btn-o btn-sm' data-act='share'>Partilhar perfil</button><button class='btn btn-o btn-sm' data-act='rep' data-uid='${esc(a.id)}'>Denunciar</button><button class='btn btn-o btn-sm' data-act='blk' data-id='${esc(a.id)}'>${bl?'Desbloquear':'Bloquear'}</button>`}</div></div><p class='note' style='margin-top:12px'>O email e outros dados privados nunca aparecem em perfis públicos.</p></div>`}
+ return `<div class='wrap page'><button class='btn btn-o btn-sm' data-act='back'>Voltar</button><div class='pf'>${av(a,96)}<div><h1 class='nm-${roleOf(a)}'>${esc(a.name)}</h1><p class='meta'>@${esc(a.username)} · ${esc(a.city||'')}${a.country?', '+esc(a.country):''} ${rb(a.role||'Atleta')}</p></div></div><div class='box' style='max-width:720px;margin-top:20px'>${a.bio?`<p translate='no'>${esc(a.bio)}</p>`:`<p>Sem biografia.</p>`}${a.zone?`<p class='note'>Zona de treino: ${esc(a.zone)}</p>`:''}<div class='chips'><span>Triatlo</span></div><dl class='kv'><dt>Prova-alvo</dt><dd>${r?`<button class='an' data-act='canal' data-id='${r.id}'>${esc(r.name)}</button>`:'Por definir'}</dd><dt>Objetivo</dt><dd>${a.hid&&!me?'Oculto pelo atleta':((a.goal&&r?'Objetivo '+esc(r.city)+' · ':'')+(a.goal==='cus'?'Personalizado'+(a.gt?' · '+esc(a.gt):''):GOALS[a.goal]||'Sem objetivo definido'))}</dd><dt>Treinos organizados</dt><dd>${ACT.filter(x=>x.org===a.id&&x.st==='ok').length}</dd><dt>Treinos em que participou</dt><dd>${ACT.filter(x=>x.p.includes(a.id)&&x.st==='ok').length}</dd><dt>Membro desde</dt><dd>${esc(since)}</dd></dl><div class='ac2'>${me?`<button class='btn btn-p btn-sm' data-act='go' data-r='definicoes'>Editar perfil</button><button class='btn btn-o btn-sm' data-act='hg'>${a.hid?'Mostrar objetivo':'Ocultar objetivo'}</button>`:`<button class='btn btn-p btn-sm' data-act='vt' data-id='${esc(a.id)}'>Ver treinos</button><button class='btn btn-o btn-sm' data-act='share'>Partilhar perfil</button><button class='btn btn-o btn-sm' data-act='rep' data-uid='${esc(a.id)}'>Denunciar</button><button class='btn btn-o btn-sm' data-act='blk' data-id='${esc(a.id)}'>${bl?'Desbloquear':'Bloquear'}</button>`}</div></div><p class='note' style='margin-top:12px'>O email e outros dados privados nunca aparecem em perfis públicos.</p></div>`}
 function minhas(){const l=RACES.filter(r=>isMember(r.id));return `<div class='wrap page'><h1>As minhas provas</h1><p style='color:var(--muted);margin-bottom:24px'>Canais em que és membro.</p>${l.length?`<div class='grid'>${l.map(raceCard).join('')}</div>`:`<div class='empty'><h3>Ainda não entraste em nenhum canal</h3><p>Escolhe uma prova para encontrar atletas.</p><button class='btn btn-p' data-act='go' data-r='home'>Explorar provas</button></div>`}</div>`}
 function defs(){
  const u=S.user;
@@ -994,12 +1016,35 @@ function defs(){
  <div class='row'><label for='s-z'>Zona de treino</label><input id='s-z' value='${esc(u.zone)}'></div>
  <label class='ck'><input type='checkbox' id='s-h' ${u.hid?'checked':''}> Ocultar o objetivo no perfil público</label>
  <div class='acts' style='display:flex;gap:10px;flex-wrap:wrap;margin-top:18px'><button class='btn btn-p' type='submit'>Guardar</button><button class='btn btn-o' type='button' data-act='logout'>Terminar sessão</button></div></form>
+ <p style='margin-top:22px;display:flex;gap:18px;flex-wrap:wrap'><button class='lnk' data-act='rcode'>Tenho um código</button>${u.role==='Admin'?`<button class='lnk' data-act='gcode'>Gerar código de cargo</button>`:''}</p>
  </div></div>`}
 async function saveSettings(){
  const g=id=>$('#'+id),v=id=>g(id).value.trim(),er={};
  if(v('s-n').length<2)er.n='Indica o teu nome.';if(!v('s-city'))er.city='Indica a tua cidade ou zona.';
  document.querySelectorAll('#setf [data-e]').forEach(s=>s.textContent=er[s.dataset.e]||'');if(Object.keys(er).length)return;
  try{await updateDoc(doc(db,'users',UID()),{name:v('s-n').slice(0,60),country:g('s-c').value,city:v('s-city').slice(0,60),bio:v('s-b').slice(0,200),goal:g('s-g').value,gt:v('s-gt').slice(0,20),zone:v('s-z').slice(0,80),hid:g('s-h').checked});toast('Perfil guardado')}catch(e){subErr(e)}}
+/* ============ CÓDIGOS DE CARGO ============ */
+function codeForm(){modal(`<h2>Submeter código</h2><p class='note' style='margin-bottom:10px'>Introduz o código que recebeste da equipa PACE.</p><div class='row'><label for='rc-in'>Código</label><input id='rc-in' autocomplete='off' autocapitalize='characters' spellcheck='false' maxlength='40'><span class='err' id='rc-e'></span></div><div class='acts'><button class='btn btn-p' data-act='rcsub'>Submeter</button><button class='btn btn-o' data-act='close'>Cancelar</button></div>`);$('#rc-in').focus()}
+async function redeem(){
+ const el=$('#rc-in'),er=$('#rc-e'),code=(el.value||'').trim().toUpperCase(),bad='Código inválido ou já utilizado.';
+ if(!/^[A-Z0-9-]{8,40}$/.test(code)){er.textContent=bad;return}
+ const btn=$('[data-act=rcsub]');btn.disabled=true;
+ try{
+  const cref=doc(db,'roleCodes',code),cs=await getDoc(cref),d=cs.exists()?cs.data():null;
+  if(!d||d.used||d.role==='Atleta'||!ROLES.includes(d.role)){btn.disabled=false;er.textContent=bad;return}
+  const b=writeBatch(db);
+  b.update(doc(db,'users',UID()),{role:d.role,roleCode:code});
+  b.update(cref,{used:true,usedBy:UID()});
+  await b.commit();closeModal();toast('Cargo atualizado: '+d.role)
+ }catch(e){btn.disabled=false;er.textContent=e.code==='permission-denied'?bad:errMsg(e)}}
+const codeStr=()=>{const al='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',b=new Uint8Array(16);crypto.getRandomValues(b);return [...b].map(x=>al[x%32]).join('').match(/.{4}/g).join('-')};
+function genForm(){if(!S.user||S.user.role!=='Admin')return;modal(`<h2>Gerar código de cargo</h2><p class='note' style='margin-bottom:10px'>Cada código funciona uma única vez.</p><div class='row'><label for='gc-r'>Cargo</label><select id='gc-r' style='width:100%'><option value='Moderador'>Moderador</option><option value='Mentor'>Mentor</option><option value='Admin'>Admin</option></select></div><div id='gc-out'></div><div class='acts'><button class='btn btn-p' data-act='gcgo'>Gerar código</button><button class='btn btn-o' data-act='close'>Fechar</button></div>`)}
+async function genCode(){
+ if(!S.user||S.user.role!=='Admin')return;
+ const role=$('#gc-r').value,code=codeStr();
+ try{await setDoc(doc(db,'roleCodes',code),{role,used:false,by:UID(),createdAt:serverTimestamp()});
+  $('#gc-out').innerHTML=`<p class='note'>Código gerado (uso único):</p><p><strong translate='no' style='font-size:1.25rem;letter-spacing:.06em'>${code}</strong></p><button class='btn btn-o btn-sm' data-act='cpcode' data-c='${code}'>Copiar código</button>`
+ }catch(e){subErr(e)}}
 /* ============ ATIVIDADES ============ */
 const A=id=>ACT.find(x=>x.id===id),full=a=>a.max>0&&a.p.length>=a.max,fmt=a=>new Date(a.date+'T12:00').toLocaleDateString(LOC(),{weekday:'short',day:'numeric',month:'short'})+' · '+a.tm,perf=a=>a.sport==='bike'?(a.spd?a.spd+' km/h':''):a.sport==='run'?(a.pace?a.pace+' min/km':''):(a.dur?a.dur+' min':''),vag=a=>a.max?`${a.p.length}/${a.max} confirmados · ${full(a)?'Lotado':(a.max-a.p.length)+' vagas'}`:`${a.p.length} confirmados · Sem limite`;
 const byDate=(a,b)=>(a.date+a.tm).localeCompare(b.date+b.tm);
@@ -1109,6 +1154,11 @@ document.addEventListener("click",async e=>{
   case'logout':closeModal();$("#drawer")&&$("#drawer").classList.remove("open");try{await signOut(auth);toast('Sessão terminada');go('home')}catch(_){toast('Não foi possível terminar a sessão.')}break;
   case'enter':enter(d.id);break;
   case'close':closeModal();break;
+  case'rcode':codeForm();break;
+  case'rcsub':redeem();break;
+  case'gcode':genForm();break;
+  case'gcgo':genCode();break;
+  case'cpcode':try{navigator.clipboard.writeText(d.c).then(()=>toast('Código copiado'),()=>toast(d.c))}catch(_){toast(d.c)}break;
   case'info':go("info",d.k);break;
   case'toast':toast(d.m);break;
   case'newact':if(!isMember(S.param))return toast('Entra no canal para criar atividades.');actForm();break;
@@ -1160,6 +1210,7 @@ const XM={'x-n':'n','x-km':'km','x-c':'c','x-d':'d','x-g':'g'};
 document.addEventListener("submit",e=>{
  e.preventDefault();const id=e.target.id;
  if(id==='af')pubAct();else if(id==='onb')finishOnb();else if(id==='setf')saveSettings()});
+document.addEventListener('error',e=>{const t=e.target;if(t&&t.tagName==='IMG'&&t.dataset&&t.dataset.rid){const r=RACES.find(x=>x.id===t.dataset.rid);if(r)t.outerHTML=waves(r.tone)}},true);
 /* ============ ARRANQUE ============ */
 try{history.replaceState({r:'home',p:null},'')}catch(_){}
 addEventListener('popstate',e=>{closeModal();const s=e.state||{r:'home',p:null};go(s.r,s.p,true)});
