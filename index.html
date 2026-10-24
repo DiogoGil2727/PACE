@@ -102,6 +102,8 @@ label{font-weight:600;font-size:.93rem}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (max-width:520px){.two{grid-template-columns:1fr}}
 .alert{background:var(--green-l);border-left:4px solid var(--green);padding:12px 14px;border-radius:10px;font-size:.92rem;color:var(--green-d);margin-bottom:18px}
+/* paginas de informacao */
+.legal{max-width:720px;color:var(--muted);line-height:1.65}.legal h2{color:var(--text);font-size:1.15rem;margin:26px 0 8px}.legal p{margin:0 0 12px}.legal ul{margin:0 0 12px;padding-left:20px;display:grid;gap:6px}.legal strong{color:var(--text)}.legal .upd{font-size:.88rem}
 /* footer */
 footer{background:#fff;border-top:1px solid var(--line);padding:48px 0 36px;margin-top:0}
 footer .links{display:flex;flex-wrap:wrap;gap:6px 20px;margin:18px 0}
@@ -131,6 +133,7 @@ nav.main button{padding:8px 8px;font-size:.88rem}
 @media (max-width:1280px){.chipu{margin-left:auto}.nbtn{margin-left:0}.burger{margin-left:0}}
 @media (max-width:520px){.chipu span{display:none}.chipu{padding:3px}}
 .gbtn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;color:var(--text)}.gbtn:hover{border-color:var(--green)}.gbtn b{font-size:1.15rem;background:linear-gradient(90deg,#4285F4 25%,#EA4335 25% 50%,#FBBC05 50% 75%,#34A853 75%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lang{width:auto;min-width:0;min-height:38px;padding:0 8px;border-radius:999px;font-weight:700;font-size:.88rem;background:#fff;cursor:pointer}select.lang{min-width:0}.lang-d{display:none;margin:12px 0 0;align-self:flex-start}@media (max-width:520px){.bar>.lang{display:none}.lang-d{display:block}}
 </style>
 </head>
 <body>
@@ -168,18 +171,611 @@ const RACES=[
  {id:"cascais",slug:"ironman-703-cascais",name:"IRONMAN 70.3 Cascais",country:"Portugal",city:"Cascais",eventDate:"2027-10-23",dateConfirmed:true,imageURL:"cascais.png",tone:["#2E86A8","#9BD6C0"]},
  {id:"malaga",slug:"ironman-703-malaga",name:"IRONMAN 70.3 Málaga",country:"Espanha",city:"Málaga",eventDate:"2027-10-31",dateConfirmed:true,imageURL:"malaga.png",tone:["#D9A35B","#75C99A"]}
 ];
-const NAV=[["home","Início"],["minhas","As minhas provas"],["treinos","Explorar treinos"],["recuperacao","Recuperação"],["bikefit","Bike fit"],["calendario","Calendário"],["favoritos","Favoritos"],["notificacoes","Notificações"],["perfil","Perfil"],["definicoes","Definições"]];
+const NAV=[["home","Início"],["minhas","As minhas provas"],["treinos","Explorar treinos"],["calendario","Calendário"],["favoritos","Favoritos"],["notificacoes","Notificações"]];
 const PROT=['minhas','treinos','calendario','favoritos','notificacoes','perfil','definicoes','canal','atleta'];
 const INFO={
- sobre:["Sobre","PACE é uma plataforma social gratuita para atletas amadores que vão participar em provas IRONMAN 70.3. Ajuda a encontrar pessoas na mesma prova, com objetivos semelhantes, e a combinar treinos presenciais."],
- contacto:["Contacto","Ainda não existe um contacto oficial configurado. Quando existir, será definido em CONFIG.contactEmail."],
- privacidade:["Privacidade","Texto legal por redigir. O início de sessão é feito com a tua conta Google. Guardamos o nome, a foto, o username, a cidade, o perfil desportivo, as tuas atividades e as mensagens dos canais. O email não é guardado no perfil nem aparece em perfis públicos."],
- termos:["Termos","Texto legal por redigir antes de qualquer lançamento público."],
- seguranca:["Segurança nos treinos","Guia por redigir. Princípios previstos: encontrar-se em locais públicos, avisar alguém do percurso, respeitar o código da estrada e não partilhar moradas privadas."]
+ sobre:["Sobre",`<p>A PACE é uma plataforma social gratuita para atletas amadores que vão participar em provas IRONMAN 70.3. Ajuda-te a encontrar pessoas que vão à mesma prova que tu, com objetivos semelhantes, e a combinar treinos presenciais de bike, corrida e natação em águas abertas.</p>
+<h2>Como funciona</h2>
+<p>Cada prova tem o seu canal. Ao entrares, vês quem mais vai à prova, falas com eles no chat e podes criar ou participar em treinos marcados no calendário. Tudo gira à volta de uma ideia simples: uma prova é mais fácil quando não a preparas sozinho.</p>
+<h2>Para quem é</h2>
+<p>Para quem treina por gosto: quem vai fazer o primeiro 70.3, quem quer melhorar o tempo e quem só procura companhia para as saídas longas. Não é preciso ser rápido, é preciso querer treinar acompanhado.</p>
+<h2>Independência</h2>
+<p>A PACE é um projeto independente e não tem qualquer afiliação oficial com a IRONMAN. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares. Os treinos são organizados pelos próprios atletas, não pela PACE.</p>`],
+ contacto:["Contacto","<p>Ainda não existe um contacto oficial configurado. Quando existir, será definido em CONFIG.contactEmail.</p>"],
+ privacidade:["Privacidade",`<p class="upd">Última atualização: outubro de 2026</p>
+<p>Esta página explica que dados pessoais a PACE trata, para quê, e como podes controlá-los. A PACE é um projeto independente e é responsável pelo tratamento dos dados descritos abaixo.</p>
+<h2>Que dados recolhemos</h2>
+<ul><li><strong>Conta:</strong> o início de sessão é feito com a tua conta Google. Recebemos o nome e a foto da conta. O email serve apenas para autenticação, é gerido pelo serviço de autenticação e não aparece no teu perfil nem é mostrado a outros atletas.</li>
+<li><strong>Perfil:</strong> username, país, cidade ou zona, biografia, prova-alvo, objetivo de tempo, zona de treino e a foto que escolheres.</li>
+<li><strong>Utilização:</strong> canais em que és membro, treinos que crias ou em que participas, favoritos, atletas que bloqueias, notificações e denúncias que fazes.</li>
+<li><strong>Mensagens:</strong> as mensagens que escreves no chat dos canais.</li></ul>
+<h2>Quem vê o quê</h2>
+<p>O teu perfil e as mensagens dos canais são visíveis para os outros atletas com sessão iniciada. Podes ocultar o teu objetivo de tempo no perfil público. O email e outros dados privados nunca aparecem em perfis públicos. Evita escrever moradas, telefones ou outros dados sensíveis em mensagens, descrições de treinos e biografia.</p>
+<h2>Para que usamos os dados</h2>
+<p>Para criar e mostrar o teu perfil, ligar-te a atletas da mesma prova, permitir o chat e a organização de treinos, enviar-te avisos sobre os teus treinos e tratar denúncias de comportamento abusivo. Não vendemos os teus dados e não os usamos para publicidade.</p>
+<h2>Serviços de terceiros</h2>
+<p>A PACE usa serviços da Google: Firebase (autenticação e base de dados, em servidores na Europa quando indicado) e Google Fonts (tipo de letra). Ao carregar a página, o teu endereço IP é visto por estes serviços. Não usamos cookies de publicidade nem de rastreamento; o navegador guarda localmente apenas o necessário para manteres a sessão iniciada.</p>
+<h2>Durante quanto tempo</h2>
+<p>Mantemos os dados enquanto a tua conta existir. Podes pedir a eliminação da conta e dos dados associados a qualquer momento.</p>
+<h2>Os teus direitos</h2>
+<p>Nos termos do RGPD, tens direito de acesso, retificação, apagamento, limitação, oposição e portabilidade dos teus dados. Podes corrigir a maior parte da informação diretamente em Editar perfil. Para os restantes pedidos usa a página Contacto. Se entenderes que o tratamento viola a lei, podes apresentar queixa à Comissão Nacional de Proteção de Dados (CNPD).</p>
+<h2>Idade mínima</h2>
+<p>A PACE destina-se a pessoas com 18 ou mais anos.</p>
+<h2>Alterações</h2>
+<p>Se esta política mudar de forma relevante, atualizamos a data no topo desta página.</p>`],
+ termos:["Termos",`<p class="upd">Última atualização: outubro de 2026</p>
+<p>Ao criares conta e usares a PACE aceitas estes termos. Se não concordares, não uses o serviço.</p>
+<h2>1. O serviço</h2>
+<p>A PACE é uma plataforma gratuita que permite a atletas amadores encontrarem-se, conversarem e combinarem treinos para provas IRONMAN 70.3. A PACE não organiza treinos, não é uma entidade desportiva e não presta aconselhamento médico, de treino ou de nutrição.</p>
+<h2>2. Conta</h2>
+<p>Entras com a tua conta Google. És responsável pela tua conta e pela veracidade da informação do perfil. Só podes ter uma conta, e o username não pode ser alterado depois de criado.</p>
+<h2>3. Conduta</h2>
+<p>Trata os outros com respeito. Não é permitido assediar, ameaçar, discriminar, fazer spam, publicar conteúdo ilegal ou ofensivo, nem partilhar dados pessoais de terceiros sem autorização. Podes denunciar mensagens e perfis e bloquear atletas.</p>
+<h2>4. O teu conteúdo</h2>
+<p>O que publicas (mensagens, descrições de treinos, biografia, foto) continua a ser teu. Ao publicá-lo, permites que a PACE o mostre a outros atletas dentro do serviço. Garantes que tens direito a publicá-lo.</p>
+<h2>5. Treinos presenciais e responsabilidade</h2>
+<p>Os treinos são combinados e realizados entre atletas, por iniciativa própria. Participas por tua conta e risco e deves avaliar se estás em condições físicas de o fazer. A PACE não verifica a identidade, a aptidão ou o comportamento dos atletas e, na medida permitida pela lei, não se responsabiliza por lesões, acidentes, perdas ou conflitos ocorridos antes, durante ou depois de um treino. Lê a página Segurança nos treinos.</p>
+<h2>6. Moderação</h2>
+<p>Podemos remover conteúdo, limitar ou suspender contas que violem estes termos ou ponham outros atletas em risco.</p>
+<h2>7. Disponibilidade</h2>
+<p>O serviço é fornecido tal como está, pode sofrer interrupções ou alterações e não garantimos que esteja sempre disponível ou livre de erros.</p>
+<h2>8. Marcas</h2>
+<p>A PACE não tem afiliação com a IRONMAN. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares.</p>
+<h2>9. Alterações e lei aplicável</h2>
+<p>Podemos atualizar estes termos; a utilização continuada depois da alteração implica aceitação. Aplica-se a lei portuguesa.</p>`],
+ seguranca:["Segurança nos treinos",`<p>Treinar em grupo é mais divertido e mais seguro, desde que se tomem algumas precauções. A PACE liga atletas, mas cada um é responsável pela sua segurança. Estes princípios aplicam-se a todos os treinos.</p>
+<h2>Antes de ires</h2>
+<ul><li>Combina o encontro em locais públicos e conhecidos, de preferência de dia.</li>
+<li>Avisa alguém de confiança do percurso, da hora prevista e de com quem vais.</li>
+<li>Não partilhes moradas privadas. Usa pontos de encontro públicos.</li>
+<li>Lê a descrição, a distância, o ritmo e a dificuldade. Se não tens a certeza de acompanhar, pergunta no chat ou escolhe um treino para iniciantes.</li>
+<li>Vê a meteorologia e o estado do mar ou da estrada. Se as condições forem más, adia.</li>
+<li>Leva telemóvel carregado, água e identificação. Se tiveres problemas de saúde, fala primeiro com o teu médico.</li></ul>
+<h2>Bike</h2>
+<ul><li>Usa capacete, luzes e roupa visível.</li>
+<li>Respeita o código da estrada e não corras riscos para acompanhar o grupo.</li>
+<li>Leva material de reparação, câmara de ar e o essencial para um furo.</li>
+<li>Em grupo, mantém distâncias e avisa os outros de obstáculos e paragens.</li></ul>
+<h2>Corrida</h2>
+<ul><li>Leva água e usa roupa visível, sobretudo ao nascer e ao pôr do sol.</li>
+<li>Respeita o teu ritmo; ninguém é obrigado a acompanhar os mais rápidos.</li>
+<li>Em estrada, corre de frente para o trânsito quando não houver passeio.</li></ul>
+<h2>Natação em águas abertas</h2>
+<ul><li>Nada sempre acompanhado e nunca sozinho.</li>
+<li>Usa boia de segurança e touca de cor viva.</li>
+<li>Confirma as condições do mar, a corrente e a temperatura da água antes de entrares.</li>
+<li>Combina um sinal de ajuda e sai da água ao primeiro sinal de cansaço ou frio excessivo.</li></ul>
+<h2>Se algo correr mal</h2>
+<p>Em caso de emergência, liga 112. Se alguém se comportar de forma inadequada ou te sentires inseguro, afasta-te e denuncia a pessoa na PACE através do botão Denunciar, ou bloqueia-a no perfil.</p>`]
 };
 const COUNTRIES=["Portugal","Espanha"];
 const GOALS={fin:'Terminar a prova',s7:'Sub 7h',s6:'Sub 6h',s530:'Sub 5h30',s5:'Sub 5h',cus:'Objetivo personalizado'},ROLES=['Admin','Moderador','Mentor','Atleta'],SPORTS={bike:'Bike',run:'Run',swim:'Natação em águas abertas'};
 const SAFE={bike:'Usa capacete, respeita o código da estrada e leva material de reparação.',run:'Leva água, usa roupa visível e respeita o teu ritmo.',swim:'Nada sempre acompanhado, com boia de segurança, e confirma as condições do mar.'};
+/* ============ IDIOMAS (PT / EN / FR) ============ */
+let L='pt';
+try{const s=localStorage.getItem('pace_lang');if(s==='pt'||s==='en'||s==='fr')L=s}catch(_){}
+document.documentElement.lang={pt:'pt-PT',en:'en',fr:'fr'}[L];
+const LOC=()=>({pt:'pt-PT',en:'en-GB',fr:'fr-FR'}[L]);
+/* [português, inglês, francês] — o texto original do site está em português */
+const ROWS=[
+["Início","Home","Accueil"],
+["As minhas provas","My races","Mes courses"],
+["Explorar treinos","Explore workouts","Explorer les entraînements"],
+["Calendário","Calendar","Calendrier"],
+["Favoritos","Favorites","Favoris"],
+["Notificações","Notifications","Notifications"],
+["Treinos","Workouts","Entraînements"],
+["Avisos","Alerts","Alertes"],
+["Perfil","Profile","Profil"],
+["Principal","Main","Principal"],
+["Navegação móvel","Mobile navigation","Navigation mobile"],
+["O meu perfil","My profile","Mon profil"],
+["Abrir menu","Open menu","Ouvrir le menu"],
+["Fechar menu","Close menu","Fermer le menu"],
+["Idioma","Language","Langue"],
+["Ilustração","Illustration","Illustration"],
+["Menu","Menu","Menu"],
+["Mensagem","Message","Message"],
+["Username:","Username:","Nom d'utilisateur :"],
+["Terminar sessão","Log out","Se déconnecter"],
+["Login","Sign in","Se connecter"],
+["Encontra atletas que vão à mesma prova. Combina treinos. Chega à linha de partida com uma equipa.","Find athletes heading to the same race. Plan workouts together. Reach the start line with a team.","Trouve des athlètes qui participent à la même course. Organise des entraînements. Arrive sur la ligne de départ avec une équipe."],
+["Explorar provas","Explore races","Explorer les courses"],
+["A tua próxima prova começa aqui.","Your next race starts here.","Ta prochaine course commence ici."],
+["Encontra os atletas que vão à mesma prova que tu e prepara-a em conjunto, treino a treino.","Find the athletes doing the same race as you and prepare for it together, workout by workout.","Trouve les athlètes qui font la même course que toi et prépare-la avec eux, entraînement après entraînement."],
+["Pesquisar por nome ou cidade","Search by name or city","Rechercher par nom ou ville"],
+["Pesquisar provas","Search races","Rechercher des courses"],
+["Filtrar por país","Filter by country","Filtrer par pays"],
+["Todos os países","All countries","Tous les pays"],
+["Ordenar","Sort","Trier"],
+["Relevância","Relevance","Pertinence"],
+["Data","Date","Date"],
+["Três passos até à linha de partida","Three steps to the start line","Trois étapes jusqu'à la ligne de départ"],
+["Escolhe a prova","Choose your race","Choisis ta course"],
+["Entra no canal da prova em que vais participar.","Join the channel of the race you're entering.","Rejoins le canal de la course à laquelle tu participes."],
+["Encontra atletas como tu","Find athletes like you","Trouve des athlètes comme toi"],
+["Descobre quem tem objetivos e ritmos semelhantes.","Discover who has similar goals and pace.","Découvre qui a des objectifs et un rythme similaires."],
+["Combina treinos","Plan workouts","Organise des entraînements"],
+["Organiza saídas de bike, corrida e natação em águas abertas.","Set up bike rides, runs and open-water swims.","Organise des sorties vélo, course à pied et natation en eau libre."],
+["Uma prova é mais fácil quando não a preparas sozinho.","A race is easier when you don't prepare alone.","Une course est plus facile quand on ne la prépare pas seul."],
+["Encontrar a minha comunidade","Find my community","Trouver ma communauté"],
+["Espanha","Spain","Espagne"],
+["Entrar no canal","Join channel","Rejoindre le canal"],
+["Guardada","Saved","Enregistrée"],
+["Guardar","Save","Enregistrer"],
+["Data por confirmar","Date to be confirmed","Date à confirmer"],
+["Nenhuma prova encontrada","No races found","Aucune course trouvée"],
+["Experimenta outro nome ou remove o filtro de país.","Try another name or remove the country filter.","Essaie un autre nom ou retire le filtre de pays."],
+["Limpar filtros","Clear filters","Effacer les filtres"],
+["Faz login para continuar","Sign in to continue","Connecte-toi pour continuer"],
+["Esta área é só para atletas com sessão iniciada. Faz login para criares o teu perfil e participares nos canais.","This area is for signed-in athletes only. Sign in to create your profile and join channels.","Cet espace est réservé aux athlètes connectés. Connecte-toi pour créer ton profil et rejoindre les canaux."],
+["Sessão iniciada","Signed in","Connecté"],
+["Ver provas","View races","Voir les courses"],
+["Bem-vindo à PACE","Welcome to PACE","Bienvenue sur PACE"],
+["Completa o teu perfil. O nome, o username e a cidade são obrigatórios; o resto podes mudar depois no teu perfil.","Complete your profile. Name, username and city are required; you can change the rest later in your profile.","Complète ton profil. Le nom, le nom d'utilisateur et la ville sont obligatoires ; tu pourras modifier le reste plus tard."],
+["Escolher foto","Choose photo","Choisir une photo"],
+["Usamos a foto da tua conta se não escolheres outra.","We'll use your account photo if you don't pick another.","Nous utiliserons la photo de ton compte si tu n'en choisis pas une autre."],
+["Nome","Name","Nom"],
+["Username","Username","Nom d'utilisateur"],
+["ex.: ana_run","e.g. ana_run","ex. : ana_run"],
+["País","Country","Pays"],
+["Cidade/zona","City/area","Ville/zone"],
+["Prova-alvo","Target race","Course cible"],
+["Ainda não sei","I don't know yet","Je ne sais pas encore"],
+["Objetivo de tempo","Time goal","Objectif de temps"],
+["Sem objetivo","No goal","Pas d'objectif"],
+["Tempo personalizado (se escolheste Objetivo personalizado, ex.: 5h45)","Custom time (if you chose Custom goal, e.g. 5h45)","Temps personnalisé (si tu as choisi Objectif personnalisé, ex. : 5h45)"],
+["Ocultar o objetivo no perfil público","Hide my goal on my public profile","Masquer mon objectif sur mon profil public"],
+["Zona de treino","Training area","Zone d'entraînement"],
+["ex.: Marginal Cascais–Oeiras","e.g. Cascais–Oeiras coastal road","ex. : Marginal Cascais–Oeiras"],
+["Concluir","Finish","Terminer"],
+["Terminar a prova","Finish the race","Terminer la course"],
+["Objetivo personalizado","Custom goal","Objectif personnalisé"],
+["Indica o teu nome.","Enter your name.","Indique ton nom."],
+["3 a 20 caracteres: letras, números ou _.","3 to 20 characters: letters, numbers or _.","3 à 20 caractères : lettres, chiffres ou _."],
+["Indica a tua cidade ou zona.","Enter your city or area.","Indique ta ville ou ta zone."],
+["Esse username já existe.","That username is already taken.","Ce nom d'utilisateur existe déjà."],
+["Perfil criado","Profile created","Profil créé"],
+["Entraste no canal","You joined the channel","Tu as rejoint le canal"],
+["Perfil guardado","Profile saved","Profil enregistré"],
+["Ainda não há mensagens. Sê o primeiro a escrever.","No messages yet. Be the first to write.","Pas encore de messages. Sois le premier à écrire."],
+["Hoje","Today","Aujourd'hui"],
+["Ontem","Yesterday","Hier"],
+["Ver atividades","View activities","Voir les activités"],
+["Copiar","Copy","Copier"],
+["Denunciar","Report","Signaler"],
+["Escreve algo antes de enviar.","Write something before sending.","Écris quelque chose avant d'envoyer."],
+["Entra no canal para escrever.","Join the channel to write.","Rejoins le canal pour écrire."],
+["Entra no canal para criar atividades.","Join the channel to create activities.","Rejoins le canal pour créer des activités."],
+["Não foi possível enviar a mensagem.","Could not send the message.","Impossible d'envoyer le message."],
+["Não foi possível ler o chat (regras da Realtime Database).","Could not read the chat (Realtime Database rules).","Impossible de lire le chat (règles de la Realtime Database)."],
+["Ver atletas","View athletes","Voir les athlètes"],
+["Partilhar canal","Share channel","Partager le canal"],
+["Sair do canal","Leave channel","Quitter le canal"],
+["Atividades","Activities","Activités"],
+["Membros","Members","Membres"],
+["Detalhes","Details","Détails"],
+["Ainda sem membros.","No members yet.","Pas encore de membres."],
+["Chat em tempo real: todos os membros com sessão iniciada veem as mensagens. Sê respeitador.","Real-time chat: all signed-in members can see the messages. Be respectful.","Chat en temps réel : tous les membres connectés voient les messages. Sois respectueux."],
+["Escreve uma mensagem","Write a message","Écris un message"],
+["Atividade","Activity","Activité"],
+["Enviar","Send","Envoyer"],
+["Sobre a prova","About the race","À propos de la course"],
+["Site oficial: não configurado.","Official website: not set.","Site officiel : non configuré."],
+["Próximos treinos","Upcoming workouts","Prochains entraînements"],
+["Cargos","Roles","Rôles"],
+["Admin, Moderador e Mentor são atribuídos pela equipa PACE. Todos os outros são Atletas.","Admin, Moderator and Mentor roles are assigned by the PACE team. Everyone else is an Athlete.","Les rôles Admin, Modérateur et Mentor sont attribués par l'équipe PACE. Tous les autres sont Athlètes."],
+["Sem treinos marcados.","No workouts scheduled.","Aucun entraînement prévu."],
+["Moderador","Moderator","Modérateur"],
+["Atleta","Athlete","Athlète"],
+["Voltar","Back","Retour"],
+["Sem biografia.","No bio.","Pas de biographie."],
+["Triatlo","Triathlon","Triathlon"],
+["Por definir","Not set","À définir"],
+["Objetivo","Goal","Objectif"],
+["Oculto pelo atleta","Hidden by the athlete","Masqué par l'athlète"],
+["Personalizado","Custom","Personnalisé"],
+["Sem objetivo definido","No goal set","Aucun objectif défini"],
+["Treinos organizados","Workouts organized","Entraînements organisés"],
+["Treinos em que participou","Workouts joined","Entraînements rejoints"],
+["Membro desde","Member since","Membre depuis"],
+["agora","now","maintenant"],
+["Editar perfil","Edit profile","Modifier le profil"],
+["Mostrar objetivo","Show goal","Afficher l'objectif"],
+["Ocultar objetivo","Hide goal","Masquer l'objectif"],
+["Ver treinos","View workouts","Voir les entraînements"],
+["Partilhar perfil","Share profile","Partager le profil"],
+["Desbloquear","Unblock","Débloquer"],
+["Bloquear","Block","Bloquer"],
+["O email e outros dados privados nunca aparecem em perfis públicos.","Email and other private data never appear on public profiles.","L'e-mail et les autres données privées n'apparaissent jamais sur les profils publics."],
+["Canais em que és membro.","Channels you're a member of.","Canaux dont tu es membre."],
+["Ainda não entraste em nenhum canal","You haven't joined any channel yet","Tu n'as encore rejoint aucun canal"],
+["Escolhe uma prova para encontrar atletas.","Pick a race to find athletes.","Choisis une course pour trouver des athlètes."],
+["Alterar foto","Change photo","Changer la photo"],
+["Usar a foto da conta","Use account photo","Utiliser la photo du compte"],
+["(não pode ser alterado)","(cannot be changed)","(ne peut pas être modifié)"],
+["Biografia","Bio","Biographie"],
+["Tempo personalizado (ex.: 5h45)","Custom time (e.g. 5h45)","Temps personnalisé (ex. : 5h45)"],
+["Foto atualizada","Photo updated","Photo mise à jour"],
+["A usar a foto da conta","Using account photo","Utilisation de la photo du compte"],
+["Natação em águas abertas","Open-water swimming","Natation en eau libre"],
+["Usa capacete, respeita o código da estrada e leva material de reparação.","Wear a helmet, follow traffic rules and carry repair gear.","Porte un casque, respecte le code de la route et emporte du matériel de réparation."],
+["Leva água, usa roupa visível e respeita o teu ritmo.","Bring water, wear visible clothing and respect your own pace.","Emporte de l'eau, porte des vêtements visibles et respecte ton rythme."],
+["Nada sempre acompanhado, com boia de segurança, e confirma as condições do mar.","Always swim accompanied, with a safety buoy, and check sea conditions.","Nage toujours accompagné, avec une bouée de sécurité, et vérifie les conditions de la mer."],
+["Usa sempre pontos de encontro públicos, nunca moradas privadas.","Always use public meeting points, never private addresses.","Utilise toujours des points de rendez-vous publics, jamais des adresses privées."],
+["Inscrição confirmada","Registration confirmed","Inscription confirmée"],
+["Atividade não encontrada.","Activity not found.","Activité introuvable."],
+["Atividade cancelada.","Activity cancelled.","Activité annulée."],
+["Já estás inscrito.","You're already registered.","Tu es déjà inscrit."],
+["Atividade lotada.","Activity is full.","Activité complète."],
+["Desististe da atividade","You left the activity","Tu t'es désinscrit de l'activité"],
+["Atividade cancelada","Activity cancelled","Activité annulée"],
+["Inicia sessão para participar.","Sign in to join.","Connecte-toi pour participer."],
+["Cancelada","Cancelled","Annulée"],
+["Vou participar","I'm going","J'y participe"],
+["Desistir","Withdraw","Se désinscrire"],
+["Lotado","Full","Complet"],
+["Participar","Join","Participer"],
+["Ver detalhes","View details","Voir les détails"],
+["Fácil","Easy","Facile"],
+["Moderado","Moderate","Modéré"],
+["Difícil","Hard","Difficile"],
+["Indicado para iniciantes","Suitable for beginners","Adapté aux débutants"],
+["Parte da preparação para a prova","Part of race preparation","Fait partie de la préparation à la course"],
+["Organizador:","Organizer:","Organisateur :"],
+["Sem limite","No limit","Sans limite"],
+["Copiar link","Copy link","Copier le lien"],
+["Adicionar ao calendário","Add to calendar","Ajouter au calendrier"],
+["Editar","Edit","Modifier"],
+["Cancelar atividade","Cancel activity","Annuler l'activité"],
+["Fechar","Close","Fermer"],
+["Ligação copiada","Link copied","Lien copié"],
+["Ficheiro .ics gerado","Calendar file (.ics) created","Fichier .ics généré"],
+["Não foi possível gerar o .ics","Could not create the .ics file","Impossible de générer le fichier .ics"],
+["Nova atividade","New activity","Nouvelle activité"],
+["Editar atividade","Edit activity","Modifier l'activité"],
+["O rascunho é guardado se cancelares.","Your draft is kept if you cancel.","Le brouillon est conservé si tu annules."],
+["Modalidade","Sport","Discipline"],
+["Título","Title","Titre"],
+["Hora de encontro","Meeting time","Heure de rendez-vous"],
+["Local de encontro (público)","Meeting place (public)","Lieu de rendez-vous (public)"],
+["Morada do ponto de encontro (opcional)","Meeting point address (optional)","Adresse du point de rendez-vous (facultatif)"],
+["Distância (km)","Distance (km)","Distance (km)"],
+["Velocidade média (km/h, opcional)","Average speed (km/h, optional)","Vitesse moyenne (km/h, facultatif)"],
+["Ritmo (min/km, ex.: 5:30, opcional)","Pace (min/km, e.g. 5:30, optional)","Allure (min/km, ex. : 5:30, facultatif)"],
+["Duração (minutos, opcional)","Duration (minutes, optional)","Durée (minutes, facultatif)"],
+["Descrição","Description","Description"],
+["Limite de participantes","Participant limit","Limite de participants"],
+["Dificuldade","Difficulty","Difficulté"],
+["Ganho de elevação (m, opcional)","Elevation gain (m, optional)","Dénivelé positif (m, facultatif)"],
+["Tipo de treino (opcional)","Workout type (optional)","Type d'entraînement (facultatif)"],
+["Ritmo constante","Steady pace","Allure constante"],
+["Intervalos","Intervals","Fractionné"],
+["Longo","Long","Sortie longue"],
+["Técnica","Technique","Technique"],
+["Recuperação","Recovery","Récupération"],
+["Material necessário (opcional)","Required gear (optional)","Matériel nécessaire (facultatif)"],
+["Notas adicionais (opcional)","Additional notes (optional)","Notes supplémentaires (facultatif)"],
+["Faz parte da preparação para esta prova","Part of preparation for this race","Fait partie de la préparation à cette course"],
+["Publicar","Publish","Publier"],
+["Cancelar","Cancel","Annuler"],
+["Indica um título.","Enter a title.","Indique un titre."],
+["Escolhe uma data a partir de hoje.","Pick a date from today onwards.","Choisis une date à partir d'aujourd'hui."],
+["Indica a hora.","Enter the time.","Indique l'heure."],
+["Indica o local de encontro.","Enter the meeting place.","Indique le lieu de rendez-vous."],
+["Indica a distância em km.","Enter the distance in km.","Indique la distance en km."],
+["Descreve o treino (mínimo 10 caracteres).","Describe the workout (at least 10 characters).","Décris l'entraînement (10 caractères minimum)."],
+["Indica o limite (mínimo 2) ou escolhe Sem limite.","Enter the limit (minimum 2) or choose No limit.","Indique la limite (minimum 2) ou choisis Sans limite."],
+["Valor inválido.","Invalid value.","Valeur invalide."],
+["Usa o formato 5:30.","Use the format 5:30.","Utilise le format 5:30."],
+["Atividade atualizada","Activity updated","Activité mise à jour"],
+["Atividade publicada","Activity published","Activité publiée"],
+["Escolhe um treino e participa.","Pick a workout and join in.","Choisis un entraînement et participe."],
+["Todas","All","Toutes"],
+["Com vagas","With spots left","Avec des places"],
+["Para iniciantes","For beginners","Pour débutants"],
+["Iniciantes","Beginners","Débutants"],
+["Nenhuma atividade encontrada","No activities found","Aucune activité trouvée"],
+["Altera os filtros ou propõe um treino.","Change the filters or propose a workout.","Modifie les filtres ou propose un entraînement."],
+["Remover dos favoritos","Remove from favorites","Retirer des favoris"],
+["Guardar nos favoritos","Save to favorites","Ajouter aux favoris"],
+["Treinos de todos os canais. A compatibilidade usa regras simples: modalidade, objetivo e canais em que estás.","Workouts from all channels. Compatibility uses simple rules: sport, goal and the channels you're in.","Entraînements de tous les canaux. La compatibilité utilise des règles simples : discipline, objectif et canaux dont tu fais partie."],
+["Limpar","Clear","Effacer"],
+["Pesquisar treinos","Search workouts","Rechercher des entraînements"],
+["Todas as modalidades","All sports","Toutes les disciplines"],
+["Qualquer nível","Any level","Tous niveaux"],
+["Qualquer cidade","Any city","Toutes les villes"],
+["Qualquer objetivo","Any goal","Tous objectifs"],
+["Distância máx. (km)","Max distance (km)","Distance max. (km)"],
+["Distância máxima em km","Maximum distance in km","Distance maximale en km"],
+["A partir de","From","À partir du"],
+["Data mais próxima","Nearest date","Date la plus proche"],
+["Mais vagas","Most spots","Plus de places"],
+["Maior compatibilidade","Best match","Meilleure compatibilité"],
+["Nenhum treino encontrado","No workouts found","Aucun entraînement trouvé"],
+["Altera os filtros ou cria um treino num canal.","Change the filters or create a workout in a channel.","Modifie les filtres ou crée un entraînement dans un canal."],
+["Ir para os meus canais","Go to my channels","Aller à mes canaux"],
+["Próximos treinos, por data.","Upcoming workouts, by date.","Prochains entraînements, par date."],
+["Sem treinos marcados","No workouts scheduled","Aucun entraînement prévu"],
+["Cria o primeiro treino num canal.","Create the first workout in a channel.","Crée le premier entraînement dans un canal."],
+["Provas","Races","Courses"],
+["Ainda sem favoritos","No favorites yet","Pas encore de favoris"],
+["Guarda provas e treinos para os encontrares aqui.","Save races and workouts to find them here.","Enregistre des courses et des entraînements pour les retrouver ici."],
+["Avisos sobre os teus treinos e inscrições.","Updates about your workouts and registrations.","Avis sur tes entraînements et inscriptions."],
+["Nova","New","Nouvelle"],
+["Marcar tudo como lido","Mark all as read","Tout marquer comme lu"],
+["Sem notificações","No notifications","Aucune notification"],
+["Quando alguém aderir ou alterar um treino, aparece aqui.","When someone joins or changes a workout, it shows up here.","Quand quelqu'un rejoint ou modifie un entraînement, cela apparaît ici."],
+["Página não encontrada","Page not found","Page introuvable"],
+["Esta página não existe. Volta às provas e continua a partir daí.","This page doesn't exist. Go back to the races and continue from there.","Cette page n'existe pas. Reviens aux courses et continue à partir de là."],
+["Voltar ao início","Back to home","Retour à l'accueil"],
+["Agora não","Not now","Pas maintenant"],
+["Escreve-nos para","Write to us at","Écris-nous à"],
+["A denúncia é enviada à equipa PACE para revisão.","Your report is sent to the PACE team for review.","Le signalement est envoyé à l'équipe PACE pour examen."],
+["Motivo","Reason","Motif"],
+["Descreve o problema","Describe the problem","Décris le problème"],
+["Enviar denúncia","Send report","Envoyer le signalement"],
+["Indica o motivo.","Enter the reason.","Indique le motif."],
+["Denúncia enviada","Report sent","Signalement envoyé"],
+["Atleta desbloqueado","Athlete unblocked","Athlète débloqué"],
+["Atleta bloqueado: as mensagens ficam ocultas","Athlete blocked: their messages are hidden","Athlète bloqué : ses messages sont masqués"],
+["Texto copiado","Text copied","Texte copié"],
+["Não foi possível copiar","Could not copy","Impossible de copier"],
+["Saíste do canal","You left the channel","Tu as quitté le canal"],
+["Removido dos favoritos","Removed from favorites","Retiré des favoris"],
+["Guardado nos favoritos","Saved to favorites","Ajouté aux favoris"],
+["Inicia sessão para guardar favoritos.","Sign in to save favorites.","Connecte-toi pour enregistrer des favoris."],
+["Sessão terminada","Signed out","Déconnecté"],
+["Não foi possível terminar a sessão.","Could not sign out.","Impossible de se déconnecter."],
+["Não foi possível iniciar sessão.","Could not sign in.","Impossible de se connecter."],
+["Sem permissão (verifica as regras do Firebase).","No permission (check the Firebase rules).","Pas d'autorisation (vérifie les règles Firebase)."],
+["Erro inesperado.","Unexpected error.","Erreur inattendue."],
+["Domínio não autorizado: adiciona-o em Authentication > Settings > Authorized domains.","Unauthorized domain: add it under Authentication > Settings > Authorized domains.","Domaine non autorisé : ajoute-le dans Authentication > Settings > Authorized domains."],
+["Sobre","About","À propos"],
+["Contacto","Contact","Contact"],
+["Privacidade","Privacy","Confidentialité"],
+["Termos","Terms","Conditions"],
+["Segurança nos treinos","Workout safety","Sécurité à l'entraînement"],
+["Instagram ainda não configurado (CONFIG.instagramUrl).","Instagram not set up yet (CONFIG.instagramUrl).","Instagram pas encore configuré (CONFIG.instagramUrl)."],
+["PACE é um projeto independente e não tem qualquer afiliação oficial com a IRONMAN. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares.","PACE is an independent project and has no official affiliation with IRONMAN. IRONMAN and IRONMAN 70.3 are trademarks of their respective owners.","PACE est un projet indépendant et n'a aucune affiliation officielle avec IRONMAN. IRONMAN et IRONMAN 70.3 sont des marques de leurs titulaires respectifs."],
+["Faz login para entrares no canal, falares com outros atletas e combinares treinos.","Sign in to join the channel, chat with other athletes and plan workouts.","Connecte-toi pour rejoindre le canal, discuter avec d'autres athlètes et organiser des entraînements."],
+["Ainda não existe um contacto oficial configurado. Quando existir, será definido em CONFIG.contactEmail.","There is no official contact set up yet. Once there is, it will be defined in CONFIG.contactEmail.","Aucun contact officiel n'est encore configuré. Il sera défini dans CONFIG.contactEmail."]
+];
+const D={en:{},fr:{}};ROWS.forEach(r=>{D.en[r[0]]=r[1];D.fr[r[0]]=r[2]});
+/* padrões com partes dinâmicas: [regex, inglês, francês, grupos a traduzir] */
+const PAT=[
+[/^Olá, (.+)\.$/,"Hello, $1.","Bonjour, $1."],
+[/^1 atletas$/,"1 athlete","1 athlète"],
+[/^1 treinos$/,"1 workout","1 entraînement"],
+[/^(\d+) atletas$/,"$1 athletes","$1 athlètes"],
+[/^(\d+) treinos$/,"$1 workouts","$1 entraînements"],
+[/^faltam (\d+) dias$/,"$1 days to go","dans $1 jours"],
+[/^(\d+)\/(\d+) confirmados$/,"$1/$2 confirmed","$1/$2 confirmés"],
+[/^(\d+) confirmados$/,"$1 confirmed","$1 confirmés"],
+[/^(\d+) vagas$/,"$1 spots left","$1 places restantes"],
+[/^(.+), Espanha$/,"$1, Spain","$1, Espagne"],
+[/^Objetivo (.+)$/,"Goal $1","Objectif $1"],
+[/^Treinos de (.+)$/,"$1's workouts","Entraînements de $1"],
+[/^Zona de treino: (.+)$/,"Training area: $1","Zone d'entraînement : $1"],
+[/^Mensagens de (.+) ocultas \(bloqueado\)\.$/,"Messages from $1 hidden (blocked).","Messages de $1 masqués (bloqué)."],
+[/^criou uma atividade de (.+?): (.*)\.$/,"created a $1 activity: $2.","a créé une activité de $1 : $2.",[1]],
+[/^(.+?) \/ (.+?) \/ (.*)$/,"$1 / $2 / $3","$1 / $2 / $3",[2]],
+[/^1 atividade, por ordem de data$/,"1 activity, in date order","1 activité, par ordre de date"],
+[/^(\d+) atividades, por ordem de data$/,"$1 activities, in date order","$1 activités, par ordre de date"],
+[/^Inscrição confirmada: (.*)$/,"Registration confirmed: $1","Inscription confirmée : $1"],
+[/^(.+) vai participar em "(.*)"\.$/,"$1 will join \"$2\".","$1 participera à « $2 »."],
+[/^A atividade "(.*)" foi cancelada\.$/,"The activity \"$1\" was cancelled.","L'activité « $1 » a été annulée."],
+[/^Atividade alterada: (.*)$/,"Activity changed: $1","Activité modifiée : $1"],
+[/^Já há (\d+) inscritos\.$/,"There are already $1 registered.","Il y a déjà $1 inscrits."],
+[/^Entrar em (.+)$/,"Join $1","Rejoindre $1"],
+[/^Avisos \((\d+)\)$/,"Alerts ($1)","Alertes ($1)"],
+[/^Notificações \((\d+) novas?\)$/,"Notifications ($1 new)","Notifications ($1 nouvelles)"],
+[/^Perfil de (.+)$/,"$1's profile","Profil de $1"],
+[/^Ganho de elevação: (.+)$/,"Elevation gain: $1","Dénivelé positif : $1"],
+[/^Tipo: (.+)$/,"Type: $1","Type : $1",[1]],
+[/^Material: (.+)$/,"Gear: $1","Matériel : $1"],
+[/^Notas: (.+)$/,"Notes: $1","Notes : $1"],
+[/^(.+) — início$/,"$1 — home","$1 — accueil"],
+[/^Não foi possível entrar: (.*)$/,"Could not sign in: $1","Connexion impossible : $1"]
+];
+function trCore(t){
+ const d=D[L];if(d&&d[t]!=null)return d[t];
+ if(t.includes(' · '))return t.split(' · ').map(trCore).join(' · ');
+ for(const p of PAT){const m=t.match(p[0]);if(m){const tg=p[3]||[],a=m.slice(1).map((g,i)=>tg.includes(i+1)?trCore(g):g);return (L==='en'?p[1]:p[2]).replace(/\$(\d)/g,(_,n)=>a[n-1])}}
+ return t}
+function tr(s){
+ if(L==='pt'||!s)return s;
+ const t=String(s).trim();if(!t)return s;
+ const r=trCore(t);if(r===t)return s;
+ const i=s.indexOf(t);return s.slice(0,i)+r+s.slice(i+t.length)}
+const noTr=e=>!!(e&&e.closest&&e.closest('[translate=no],textarea,script,style')),noTrA=e=>!!(e&&e.closest&&e.closest('[translate=no]'));
+function trNode(n){
+ if(L==='pt')return;
+ if(n.nodeType===3){if(!noTr(n.parentNode)){const v=tr(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}return}
+ if(n.nodeType!==1||noTrA(n))return;
+ const w=document.createTreeWalker(n,NodeFilter.SHOW_TEXT),list=[];let x;while((x=w.nextNode()))list.push(x);
+ list.forEach(trNode);
+ [n,...n.querySelectorAll('[placeholder],[aria-label],[title]')].forEach(e=>{
+  if(noTrA(e))return;
+  ['placeholder','aria-label','title'].forEach(a=>{if(e.hasAttribute(a)){const v=e.getAttribute(a),r=tr(v);if(r!==v)e.setAttribute(a,r)}})})}
+/* traduz automaticamente tudo o que o site desenha (render, modais, avisos) */
+new MutationObserver(ms=>{if(L==='pt')return;ms.forEach(m=>m.addedNodes.forEach(trNode))}).observe(document.body,{childList:true,subtree:true});
+function setTitle(){document.title=S.route==="home"?CONFIG.name+" — "+CONFIG.slogan:tr(pageTitle())+" · "+CONFIG.name}
+function setLang(l){
+ if(l!=='pt'&&l!=='en'&&l!=='fr')return;
+ L=l;try{localStorage.setItem('pace_lang',l)}catch(_){}
+ document.documentElement.lang={pt:'pt-PT',en:'en',fr:'fr'}[l];
+ const m=document.getElementById('modal');if(m&&m.dataset.k!=='det')closeModal();
+ refresh();setTitle()}
+function langSel(){return `<select class="lang" aria-label="Idioma">${[['pt','PT'],['en','EN'],['fr','FR']].map(([k,v])=>`<option value="${k}" ${L===k?'selected':''}>${v}</option>`).join('')}</select>`}
+/* páginas legais traduzidas (o português está em INFO) */
+const INFOT={
+en:{
+sobre:`<p>PACE is a free social platform for amateur athletes taking part in IRONMAN 70.3 races. It helps you find people going to the same race as you, with similar goals, and to arrange in-person bike, run and open-water swim workouts.</p>
+<h2>How it works</h2>
+<p>Every race has its own channel. When you join, you see who else is going, chat with them and can create or join workouts scheduled in the calendar. It all comes down to one simple idea: a race is easier when you don't prepare for it alone.</p>
+<h2>Who it's for</h2>
+<p>For people who train for the love of it: first-time 70.3 athletes, those who want to improve their time, and anyone just looking for company on the long sessions. You don't need to be fast, you just need to want to train together.</p>
+<h2>Independence</h2>
+<p>PACE is an independent project with no official affiliation with IRONMAN. IRONMAN and IRONMAN 70.3 are trademarks of their respective owners. Workouts are organized by the athletes themselves, not by PACE.</p>`,
+privacidade:`<p class="upd">Last updated: October 2026</p>
+<p>This page explains what personal data PACE processes, why, and how you can control it. PACE is an independent project and is responsible for the processing of the data described below.</p>
+<h2>What data we collect</h2>
+<ul><li><strong>Account:</strong> sign-in uses your Google account. We receive the name and photo from the account. The email is used only for authentication, is managed by the authentication service, and does not appear on your profile or get shown to other athletes.</li>
+<li><strong>Profile:</strong> username, country, city or area, bio, target race, time goal, training area and the photo you choose.</li>
+<li><strong>Usage:</strong> channels you belong to, workouts you create or join, favorites, athletes you block, notifications and reports you make.</li>
+<li><strong>Messages:</strong> the messages you write in channel chats.</li></ul>
+<h2>Who sees what</h2>
+<p>Your profile and channel messages are visible to other signed-in athletes. You can hide your time goal on your public profile. Your email and other private data never appear on public profiles. Avoid writing addresses, phone numbers or other sensitive data in messages, workout descriptions and your bio.</p>
+<h2>What we use the data for</h2>
+<p>To create and show your profile, connect you with athletes in the same race, enable chat and workout organization, send you notices about your workouts and handle reports of abusive behavior. We do not sell your data and do not use it for advertising.</p>
+<h2>Third-party services</h2>
+<p>PACE uses Google services: Firebase (authentication and database, on servers in Europe where indicated) and Google Fonts (typeface). When the page loads, your IP address is seen by these services. We do not use advertising or tracking cookies; the browser stores locally only what is needed to keep you signed in.</p>
+<h2>How long we keep it</h2>
+<p>We keep the data while your account exists. You can request deletion of your account and associated data at any time.</p>
+<h2>Your rights</h2>
+<p>Under the GDPR, you have the right of access, rectification, erasure, restriction, objection and portability of your data. You can correct most information directly in Edit profile. For other requests use the Contact page. If you believe the processing violates the law, you may lodge a complaint with the Portuguese data protection authority (CNPD).</p>
+<h2>Minimum age</h2>
+<p>PACE is intended for people aged 18 or over.</p>
+<h2>Changes</h2>
+<p>If this policy changes significantly, we will update the date at the top of this page.</p>`,
+termos:`<p class="upd">Last updated: October 2026</p>
+<p>By creating an account and using PACE you accept these terms. If you do not agree, do not use the service.</p>
+<h2>1. The service</h2>
+<p>PACE is a free platform that lets amateur athletes meet, chat and arrange workouts for IRONMAN 70.3 races. PACE does not organize workouts, is not a sports body and does not provide medical, training or nutrition advice.</p>
+<h2>2. Account</h2>
+<p>You sign in with your Google account. You are responsible for your account and for the accuracy of your profile information. You may only have one account, and your username cannot be changed once created.</p>
+<h2>3. Conduct</h2>
+<p>Treat others with respect. Harassment, threats, discrimination, spam, illegal or offensive content, and sharing other people's personal data without permission are not allowed. You can report messages and profiles and block athletes.</p>
+<h2>4. Your content</h2>
+<p>What you post (messages, workout descriptions, bio, photo) remains yours. By posting it, you allow PACE to show it to other athletes within the service. You guarantee that you have the right to post it.</p>
+<h2>5. In-person workouts and liability</h2>
+<p>Workouts are arranged and carried out between athletes, on their own initiative. You take part at your own risk and must assess whether you are physically fit to do so. PACE does not verify the identity, fitness or behavior of athletes and, to the extent permitted by law, is not responsible for injuries, accidents, losses or disputes occurring before, during or after a workout. Read the Workout safety page.</p>
+<h2>6. Moderation</h2>
+<p>We may remove content and limit or suspend accounts that violate these terms or put other athletes at risk.</p>
+<h2>7. Availability</h2>
+<p>The service is provided as is, may be interrupted or changed, and we do not guarantee that it will always be available or error-free.</p>
+<h2>8. Trademarks</h2>
+<p>PACE has no affiliation with IRONMAN. IRONMAN and IRONMAN 70.3 are trademarks of their respective owners.</p>
+<h2>9. Changes and applicable law</h2>
+<p>We may update these terms; continued use after a change means acceptance. Portuguese law applies.</p>`,
+seguranca:`<p>Training in a group is more fun and safer, as long as a few precautions are taken. PACE connects athletes, but everyone is responsible for their own safety. These principles apply to all workouts.</p>
+<h2>Before you go</h2>
+<ul><li>Arrange to meet in public, well-known places, preferably in daylight.</li>
+<li>Tell someone you trust the route, the expected time and who you are going with.</li>
+<li>Do not share private addresses. Use public meeting points.</li>
+<li>Read the description, distance, pace and difficulty. If you are not sure you can keep up, ask in the chat or choose a beginner workout.</li>
+<li>Check the weather and the state of the sea or road. If conditions are bad, postpone.</li>
+<li>Bring a charged phone, water and ID. If you have health problems, talk to your doctor first.</li></ul>
+<h2>Bike</h2>
+<ul><li>Wear a helmet, lights and visible clothing.</li>
+<li>Follow the rules of the road and don't take risks to keep up with the group.</li>
+<li>Carry repair gear, a spare tube and the essentials for a puncture.</li>
+<li>In a group, keep your distance and warn others about obstacles and stops.</li></ul>
+<h2>Run</h2>
+<ul><li>Bring water and wear visible clothing, especially at sunrise and sunset.</li>
+<li>Respect your own pace; nobody is obliged to keep up with the fastest.</li>
+<li>On the road, run facing traffic when there is no pavement.</li></ul>
+<h2>Open-water swimming</h2>
+<ul><li>Always swim accompanied, never alone.</li>
+<li>Use a safety buoy and a brightly coloured cap.</li>
+<li>Check sea conditions, currents and water temperature before getting in.</li>
+<li>Agree on a signal for help and get out of the water at the first sign of tiredness or excessive cold.</li></ul>
+<h2>If something goes wrong</h2>
+<p>In an emergency, call 112. If someone behaves inappropriately or you feel unsafe, walk away and report the person on PACE using the Report button, or block them on their profile.</p>`
+},
+fr:{
+sobre:`<p>PACE est une plateforme sociale gratuite pour les athlètes amateurs qui participent à des courses IRONMAN 70.3. Elle t'aide à trouver des personnes qui vont à la même course que toi, avec des objectifs similaires, et à organiser des entraînements en présentiel de vélo, de course à pied et de natation en eau libre.</p>
+<h2>Comment ça marche</h2>
+<p>Chaque course a son propre canal. En le rejoignant, tu vois qui d'autre y va, tu discutes avec eux et tu peux créer ou rejoindre des entraînements planifiés dans le calendrier. Tout repose sur une idée simple : une course est plus facile quand on ne la prépare pas seul.</p>
+<h2>Pour qui</h2>
+<p>Pour ceux qui s'entraînent par plaisir : ceux qui font leur premier 70.3, ceux qui veulent améliorer leur temps et ceux qui cherchent simplement de la compagnie pour les sorties longues. Pas besoin d'être rapide, il suffit d'avoir envie de s'entraîner à plusieurs.</p>
+<h2>Indépendance</h2>
+<p>PACE est un projet indépendant, sans aucune affiliation officielle avec IRONMAN. IRONMAN et IRONMAN 70.3 sont des marques de leurs titulaires respectifs. Les entraînements sont organisés par les athlètes eux-mêmes, pas par PACE.</p>`,
+privacidade:`<p class="upd">Dernière mise à jour : octobre 2026</p>
+<p>Cette page explique quelles données personnelles PACE traite, pourquoi, et comment tu peux les contrôler. PACE est un projet indépendant et est responsable du traitement des données décrites ci-dessous.</p>
+<h2>Quelles données nous collectons</h2>
+<ul><li><strong>Compte :</strong> la connexion se fait avec ton compte Google. Nous recevons le nom et la photo du compte. L'e-mail sert uniquement à l'authentification, est géré par le service d'authentification et n'apparaît pas sur ton profil ni n'est montré aux autres athlètes.</li>
+<li><strong>Profil :</strong> nom d'utilisateur, pays, ville ou zone, biographie, course cible, objectif de temps, zone d'entraînement et la photo que tu choisis.</li>
+<li><strong>Utilisation :</strong> canaux dont tu es membre, entraînements que tu crées ou rejoins, favoris, athlètes que tu bloques, notifications et signalements que tu fais.</li>
+<li><strong>Messages :</strong> les messages que tu écris dans le chat des canaux.</li></ul>
+<h2>Qui voit quoi</h2>
+<p>Ton profil et les messages des canaux sont visibles par les autres athlètes connectés. Tu peux masquer ton objectif de temps sur ton profil public. L'e-mail et les autres données privées n'apparaissent jamais sur les profils publics. Évite d'écrire des adresses, des numéros de téléphone ou d'autres données sensibles dans les messages, les descriptions d'entraînements et ta biographie.</p>
+<h2>À quoi servent les données</h2>
+<p>À créer et afficher ton profil, te mettre en relation avec des athlètes de la même course, permettre le chat et l'organisation d'entraînements, t'envoyer des avis sur tes entraînements et traiter les signalements de comportements abusifs. Nous ne vendons pas tes données et ne les utilisons pas à des fins publicitaires.</p>
+<h2>Services tiers</h2>
+<p>PACE utilise des services Google : Firebase (authentification et base de données, sur des serveurs en Europe lorsque c'est indiqué) et Google Fonts (police de caractères). Au chargement de la page, ton adresse IP est vue par ces services. Nous n'utilisons pas de cookies publicitaires ni de suivi ; le navigateur ne conserve localement que ce qui est nécessaire pour garder ta session ouverte.</p>
+<h2>Durée de conservation</h2>
+<p>Nous conservons les données tant que ton compte existe. Tu peux demander la suppression de ton compte et des données associées à tout moment.</p>
+<h2>Tes droits</h2>
+<p>Conformément au RGPD, tu disposes d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité de tes données. Tu peux corriger la plupart des informations directement dans Modifier le profil. Pour les autres demandes, utilise la page Contact. Si tu estimes que le traitement viole la loi, tu peux déposer une plainte auprès de l'autorité portugaise de protection des données (CNPD).</p>
+<h2>Âge minimum</h2>
+<p>PACE s'adresse aux personnes de 18 ans ou plus.</p>
+<h2>Modifications</h2>
+<p>Si cette politique change de façon significative, nous mettrons à jour la date en haut de cette page.</p>`,
+termos:`<p class="upd">Dernière mise à jour : octobre 2026</p>
+<p>En créant un compte et en utilisant PACE, tu acceptes ces conditions. Si tu n'es pas d'accord, n'utilise pas le service.</p>
+<h2>1. Le service</h2>
+<p>PACE est une plateforme gratuite qui permet aux athlètes amateurs de se rencontrer, de discuter et d'organiser des entraînements pour des courses IRONMAN 70.3. PACE n'organise pas d'entraînements, n'est pas une entité sportive et ne fournit aucun conseil médical, d'entraînement ou de nutrition.</p>
+<h2>2. Compte</h2>
+<p>Tu te connectes avec ton compte Google. Tu es responsable de ton compte et de l'exactitude des informations de ton profil. Tu ne peux avoir qu'un seul compte, et le nom d'utilisateur ne peut pas être modifié une fois créé.</p>
+<h2>3. Conduite</h2>
+<p>Traite les autres avec respect. Le harcèlement, les menaces, la discrimination, le spam, les contenus illégaux ou offensants et le partage de données personnelles de tiers sans autorisation sont interdits. Tu peux signaler des messages et des profils et bloquer des athlètes.</p>
+<h2>4. Ton contenu</h2>
+<p>Ce que tu publies (messages, descriptions d'entraînements, biographie, photo) reste à toi. En le publiant, tu autorises PACE à l'afficher aux autres athlètes dans le service. Tu garantis avoir le droit de le publier.</p>
+<h2>5. Entraînements en présentiel et responsabilité</h2>
+<p>Les entraînements sont convenus et réalisés entre athlètes, de leur propre initiative. Tu participes à tes propres risques et tu dois évaluer si tu es en condition physique pour le faire. PACE ne vérifie ni l'identité, ni l'aptitude, ni le comportement des athlètes et, dans la mesure permise par la loi, n'est pas responsable des blessures, accidents, pertes ou conflits survenus avant, pendant ou après un entraînement. Lis la page Sécurité à l'entraînement.</p>
+<h2>6. Modération</h2>
+<p>Nous pouvons supprimer des contenus, limiter ou suspendre des comptes qui enfreignent ces conditions ou mettent d'autres athlètes en danger.</p>
+<h2>7. Disponibilité</h2>
+<p>Le service est fourni tel quel, peut subir des interruptions ou des modifications, et nous ne garantissons pas qu'il soit toujours disponible ou exempt d'erreurs.</p>
+<h2>8. Marques</h2>
+<p>PACE n'a aucune affiliation avec IRONMAN. IRONMAN et IRONMAN 70.3 sont des marques de leurs titulaires respectifs.</p>
+<h2>9. Modifications et loi applicable</h2>
+<p>Nous pouvons mettre à jour ces conditions ; la poursuite de l'utilisation après modification vaut acceptation. La loi portugaise s'applique.</p>`,
+seguranca:`<p>S'entraîner en groupe est plus amusant et plus sûr, à condition de prendre quelques précautions. PACE met les athlètes en relation, mais chacun est responsable de sa propre sécurité. Ces principes s'appliquent à tous les entraînements.</p>
+<h2>Avant de partir</h2>
+<ul><li>Fixe le rendez-vous dans des lieux publics et connus, de préférence de jour.</li>
+<li>Préviens une personne de confiance du parcours, de l'heure prévue et des personnes avec qui tu pars.</li>
+<li>Ne partage pas d'adresses privées. Utilise des points de rendez-vous publics.</li>
+<li>Lis la description, la distance, l'allure et la difficulté. Si tu n'es pas sûr de pouvoir suivre, demande dans le chat ou choisis un entraînement pour débutants.</li>
+<li>Vérifie la météo et l'état de la mer ou de la route. Si les conditions sont mauvaises, reporte.</li>
+<li>Emporte un téléphone chargé, de l'eau et une pièce d'identité. Si tu as des problèmes de santé, parles-en d'abord à ton médecin.</li></ul>
+<h2>Vélo</h2>
+<ul><li>Porte un casque, des feux et des vêtements visibles.</li>
+<li>Respecte le code de la route et ne prends pas de risques pour suivre le groupe.</li>
+<li>Emporte du matériel de réparation, une chambre à air et l'essentiel en cas de crevaison.</li>
+<li>En groupe, garde tes distances et signale les obstacles et les arrêts aux autres.</li></ul>
+<h2>Course à pied</h2>
+<ul><li>Emporte de l'eau et porte des vêtements visibles, surtout au lever et au coucher du soleil.</li>
+<li>Respecte ton rythme ; personne n'est obligé de suivre les plus rapides.</li>
+<li>Sur la route, cours face à la circulation quand il n'y a pas de trottoir.</li></ul>
+<h2>Natation en eau libre</h2>
+<ul><li>Nage toujours accompagné, jamais seul.</li>
+<li>Utilise une bouée de sécurité et un bonnet de couleur vive.</li>
+<li>Vérifie les conditions de la mer, le courant et la température de l'eau avant d'entrer.</li>
+<li>Convenez d'un signal d'aide et sors de l'eau dès les premiers signes de fatigue ou de froid excessif.</li></ul>
+<h2>Si quelque chose ne va pas</h2>
+<p>En cas d'urgence, appelle le 112. Si quelqu'un se comporte de façon inappropriée ou si tu te sens en danger, éloigne-toi et signale la personne sur PACE avec le bouton Signaler, ou bloque-la sur son profil.</p>`
+}};
+function infoBody(k){if(k==='contacto')return contactBody();const o=INFOT[L];return (o&&o[k])||INFO[k][1]}
+function contactBody(){return CONFIG.contactEmail?`<p>Escreve-nos para <a href="mailto:${esc(CONFIG.contactEmail)}">${esc(CONFIG.contactEmail)}</a>.</p>`:INFO.contacto[1]}
+/* defesa: garante tipos e formatos das atividades lidas da base de dados */
+function cleanAct(x){
+ const idr=/^[\w-]{1,128}$/,num=v=>{const n=Number(v);return isFinite(n)?n:0};
+ x.sport=SPORTS[x.sport]?x.sport:'bike';x.st=x.st==='canc'?'canc':'ok';
+ x.p=(Array.isArray(x.p)?x.p:[]).map(String).filter(v=>idr.test(v));
+ x.org=idr.test(String(x.org))?String(x.org):'';x.race=String(x.race||'');
+ x.max=Math.max(0,Math.floor(num(x.max)));x.dist=num(x.dist);x.spd=num(x.spd)||0;
+ x.dur=x.dur?(num(x.dur)||''):'';x.elev=x.elev?(num(x.elev)||''):'';
+ x.pace=/^\d{1,2}:[0-5]\d$/.test(x.pace)?x.pace:'';
+ x.tm=/^\d\d:\d\d$/.test(x.tm)?x.tm:'00:00';
+ x.date=/^\d{4}-\d\d-\d\d$/.test(x.date)?x.date:'1970-01-01';
+ x.diff=['Fácil','Moderado','Difícil'].includes(x.diff)?x.diff:'Moderado';
+ x.beg=!!x.beg;x.pr=!!x.pr;
+ ['title','place','addr','desc','tipo','mat','nota'].forEach(k=>x[k]=x[k]==null?'':String(x[k]));
+ return x}
+
 /* ============ ESTADO ============ */
 const S={route:"home",param:null,q:"",country:"",sort:"rel",user:null,auth:null,ready:false,pendingRace:null,loading:true,tab:'chat',sf:'',det:null,edit:null,draft:{},af:{vag:false,beg:false},tmpPhoto:'',pendAct:null,_vk:''};
 let USERS={},ACT=[],NT=[];const CHAT={};
@@ -198,8 +794,8 @@ const FAV={has:k=>!!(S.user&&(S.user.favs||[]).includes(k))};
 const BL={has:id=>!!(S.user&&(S.user.blocked||[]).includes(id))};
 const memberCount=id=>Object.values(USERS).filter(u=>(u.channels||[]).includes(id)).length;
 const errMsg=e=>e&&e.code==='permission-denied'?'Sem permissão (verifica as regras do Firebase).':(e&&e.message)||'Erro inesperado.';
-function go(r,p=null,np){closeModal();if(!np&&(r!==S.route||p!==S.param))try{history.pushState({r,p},'','#/'+r+(p?'/'+p:''))}catch(_){}S.route=r;S.param=p;S.tab='chat';S.sf='';render();window.scrollTo(0,0);document.title=(r==="home"?CONFIG.name+" — "+CONFIG.slogan:pageTitle()+" · "+CONFIG.name)}
-function pageTitle(){const n=NAV.find(x=>x[0]===S.route);return n?n[1]:S.route==="registo"?"Perfil":S.route==="info"?INFO[S.param][0]:S.route==='canal'?(RACES.find(x=>x.id===S.param)||{name:'Canal'}).name:S.route==='atleta'?'Perfil':"Página não encontrada"}
+function go(r,p=null,np){closeModal();if(!np&&(r!==S.route||p!==S.param))try{history.pushState({r,p},'','#/'+r+(p?'/'+p:''))}catch(_){}S.route=r;S.param=p;S.tab='chat';S.sf='';render();window.scrollTo(0,0);setTitle()}
+function pageTitle(){const n=NAV.find(x=>x[0]===S.route);return n?n[1]:S.route==="registo"||S.route==="perfil"?"Perfil":S.route==="definicoes"?"Editar perfil":S.route==="info"?INFO[S.param][0]:S.route==='canal'?(RACES.find(x=>x.id===S.param)||{name:'Canal'}).name:S.route==='atleta'?'Perfil':"Página não encontrada"}
 const hasDates=()=>RACES.some(r=>r.dateConfirmed&&r.eventDate);
 /* ============ AUTENTICAÇÃO ============ */
 const provider=new GoogleAuthProvider();
@@ -218,7 +814,7 @@ onAuthStateChanged(auth,async u=>{
  if(!u){S.ready=true;S.loading=false;render();return}
  try{
   const uref=doc(db,'users',u.uid),s=await getDoc(uref);
-  if(!s.exists())await setDoc(uref,{name:u.displayName||'',photoURL:u.photoURL||'',photo:'',username:'',city:'',country:'Portugal',role:'Atleta',sports:[],goal:'',gt:'',zone:'',hid:false,raceId:'',channels:[],favs:[],blocked:[],bio:'',onboarded:false,createdAt:serverTimestamp()});
+  if(!s.exists())await setDoc(uref,{name:u.displayName||'',photoURL:u.photoURL||'',photo:'',username:'',city:'',country:'Portugal',role:'Atleta',sports:['bike','run','swim'],goal:'',gt:'',zone:'',hid:false,raceId:'',channels:[],favs:[],blocked:[],bio:'',onboarded:false,createdAt:serverTimestamp()});
   else if(u.photoURL&&s.data().photoURL!==u.photoURL)updateDoc(uref,{photoURL:u.photoURL}).catch(()=>{});
   let first=true;
   unsubs.push(onSnapshot(collection(db,'users'),snap=>{
@@ -227,7 +823,7 @@ onAuthStateChanged(auth,async u=>{
    if(first){first=false;afterLogin()}else render(true)
   },subErr));
   unsubs.push(onSnapshot(collection(db,'activities'),snap=>{
-   ACT=snap.docs.map(d=>({id:d.id,p:[],st:'ok',...d.data()}));
+   ACT=snap.docs.map(d=>cleanAct({id:d.id,p:[],st:'ok',...d.data()}));
    if(S.pendAct&&A(S.pendAct)){const p=S.pendAct;S.pendAct=null;go('canal',A(p).race,true);showDet(p);return}
    refresh()
   },subErr));
@@ -250,7 +846,7 @@ const av=(a,z=40)=>{const p=photoOf(a);return p?`<span class='av' style='width:$
 const rb=r=>`<span class='rb r-${esc(r)}'>${esc(r)}</span>`;
 const isPast=a=>new Date(a.date+'T'+(a.tm||'23:59'))<new Date();
 const nAct=id=>ACT.filter(a=>a.race===id&&a.st==='ok'&&!isPast(a)).length;
-function racedate(r){if(!(r.dateConfirmed&&r.eventDate))return 'Data por confirmar';const d=Math.ceil((new Date(r.eventDate)-new Date())/864e5);return new Date(r.eventDate).toLocaleDateString('pt-PT',{day:'numeric',month:'long',year:'numeric'})+(d>=0?' · faltam '+d+' dias':'')}
+function racedate(r){if(!(r.dateConfirmed&&r.eventDate))return 'Data por confirmar';const d=Math.ceil((new Date(r.eventDate)-new Date())/864e5);return new Date(r.eventDate).toLocaleDateString(LOC(),{day:'numeric',month:'long',year:'numeric'})+(d>=0?' · faltam '+d+' dias':'')}
 function raceCard(r){
  return `<article class="card"><div class="thumb">${r.imageURL?`<img src="${esc(r.imageURL)}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">`:waves(r.tone)}<span class="tag"></span></div>
  <div class="body"><h3>${esc(r.name)}</h3>
@@ -268,18 +864,18 @@ function raceGrid(){
  const l=filtered();
  if(!l.length)return `<div class="empty"><h3>Nenhuma prova encontrada</h3><p>Experimenta outro nome ou remove o filtro de país.</p><button class="btn btn-o" data-act="clear">Limpar filtros</button></div>`;
  return `<div class="grid">${l.map(raceCard).join("")}</div>`}
-const gbtn=(t='Continuar com Google')=>`<button class='gbtn' data-act='login'><b>G</b> ${t}</button>`;
+const gbtn=(t='Login')=>`<button class='btn btn-p' data-act='login'>${t}</button>`;
 /* ============ VISTAS ============ */
 function header(){
  const u=S.user;
  return `<header class="top"><div class="wrap bar"><button class="brand" data-act="go" data-r="home" aria-label="${esc(CONFIG.name)} — início"><span class="logo">${ic("bolt")}</span>${esc(CONFIG.name)}</button>
  <nav class="main" aria-label="Principal">${NAV.filter(x=>x[0]!=='notificacoes').map(([k,l])=>`<button data-act="go" data-r="${k}" ${S.route===k?'aria-current="page"':""}>${l}</button>`).join("")}</nav>
- ${u?`<button class="chipu" data-act="go" data-r="perfil" aria-label="O meu perfil">${av(u,34)}<span>${esc(u.username||u.name)}</span></button>`:`<button class="btn btn-g btn-sm reg" data-act="login">Entrar com Google</button>`}
+ ${u?`<button class="chipu" data-act="go" data-r="perfil" aria-label="O meu perfil">${av(u,34)}<span>${esc(u.username||u.name)}</span></button>`:`<button class="btn btn-g btn-sm reg" data-act="login">Login</button>`}
  ${u?`<button class="nbtn" data-act="go" data-r="notificacoes" aria-label="Notificações${unread()?' ('+unread()+' novas)':''}" ${S.route==='notificacoes'?'aria-current="page"':''}>${ic("bell")}${unread()?`<span class="nb">${unread()}</span>`:''}</button>`:''}
- <button class="burger" data-act="menu" aria-label="Abrir menu" aria-expanded="false">${ic("menu")}</button></div></header>
+ ${langSel()}<button class="burger" data-act="menu" aria-label="Abrir menu" aria-expanded="false">${ic("menu")}</button></div></header>
  <div class="drawer" id="drawer"><div class="panel" role="dialog" aria-label="Menu"><button class="btn btn-o btn-sm" data-act="menu" style="align-self:flex-end" aria-label="Fechar menu">${ic("x")}</button>
- ${NAV.map(([k,l])=>`<button class="nv" data-act="go" data-r="${k}" ${S.route===k?'aria-current="page"':""}>${l}</button>`).join("")}
- ${u?`<button class="btn btn-o" data-act="logout" style="margin-top:12px">Terminar sessão</button>`:`<button class="btn btn-g" data-act="login" style="margin-top:12px">Entrar com Google</button>`}</div></div>`}
+ <div class="lang-d">${langSel()}</div>${NAV.map(([k,l])=>`<button class="nv" data-act="go" data-r="${k}" ${S.route===k?'aria-current="page"':""}>${l}</button>`).join("")}
+ ${u?`<button class="btn btn-o" data-act="logout" style="margin-top:12px">Terminar sessão</button>`:`<button class="btn btn-g" data-act="login" style="margin-top:12px">Login</button>`}</div></div>`}
 function footer(){
  return `<footer><div class="wrap"><strong style="color:var(--green-d);font-size:1.2rem">${esc(CONFIG.name)}</strong> <span style="color:var(--muted)">— ${esc(CONFIG.slogan)}</span>
  <div class="links">${Object.entries(INFO).map(([k,v])=>`<button data-act="info" data-k="${k}">${v[0]}</button>`).join("")}
@@ -291,10 +887,10 @@ function home(){
  `<svg class="art" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFE8D2"/><stop offset=".55" stop-color="#F3F8E9"/></linearGradient><linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4FB3A5"/><stop offset="1" stop-color="#1D6B66"/></linearGradient></defs><rect width="1200" height="700" fill="url(#sk)"/><circle cx="900" cy="250" r="80" fill="#FFF4C9"/><path d="M0 380c150-60 260 10 420-20s300-60 460-10 220 20 320-10v360H0z" fill="#75C99A" opacity=".55"/><rect y="400" width="1200" height="300" fill="url(#sea)"/><path d="M0 470c100-18 200 18 300 0s200-18 300 0 200 18 300 0 200-18 300 0v230H0z" fill="#fff" opacity=".12"/><path d="M0 560c120-20 240 20 360 0s240-20 360 0 240 20 480 0v140H0z" fill="#174B35" opacity=".5"/></svg>`;
  return `<section class="hero">${hero}<div class="in"><h1>${esc(CONFIG.name)}</h1><p class="slogan">${esc(CONFIG.slogan)}</p>
  <p class="lead">Encontra atletas que vão à mesma prova. Combina treinos. Chega à linha de partida com uma equipa.</p>
- <div class="cta"><button class="btn btn-g" data-act="scroll">Explorar provas</button>${S.user?'':`<button class="btn btn-w" data-act="login">Entrar com Google</button>`}</div></div></section>
+ <div class="cta"><button class="btn btn-g" data-act="scroll">Explorar provas</button>${S.user?'':`<button class="btn btn-w" data-act="login">Login</button>`}</div></div></section>
  <section class="sec" id="provas"><div class="wrap"><div class="head"><h2>A tua próxima prova começa aqui.</h2><p>Encontra os atletas que vão à mesma prova que tu e prepara-a em conjunto, treino a treino.</p></div>
  <div class="tools"><div class="field">${ic("search")}<input id="q" type="search" placeholder="Pesquisar por nome ou cidade" aria-label="Pesquisar provas" value="${esc(S.q)}"></div>
- <select id="country" aria-label="Filtrar por país"><option value="">Todos os países</option>${COUNTRIES.map(c=>`<option ${S.country===c?"selected":""}>${c}</option>`).join("")}</select>
+ <select id="country" aria-label="Filtrar por país"><option value="">Todos os países</option>${COUNTRIES.map(c=>`<option value="${c}" ${S.country===c?"selected":""}>${c}</option>`).join("")}</select>
  <select id="sort" aria-label="Ordenar"><option value="rel" ${S.sort==="rel"?"selected":""}>Relevância</option>${hasDates()?`<option value="date" ${S.sort==="date"?"selected":""}>Data</option>`:""}</select></div>
  <div id="grid">${raceGrid()}</div>
  <section class="sec steps"><div class="wrap"><div class="head"><h2>Três passos até à linha de partida</h2></div><ol>
@@ -302,21 +898,20 @@ function home(){
  <li><h3>Encontra atletas como tu</h3><p>Descobre quem tem objetivos e ritmos semelhantes.</p></li>
  <li><h3>Combina treinos</h3><p>Organiza saídas de bike, corrida e natação em águas abertas.</p></li></ol></div></section>
  ${S.user?'':`<section class="sec"><div class="wrap"><div class="final"><h2>Uma prova é mais fácil quando não a preparas sozinho.</h2><button class="btn btn-g" data-act="login">Encontrar a minha comunidade</button></div></div></section>`}`}
-function needLogin(){return `<div class="wrap page"><h1>Entra para continuar</h1><div class="box"><p style="margin-bottom:18px;color:var(--muted)">Esta área é só para atletas com sessão iniciada. Entra com a tua conta Google para criares o teu perfil e participares nos canais.</p>${gbtn()}</div></div>`}
+function needLogin(){return `<div class="wrap page"><h1>Faz login para continuar</h1><div class="box"><p style="margin-bottom:18px;color:var(--muted)">Esta área é só para atletas com sessão iniciada. Faz login para criares o teu perfil e participares nos canais.</p>${gbtn()}</div></div>`}
 function register(){
  if(!S.auth)return needLogin();
  if(needOnb())return onboarding();
  return `<div class="wrap page"><h1>Sessão iniciada</h1><div class="box"><p>Olá, ${esc(S.user.name)}.</p><div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap"><button class="btn btn-p" data-act="go" data-r="home">Ver provas</button></div></div></div>`}
 const optList=(m,v,blank)=>(blank?`<option value=''>${blank}</option>`:'')+Object.entries(m).map(([k,t])=>`<option value='${k}' ${v===k?'selected':''}>${t}</option>`).join('');
 const sportChecks=(name,sel)=>Object.entries(SPORTS).map(([k,v])=>`<label style='font-weight:500;display:flex;gap:8px;align-items:center'><input type='checkbox' name='${name}' value='${k}' ${(sel||[]).includes(k)?'checked':''} style='width:auto;min-height:0'> ${v}</label>`).join('');
-function onboarding(){const u=S.user;return `<div class='wrap page'><h1>Bem-vindo à PACE</h1><div class='box'><p style='margin-bottom:16px;color:var(--muted)'>Completa o teu perfil. O nome, o username e a cidade são obrigatórios; o resto podes mudar depois nas definições.</p>
- <div class='pf' style='margin:0 0 16px'>${av(S.tmpPhoto?{id:u.id,name:u.name,photo:S.tmpPhoto}:u,72)}<div><label class='btn btn-o btn-sm' for='o-ph' style='cursor:pointer'>Escolher foto</label><input id='o-ph' type='file' accept='image/*' class='sr'><p class='note' style='margin-top:6px'>Usamos a foto da tua conta Google se não escolheres outra.</p></div></div>
+function onboarding(){const u=S.user;return `<div class='wrap page'><h1>Bem-vindo à PACE</h1><div class='box'><p style='margin-bottom:16px;color:var(--muted)'>Completa o teu perfil. O nome, o username e a cidade são obrigatórios; o resto podes mudar depois no teu perfil.</p>
+ <div class='pf' style='margin:0 0 16px'>${av(S.tmpPhoto?{id:u.id,name:u.name,photo:S.tmpPhoto}:u,72)}<div><label class='btn btn-o btn-sm' for='o-ph' style='cursor:pointer'>Escolher foto</label><input id='o-ph' type='file' accept='image/*' class='sr'><p class='note' style='margin-top:6px'>Usamos a foto da tua conta se não escolheres outra.</p></div></div>
  <form id='onb' novalidate>
  <div class='row'><label for='o-n'>Nome</label><input id='o-n' autocomplete='name' value='${esc(u.name)}'><span class='err' data-e='n'></span></div>
  <div class='row'><label for='o-un'>Username</label><input id='o-un' autocomplete='username' placeholder='ex.: ana_run'><span class='err' data-e='un'></span></div>
- <div class='two'><div class='row'><label for='o-c'>País</label><select id='o-c' style='width:100%'>${COUNTRIES.map(c=>`<option>${c}</option>`).join('')}</select></div><div class='row'><label for='o-city'>Cidade/zona</label><input id='o-city'><span class='err' data-e='city'></span></div></div>
+ <div class='two'><div class='row'><label for='o-c'>País</label><select id='o-c' style='width:100%'>${COUNTRIES.map(c=>`<option value='${c}'>${c}</option>`).join('')}</select></div><div class='row'><label for='o-city'>Cidade/zona</label><input id='o-city'><span class='err' data-e='city'></span></div></div>
  <div class='row'><label for='o-r'>Prova-alvo</label><select id='o-r' style='width:100%'><option value=''>Ainda não sei</option>${RACES.map(x=>`<option value='${x.id}' ${S.pendingRace===x.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select></div>
- <fieldset class='row' style='border:0;padding:0;margin:0 0 16px'><legend style='font-weight:600;font-size:.93rem;margin-bottom:6px'>Modalidades</legend>${sportChecks('sp',[])}</fieldset>
  <div class='row'><label for='o-g'>Objetivo de tempo</label><select id='o-g' style='width:100%'>${optList(GOALS,'','Sem objetivo')}</select></div>
  <div class='row'><label for='o-gt'>Tempo personalizado (se escolheste Objetivo personalizado, ex.: 5h45)</label><input id='o-gt'></div>
  <div class='row'><label style='font-weight:500;display:flex;gap:8px;align-items:center'><input type='checkbox' id='o-h' style='width:auto;min-height:0'> Ocultar o objetivo no perfil público</label></div>
@@ -331,7 +926,7 @@ async function finishOnb(){
  paint();const k=Object.keys(er)[0];
  if(k){({n:'o-n',un:'o-un',city:'o-city'}[k]&&g({n:'o-n',un:'o-un',city:'o-city'}[k]).focus());return}
  const uid=UID(),rid=g('o-r').value,btn=$('#onb button[type=submit]');btn.disabled=true;
- const data={name:v('o-n').slice(0,60),username:un,city:v('o-city').slice(0,60),country:g('o-c').value,sports:[...document.querySelectorAll('[name=sp]:checked')].map(c=>c.value),goal:g('o-g').value,gt:v('o-gt').slice(0,20),zone:v('o-z').slice(0,80),hid:g('o-h').checked,onboarded:true};
+ const data={name:v('o-n').slice(0,60),username:un,city:v('o-city').slice(0,60),country:g('o-c').value,sports:['bike','run','swim'],goal:g('o-g').value,gt:v('o-gt').slice(0,20),zone:v('o-z').slice(0,80),hid:g('o-h').checked,onboarded:true};
  if(S.tmpPhoto)data.photo=S.tmpPhoto;
  if(rid){data.channels=arrayUnion(rid);data.raceId=rid}
  try{
@@ -354,7 +949,7 @@ function subChat(raceId){
   if(S.route==='canal'&&S.param===raceId&&S.tab==='chat')paintMsgs()
  },e=>{console.warn(e);toast('Não foi possível ler o chat (regras da Realtime Database).')})}
 function syncChat(){if(S.route==='canal'&&S.auth&&S.param&&RACES.some(r=>r.id===S.param))subChat(S.param);else if(chatRace)unsubChat()}
-function dayLabel(ts){const d=new Date(ts),t=new Date(),y=new Date();y.setDate(t.getDate()-1);return d.toDateString()===t.toDateString()?'Hoje':d.toDateString()===y.toDateString()?'Ontem':d.toLocaleDateString('pt-PT',{day:'numeric',month:'long'})}
+function dayLabel(ts){const d=new Date(ts),t=new Date(),y=new Date();y.setDate(t.getDate()-1);return d.toDateString()===t.toDateString()?'Hoje':d.toDateString()===y.toDateString()?'Ontem':d.toLocaleDateString(LOC(),{day:'numeric',month:'long'})}
 const hm=ts=>new Date(ts).toTimeString().slice(0,5);
 function msgsHtml(id){
  const L=CHAT[id]||[];if(!L.length)return `<div class='empty' style='margin-top:16px'>Ainda não há mensagens. Sê o primeiro a escrever.</div>`;
@@ -365,7 +960,7 @@ function msgsHtml(id){
   if(BL.has(m.uid)){if(pa!=='b'+m.uid){h+=`<p class='note blk'>Mensagens de ${esc(a.name)} ocultas (bloqueado).</p>`;pa='b'+m.uid}return}
   if(m.act){const x=A(m.act);if(x){h+=`<p class='sysm'>${ic('bolt')}<span><strong>${esc(a.name)}</strong> criou uma atividade de ${SPORTS[x.sport]}: ${esc(x.title)}.</span><button data-act='sf' data-s='' data-t='atividades'>Ver atividades</button></p>`;pa=null}return}
   const f=pa!==m.uid;pa=m.uid;
-  h+=`<div class='msg${f?'':' cont'}'>${f?`<button class='avb' data-act='atleta' data-id='${esc(a.id)}' aria-label='Perfil de ${esc(a.name)}'>${av(a)}</button>`:`<span class='sp'></span>`}<div class='mb'>${f?`<div class='mh'><button class='an' data-act='atleta' data-id='${esc(a.id)}'>${esc(a.name)}</button>${rb(a.role||'Atleta')}<time>${hm(ts)}</time></div>`:''}<p>${esc(m.text)}</p><div class='ma'><button data-act='copy' data-k='${esc(m.k)}'>Copiar</button>${m.uid!==UID()?`<button data-act='rep' data-uid='${esc(m.uid)}' data-k='${esc(m.k)}'>Denunciar</button>`:''}</div></div></div>`});
+  h+=`<div class='msg${f?'':' cont'}'>${f?`<button class='avb' data-act='atleta' data-id='${esc(a.id)}' aria-label='Perfil de ${esc(a.name)}'>${av(a)}</button>`:`<span class='sp'></span>`}<div class='mb'>${f?`<div class='mh'><button class='an' data-act='atleta' data-id='${esc(a.id)}'>${esc(a.name)}</button>${rb(a.role||'Atleta')}<time>${hm(ts)}</time></div>`:''}<p translate='no'>${esc(m.text)}</p><div class='ma'><button data-act='copy' data-k='${esc(m.k)}'>Copiar</button>${m.uid!==UID()?`<button data-act='rep' data-uid='${esc(m.uid)}' data-k='${esc(m.k)}'>Denunciar</button>`:''}</div></div></div>`});
  return h}
 function paintMsgs(){const el=$('#msgs');if(!el)return;const near=el.scrollHeight-el.scrollTop-el.clientHeight<80;el.innerHTML=msgsHtml(S.param);if(near)el.scrollTop=el.scrollHeight}
 async function sendMsg(){
@@ -375,40 +970,38 @@ async function sendMsg(){
  i.value='';
  try{await push(rref(rdb,'chats/'+S.param+'/messages'),{uid:UID(),name:(S.user.name||'Atleta').slice(0,40),text:x.slice(0,500),ts:rtime()})}
  catch(e){i.value=x;toast('Não foi possível enviar a mensagem.')}}
-function subch(){const L=[['Chat geral','','chat'],['Bike','bike','atividades'],['Run','run','atividades'],['Open-water swim','swim','atividades'],['Atividades','','atividades']];return `<h2 style='margin-top:18px'>Neste canal</h2>`+L.map(([l,k,tb])=>`<button class='chb' data-act='sf' data-s='${k}' data-t='${tb}' ${S.tab===tb&&S.sf===k?"aria-current='page'":''}>${l}</button>`).join('')+`<p class='note'>Bike, Run e Open-water filtram as atividades; o chat é comum a todo o canal.</p>`}
 function canal(){
  const r=RACES.find(x=>x.id===S.param);if(!r){S.route='404';return view()}
  const j=isMember(r.id),t=S.tab,m=Object.values(USERS).filter(u=>(u.channels||[]).includes(r.id)&&u.onboarded).sort((a,b)=>ROLES.indexOf(a.role||'Atleta')-ROLES.indexOf(b.role||'Atleta')||(a.name||'').localeCompare(b.name||''));
  const tb=(k,l,c)=>`<button role='tab' class='${c||''}' data-act='tab' data-t='${k}' aria-selected='${t===k}'>${l}</button>`;
- return `<div class='wrap com-w'><div class='chead'><div class='thumb'>${waves(r.tone)}</div><div class='ci'><div><span class='note'>${CONFIG.name} / ${r.country} / ${esc(r.name)}</span><h1>${esc(r.name)}</h1><span class='meta'>${ic('pin')}${esc(r.city)}, ${r.country} · ${m.length} atletas · ${nAct(r.id)} treinos</span></div><div class='ac'><button class='btn btn-o btn-sm' data-act='atl'>Ver atletas</button><button class='btn btn-o btn-sm' data-act='share'>Partilhar canal</button>${j?`<button class='btn btn-o btn-sm' data-act='leave' data-id='${r.id}'>Sair do canal</button>`:`<button class='btn btn-p btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button>`}</div></div></div><div class='tabs' role='tablist'>${tb('chat','Chat')}${tb('atividades','Atividades')}${tb('membros','Membros','mob')}${tb('detalhes','Detalhes','mob')}</div>${t==='atividades'?`<div class='com' data-t='atividades'><section class='actp'>${acList(r.id)}</section></div>`:`<div class='com' data-t='${t}'><aside class='sb' aria-label='Canais e membros'><h2>Canais</h2>${RACES.map(x=>`<button class='chb' data-act='canal' data-id='${x.id}' ${x.id===r.id?`aria-current='page'`:''}>${esc(x.name)}</button>`).join('')}${subch()}<h2 style='margin-top:18px'>Membros</h2><ul class='ml'>${m.map(a=>`<li><button class='mem' data-act='atleta' data-id='${esc(a.id)}'>${av(a,36)}<span class='mn'>${esc(a.name)}<small>${rb(a.role||'Atleta')}</small></span></button></li>`).join('')||`<li class='note'>Ainda sem membros.</li>`}</ul></aside><section class='ctr'><p class='note dm'>Chat em tempo real: todos os membros com sessão iniciada veem as mensagens. Sê respeitador.</p><div class='msgs' id='msgs' tabindex='0' aria-live='polite'>${msgsHtml(r.id)}</div>${j?`<div class='comp'><textarea id='cin' rows='1' maxlength='500' placeholder='Escreve uma mensagem' aria-label='Mensagem'></textarea><button class='btn btn-g btn-sm' data-act='newact'>Atividade</button><button class='btn btn-p btn-sm' data-act='send'>Enviar</button></div>`:`<div class='comp'><span>Entra no canal para escrever.</span><button class='btn btn-g btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button></div>`}</section><aside class='dt'><h2>Sobre a prova</h2><p class='meta'>${ic('pin')}${esc(r.city)}, ${r.country}</p><p class='meta'>${ic('cal')}${racedate(r)}</p><p class='meta'>${ic('users')}${m.length} atletas · ${nAct(r.id)} treinos</p><p class='note'>Site oficial: não configurado.</p><h3>Próximos treinos</h3>${upc(r.id)}<h3>Cargos</h3><p class='note'>Admin, Moderador e Mentor são atribuídos pela equipa PACE. Todos os outros são Atletas.</p></aside></div>`}</div>`}
+ return `<div class='wrap com-w'><div class='chead'><div class='thumb'>${waves(r.tone)}</div><div class='ci'><div><span class='note'>${CONFIG.name} / ${r.country} / ${esc(r.name)}</span><h1>${esc(r.name)}</h1><span class='meta'>${ic('pin')}${esc(r.city)}, ${r.country} · ${m.length} atletas · ${nAct(r.id)} treinos</span></div><div class='ac'><button class='btn btn-o btn-sm' data-act='atl'>Ver atletas</button><button class='btn btn-o btn-sm' data-act='share'>Partilhar canal</button>${j?`<button class='btn btn-o btn-sm' data-act='leave' data-id='${r.id}'>Sair do canal</button>`:`<button class='btn btn-p btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button>`}</div></div></div><div class='tabs' role='tablist'>${tb('chat','Chat')}${tb('atividades','Atividades')}${tb('membros','Membros','mob')}${tb('detalhes','Detalhes','mob')}</div>${t==='atividades'?`<div class='com' data-t='atividades'><section class='actp'>${acList(r.id)}</section></div>`:`<div class='com' data-t='${t}'><aside class='sb' aria-label='Membros'><h2>Membros</h2><ul class='ml'>${m.map(a=>`<li><button class='mem' data-act='atleta' data-id='${esc(a.id)}'>${av(a,36)}<span class='mn'>${esc(a.name)}<small>${rb(a.role||'Atleta')}</small></span></button></li>`).join('')||`<li class='note'>Ainda sem membros.</li>`}</ul></aside><section class='ctr'><p class='note dm'>Chat em tempo real: todos os membros com sessão iniciada veem as mensagens. Sê respeitador.</p><div class='msgs' id='msgs' tabindex='0' aria-live='polite'>${msgsHtml(r.id)}</div>${j?`<div class='comp'><textarea id='cin' rows='1' maxlength='500' placeholder='Escreve uma mensagem' aria-label='Mensagem'></textarea><button class='btn btn-g btn-sm' data-act='newact'>Atividade</button><button class='btn btn-p btn-sm' data-act='send'>Enviar</button></div>`:`<div class='comp'><span>Entra no canal para escrever.</span><button class='btn btn-g btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button></div>`}</section><aside class='dt'><h2>Sobre a prova</h2><p class='meta'>${ic('pin')}${esc(r.city)}, ${r.country}</p><p class='meta'>${ic('cal')}${racedate(r)}</p><p class='meta'>${ic('users')}${m.length} atletas · ${nAct(r.id)} treinos</p><p class='note'>Site oficial: não configurado.</p><h3>Próximos treinos</h3>${upc(r.id)}<h3>Cargos</h3><p class='note'>Admin, Moderador e Mentor são atribuídos pela equipa PACE. Todos os outros são Atletas.</p></aside></div>`}</div>`}
 function atleta(id){
  const a=ath(id);if(!a){S.route='404';return view()}
- const r=RACES.find(x=>x.id===a.raceId),me=S.user&&a.id===S.user.id,bl=BL.has(a.id),since=a.createdAt&&a.createdAt.toDate?a.createdAt.toDate().toLocaleDateString('pt-PT',{month:'long',year:'numeric'}):'agora';
- return `<div class='wrap page'><button class='btn btn-o btn-sm' data-act='back'>Voltar</button><div class='pf'>${av(a,96)}<div><h1>${esc(a.name)}</h1><p class='meta'>@${esc(a.username)} · ${esc(a.city||'')}${a.country?', '+esc(a.country):''} ${rb(a.role||'Atleta')}</p></div></div><div class='box' style='max-width:720px;margin-top:20px'><p>${esc(a.bio||'Sem biografia.')}</p>${a.zone?`<p class='note'>Zona de treino: ${esc(a.zone)}</p>`:''}<div class='chips'>${(a.sports||[]).map(s=>`<span>${SPORTS[s]}</span>`).join('')||`<span>Modalidades por definir</span>`}</div><dl class='kv'><dt>Prova-alvo</dt><dd>${r?`<button class='an' data-act='canal' data-id='${r.id}'>${esc(r.name)}</button>`:'Por definir'}</dd><dt>Objetivo</dt><dd>${a.hid&&!me?'Oculto pelo atleta':((a.goal&&r?'Objetivo '+esc(r.city)+' · ':'')+(a.goal==='cus'?'Personalizado'+(a.gt?' · '+esc(a.gt):''):GOALS[a.goal]||'Sem objetivo definido'))}</dd><dt>Treinos organizados</dt><dd>${ACT.filter(x=>x.org===a.id&&x.st==='ok').length}</dd><dt>Treinos em que participou</dt><dd>${ACT.filter(x=>x.p.includes(a.id)&&x.st==='ok').length}</dd><dt>Membro desde</dt><dd>${esc(since)}</dd></dl><div class='ac2'>${me?`<button class='btn btn-p btn-sm' data-act='go' data-r='definicoes'>Editar perfil</button><button class='btn btn-o btn-sm' data-act='hg'>${a.hid?'Mostrar objetivo':'Ocultar objetivo'}</button>`:`<button class='btn btn-p btn-sm' data-act='vt' data-id='${esc(a.id)}'>Ver treinos</button><button class='btn btn-o btn-sm' data-act='share'>Partilhar perfil</button><button class='btn btn-o btn-sm' data-act='rep' data-uid='${esc(a.id)}'>Denunciar</button><button class='btn btn-o btn-sm' data-act='blk' data-id='${esc(a.id)}'>${bl?'Desbloquear':'Bloquear'}</button>`}</div></div><p class='note' style='margin-top:12px'>O email e outros dados privados nunca aparecem em perfis públicos.</p></div>`}
+ const r=RACES.find(x=>x.id===a.raceId),me=S.user&&a.id===S.user.id,bl=BL.has(a.id),since=a.createdAt&&a.createdAt.toDate?a.createdAt.toDate().toLocaleDateString(LOC(),{month:'long',year:'numeric'}):'agora';
+ return `<div class='wrap page'><button class='btn btn-o btn-sm' data-act='back'>Voltar</button><div class='pf'>${av(a,96)}<div><h1>${esc(a.name)}</h1><p class='meta'>@${esc(a.username)} · ${esc(a.city||'')}${a.country?', '+esc(a.country):''} ${rb(a.role||'Atleta')}</p></div></div><div class='box' style='max-width:720px;margin-top:20px'>${a.bio?`<p translate='no'>${esc(a.bio)}</p>`:`<p>Sem biografia.</p>`}${a.zone?`<p class='note'>Zona de treino: ${esc(a.zone)}</p>`:''}<div class='chips'><span>Triatlo</span></div><dl class='kv'><dt>Prova-alvo</dt><dd>${r?`<button class='an' data-act='canal' data-id='${r.id}'>${esc(r.name)}</button>`:'Por definir'}</dd><dt>Objetivo</dt><dd>${a.hid&&!me?'Oculto pelo atleta':((a.goal&&r?'Objetivo '+esc(r.city)+' · ':'')+(a.goal==='cus'?'Personalizado'+(a.gt?' · '+esc(a.gt):''):GOALS[a.goal]||'Sem objetivo definido'))}</dd><dt>Treinos organizados</dt><dd>${ACT.filter(x=>x.org===a.id&&x.st==='ok').length}</dd><dt>Treinos em que participou</dt><dd>${ACT.filter(x=>x.p.includes(a.id)&&x.st==='ok').length}</dd><dt>Membro desde</dt><dd>${esc(since)}</dd></dl><div class='ac2'>${me?`<button class='btn btn-p btn-sm' data-act='go' data-r='definicoes'>Editar perfil</button><button class='btn btn-o btn-sm' data-act='hg'>${a.hid?'Mostrar objetivo':'Ocultar objetivo'}</button>`:`<button class='btn btn-p btn-sm' data-act='vt' data-id='${esc(a.id)}'>Ver treinos</button><button class='btn btn-o btn-sm' data-act='share'>Partilhar perfil</button><button class='btn btn-o btn-sm' data-act='rep' data-uid='${esc(a.id)}'>Denunciar</button><button class='btn btn-o btn-sm' data-act='blk' data-id='${esc(a.id)}'>${bl?'Desbloquear':'Bloquear'}</button>`}</div></div><p class='note' style='margin-top:12px'>O email e outros dados privados nunca aparecem em perfis públicos.</p></div>`}
 function minhas(){const l=RACES.filter(r=>isMember(r.id));return `<div class='wrap page'><h1>As minhas provas</h1><p style='color:var(--muted);margin-bottom:24px'>Canais em que és membro.</p>${l.length?`<div class='grid'>${l.map(raceCard).join('')}</div>`:`<div class='empty'><h3>Ainda não entraste em nenhum canal</h3><p>Escolhe uma prova para encontrar atletas.</p><button class='btn btn-p' data-act='go' data-r='home'>Explorar provas</button></div>`}</div>`}
 function defs(){
  const u=S.user;
- return `<div class='wrap page'><h1>Definições</h1><div class='box' style='max-width:620px'>
- <div class='pf' style='margin:0 0 16px'>${av(u,72)}<div><label class='btn btn-o btn-sm' for='s-ph' style='cursor:pointer'>Alterar foto</label><input id='s-ph' type='file' accept='image/*' class='sr'>${u.photo?` <button class='btn btn-o btn-sm' data-act='rmphoto'>Usar foto do Google</button>`:''}</div></div>
+ return `<div class='wrap page'><h1>Editar perfil</h1><div class='box' style='max-width:620px'>
+ <div class='pf' style='margin:0 0 16px'>${av(u,72)}<div><label class='btn btn-o btn-sm' for='s-ph' style='cursor:pointer'>Alterar foto</label><input id='s-ph' type='file' accept='image/*' class='sr'>${u.photo?` <button class='btn btn-o btn-sm' data-act='rmphoto'>Usar a foto da conta</button>`:''}</div></div>
  <p class='note' style='margin-bottom:12px'>Username: <strong>@${esc(u.username)}</strong> (não pode ser alterado)</p>
  <form id='setf' novalidate>
  <div class='row'><label for='s-n'>Nome</label><input id='s-n' value='${esc(u.name)}'><span class='err' data-e='n'></span></div>
- <div class='two'><div class='row'><label for='s-c'>País</label><select id='s-c' style='width:100%'>${COUNTRIES.map(c=>`<option ${u.country===c?'selected':''}>${c}</option>`).join('')}</select></div><div class='row'><label for='s-city'>Cidade/zona</label><input id='s-city' value='${esc(u.city)}'><span class='err' data-e='city'></span></div></div>
+ <div class='two'><div class='row'><label for='s-c'>País</label><select id='s-c' style='width:100%'>${COUNTRIES.map(c=>`<option value='${c}' ${u.country===c?'selected':''}>${c}</option>`).join('')}</select></div><div class='row'><label for='s-city'>Cidade/zona</label><input id='s-city' value='${esc(u.city)}'><span class='err' data-e='city'></span></div></div>
  <div class='row'><label for='s-b'>Biografia</label><textarea id='s-b' maxlength='200'>${esc(u.bio)}</textarea></div>
- <fieldset class='row' style='border:0;padding:0;margin:0 0 16px'><legend style='font-weight:600;font-size:.93rem;margin-bottom:6px'>Modalidades</legend>${sportChecks('ss',u.sports)}</fieldset>
  <div class='row'><label for='s-g'>Objetivo de tempo</label><select id='s-g' style='width:100%'>${optList(GOALS,u.goal,'Sem objetivo')}</select></div>
  <div class='row'><label for='s-gt'>Tempo personalizado (ex.: 5h45)</label><input id='s-gt' value='${esc(u.gt)}'></div>
  <div class='row'><label for='s-z'>Zona de treino</label><input id='s-z' value='${esc(u.zone)}'></div>
  <label class='ck'><input type='checkbox' id='s-h' ${u.hid?'checked':''}> Ocultar o objetivo no perfil público</label>
  <div class='acts' style='display:flex;gap:10px;flex-wrap:wrap;margin-top:18px'><button class='btn btn-p' type='submit'>Guardar</button><button class='btn btn-o' type='button' data-act='logout'>Terminar sessão</button></div></form>
- <p class='note' style='margin-top:16px'>Idioma: português europeu (pt-PT).</p></div></div>`}
+ </div></div>`}
 async function saveSettings(){
  const g=id=>$('#'+id),v=id=>g(id).value.trim(),er={};
  if(v('s-n').length<2)er.n='Indica o teu nome.';if(!v('s-city'))er.city='Indica a tua cidade ou zona.';
  document.querySelectorAll('#setf [data-e]').forEach(s=>s.textContent=er[s.dataset.e]||'');if(Object.keys(er).length)return;
- try{await updateDoc(doc(db,'users',UID()),{name:v('s-n').slice(0,60),country:g('s-c').value,city:v('s-city').slice(0,60),bio:v('s-b').slice(0,200),sports:[...document.querySelectorAll('[name=ss]:checked')].map(c=>c.value),goal:g('s-g').value,gt:v('s-gt').slice(0,20),zone:v('s-z').slice(0,80),hid:g('s-h').checked});toast('Perfil guardado')}catch(e){subErr(e)}}
+ try{await updateDoc(doc(db,'users',UID()),{name:v('s-n').slice(0,60),country:g('s-c').value,city:v('s-city').slice(0,60),bio:v('s-b').slice(0,200),goal:g('s-g').value,gt:v('s-gt').slice(0,20),zone:v('s-z').slice(0,80),hid:g('s-h').checked});toast('Perfil guardado')}catch(e){subErr(e)}}
 /* ============ ATIVIDADES ============ */
-const A=id=>ACT.find(x=>x.id===id),full=a=>a.max>0&&a.p.length>=a.max,fmt=a=>new Date(a.date+'T12:00').toLocaleDateString('pt-PT',{weekday:'short',day:'numeric',month:'short'})+' · '+a.tm,perf=a=>a.sport==='bike'?(a.spd?a.spd+' km/h':''):a.sport==='run'?(a.pace?a.pace+' min/km':''):(a.dur?a.dur+' min':''),vag=a=>a.max?`${a.p.length}/${a.max} confirmados · ${full(a)?'Lotado':(a.max-a.p.length)+' vagas'}`:`${a.p.length} confirmados · Sem limite`;
+const A=id=>ACT.find(x=>x.id===id),full=a=>a.max>0&&a.p.length>=a.max,fmt=a=>new Date(a.date+'T12:00').toLocaleDateString(LOC(),{weekday:'short',day:'numeric',month:'short'})+' · '+a.tm,perf=a=>a.sport==='bike'?(a.spd?a.spd+' km/h':''):a.sport==='run'?(a.pace?a.pace+' min/km':''):(a.dur?a.dur+' min':''),vag=a=>a.max?`${a.p.length}/${a.max} confirmados · ${full(a)?'Lotado':(a.max-a.p.length)+' vagas'}`:`${a.p.length} confirmados · Sem limite`;
 const byDate=(a,b)=>(a.date+a.tm).localeCompare(b.date+b.tm);
 async function notifyUsers(uids,x){[...new Set(uids)].filter(Boolean).forEach(u=>addDoc(collection(db,'users',u,'notifs'),{x,r:false,ts:serverTimestamp()}).catch(()=>{}))}
 const unread=()=>NT.filter(n=>!n.r).length;
@@ -430,19 +1023,19 @@ async function jact(id){
  }catch(e){toast(typeof e==='string'?e:errMsg(e))}}
 async function lact(id){try{await updateDoc(doc(db,'activities',id),{p:arrayRemove(UID())});toast('Desististe da atividade')}catch(e){subErr(e)}}
 async function cact(id){const a=A(id);if(!a||a.org!==UID())return;try{await updateDoc(doc(db,'activities',id),{st:'canc'});notifyUsers(a.p,'A atividade "'+a.title+'" foi cancelada.');toast('Atividade cancelada')}catch(e){subErr(e)}}
-function actCard(id){const a=A(id);if(!a)return '';const o=ath(a.org),me=S.user&&a.p.includes(UID());return `<div class='acard${a.st==='canc'?' canc':''}'><div class='ah'><span class='tg'>${SPORTS[a.sport]}</span><span class='note'>${a.st==='canc'?'Cancelada':''}</span></div><strong>${esc(a.title)}</strong><div class='meta'>${ic('cal')}${fmt(a)}</div><div class='meta'>${ic('pin')}${esc(a.place)}</div><div class='meta'>${a.dist} km${perf(a)?' · '+perf(a):''} · ${a.diff}</div><div class='meta'>${ic('users')}${vag(a)}</div><div class='meta'>${o?av(o,22)+' '+esc(o.name):''}</div><div class='ab'>${a.st==='canc'?'':me?`<button class='btn btn-g btn-sm' disabled>Vou participar</button><button class='btn btn-o btn-sm' data-act='lact' data-id='${id}'>Desistir</button>`:full(a)?`<button class='btn btn-o btn-sm' disabled>Lotado</button>`:`<button class='btn btn-p btn-sm' data-act='jact' data-id='${id}'>Participar</button>`}<button class='btn btn-o btn-sm' data-act='det' data-id='${id}'>Ver detalhes</button><button class='btn btn-o btn-sm' data-act='fav' data-k='a:${id}'>${FAV.has('a:'+id)?'Guardada':'Guardar'}</button></div></div>`}
+function actCard(id){const a=A(id);if(!a)return '';const o=ath(a.org),me=S.user&&a.p.includes(UID());return `<div class='acard${a.st==='canc'?' canc':''}'><div class='ah'><span class='tg'>${SPORTS[a.sport]}</span><span class='note'>${a.st==='canc'?'Cancelada':''}</span></div><strong translate='no'>${esc(a.title)}</strong><div class='meta'>${ic('cal')}${fmt(a)}</div><div class='meta'>${ic('pin')}<span translate='no'>${esc(a.place)}</span></div><div class='meta'>${a.dist} km${perf(a)?' · '+perf(a):''} · ${a.diff}</div><div class='meta'>${ic('users')}${vag(a)}</div><div class='meta'>${o?av(o,22)+' '+esc(o.name):''}</div><div class='ab'>${a.st==='canc'?'':me?`<button class='btn btn-g btn-sm' disabled>Vou participar</button><button class='btn btn-o btn-sm' data-act='lact' data-id='${id}'>Desistir</button>`:full(a)?`<button class='btn btn-o btn-sm' disabled>Lotado</button>`:`<button class='btn btn-p btn-sm' data-act='jact' data-id='${id}'>Participar</button>`}<button class='btn btn-o btn-sm' data-act='det' data-id='${id}'>Ver detalhes</button><button class='btn btn-o btn-sm' data-act='fav' data-k='a:${id}'>${FAV.has('a:'+id)?'Guardada':'Guardar'}</button></div></div>`}
 function xtra(a){const l=[a.elev?'Ganho de elevação: '+a.elev+' m':'',a.tipo?'Tipo: '+a.tipo:'',a.mat?'Material: '+a.mat:'',a.pr?'Parte da preparação para a prova':'',a.nota?'Notas: '+a.nota:''].filter(Boolean);return l.length?`<p class='note'>${l.map(esc).join(' · ')}</p>`:''}
 function showDet(id){
  const a=A(id);if(!a)return;const o=ath(a.org),me=S.user&&a.p.includes(UID());
- modal(`<span class='tg'>${SPORTS[a.sport]}</span><h2 style='margin-top:8px'>${esc(a.title)}</h2>${a.st==='canc'?`<p class='err'>Atividade cancelada.</p>`:''}<div class='meta'>${ic('cal')}${fmt(a)}</div><div class='meta'>${ic('pin')}${esc(a.place)}${a.addr?' · '+esc(a.addr):''}</div><p style='margin-top:10px'>${esc(a.desc)}</p><div class='meta' style='margin-top:8px'>${a.dist} km${perf(a)?' · '+perf(a):''} · ${a.diff}${a.beg?' · Indicado para iniciantes':''}</div>${xtra(a)}<p class='note' style='margin:8px 0'>Organizador: <button class='an' data-act='atleta' data-id='${a.org}'>${o?esc(o.name):''}</button></p><p><strong>${vag(a)}</strong></p><div class='chips'>${a.p.map(x=>{const q=ath(x);return q?`<button class='an' data-act='atleta' data-id='${x}'>${esc(q.name)}</button>`:''}).join('')}</div><div class='alert'>${SAFE[a.sport]} Usa sempre pontos de encontro públicos, nunca moradas privadas.</div><div class='acts'>${a.st!=='ok'?'':me?`<button class='btn btn-o' data-act='lact' data-id='${id}'>Desistir</button>`:full(a)?`<button class='btn btn-o' disabled>Lotado</button>`:`<button class='btn btn-p' data-act='jact' data-id='${id}'>Participar</button>`}<button class='btn btn-o' data-act='share'>Copiar link</button><button class='btn btn-o' data-act='ics' data-id='${id}'>Adicionar ao calendário</button>${a.org===UID()&&a.st==='ok'?`<button class='btn btn-o' data-act='eact' data-id='${id}'>Editar</button><button class='btn btn-o' data-act='cact' data-id='${id}'>Cancelar atividade</button>`:''}<button class='btn btn-o' data-act='close'>Fechar</button></div>`,'det');
+ modal(`<span class='tg'>${SPORTS[a.sport]}</span><h2 style='margin-top:8px' translate='no'>${esc(a.title)}</h2>${a.st==='canc'?`<p class='err'>Atividade cancelada.</p>`:''}<div class='meta'>${ic('cal')}${fmt(a)}</div><div class='meta'>${ic('pin')}<span translate='no'>${esc(a.place)}${a.addr?' · '+esc(a.addr):''}</span></div><p style='margin-top:10px' translate='no'>${esc(a.desc)}</p><div class='meta' style='margin-top:8px'>${a.dist} km${perf(a)?' · '+perf(a):''} · ${a.diff}${a.beg?' · Indicado para iniciantes':''}</div>${xtra(a)}<p class='note' style='margin:8px 0'>Organizador: <button class='an' data-act='atleta' data-id='${a.org}'>${o?esc(o.name):''}</button></p><p><strong>${vag(a)}</strong></p><div class='chips'>${a.p.map(x=>{const q=ath(x);return q?`<button class='an' data-act='atleta' data-id='${x}'>${esc(q.name)}</button>`:''}).join('')}</div><div class='alert'>${SAFE[a.sport]} Usa sempre pontos de encontro públicos, nunca moradas privadas.</div><div class='acts'>${a.st!=='ok'?'':me?`<button class='btn btn-o' data-act='lact' data-id='${id}'>Desistir</button>`:full(a)?`<button class='btn btn-o' disabled>Lotado</button>`:`<button class='btn btn-p' data-act='jact' data-id='${id}'>Participar</button>`}<button class='btn btn-o' data-act='share'>Copiar link</button><button class='btn btn-o' data-act='ics' data-id='${id}'>Adicionar ao calendário</button>${a.org===UID()&&a.st==='ok'?`<button class='btn btn-o' data-act='eact' data-id='${id}'>Editar</button><button class='btn btn-o' data-act='cact' data-id='${id}'>Cancelar atividade</button>`:''}<button class='btn btn-o' data-act='close'>Fechar</button></div>`,'det');
  S.det=id}
 const RW=(id,l,x='',t='text')=>`<div class='row'><label for='a-${id}'>${l}</label><input id='a-${id}' type='${t}' ${x}><span class='err' data-e='${id}'></span></div>`;
 function sf(sp){return sp==='bike'?`<div class='row'><label for='a-v'>Velocidade média (km/h, opcional)</label><input id='a-v' inputmode='decimal'><span class='err' data-e='v'></span></div>`:sp==='run'?`<div class='row'><label for='a-p'>Ritmo (min/km, ex.: 5:30, opcional)</label><input id='a-p'><span class='err' data-e='p'></span></div>`:`<div class='row'><label for='a-d'>Duração (minutos, opcional)</label><input id='a-d' inputmode='numeric'><span class='err' data-e='d'></span></div>`}
 function restore(){Object.entries(S.draft).forEach(([k,v])=>{const e=$('#'+k);if(e)e.type==='checkbox'?e.checked=v:e.value=v})}
 function draftOf(a){return{'a-s':a.sport,'a-t':a.title,'a-dt':a.date,'a-tm':a.tm,'a-pl':a.place,'a-ad':a.addr||'','a-k':a.dist,'a-v':a.spd||'','a-p':a.pace||'','a-d':a.dur||'','a-ds':a.desc,'a-m':a.max||'','a-u':!a.max,'a-df':a.diff,'a-b':a.beg,'a-el':a.elev||'','a-ty':a.tipo||'','a-ma':a.mat||'','a-no':a.nota||'','a-pr':!!a.pr}}
-function actForm(ed){if(ed){S.draft=draftOf(A(ed))}else if(S.edit)S.draft={};S.edit=ed||null;const sp=S.draft['a-s']||'bike';modal(`<h2>${S.edit?'Editar':'Nova'} atividade</h2><p class='note' style='margin-bottom:12px'>O rascunho é guardado se cancelares.</p><form id='af' novalidate><div class='row'><label for='a-s'>Modalidade</label><select id='a-s' style='width:100%'>${Object.entries(SPORTS).map(([k,v])=>`<option value='${k}'>${v}</option>`).join('')}</select></div>${RW('t','Título')}<div class='two'>${RW('dt','Data','','date')}${RW('tm','Hora de encontro','','time')}</div>${RW('pl','Local de encontro (público)')}${RW('ad','Morada do ponto de encontro (opcional)')}${RW('k','Distância (km)','inputmode=decimal')}<div id='sfw'>${sf(sp)}</div><div class='row'><label for='a-ds'>Descrição</label><textarea id='a-ds'></textarea><span class='err' data-e='ds'></span></div>${RW('m','Limite de participantes','inputmode=numeric')}<label class='ck'><input type='checkbox' id='a-u'> Sem limite</label><div class='row' style='margin-top:12px'><label for='a-df'>Dificuldade</label><select id='a-df' style='width:100%'><option>Fácil</option><option selected>Moderado</option><option>Difícil</option></select></div><div class='two'>${RW('el','Ganho de elevação (m, opcional)','inputmode=numeric')}<div class='row'><label for='a-ty'>Tipo de treino (opcional)</label><select id='a-ty' style='width:100%'><option value=''>—</option><option>Ritmo constante</option><option>Intervalos</option><option>Longo</option><option>Técnica</option><option>Recuperação</option></select></div></div>${RW('ma','Material necessário (opcional)')}${RW('no','Notas adicionais (opcional)')}<label class='ck'><input type='checkbox' id='a-pr'> Faz parte da preparação para esta prova</label><label class='ck'><input type='checkbox' id='a-b'> Indicado para iniciantes</label><div class='acts'><button class='btn btn-p' type='submit'>${S.edit?'Guardar':'Publicar'}</button><button class='btn btn-o' type='button' data-act='close'>Cancelar</button></div></form>`);restore();$('#a-t').focus()}
+function actForm(ed){if(ed){S.draft=draftOf(A(ed))}else if(S.edit)S.draft={};S.edit=ed||null;const sp=S.draft['a-s']||'bike';modal(`<h2>${S.edit?'Editar':'Nova'} atividade</h2><p class='note' style='margin-bottom:12px'>O rascunho é guardado se cancelares.</p><form id='af' novalidate><div class='row'><label for='a-s'>Modalidade</label><select id='a-s' style='width:100%'>${Object.entries(SPORTS).map(([k,v])=>`<option value='${k}'>${v}</option>`).join('')}</select></div>${RW('t','Título')}<div class='two'>${RW('dt','Data','','date')}${RW('tm','Hora de encontro','','time')}</div>${RW('pl','Local de encontro (público)')}${RW('ad','Morada do ponto de encontro (opcional)')}${RW('k','Distância (km)','inputmode=decimal')}<div id='sfw'>${sf(sp)}</div><div class='row'><label for='a-ds'>Descrição</label><textarea id='a-ds'></textarea><span class='err' data-e='ds'></span></div>${RW('m','Limite de participantes','inputmode=numeric')}<label class='ck'><input type='checkbox' id='a-u'> Sem limite</label><div class='row' style='margin-top:12px'><label for='a-df'>Dificuldade</label><select id='a-df' style='width:100%'><option value='Fácil'>Fácil</option><option value='Moderado' selected>Moderado</option><option value='Difícil'>Difícil</option></select></div><div class='two'>${RW('el','Ganho de elevação (m, opcional)','inputmode=numeric')}<div class='row'><label for='a-ty'>Tipo de treino (opcional)</label><select id='a-ty' style='width:100%'><option value=''>—</option><option value='Ritmo constante'>Ritmo constante</option><option value='Intervalos'>Intervalos</option><option value='Longo'>Longo</option><option value='Técnica'>Técnica</option><option value='Recuperação'>Recuperação</option></select></div></div>${RW('ma','Material necessário (opcional)')}${RW('no','Notas adicionais (opcional)')}<label class='ck'><input type='checkbox' id='a-pr'> Faz parte da preparação para esta prova</label><label class='ck'><input type='checkbox' id='a-b'> Indicado para iniciantes</label><div class='acts'><button class='btn btn-p' type='submit'>${S.edit?'Guardar':'Publicar'}</button><button class='btn btn-o' type='button' data-act='close'>Cancelar</button></div></form>`);restore();$('#a-t').focus()}
 async function pubAct(){
- const g=id=>$('#'+id),v=id=>g(id)?g(id).value.trim():'',er={},sp=v('a-s'),today=new Date().toISOString().slice(0,10),un=g('a-u').checked,mx=parseInt(v('a-m'),10);
+ const g=id=>$('#'+id),v=id=>g(id)?g(id).value.trim():'',er={},sp=v('a-s'),today=(n=>n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0'))(new Date()),un=g('a-u').checked,mx=parseInt(v('a-m'),10);
  if(v('a-t').length<3)er.t='Indica um título.';if(!v('a-dt')||v('a-dt')<today)er.dt='Escolhe uma data a partir de hoje.';if(!v('a-tm'))er.tm='Indica a hora.';if(!v('a-pl'))er.pl='Indica o local de encontro.';if(!(parseFloat(v('a-k'))>0))er.k='Indica a distância em km.';if(v('a-ds').length<10)er.ds='Descreve o treino (mínimo 10 caracteres).';
  if(!un&&!(mx>=2))er.m='Indica o limite (mínimo 2) ou escolhe Sem limite.';else if(!un&&S.edit&&mx<A(S.edit).p.length)er.m='Já há '+A(S.edit).p.length+' inscritos.';
  if(sp==='bike'&&v('a-v')&&!(parseFloat(v('a-v'))>0))er.v='Valor inválido.';if(sp==='run'&&v('a-p')&&!/^\d{1,2}:[0-5]\d$/.test(v('a-p')))er.p='Usa o formato 5:30.';if(sp==='swim'&&v('a-d')&&!(parseInt(v('a-d'),10)>0))er.d='Valor inválido.';
@@ -460,25 +1053,17 @@ async function pubAct(){
  }catch(e){btn.disabled=false;subErr(e)}}
 function acList(id){const r=RACES.find(x=>x.id===id),f=S.af;return `<div class='ah2'><div><h2>Atividades · ${esc(r.name)}</h2><p class='note'>Escolhe um treino e participa.</p></div><button class='btn btn-g' data-act='newact'>${ic('bolt')} Nova atividade</button></div><div class='fl'>${[['','Todas'],...Object.entries(SPORTS)].map(([k,v])=>`<button class='chip' data-act='sf' data-s='${k}' data-t='atividades' aria-pressed='${S.sf===k}'>${v}</button>`).join('')}<label class='ck'><input type='checkbox' id='p-v' ${f.vag?'checked':''}> Com vagas</label><label class='ck'><input type='checkbox' id='p-b' ${f.beg?'checked':''}> Para iniciantes</label></div><div id='pl'>${plist(id)}</div>`}
 const SPT={bike:'#DCEFF5',run:'#FBEBCF',swim:'#D6EFE4'};
-function actTile(id){const a=A(id),o=ath(a.org),me=S.user&&a.p.includes(UID()),d=new Date(a.date+'T12:00'),pct=a.max?Math.min(100,Math.round(a.p.length/a.max*100)):0,fv=FAV.has('a:'+id);return `<article class='card tile'><div class='tdate' style='background:${SPT[a.sport]}'><div class='dn'><b>${d.getDate()}</b><span>${d.toLocaleDateString('pt-PT',{month:'short'}).replace('.','')}</span></div><div class='tw'><span class='tg'>${SPORTS[a.sport]}</span><span>${d.toLocaleDateString('pt-PT',{weekday:'long'})} · ${a.tm}</span></div><button class='fv' data-act='fav' data-k='a:${id}' aria-pressed='${fv}' aria-label='${fv?'Remover dos favoritos':'Guardar nos favoritos'}'>${fv?'★':'☆'}</button></div><div class='body'><h3>${esc(a.title)}</h3><div class='meta'>${ic('pin')}${esc(a.place)}</div><div class='meta'>${a.dist} km${perf(a)?' · '+perf(a):''} · ${a.diff}${a.beg?' · Iniciantes':''}</div><p class='tdesc'>${esc(a.desc)}</p><div><div class='meta'>${ic('users')}${vag(a)}</div>${a.max?`<div class='pg' aria-hidden='true'><span style='width:${pct}%'></span></div>`:''}</div><div class='meta'>${o?av(o,22)+' '+esc(o.name):''}</div><div class='ab'>${me?`<button class='btn btn-g btn-sm' disabled>Vou participar</button><button class='btn btn-o btn-sm' data-act='lact' data-id='${id}'>Desistir</button>`:full(a)?`<button class='btn btn-o btn-sm' disabled>Lotado</button>`:`<button class='btn btn-p btn-sm' data-act='jact' data-id='${id}'>Participar</button>`}<button class='btn btn-o btn-sm' data-act='det' data-id='${id}'>Ver detalhes</button></div></div></article>`}
+function actTile(id){const a=A(id),o=ath(a.org),me=S.user&&a.p.includes(UID()),d=new Date(a.date+'T12:00'),pct=a.max?Math.min(100,Math.round(a.p.length/a.max*100)):0,fv=FAV.has('a:'+id);return `<article class='card tile'><div class='tdate' style='background:${SPT[a.sport]}'><div class='dn'><b>${d.getDate()}</b><span>${d.toLocaleDateString(LOC(),{month:'short'}).replace('.','')}</span></div><div class='tw'><span class='tg'>${SPORTS[a.sport]}</span><span>${d.toLocaleDateString(LOC(),{weekday:'long'})} · ${a.tm}</span></div><button class='fv' data-act='fav' data-k='a:${id}' aria-pressed='${fv}' aria-label='${fv?'Remover dos favoritos':'Guardar nos favoritos'}'>${fv?'★':'☆'}</button></div><div class='body'><h3 translate='no'>${esc(a.title)}</h3><div class='meta'>${ic('pin')}<span translate='no'>${esc(a.place)}</span></div><div class='meta'>${a.dist} km${perf(a)?' · '+perf(a):''} · ${a.diff}${a.beg?' · Iniciantes':''}</div><p class='tdesc' translate='no'>${esc(a.desc)}</p><div><div class='meta'>${ic('users')}${vag(a)}</div>${a.max?`<div class='pg' aria-hidden='true'><span style='width:${pct}%'></span></div>`:''}</div><div class='meta'>${o?av(o,22)+' '+esc(o.name):''}</div><div class='ab'>${me?`<button class='btn btn-g btn-sm' disabled>Vou participar</button><button class='btn btn-o btn-sm' data-act='lact' data-id='${id}'>Desistir</button>`:full(a)?`<button class='btn btn-o btn-sm' disabled>Lotado</button>`:`<button class='btn btn-p btn-sm' data-act='jact' data-id='${id}'>Participar</button>`}<button class='btn btn-o btn-sm' data-act='det' data-id='${id}'>Ver detalhes</button></div></div></article>`}
 function plist(id){const f=S.af,l=ACT.filter(a=>a.race===id&&a.st==='ok'&&!isPast(a)&&(!S.sf||a.sport===S.sf)&&(!f.vag||!full(a))&&(!f.beg||a.beg)).sort(byDate);return `<p class='note' style='margin-bottom:14px'>${l.length} ${l.length===1?'atividade':'atividades'}, por ordem de data</p>`+(l.length?`<div class='grid'>${l.map(a=>actTile(a.id)).join('')}</div>`:`<div class='empty'><h3>Nenhuma atividade encontrada</h3><p>Altera os filtros ou propõe um treino.</p><button class='btn btn-g' data-act='newact'>Nova atividade</button></div>`)}
 function upc(id){const l=ACT.filter(a=>a.race===id&&a.st==='ok'&&!isPast(a)).sort(byDate).slice(0,3);return l.length?l.map(a=>`<button class='an' data-act='det' data-id='${a.id}'>${esc(a.title)}</button><p class='note'>${fmt(a)}</p>`).join(''):`<p class='note'>Sem treinos marcados.</p>`}
 /* ============ EXPLORAR, CALENDÁRIO, FAVORITOS, AVISOS ============ */
 const EM=(t,p,b,r)=>`<div class='empty'><h3>${t}</h3><p>${p}</p><button class='btn btn-p' data-act='go' data-r='${r}'>${b}</button></div>`;
-function compat(a){const u=S.user;if(!u)return 0;const o=ath(a.org);return((u.sports||[]).includes(a.sport)?2:0)+(u.goal&&o&&o.goal===u.goal?2:0)+(isMember(a.race)?1:0)}
+function compat(a){const u=S.user;if(!u)return 0;const o=ath(a.org);return 2+(u.goal&&o&&o.goal===u.goal?2:0)+(isMember(a.race)?1:0)}
 function xlist(){const l=ACT.filter(a=>{const rc=RACES.find(r=>r.id===a.race),o=ath(a.org);return a.st==='ok'&&!isPast(a)&&(!F.sp||a.sport===F.sp)&&(!F.beg||a.beg)&&(!F.vag||!full(a))&&(!F.n||a.diff===F.n)&&(!F.km||a.dist<=parseFloat(F.km))&&(!F.c||(rc&&rc.city===F.c))&&(!F.d||a.date>=F.d)&&(!F.g||(o&&o.goal===F.g))&&(!F.org||a.org===F.org||a.p.includes(F.org))&&(!F.q||(a.title+' '+a.place).toLowerCase().includes(F.q.toLowerCase()))});l.sort(F.o==='v'?(a,b)=>(b.max?b.max-b.p.length:99)-(a.max?a.max-a.p.length:99):F.o==='c'?(a,b)=>compat(b)-compat(a):byDate);return l.length?`<div class='grid'>${l.map(a=>actTile(a.id)).join('')}</div>`:EM('Nenhum treino encontrado','Altera os filtros ou cria um treino num canal.','Ir para os meus canais','minhas')}
 function explorar(){const sel=(id,l,o,v)=>`<select id='${id}' aria-label='${l}'><option value=''>${l}</option>${o.map(([k,t])=>`<option value='${k}' ${v===k?'selected':''}>${t}</option>`).join('')}</select>`;return `<div class='wrap page'><h1>Explorar treinos</h1><p style='color:var(--muted);margin-bottom:24px'>Treinos de todos os canais. A compatibilidade usa regras simples: modalidade, objetivo e canais em que estás.</p>${F.org?`<p class='note' style='margin-bottom:12px'>Treinos de ${esc((ath(F.org)||{}).name||'')} <button class='an' data-act='nox'>Limpar</button></p>`:''}<div class='tools'><div class='field'>${ic('search')}<input id='x-q' type='search' placeholder='Pesquisar treinos' aria-label='Pesquisar treinos' value='${esc(F.q)}'></div>${sel('x-s','Todas as modalidades',Object.entries(SPORTS),F.sp)}${sel('x-n','Qualquer nível',['Fácil','Moderado','Difícil'].map(x=>[x,x]),F.n)}${sel('x-c','Qualquer cidade',[...new Set(RACES.map(r=>r.city))].map(x=>[x,x]),F.c)}${sel('x-g','Qualquer objetivo',Object.entries(GOALS),F.g)}<input id='x-km' type='number' min='1' placeholder='Distância máx. (km)' aria-label='Distância máxima em km' value='${esc(F.km)}'><input id='x-d' type='date' aria-label='A partir de' value='${esc(F.d)}'><select id='x-o' aria-label='Ordenar'><option value='d'>Data mais próxima</option><option value='v' ${F.o==='v'?'selected':''}>Mais vagas</option><option value='c' ${F.o==='c'?'selected':''}>Maior compatibilidade</option></select><label class='ck'><input type='checkbox' id='x-b' ${F.beg?'checked':''}> Para iniciantes</label><label class='ck'><input type='checkbox' id='x-v' ${F.vag?'checked':''}> Com vagas</label></div><div id='xl'>${xlist()}</div></div>`}
-function cal(){const l=ACT.filter(a=>a.st==='ok'&&!isPast(a)).sort(byDate);let h='',pd='';l.forEach(a=>{if(a.date!==pd){pd=a.date;h+=`<h2 style='margin:20px 0 8px'>${new Date(a.date+'T12:00').toLocaleDateString('pt-PT',{weekday:'long',day:'numeric',month:'long'})}</h2>`}h+=`<div style='max-width:520px;margin-bottom:10px'>${actCard(a.id)}</div>`});return `<div class='wrap page'><h1>Calendário</h1><p style='color:var(--muted)'>Próximos treinos, por data.</p>${h||EM('Sem treinos marcados','Cria o primeiro treino num canal.','Ir para os meus canais','minhas')}</div>`}
+function cal(){const l=ACT.filter(a=>a.st==='ok'&&!isPast(a)).sort(byDate);let h='',pd='';l.forEach(a=>{if(a.date!==pd){pd=a.date;h+=`<h2 style='margin:20px 0 8px'>${new Date(a.date+'T12:00').toLocaleDateString(LOC(),{weekday:'long',day:'numeric',month:'long'})}</h2>`}h+=`<div style='max-width:520px;margin-bottom:10px'>${actCard(a.id)}</div>`});return `<div class='wrap page'><h1>Calendário</h1><p style='color:var(--muted)'>Próximos treinos, por data.</p>${h||EM('Sem treinos marcados','Cria o primeiro treino num canal.','Ir para os meus canais','minhas')}</div>`}
 function favs(){const r=RACES.filter(x=>FAV.has('r:'+x.id)),a=ACT.filter(x=>FAV.has('a:'+x.id));return `<div class='wrap page'><h1>Favoritos</h1>${r.length||a.length?(r.length?`<h2 style='margin:16px 0'>Provas</h2><div class='grid'>${r.map(raceCard).join('')}</div>`:'')+(a.length?`<h2 style='margin:16px 0'>Atividades</h2><div class='grid'>${a.map(x=>actCard(x.id)).join('')}</div>`:''):EM('Ainda sem favoritos','Guarda provas e treinos para os encontrares aqui.','Explorar provas','home')}</div>`}
 function notif(){return `<div class='wrap page'><h1>Notificações</h1><p style='color:var(--muted);margin-bottom:16px'>Avisos sobre os teus treinos e inscrições.</p>${NT.length?`<ul style='list-style:none;padding:0;display:grid;gap:8px;max-width:640px'>${NT.map(n=>`<li class='box' style='padding:12px 16px;${n.r?'':'border-left:4px solid var(--green)'}'>${n.r?'':'<span class="badge">Nova</span> '}${esc(n.x)}</li>`).join('')}</ul><button class='btn btn-o' style='margin-top:16px' data-act='nt'>Marcar tudo como lido</button>`:EM('Sem notificações','Quando alguém aderir ou alterar um treino, aparece aqui.','Explorar treinos','treinos')}</div>`}
-function recup(){return `<div class='wrap page'><h1>Recuperação</h1><p style='color:var(--muted);max-width:620px;margin-bottom:24px'>Espaço para recuperar entre treinos. Ainda não há conselhos médicos: os conteúdos serão preparados com profissionais antes de existirem.</p><div class='grid'>${REC.map((r,i)=>`<article class='card'><div class='thumb' style='height:110px'>${waves(TN[i%3])}<span class='tag'>Em breve</span></div><div class='body'><h3>${r[0]}</h3><p class='meta'>${r[1]}</p></div></article>`).join('')}</div></div>`}
-const TN=[['#2E86A8','#9BD6C0'],['#D9A35B','#75C99A'],['#3A7D44','#CFE9DA']];
-const REC=[['Sono e descanso','Rotinas de descanso entre treinos.'],['Mobilidade','Alongamento e amplitude de movimento.'],['Recuperação muscular','Estratégias para depois do esforço.'],['Fisioterapia','Orientação de profissionais, quando existir.'],['Nutrição e hidratação','Alimentação e líquidos para treinar.'],['Prevenção de lesões','Hábitos para treinar com segurança.']];
-const PROS=[['p1','Bike fit (demo) — Lisboa','Lisboa','Portugal','Estudo de posição: selim, guiador e pedais.',['Estudo de posição','Bike fit para triatlo']],['p2','Bike fit (demo) — Cascais','Cascais','Portugal','Ajuste para triatlo e contrarrelógio.',['Posição aero','Cleats e calços']],['p3','Bike fit (demo) — Málaga','Málaga','Espanha','Avaliação de posição em bicicleta de estrada.',['Bike fit estrada','Estudo de posição']]].map(([id,name,city,country,desc,services])=>({id,name,city,country,desc,services}));
-let BS='';
-function bflist(q){const l=PROS.filter(b=>(!q||(b.city+' '+b.country).toLowerCase().includes(q.toLowerCase()))&&(!BS||b.services.includes(BS)));return l.length?`<div class='grid'>${l.map((b,i)=>`<article class='card'><div class='thumb' style='height:110px'>${waves(TN[i%3])}<span class='tag'>Dados demonstrativos</span></div><div class='body'><h3>${esc(b.name)}</h3><div class='meta'>${ic('pin')}${esc(b.city)}, ${esc(b.country)}</div><p>${esc(b.desc)}</p><p class='note'>Contacto, preços e parceria: por confirmar.</p><button class='btn btn-o btn-sm' data-act='pro' data-id='${b.id}'>Ver detalhes</button></div></article>`).join('')}</div>`:EM('Sem resultados','Tenta outra cidade, país ou serviço.','Ver todos','bikefit')}
-function proDet(id){const b=PROS.find(x=>x.id===id);modal(`<span class='badge'>Dados demonstrativos</span><h2 style='margin-top:8px'>${esc(b.name)}</h2><div class='meta'>${ic('pin')}${esc(b.city)}, ${esc(b.country)}</div><p style='margin-top:8px'>${esc(b.desc)}</p><div class='chips'>${b.services.map(x=>`<span>${esc(x)}</span>`).join('')}</div><p class='note' style='margin:10px 0'>Contacto, preços, avaliações e estado de parceiro: por confirmar. Não existe nenhuma parceria real.</p><div class='acts'><button class='btn btn-o' data-act='close'>Fechar</button></div>`)}
-function bikefit(){BS='';return `<div class='wrap page'><h1>Bike fit</h1><div class='thumb' style='height:130px;border-radius:14px;overflow:hidden;margin:16px 0'>${waves(['#3A7D44','#CFE9DA'])}</div><p style='color:var(--muted);max-width:620px;margin-bottom:24px'>O bike fit ajusta a posição na bicicleta (selim, guiador, pedais) ao teu corpo e objetivo, para treinares com mais conforto. O diretório só tem entradas demonstrativas, sem parceiros nem avaliações.</p><div class='tools'><div class='field'>${ic('search')}<input id='bf-q' type='search' placeholder='Cidade ou país' aria-label='Pesquisar por cidade'></div><select id='bf-s' aria-label='Serviço'><option value=''>Todos os serviços</option>${[...new Set(PROS.flatMap(p=>p.services))].map(x=>`<option>${x}</option>`).join('')}</select></div><div id='bfl'>${bflist('')}</div></div>`}
 /* ============ ROTEAMENTO / RENDER ============ */
 function view(){
  if(!S.ready)return `<div class="wrap page"><div class="skel"></div></div>`;
@@ -489,10 +1074,8 @@ function view(){
   case"registo":return register();
   case'canal':return canal();case'atleta':return atleta(S.param);case'perfil':return atleta('me');case'minhas':return minhas();
   case'treinos':return explorar();
-  case'recuperacao':return recup();
-  case'bikefit':return bikefit();
   case"definicoes":return defs();case"calendario":return cal();case"favoritos":return favs();case"notificacoes":return notif();
-  case"info":return `<div class="wrap page"><h1>${INFO[S.param][0]}</h1><p style="max-width:620px;color:var(--muted)">${INFO[S.param][1]}</p></div>`;
+  case"info":return `<div class="wrap page"><h1>${INFO[S.param][0]}</h1><div class="legal">${infoBody(S.param)}</div></div>`;
   default:return `<div class="wrap page"><h1>Página não encontrada</h1><p style="color:var(--muted);margin-bottom:20px">Esta página não existe. Volta às provas e continua a partir daí.</p><button class="btn btn-p" data-act="go" data-r="home">Voltar ao início</button></div>`}
 }
 function render(keep){
@@ -511,7 +1094,7 @@ function closeModal(){const m=$("#modal");m&&m.remove();S.det=null}
 async function enter(id){
  const r=RACES.find(x=>x.id===id);S.pendingRace=id;
  if(S.user){if(!isMember(id)){await joinRace(id);toast('Entraste no canal')}S.pendingRace=null;return go('canal',id)}
- modal(`<h2>Entrar em ${esc(r.name)}</h2><p>Inicia sessão com a tua conta Google para entrares no canal, falares com outros atletas e combinares treinos.</p><div class="acts">${gbtn()}<button class="btn btn-o" data-act="close">Agora não</button></div>`)}
+ modal(`<h2>Entrar em ${esc(r.name)}</h2><p>Faz login para entrares no canal, falares com outros atletas e combinares treinos.</p><div class="acts">${gbtn()}<button class="btn btn-o" data-act="close">Agora não</button></div>`)}
 function share(){const h=(S.det&&$('#modal'))?'#/atividade/'+S.det:(location.hash||'#/home'),u=location.href.split('#')[0]+h;try{navigator.clipboard.writeText(u).then(()=>toast('Ligação copiada'),()=>toast(u))}catch(_){toast(u)}}
 function ics(id){const a=A(id),p=n=>String(n).padStart(2,'0'),st=new Date(a.date+'T'+a.tm),en=new Date(st.getTime()+(a.dur?a.dur:120)*6e4),f=d=>d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'T'+p(d.getHours())+p(d.getMinutes())+'00',cl=x=>String(x).replace(/[,;\n]/g,' ');const t=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PACE//PT','BEGIN:VEVENT','UID:'+a.id+'@pace','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z','DTSTART:'+f(st),'DTEND:'+f(en),'SUMMARY:'+cl(a.title),'LOCATION:'+cl(a.place),'END:VEVENT','END:VCALENDAR'].join('\r\n');try{const u=URL.createObjectURL(new Blob([t],{type:'text/calendar'})),l=document.createElement('a');l.href=u;l.download='treino-'+a.id+'.ics';document.body.appendChild(l);l.click();l.remove();toast('Ficheiro .ics gerado')}catch(_){toast('Não foi possível gerar o .ics')}}
 function fromHash(){const m=location.hash.match(/^#\/(\w+)(?:\/([\w-]+))?/);if(!m)return;const r=m[1],p=m[2]||null;if(r==='atividade'){S.pendAct=p;return}if(r==='info'&&!INFO[p])return;if(['canal','atleta','info','registo'].includes(r)||NAV.some(n=>n[0]===r))go(r,p,true)}
@@ -554,26 +1137,24 @@ document.addEventListener("click",async e=>{
   case'vt':F.org=d.id;go('treinos');break;
   case'nox':F.org='';render();break;
   case'ics':ics(d.id);break;
-  case'pro':proDet(d.id);break;
   case'nt':{const b=writeBatch(db);NT.filter(n=>!n.r).forEach(n=>b.update(doc(db,'users',UID(),'notifs',n.id),{r:true}));try{await b.commit()}catch(er){subErr(er)}break}
-  case'rmphoto':try{await updateDoc(doc(db,'users',UID()),{photo:''});toast('A usar a foto do Google')}catch(er){subErr(er)}break;
+  case'rmphoto':try{await updateDoc(doc(db,'users',UID()),{photo:''});toast('A usar a foto da conta')}catch(er){subErr(er)}break;
  }
 });
 document.addEventListener("keydown",e=>{if(e.target.id==='cin'&&e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();return}if(e.key==="Escape"){closeModal();const d=$("#drawer");d&&d.classList.remove("open")}});
 const XM={'x-n':'n','x-km':'km','x-c':'c','x-d':'d','x-g':'g'};
 ['input','change'].forEach(ev=>document.addEventListener(ev,async e=>{
  const t=e.target,i=t.id;
- if(i==='q'){S.q=t.value;$("#grid").innerHTML=raceGrid()}
+ if(t.classList&&t.classList.contains('lang')){setLang(t.value)}
+ else if(i==='q'){S.q=t.value;$("#grid").innerHTML=raceGrid()}
  else if(i==='country'){S.country=t.value;$("#grid").innerHTML=raceGrid()}
  else if(i==='sort'){S.sort=t.value;$("#grid").innerHTML=raceGrid()}
  else if(i==='x-q'){F.q=t.value;$('#xl').innerHTML=xlist()}
  else if(i==='x-s'||i==='x-o'||i==='x-b'||i==='x-v'){if(i==='x-s')F.sp=t.value;if(i==='x-o')F.o=t.value;if(i==='x-b')F.beg=t.checked;if(i==='x-v')F.vag=t.checked;$('#xl').innerHTML=xlist()}
  else if(XM[i]){F[XM[i]]=t.value;$('#xl').innerHTML=xlist()}
- else if(i==='bf-q')$('#bfl').innerHTML=bflist(t.value);
- else if(i==='bf-s'){BS=t.value;$('#bfl').innerHTML=bflist($('#bf-q').value)}
  else if(i==='p-v'||i==='p-b'){S.af[i==='p-v'?'vag':'beg']=t.checked;const p=$('#pl');p&&(p.innerHTML=plist(S.param))}
  else if(i==='s-ph'&&ev==='change'&&t.files[0]){try{const d=await resizeImg(t.files[0]);await updateDoc(doc(db,'users',UID()),{photo:d});toast('Foto atualizada')}catch(er){toast(errMsg(er))}t.value=''}
- else if(i==='o-ph'&&ev==='change'&&t.files[0]){try{S.tmpPhoto=await resizeImg(t.files[0]);const keep={};['o-n','o-un','o-c','o-city','o-r','o-g','o-gt','o-z'].forEach(k=>keep[k]=$('#'+k).value);const sp=[...document.querySelectorAll('[name=sp]:checked')].map(c=>c.value),h=$('#o-h').checked;render();Object.entries(keep).forEach(([k,v])=>$('#'+k).value=v);document.querySelectorAll('[name=sp]').forEach(c=>c.checked=sp.includes(c.value));$('#o-h').checked=h}catch(er){toast(errMsg(er))}}
+ else if(i==='o-ph'&&ev==='change'&&t.files[0]){try{S.tmpPhoto=await resizeImg(t.files[0]);const keep={};['o-n','o-un','o-c','o-city','o-r','o-g','o-gt','o-z'].forEach(k=>keep[k]=$('#'+k).value);const h=$('#o-h').checked;render();Object.entries(keep).forEach(([k,v])=>$('#'+k).value=v);$('#o-h').checked=h}catch(er){toast(errMsg(er))}}
  if(t.closest&&t.closest('#af')){if(i==='a-s'){S.draft['a-s']=t.value;$('#sfw').innerHTML=sf(t.value);restore()}else S.draft[i]=t.type==='checkbox'?t.checked:t.value}
 }));
 document.addEventListener("submit",e=>{
@@ -582,7 +1163,7 @@ document.addEventListener("submit",e=>{
 /* ============ ARRANQUE ============ */
 try{history.replaceState({r:'home',p:null},'')}catch(_){}
 addEventListener('popstate',e=>{closeModal();const s=e.state||{r:'home',p:null};go(s.r,s.p,true)});
-render();fromHash();
+render();fromHash();setTitle();
 </script>
 </body>
 </html>
