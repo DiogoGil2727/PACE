@@ -125,7 +125,7 @@ main.pgin{animation:pgin .5s cubic-bezier(.2,.7,.2,1) both}
 @keyframes pgin{from{opacity:0;transform:translateY(14px)}}
 /* categories */
 .cats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.cat{position:relative;min-height:220px;border:0;border-radius:22px;padding:22px;text-align:left;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2));display:flex;flex-direction:column;justify-content:flex-end;gap:4px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.cat{position:relative;min-height:220px;border:0;border-radius:22px;padding:22px;text-align:left;color:#fff;background:linear-gradient(180deg,rgba(7,28,18,.15) 0%,rgba(7,28,18,.78) 100%),var(--img,none) center/cover,linear-gradient(135deg,var(--c1),var(--c2));;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;overflow:hidden;transition:transform .3s,box-shadow .3s}
 .cat::before{content:"";position:absolute;right:-40px;top:-40px;width:190px;height:190px;border-radius:50%;background:rgba(255,255,255,.14);transition:transform .5s}
 @media (hover:hover){.cat:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(11,31,23,.22)}.cat:hover::before{transform:scale(1.35)}.cat:hover svg.i{transform:translateX(6px)}}
 .cat .cd{position:absolute;top:22px;left:22px;font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;opacity:.92}
@@ -284,7 +284,7 @@ const CONFIG={
   name:"TRIBU",
   slogan:"Find your pace. Find your tribe.",
   /* 3 imagens do banner rotativo. Se uma não existir, aparece uma ilustração no lugar. */
-  HERO_IMAGES:["2.JPG","vilamoura.jpg","cascais.png"],
+  HERO_IMAGES:["2.JPG","b2.jpg","1.jpg"],
   instagramUrl:"",
   contactEmail:""
 };
@@ -293,14 +293,12 @@ const REDUCED=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const TYPES={maratona:'Maratona',meia:'Meia-maratona','703':'IRONMAN 70.3'};
 const TONES={maratona:["#E08A2E","#F3C98B"],meia:["#2E86A8","#9BD6C0"],'703':["#2E86A8","#9BD6C0"]};
 const RACES=[
- {id:"maratona-funchal",type:"maratona",name:"Maratona do Funchal",country:"Portugal",city:"Funchal, Madeira",eventDate:"2027-01-17",dateConfirmed:false,dist:"42,195 km",imageURL:""},
- {id:"meia-cascais",type:"meia",name:"Meia Maratona de Cascais",country:"Portugal",city:"Cascais",eventDate:"2027-02-07",dateConfirmed:true,dist:"21,097 km",imageURL:""},
- {id:"meia-lisboa",type:"meia",name:"EDP Meia Maratona de Lisboa",country:"Portugal",city:"Lisboa",eventDate:"2027-03-07",dateConfirmed:true,dist:"21,097 km",imageURL:""},
+ {id:"meia-lisboa",type:"meia",name:"EDP Meia Maratona de Lisboa",country:"Portugal",city:"Lisboa",eventDate:"2027-03-07",dateConfirmed:true,dist:"21,097 km",imageURL:"edp_meia.png"},
  {id:"vilamoura",type:"703",name:"IRONMAN 70.3 Vilamoura-Algarve",country:"Portugal",city:"Vilamoura",eventDate:"2027-04-03",dateConfirmed:true,dist:"1,9 + 90 + 21,1 km",imageURL:"vilamoura.jpg"},
- {id:"meia-porto",type:"meia",name:"Meia Maratona do Porto",country:"Portugal",city:"Porto",eventDate:"2027-09-12",dateConfirmed:false,dist:"21,097 km",imageURL:""},
- {id:"maratona-lisboa",type:"maratona",name:"EDP Maratona de Lisboa",country:"Portugal",city:"Lisboa",eventDate:"2027-10-09",dateConfirmed:true,dist:"42,195 km",imageURL:""},
+ {id:"meia-porto",type:"meia",name:"Meia Maratona do Porto",country:"Portugal",city:"Porto",eventDate:"2027-09-12",dateConfirmed:false,dist:"21,097 km",imageURL:"image.png"},
+ {id:"maratona-lisboa",type:"maratona",name:"EDP Maratona de Lisboa",country:"Portugal",city:"Lisboa",eventDate:"2027-10-09",dateConfirmed:true,dist:"42,195 km",imageURL:"edp.jpeg"},
  {id:"cascais",type:"703",name:"IRONMAN 70.3 Cascais",country:"Portugal",city:"Cascais",eventDate:"2027-10-23",dateConfirmed:true,dist:"1,9 + 90 + 21,1 km",imageURL:"cascais.png"},
- {id:"maratona-porto",type:"maratona",name:"EDP Maratona do Porto",country:"Portugal",city:"Porto",eventDate:"2027-11-07",dateConfirmed:false,dist:"42,195 km",imageURL:""}
+ {id:"maratona-porto",type:"maratona",name:"EDP Maratona do Porto",country:"Portugal",city:"Porto",eventDate:"2027-11-07",dateConfirmed:false,dist:"42,195 km",imageURL:"edp_p.jpg"}
 ].map(r=>({...r,tone:TONES[r.type]}));
 const NAV=[["home","Início"],["minhas","As minhas provas"],["treinos","Explorar treinos"],["calendario","Calendário"],["parceiros","Parceiros"],["favoritos","Favoritos"],["notificacoes","Notificações"]];
 const PROT=['minhas','treinos','calendario','favoritos','notificacoes','perfil','definicoes','canal','atleta'];
@@ -1199,9 +1197,8 @@ function band(){
  if(S.user)it.push([Object.values(USERS).filter(u=>u.onboarded).length,'Atletas'],[ACT.filter(a=>a.st==='ok'&&!isPast(a)).length,'Treinos']);
  const names=RACES.map(r=>`<span>${esc(r.name)}</span>`).join('');
  return `<div class="band"><div class="wrap">${it.map(([n,l],i)=>`<div class="bi rv" style="--d:${i*80}ms"><b class="cnt" data-n="${n}">${n}</b><span>${l}</span></div>`).join('')}</div></div><div class="marq" aria-hidden="true"><div class="mt">${names}${names}</div></div>`}
-const CATS=[['maratona','Maratona','42,195 km','#E08A2E','#7A3E2E'],['meia','Meia-maratona','21,097 km','#2E86A8','#174B35'],['703','IRONMAN 70.3','1,9 + 90 + 21,1 km','#174B35','#2FA37A']];
-function cats(){return `<section class="sec"><div class="wrap"><div class="head rv"><h2>Escolhe o teu desafio</h2></div><div class="cats">${CATS.map(([k,l,km,c1,c2],i)=>{const n=RACES.filter(r=>r.type===k).length;return `<button class="cat rv" style="--c1:${c1};--c2:${c2};--d:${i*90}ms" data-act="cat" data-t="${k}"><span class="cd">${km}</span><strong>${l}</strong><small>${n} ${n===1?'prova':'provas'}</small>${ic('arrow')}</button>`}).join('')}</div></div></section>`}
-function home(){
+const CATS=[['maratona','Maratona','42,195 km','#E08A2E','#7A3E2E',"mara.jpg"],['meia','Meia-maratona','21,097 km','#2E86A8','#174B35',"half.jpg"],['703','IRONMAN 70.3','1,9 + 90 + 21,1 km','#174B35','#2FA37A',"70.jpg"]];
+function cats(){return `<section class="sec"><div class="wrap"><div class="head rv"><h2>Escolhe o teu desafio</h2></div><div class="cats">${CATS.map(([k,l,km,c1,c2,img],i)=>{const n=RACES.filter(r=>r.type===k).length;return `<button class="cat rv" style="--c1:${c1};--c2:${c2};--d:${i*90}ms${img?`;--img:url('${esc(img)}')`:''}" data-act="cat" data-t="${k}"><span class="cd">${km}</span><strong>${l}</strong><small>${n} ${n===1?'prova':'provas'}</small>${ic('arrow')}</button>`}).join('')}</div></div></section>`}function home(){
  return `${hero()}${band()}${cats()}
  <section class="sec" id="provas" style="padding-top:20px"><div class="wrap"><div class="head rv"><h2>A tua próxima prova começa aqui.</h2><p>Encontra os atletas que vão à mesma prova que tu e prepara-a em conjunto, treino a treino.</p></div>
  <div class="tools"><div class="field">${ic("search")}<input id="q" type="search" placeholder="Pesquisar por nome ou cidade" aria-label="Pesquisar provas" value="${esc(S.q)}"></div>
