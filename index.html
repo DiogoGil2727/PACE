@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#174B35">
-<title>TRIBU — Find your pace. Find your tribe.</title>
+<title>FLYT — Find your FLYT. Find your tribe.</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%23174B35'/%3E%3Cpath d='M7 15Q20 7 33 15' stroke='%2375C99A' stroke-width='4' stroke-linecap='round' fill='none'/%3E%3Cpath d='M20 14V32M12.5 19V30M27.5 19V30' stroke='%23fff' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -41,7 +41,7 @@ header.top.sc{box-shadow:0 6px 24px rgba(11,31,23,.10)}
 .logo svg{width:100%;height:100%;display:block}
 .wm{font-family:var(--fd);font-weight:900;font-style:italic;letter-spacing:.14em;font-size:1.3rem;color:var(--green-d)}
 nav.main{display:flex;gap:2px;margin-left:auto;align-items:center}
-nav.main button{background:none;border:0;padding:8px 8px;border-radius:999px;font-weight:600;font-size:.88rem;color:var(--muted);white-space:nowrap;transition:background .2s,color .2s}
+nav.main button{background:none;border:0;padding:8px 8px;border-radius:999px;font-weight:600;font-size:.88rem;color:var(--muted);white-sFLYT:nowrap;transition:background .2s,color .2s}
 nav.main button:hover{color:var(--green-d);background:var(--green-l)}
 nav.main button[aria-current="page"]{color:var(--green-d);background:var(--green-l)}
 .burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:12px;width:44px;height:44px;place-items:center}
@@ -77,11 +77,11 @@ nav.main button[aria-current="page"]{color:var(--green-d);background:var(--green
 @keyframes prog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 /* band + marquee */
 .band{background:var(--ink);color:#fff}
-.band .wrap{display:flex;flex-wrap:wrap;justify-content:space-around;gap:16px 28px;padding-top:26px;padding-bottom:26px}
+.band .wrap{display:flex;flex-wrap:wrap;justify-content:sFLYT-around;gap:16px 28px;padding-top:26px;padding-bottom:26px}
 .bi{display:flex;align-items:baseline;gap:10px}
 .bi b{font-family:var(--fd);font-size:clamp(1.9rem,5vw,2.7rem);font-weight:900;color:var(--green);font-variant-numeric:tabular-nums;line-height:1}
 .bi span{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:#B8D4C5;font-weight:700}
-.marq{background:var(--green);color:var(--green-d);overflow:hidden;white-space:nowrap;padding:13px 0}
+.marq{background:var(--green);color:var(--green-d);overflow:hidden;white-sFLYT:nowrap;padding:13px 0}
 .mt{display:inline-flex;animation:mq 50s linear infinite}
 .marq:hover .mt{animation-play-state:paused}
 .mt span{font-family:var(--fd);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.88rem;padding:0 24px;display:inline-flex;align-items:center;gap:48px}
@@ -133,9 +133,9 @@ main.pgin{animation:pgin .5s cubic-bezier(.2,.7,.2,1) both}
 .cat small{opacity:.88;font-weight:600}
 .cat svg.i{position:absolute;right:20px;bottom:20px;transition:transform .3s}
 /* suggest + teaser */
-.sug{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;background:var(--green-l);border:1.5px dashed var(--green);border-radius:20px;padding:22px 26px}
+.sug{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:sFLYT-between;gap:16px;background:var(--green-l);border:1.5px dashed var(--green);border-radius:20px;padding:22px 26px}
 .sug h3{font-size:1.25rem}.sug p{color:#3d5a4b;margin-top:2px}
-.teaser{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;background:var(--ink);color:#fff;border-radius:26px;padding:44px 36px;position:relative;overflow:hidden}
+.teaser{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:sFLYT-between;background:var(--ink);color:#fff;border-radius:26px;padding:44px 36px;position:relative;overflow:hidden}
 .teaser::before{content:"";position:absolute;right:-60px;bottom:-90px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(117,201,154,.38),transparent 70%)}
 .teaser>*{position:relative}
 .teaser h2{color:#fff;font-size:clamp(1.6rem,4vw,2.3rem)}.teaser p{color:#B8D4C5;margin-top:6px}
@@ -186,13 +186,13 @@ footer .disc{color:var(--muted);font-size:.88rem;max-width:720px}
 .skel{height:300px;border-radius:18px;background:linear-gradient(90deg,#edf3ef 25%,#f7faf8 50%,#edf3ef 75%);background-size:200% 100%;animation:sk 1.2s infinite}
 @keyframes sk{to{background-position:-200% 0}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1}}
-.av{display:inline-grid;place-items:center;border-radius:50%;color:#fff;font-weight:700;flex:none;overflow:hidden}.rb{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--green-l);color:var(--green-d)}.r-Admin{background:var(--green-d);color:#fff}.r-Moderador{background:#CFE9DA}.r-Mentor{background:#FFF1CC;color:#6a4b00}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.com-w{max-width:1280px;padding:16px 20px 40px}.chead{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:14px}.chead .thumb{height:70px}.chead .ci{padding:14px 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.chead h1{font-size:1.5rem}.chead .ac{margin-left:auto;display:flex;flex-wrap:wrap;gap:8px}.tabs{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto}.tabs button{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-weight:600;white-space:nowrap}.tabs button[aria-selected=true]{background:var(--green-d);color:#fff;border-color:var(--green-d)}.tabs .mob{display:none}.com{display:grid;grid-template-columns:250px minmax(0,1fr) 270px;gap:14px;align-items:start}.sb,.dt{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;max-height:calc(100vh - 100px);overflow:auto;position:sticky;top:76px}.sb h2,.dt h2{font-size:1rem;margin-bottom:8px}.dt h3{font-size:.95rem;margin:14px 0 4px}.dt .meta{margin-bottom:6px}.ml{list-style:none;margin:0 0 10px;padding:0}.chb{display:block;width:100%;text-align:left;background:none;border:0;padding:8px 10px;border-radius:10px;font-weight:600;color:var(--muted)}.chb[aria-current=page]{background:var(--green-l);color:var(--green-d)}.mem{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:6px 8px;border-radius:12px;text-align:left;position:relative}.mem:hover{background:var(--green-l)}.mn{display:flex;flex-direction:column;font-weight:600;font-size:.93rem;line-height:1.3}.ctr{background:#fff;border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;height:calc(100vh - 190px);height:calc(100dvh - 190px);min-height:460px}.dm{padding:8px 16px;background:var(--green-l);border-radius:18px 18px 0 0}.msgs{flex:1;overflow-y:auto;padding:6px 16px 14px}.msg{display:flex;gap:10px;padding:2px 0}.msg:not(.cont){margin-top:12px}.msg .sp{width:40px;flex:none}.avb{background:none;border:0;padding:0;height:40px}.mb{min-width:0;flex:1}.mh{display:flex;align-items:center;flex-wrap:wrap;gap:6px}.an{background:none;border:0;padding:0;font-weight:700;color:var(--green-d);text-align:left}.mh time{font-size:.78rem;color:var(--muted)}.mb p{white-space:pre-wrap;overflow-wrap:anywhere}.ma{display:flex;gap:12px}.ma button{background:none;border:0;padding:2px 0;font-size:.78rem;color:var(--muted);text-decoration:underline}.day{display:flex;justify-content:center;margin:16px 0 4px}.day span{font-size:.78rem;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:2px 12px}.blk{margin:8px 0}.comp{display:flex;gap:10px;padding:12px;border-top:1px solid var(--line);align-items:flex-end}.comp textarea{flex:1;min-height:46px;max-height:120px;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;resize:none;font:inherit}.comp span{flex:1;color:var(--muted)}.pf{display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin:20px 0 0}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.chips span{background:var(--green-l);color:var(--green-d);font-weight:600;font-size:.85rem;padding:4px 12px;border-radius:999px}.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin:16px 0}.kv dt{color:var(--muted)}.kv dd{margin:0;font-weight:600}.ac2{display:flex;flex-wrap:wrap;gap:8px}.com>*,.comp textarea{min-width:0}@media (max-width:1023px){.com{grid-template-columns:minmax(0,1fr)}.comp{flex-wrap:wrap}.com>*{display:none}.com[data-t=chat]>.ctr,.com[data-t=atividades]>.ctr{display:flex}.com[data-t=membros]>.sb,.com[data-t=detalhes]>.dt{display:block}.sb,.dt{position:static;max-height:none}.tabs .mob{display:block}.ctr{height:calc(100vh - 250px);height:calc(100dvh - 330px);min-height:360px}}.acard{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--green-l);display:flex;flex-direction:column;gap:6px;margin-top:6px;max-width:420px}.acard.canc{opacity:.6}.grid .acard{max-width:none;background:#fff;box-shadow:var(--sh);margin:0}.ah{display:flex;justify-content:space-between;align-items:center}.tg{display:inline-block;background:var(--green-d);color:#fff;font-size:.75rem;font-weight:700;padding:2px 10px;border-radius:999px}.ab{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}.ck{display:flex;align-items:center;gap:6px;font-weight:500}.ck input{width:auto;min-height:0}.dlg{max-height:90vh;overflow:auto}.map{height:90px;border-radius:12px;background:repeating-linear-gradient(45deg,#EAF7EF,#EAF7EF 10px,#dff1e6 10px,#dff1e6 20px);display:grid;place-items:center;color:var(--muted);font-size:.85rem;margin:10px 0}textarea#a-ds,textarea#s-b,textarea#rp-t,textarea#sg-m,textarea#pt-m{min-height:80px;border:1.5px solid var(--line);border-radius:12px;padding:10px;font:inherit;width:100%}.bn{display:none}.nbtn{position:relative;display:inline-grid;place-items:center;width:44px;height:44px;flex:none;padding:0;border-radius:50%;background:#fff;border:1.5px solid var(--line);color:var(--green-d)}.nbtn:hover,.nbtn[aria-current]{background:var(--green-l);border-color:var(--green)}.nb{position:absolute;top:-5px;right:-5px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--danger);color:#fff;font-size:.72rem;font-weight:800;line-height:1;display:grid;place-items:center;border:2px solid #fff}
+.av{display:inline-grid;place-items:center;border-radius:50%;color:#fff;font-weight:700;flex:none;overflow:hidden}.rb{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--green-l);color:var(--green-d)}.r-Admin{background:var(--green-d);color:#fff}.r-Moderador{background:#CFE9DA}.r-Mentor{background:#FFF1CC;color:#6a4b00}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.com-w{max-width:1280px;padding:16px 20px 40px}.chead{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:14px}.chead .thumb{height:70px}.chead .ci{padding:14px 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.chead h1{font-size:1.5rem}.chead .ac{margin-left:auto;display:flex;flex-wrap:wrap;gap:8px}.tabs{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto}.tabs button{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-weight:600;white-sFLYT:nowrap}.tabs button[aria-selected=true]{background:var(--green-d);color:#fff;border-color:var(--green-d)}.tabs .mob{display:none}.com{display:grid;grid-template-columns:250px minmax(0,1fr) 270px;gap:14px;align-items:start}.sb,.dt{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;max-height:calc(100vh - 100px);overflow:auto;position:sticky;top:76px}.sb h2,.dt h2{font-size:1rem;margin-bottom:8px}.dt h3{font-size:.95rem;margin:14px 0 4px}.dt .meta{margin-bottom:6px}.ml{list-style:none;margin:0 0 10px;padding:0}.chb{display:block;width:100%;text-align:left;background:none;border:0;padding:8px 10px;border-radius:10px;font-weight:600;color:var(--muted)}.chb[aria-current=page]{background:var(--green-l);color:var(--green-d)}.mem{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:6px 8px;border-radius:12px;text-align:left;position:relative}.mem:hover{background:var(--green-l)}.mn{display:flex;flex-direction:column;font-weight:600;font-size:.93rem;line-height:1.3}.ctr{background:#fff;border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;height:calc(100vh - 190px);height:calc(100dvh - 190px);min-height:460px}.dm{padding:8px 16px;background:var(--green-l);border-radius:18px 18px 0 0}.msgs{flex:1;overflow-y:auto;padding:6px 16px 14px}.msg{display:flex;gap:10px;padding:2px 0}.msg:not(.cont){margin-top:12px}.msg .sp{width:40px;flex:none}.avb{background:none;border:0;padding:0;height:40px}.mb{min-width:0;flex:1}.mh{display:flex;align-items:center;flex-wrap:wrap;gap:6px}.an{background:none;border:0;padding:0;font-weight:700;color:var(--green-d);text-align:left}.mh time{font-size:.78rem;color:var(--muted)}.mb p{white-sFLYT:pre-wrap;overflow-wrap:anywhere}.ma{display:flex;gap:12px}.ma button{background:none;border:0;padding:2px 0;font-size:.78rem;color:var(--muted);text-decoration:underline}.day{display:flex;justify-content:center;margin:16px 0 4px}.day span{font-size:.78rem;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:2px 12px}.blk{margin:8px 0}.comp{display:flex;gap:10px;padding:12px;border-top:1px solid var(--line);align-items:flex-end}.comp textarea{flex:1;min-height:46px;max-height:120px;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;resize:none;font:inherit}.comp span{flex:1;color:var(--muted)}.pf{display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin:20px 0 0}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.chips span{background:var(--green-l);color:var(--green-d);font-weight:600;font-size:.85rem;padding:4px 12px;border-radius:999px}.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin:16px 0}.kv dt{color:var(--muted)}.kv dd{margin:0;font-weight:600}.ac2{display:flex;flex-wrap:wrap;gap:8px}.com>*,.comp textarea{min-width:0}@media (max-width:1023px){.com{grid-template-columns:minmax(0,1fr)}.comp{flex-wrap:wrap}.com>*{display:none}.com[data-t=chat]>.ctr,.com[data-t=atividades]>.ctr{display:flex}.com[data-t=membros]>.sb,.com[data-t=detalhes]>.dt{display:block}.sb,.dt{position:static;max-height:none}.tabs .mob{display:block}.ctr{height:calc(100vh - 250px);height:calc(100dvh - 330px);min-height:360px}}.acard{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--green-l);display:flex;flex-direction:column;gap:6px;margin-top:6px;max-width:420px}.acard.canc{opacity:.6}.grid .acard{max-width:none;background:#fff;box-shadow:var(--sh);margin:0}.ah{display:flex;justify-content:sFLYT-between;align-items:center}.tg{display:inline-block;background:var(--green-d);color:#fff;font-size:.75rem;font-weight:700;padding:2px 10px;border-radius:999px}.ab{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}.ck{display:flex;align-items:center;gap:6px;font-weight:500}.ck input{width:auto;min-height:0}.dlg{max-height:90vh;overflow:auto}.map{height:90px;border-radius:12px;background:repeating-linear-gradient(45deg,#EAF7EF,#EAF7EF 10px,#dff1e6 10px,#dff1e6 20px);display:grid;place-items:center;color:var(--muted);font-size:.85rem;margin:10px 0}textarea#a-ds,textarea#s-b,textarea#rp-t,textarea#sg-m,textarea#pt-m{min-height:80px;border:1.5px solid var(--line);border-radius:12px;padding:10px;font:inherit;width:100%}.bn{display:none}.nbtn{position:relative;display:inline-grid;place-items:center;width:44px;height:44px;flex:none;padding:0;border-radius:50%;background:#fff;border:1.5px solid var(--line);color:var(--green-d)}.nbtn:hover,.nbtn[aria-current]{background:var(--green-l);border-color:var(--green)}.nb{position:absolute;top:-5px;right:-5px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--danger);color:#fff;font-size:.72rem;font-weight:800;line-height:1;display:grid;place-items:center;border:2px solid #fff}
 .sysm{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--green-l);border-radius:12px;padding:8px 12px;margin:10px 0;font-size:.92rem;color:var(--green-d)}.sysm svg.i{width:16px;height:16px}.sysm button{background:none;border:0;padding:0;margin-left:auto;font-weight:700;text-decoration:underline;color:var(--green-d)}
-.com[data-t=atividades]{grid-template-columns:minmax(0,1fr)}.com[data-t=atividades]>.actp{display:block}.actp{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;min-width:0}.ah2{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:18px}.ah2 h2{font-size:1.5rem}.fl{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-bottom:20px}.chip{background:#fff;border:1.5px solid var(--line);border-radius:999px;min-height:40px;padding:0 16px;font-weight:600}.chip:hover{border-color:var(--green)}.chip[aria-pressed=true]{background:var(--green-d);color:#fff;border-color:var(--green-d)}.fl .ck{margin-left:8px}
+.com[data-t=atividades]{grid-template-columns:minmax(0,1fr)}.com[data-t=atividades]>.actp{display:block}.actp{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;min-width:0}.ah2{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:sFLYT-between;margin-bottom:18px}.ah2 h2{font-size:1.5rem}.fl{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-bottom:20px}.chip{background:#fff;border:1.5px solid var(--line);border-radius:999px;min-height:40px;padding:0 16px;font-weight:600}.chip:hover{border-color:var(--green)}.chip[aria-pressed=true]{background:var(--green-d);color:#fff;border-color:var(--green-d)}.fl .ck{margin-left:8px}
 .tile .tdate{display:flex;align-items:center;gap:14px;padding:14px 16px}.tile .dn{display:grid;place-items:center;background:#fff;border-radius:12px;width:54px;height:58px;color:var(--green-d);line-height:1;flex:none}.tile .dn b{font-size:1.5rem;display:block}.tile .dn span{font-size:.72rem;text-transform:uppercase;font-weight:700}.tile .tw{display:flex;flex-direction:column;gap:4px;font-size:.88rem;color:var(--green-d);font-weight:600;text-transform:capitalize}.tile .tw .tg{align-self:flex-start;text-transform:none}.tile .fv{margin-left:auto;background:#fff;border:0;border-radius:50%;width:38px;height:38px;font-size:1.1rem;color:var(--green-d);flex:none}.tdesc{color:var(--muted);font-size:.92rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.pg{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:6px}.pg span{display:block;height:100%;background:var(--green)}.tile .ab{margin-top:auto}
 @media (max-width:760px){.badge.reg{display:none}}
 @media (max-width:1280px){nav.main{display:none}.burger{display:grid}.bar .btn-sm.reg{display:none}.nbtn{margin-left:auto}}
-.chipu{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:3px 14px 3px 3px;font-weight:700;color:var(--green-d);margin-left:8px;max-width:180px}.chipu span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.chipu:hover{border-color:var(--green)}
+.chipu{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:3px 14px 3px 3px;font-weight:700;color:var(--green-d);margin-left:8px;max-width:180px}.chipu span{overflow:hidden;text-overflow:ellipsis;white-sFLYT:nowrap}.chipu:hover{border-color:var(--green)}
 @media (max-width:1280px){.chipu{margin-left:auto}.nbtn{margin-left:0}.burger{margin-left:0}}
 @media (max-width:520px){.chipu span{display:none}.chipu{padding:3px}}
 .lang{width:auto;min-width:0;min-height:38px;padding:0 8px;border-radius:999px;font-weight:700;font-size:.88rem;background:#fff;cursor:pointer}select.lang{min-width:0}.lang-d{display:none;margin:12px 0 0;align-self:flex-start}@media (max-width:520px){.bar>.lang{display:none}.lang-d{display:block}}
@@ -214,7 +214,7 @@ footer .disc{color:var(--muted);font-size:.88rem;max-width:720px}
 .mc-d.td b{background:var(--green-d);color:#fff}
 .mc-d.sel{border-color:var(--green-d);box-shadow:inset 0 0 0 1.5px var(--green-d);background:var(--green-l)}
 .mc-ev{display:flex;flex-direction:column;gap:2px;min-width:0;width:100%}
-.mc-ev i{display:block;font-style:normal;font-size:.7rem;font-weight:700;color:#fff;border-radius:6px;padding:1px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc-ev i{display:block;font-style:normal;font-size:.7rem;font-weight:700;color:#fff;border-radius:6px;padding:1px 6px;white-sFLYT:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mc-ev i em{font-style:normal}
 .mc-ev small{font-size:.7rem;color:var(--muted);font-weight:700}
 .k-bike{background:#2E86A8}.k-run{background:#D9822B}.k-swim{background:#2FA37A}.k-race{background:var(--gold)}
@@ -291,10 +291,10 @@ import {getDatabase,ref as rref,push,onChildAdded,query as rquery,limitToLast,se
 /* ============ FIREBASE ============ */
 const firebaseConfig={
   apiKey:"AIzaSyDwxoHADhbynmBlZ4dwS5X2uo800_ihFPg",
-  authDomain:"pace-9a435.firebaseapp.com",
-  databaseURL:"https://pace-9a435-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId:"pace-9a435",
-  storageBucket:"pace-9a435.firebasestorage.app",
+  authDomain:"FLYT-9a435.firebaseapp.com",
+  databaseURL:"https://FLYT-9a435-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId:"FLYT-9a435",
+  storageBucket:"FLYT-9a435.firebasestorage.app",
   messagingSenderId:"786937813391",
   appId:"1:786937813391:web:3a84a09e548ba6abb853fa",
   measurementId:"G-EQ1S7XCL8J"
@@ -303,8 +303,8 @@ const fbApp=initializeApp(firebaseConfig),auth=getAuth(fbApp),db=getFirestore(fb
  
 /* ============ CONFIG CENTRAL ============ */
 const CONFIG={
-  name:"PACE",
-  slogan:"Find your pace. Find your tribe.",
+  name:"FLYT",
+  slogan:"Find your FLYT. Find your tribe.",
   /* 3 imagens do banner rotativo. Se uma não existir, aparece uma ilustração no lugar. */
   HERO_IMAGES:["half.jpg"],
   instagramUrl:"",
@@ -325,16 +325,16 @@ const RACES=[
 const NAV=[["home","Início"],["minhas","As minhas provas"],["treinos","Explorar treinos"],["calendario","Calendário"],["parceiros","Parceiros"],["favoritos","Favoritos"],["notificacoes","Notificações"]];
 const PROT=['minhas','treinos','calendario','favoritos','notificacoes','perfil','definicoes','canal','atleta'];
 const INFO={
- sobre:["Sobre",`<p>A TRIBU é uma plataforma social gratuita para atletas amadores que vão participar em maratonas, meias-maratonas e provas IRONMAN 70.3 em Portugal. Ajuda-te a encontrar pessoas que vão à mesma prova que tu, com objetivos semelhantes, e a combinar treinos presenciais de bike, corrida e natação em águas abertas.</p>
+ sobre:["Sobre",`<p>A FLYT é uma plataforma social gratuita para atletas amadores que vão participar em maratonas, meias-maratonas e provas IRONMAN 70.3 em Portugal. Ajuda-te a encontrar pessoas que vão à mesma prova que tu, com objetivos semelhantes, e a combinar treinos presenciais de bike, corrida e natação em águas abertas.</p>
 <h2>Como funciona</h2>
 <p>Cada prova tem o seu canal. Ao entrares, vês quem mais vai à prova, falas com eles no chat e podes criar ou participar em treinos marcados no calendário. Tudo gira à volta de uma ideia simples: uma prova é mais fácil quando não a preparas sozinho.</p>
 <h2>Para quem é</h2>
 <p>Para quem treina por gosto: quem vai fazer a primeira maratona ou o primeiro 70.3, quem quer melhorar o tempo e quem só procura companhia para as saídas longas. Não é preciso ser rápido, é preciso querer treinar acompanhado.</p>
 <h2>Independência</h2>
-<p>A TRIBU é um projeto independente e não tem qualquer afiliação oficial com a IRONMAN nem com as organizações das provas. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares. Os treinos são organizados pelos próprios atletas, não pela TRIBU.</p>`],
+<p>A FLYT é um projeto independente e não tem qualquer afiliação oficial com a IRONMAN nem com as organizações das provas. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares. Os treinos são organizados pelos próprios atletas, não pela FLYT.</p>`],
  contacto:["Contacto","<p>Ainda não existe um contacto oficial configurado. Quando existir, será definido em CONFIG.contactEmail.</p>"],
  privacidade:["Privacidade",`<p class="upd">Última atualização: novembro de 2026</p>
-<p>Esta página explica que dados pessoais a TRIBU trata, para quê, e como podes controlá-los. A TRIBU é um projeto independente e é responsável pelo tratamento dos dados descritos abaixo.</p>
+<p>Esta página explica que dados pessoais a FLYT trata, para quê, e como podes controlá-los. A FLYT é um projeto independente e é responsável pelo tratamento dos dados descritos abaixo.</p>
 <h2>Que dados recolhemos</h2>
 <ul><li><strong>Conta:</strong> o início de sessão é feito com a tua conta Google. Recebemos o nome e a foto da conta. O email serve apenas para autenticação, é gerido pelo serviço de autenticação e não aparece no teu perfil nem é mostrado a outros atletas.</li>
 <li><strong>Perfil:</strong> username, país, cidade ou zona, biografia, prova-alvo, objetivo de tempo, zona de treino e a foto que escolheres.</li>
@@ -345,36 +345,36 @@ const INFO={
 <h2>Para que usamos os dados</h2>
 <p>Para criar e mostrar o teu perfil, ligar-te a atletas da mesma prova, permitir o chat e a organização de treinos, enviar-te avisos sobre os teus treinos, analisar sugestões e pedidos de parceria e tratar denúncias de comportamento abusivo. Não vendemos os teus dados e não os usamos para publicidade.</p>
 <h2>Serviços de terceiros</h2>
-<p>A TRIBU usa serviços da Google: Firebase (autenticação e base de dados, em servidores na Europa quando indicado) e Google Fonts (tipo de letra). Ao carregar a página, o teu endereço IP é visto por estes serviços. Não usamos cookies de publicidade nem de rastreamento; o navegador guarda localmente apenas o necessário para manteres a sessão iniciada. Se usares o botão Traduzir no chat, o texto dessa mensagem é traduzido no teu navegador quando este o permite ou, caso contrário, enviado para um serviço de tradução externo (MyMemory), que o processa para devolver a tradução.</p>
+<p>A FLYT usa serviços da Google: Firebase (autenticação e base de dados, em servidores na Europa quando indicado) e Google Fonts (tipo de letra). Ao carregar a página, o teu endereço IP é visto por estes serviços. Não usamos cookies de publicidade nem de rastreamento; o navegador guarda localmente apenas o necessário para manteres a sessão iniciada. Se usares o botão Traduzir no chat, o texto dessa mensagem é traduzido no teu navegador quando este o permite ou, caso contrário, enviado para um serviço de tradução externo (MyMemory), que o processa para devolver a tradução.</p>
 <h2>Durante quanto tempo</h2>
 <p>Mantemos os dados enquanto a tua conta existir. Podes pedir a eliminação da conta e dos dados associados a qualquer momento.</p>
 <h2>Os teus direitos</h2>
 <p>Nos termos do RGPD, tens direito de acesso, retificação, apagamento, limitação, oposição e portabilidade dos teus dados. Podes corrigir a maior parte da informação diretamente em Editar perfil. Para os restantes pedidos usa a página Contacto. Se entenderes que o tratamento viola a lei, podes apresentar queixa à Comissão Nacional de Proteção de Dados (CNPD).</p>
 <h2>Idade mínima</h2>
-<p>A TRIBU destina-se a pessoas com 18 ou mais anos.</p>
+<p>A FLYT destina-se a pessoas com 18 ou mais anos.</p>
 <h2>Alterações</h2>
 <p>Se esta política mudar de forma relevante, atualizamos a data no topo desta página.</p>`],
  termos:["Termos",`<p class="upd">Última atualização: novembro de 2026</p>
-<p>Ao criares conta e usares a TRIBU aceitas estes termos. Se não concordares, não uses o serviço.</p>
+<p>Ao criares conta e usares a FLYT aceitas estes termos. Se não concordares, não uses o serviço.</p>
 <h2>1. O serviço</h2>
-<p>A TRIBU é uma plataforma gratuita que permite a atletas amadores encontrarem-se, conversarem e combinarem treinos para maratonas, meias-maratonas e provas IRONMAN 70.3. A TRIBU não organiza treinos, não é uma entidade desportiva e não presta aconselhamento médico, de treino ou de nutrição.</p>
+<p>A FLYT é uma plataforma gratuita que permite a atletas amadores encontrarem-se, conversarem e combinarem treinos para maratonas, meias-maratonas e provas IRONMAN 70.3. A FLYT não organiza treinos, não é uma entidade desportiva e não presta aconselhamento médico, de treino ou de nutrição.</p>
 <h2>2. Conta</h2>
 <p>Entras com a tua conta Google. És responsável pela tua conta e pela veracidade da informação do perfil. Só podes ter uma conta, e o username não pode ser alterado depois de criado.</p>
 <h2>3. Conduta</h2>
 <p>Trata os outros com respeito. Não é permitido assediar, ameaçar, discriminar, fazer spam, publicar conteúdo ilegal ou ofensivo, nem partilhar dados pessoais de terceiros sem autorização. Podes denunciar mensagens e perfis e bloquear atletas.</p>
 <h2>4. O teu conteúdo</h2>
-<p>O que publicas (mensagens, descrições de treinos, biografia, foto) continua a ser teu. Ao publicá-lo, permites que a TRIBU o mostre a outros atletas dentro do serviço. Garantes que tens direito a publicá-lo.</p>
+<p>O que publicas (mensagens, descrições de treinos, biografia, foto) continua a ser teu. Ao publicá-lo, permites que a FLYT o mostre a outros atletas dentro do serviço. Garantes que tens direito a publicá-lo.</p>
 <h2>5. Treinos presenciais e responsabilidade</h2>
-<p>Os treinos são combinados e realizados entre atletas, por iniciativa própria. Participas por tua conta e risco e deves avaliar se estás em condições físicas de o fazer. A TRIBU não verifica a identidade, a aptidão ou o comportamento dos atletas e, na medida permitida pela lei, não se responsabiliza por lesões, acidentes, perdas ou conflitos ocorridos antes, durante ou depois de um treino. Lê a página Segurança nos treinos.</p>
+<p>Os treinos são combinados e realizados entre atletas, por iniciativa própria. Participas por tua conta e risco e deves avaliar se estás em condições físicas de o fazer. A FLYT não verifica a identidade, a aptidão ou o comportamento dos atletas e, na medida permitida pela lei, não se responsabiliza por lesões, acidentes, perdas ou conflitos ocorridos antes, durante ou depois de um treino. Lê a página Segurança nos treinos.</p>
 <h2>6. Moderação</h2>
 <p>Podemos remover conteúdo, limitar ou suspender contas que violem estes termos ou ponham outros atletas em risco.</p>
 <h2>7. Disponibilidade</h2>
 <p>O serviço é fornecido tal como está, pode sofrer interrupções ou alterações e não garantimos que esteja sempre disponível ou livre de erros.</p>
 <h2>8. Marcas</h2>
-<p>A TRIBU não tem afiliação com a IRONMAN nem com as organizações das provas. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares.</p>
+<p>A FLYT não tem afiliação com a IRONMAN nem com as organizações das provas. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares.</p>
 <h2>9. Alterações e lei aplicável</h2>
 <p>Podemos atualizar estes termos; a utilização continuada depois da alteração implica aceitação. Aplica-se a lei portuguesa.</p>`],
- seguranca:["Segurança nos treinos",`<p>Treinar em grupo é mais divertido e mais seguro, desde que se tomem algumas precauções. A TRIBU liga atletas, mas cada um é responsável pela sua segurança. Estes princípios aplicam-se a todos os treinos.</p>
+ seguranca:["Segurança nos treinos",`<p>Treinar em grupo é mais divertido e mais seguro, desde que se tomem algumas precauções. A FLYT liga atletas, mas cada um é responsável pela sua segurança. Estes princípios aplicam-se a todos os treinos.</p>
 <h2>Antes de ires</h2>
 <ul><li>Combina o encontro em locais públicos e conhecidos, de preferência de dia.</li>
 <li>Avisa alguém de confiança do percurso, da hora prevista e de com quem vais.</li>
@@ -383,7 +383,7 @@ const INFO={
 <li>Vê a meteorologia e o estado do mar ou da estrada. Se as condições forem más, adia.</li>
 <li>Leva telemóvel carregado, água e identificação. Se tiveres problemas de saúde, fala primeiro com o teu médico.</li></ul>
 <h2>Bike</h2>
-<ul><li>Usa capacete, luzes e roupa visível.</li>
+<ul><li>Usa caFLYTte, luzes e roupa visível.</li>
 <li>Respeita o código da estrada e não corras riscos para acompanhar o grupo.</li>
 <li>Leva material de reparação, câmara de ar e o essencial para um furo.</li>
 <li>Em grupo, mantém distâncias e avisa os outros de obstáculos e paragens.</li></ul>
@@ -397,17 +397,17 @@ const INFO={
 <li>Confirma as condições do mar, a corrente e a temperatura da água antes de entrares.</li>
 <li>Combina um sinal de ajuda e sai da água ao primeiro sinal de cansaço ou frio excessivo.</li></ul>
 <h2>Se algo correr mal</h2>
-<p>Em caso de emergência, liga 112. Se alguém se comportar de forma inadequada ou te sentires inseguro, afasta-te e denuncia a pessoa na TRIBU através do botão Denunciar, ou bloqueia-a no perfil.</p>`]
+<p>Em caso de emergência, liga 112. Se alguém se comportar de forma inadequada ou te sentires inseguro, afasta-te e denuncia a pessoa na FLYT através do botão Denunciar, ou bloqueia-a no perfil.</p>`]
 };
 const COUNTRIES=["Portugal","Espanha"];
 const GOALS={fin:'Terminar a prova',s7:'Sub 7h',s6:'Sub 6h',s530:'Sub 5h30',s5:'Sub 5h',cus:'Objetivo personalizado'},ROLES=['Admin','Moderador','Mentor','Atleta'],SPORTS={bike:'Bike',run:'Run',swim:'Natação em águas abertas'};
-const SAFE={bike:'Usa capacete, respeita o código da estrada e leva material de reparação.',run:'Leva água, usa roupa visível e respeita o teu ritmo.',swim:'Nada sempre acompanhado, com boia de segurança, e confirma as condições do mar.'};
+const SAFE={bike:'Usa caFLYTte, respeita o código da estrada e leva material de reparação.',run:'Leva água, usa roupa visível e respeita o teu ritmo.',swim:'Nada sempre acompanhado, com boia de segurança, e confirma as condições do mar.'};
 /* parceiros: preencher aqui quando houver. {cat:'mec',name:'',city:'',perk:'',url:'https://...'} */
 const PCATS=[['mec','Mecânicos de bike','Revisões, afinações e preparação da bike para o dia da prova.','wrench'],['fit','Bike fit','Posição e ergonomia à medida para pedalar mais rápido e sem dores.','bike'],['reg','Regeneração e fisioterapia','Massagem, fisioterapia e recuperação para treinares mais e melhor.','heart'],['nut','Nutrição','Planos alimentares e suplementação para treino e prova.','apple'],['loj','Lojas e material','Material de bike, corrida e natação com condições para a comunidade.','bag'],['tre','Treinadores e coaching','Planos de treino personalizados e acompanhamento.','bolt']];
 const PARTNERS=[];
 /* ============ IDIOMAS (PT / EN / FR / ES) ============ */
 let L='pt';
-try{const s=localStorage.getItem('pace_lang');if(s==='pt'||s==='en'||s==='fr'||s==='es')L=s}catch(_){}
+try{const s=localStorage.getItem('FLYT_lang');if(s==='pt'||s==='en'||s==='fr'||s==='es')L=s}catch(_){}
 document.documentElement.lang={pt:'pt-PT',en:'en',fr:'fr',es:'es'}[L];
 const LOC=()=>({pt:'pt-PT',en:'en-GB',fr:'fr-FR',es:'es-ES'}[L]);
 /* [português, inglês, francês, espanhol] */
@@ -432,7 +432,7 @@ const ROWS=[
 ["Tenho um código","I have a code","J'ai un code","Tengo un código"],
 ["Submeter código","Redeem code","Saisir un code","Introducir código"],
 ["Código","Code","Code","Código"],
-["Introduz o código que recebeste da equipa TRIBU.","Enter the code you received from the TRIBU team.","Saisis le code reçu de l'équipe TRIBU.","Introduce el código que recibiste del equipo TRIBU."],
+["Introduz o código que recebeste da equipa FLYT.","Enter the code you received from the FLYT team.","Saisis le code reçu de l'équipe FLYT.","Introduce el código que recibiste del equipo FLYT."],
 ["Submeter","Submit","Valider","Enviar"],
 ["Código inválido ou já utilizado.","Invalid or already used code.","Code invalide ou déjà utilisé.","Código no válido o ya utilizado."],
 ["Gerar código de cargo","Generate role code","Générer un code de rôle","Generar código de rol"],
@@ -463,7 +463,7 @@ const ROWS=[
 ["Escolhe a prova","Choose your race","Choisis ta course","Elige tu carrera"],
 ["Entra no canal da prova em que vais participar.","Join the channel of the race you're entering.","Rejoins le canal de la course à laquelle tu participes.","Únete al canal de la carrera en la que vas a participar."],
 ["Encontra atletas como tu","Find athletes like you","Trouve des athlètes comme toi","Encuentra atletas como tú"],
-["Descobre quem tem objetivos e ritmos semelhantes.","Discover who has similar goals and pace.","Découvre qui a des objectifs et un rythme similaires.","Descubre quién tiene objetivos y ritmos parecidos."],
+["Descobre quem tem objetivos e ritmos semelhantes.","Discover who has similar goals and FLYT.","Découvre qui a des objectifs et un rythme similaires.","Descubre quién tiene objetivos y ritmos parecidos."],
 ["Combina treinos","Plan workouts","Organise des entraînements","Organiza entrenamientos"],
 ["Organiza saídas de bike, corrida e natação em águas abertas.","Set up bike rides, runs and open-water swims.","Organise des sorties vélo, course à pied et natation en eau libre.","Organiza salidas de bici, carrera a pie y natación en aguas abiertas."],
 ["Uma prova é mais fácil quando não a preparas sozinho.","A race is easier when you don't prepare alone.","Une course est plus facile quand on ne la prépare pas seul.","Una carrera es más fácil cuando no la preparas solo."],
@@ -477,10 +477,10 @@ const ROWS=[
 ["Experimenta outro nome ou remove o filtro de tipo.","Try another name or remove the type filter.","Essaie un autre nom ou retire le filtre de type.","Prueba con otro nombre o quita el filtro de tipo."],
 ["Limpar filtros","Clear filters","Effacer les filtres","Borrar filtros"],
 ["Faz login para continuar","Sign in to continue","Connecte-toi pour continuer","Inicia sesión para continuar"],
-["Esta área é só para atletas com sessão iniciada. Faz login para criares o teu perfil e participares nos canais.","This area is for signed-in athletes only. Sign in to create your profile and join channels.","Cet espace est réservé aux athlètes connectés. Connecte-toi pour créer ton profil et rejoindre les canaux.","Esta zona es solo para atletas con la sesión iniciada. Inicia sesión para crear tu perfil y participar en los canales."],
+["Esta área é só para atletas com sessão iniciada. Faz login para criares o teu perfil e participares nos canais.","This area is for signed-in athletes only. Sign in to create your profile and join channels.","Cet esFLYT est réservé aux athlètes connectés. Connecte-toi pour créer ton profil et rejoindre les canaux.","Esta zona es solo para atletas con la sesión iniciada. Inicia sesión para crear tu perfil y participar en los canales."],
 ["Sessão iniciada","Signed in","Connecté","Sesión iniciada"],
 ["Ver provas","View races","Voir les courses","Ver carreras"],
-["Bem-vindo à TRIBU","Welcome to TRIBU","Bienvenue sur TRIBU","Bienvenido a TRIBU"],
+["Bem-vindo à FLYT","Welcome to FLYT","Bienvenue sur FLYT","Bienvenido a FLYT"],
 ["Completa o teu perfil. O nome, o username e a cidade são obrigatórios; o resto podes mudar depois no teu perfil.","Complete your profile. Name, username and city are required; you can change the rest later in your profile.","Complète ton profil. Le nom, le nom d'utilisateur et la ville sont obligatoires ; tu pourras modifier le reste plus tard.","Completa tu perfil. El nombre, el usuario y la ciudad son obligatorios; el resto puedes cambiarlo después en tu perfil."],
 ["Escolher foto","Choose photo","Choisir une photo","Elegir foto"],
 ["Usamos a foto da tua conta se não escolheres outra.","We'll use your account photo if you don't pick another.","Nous utiliserons la photo de ton compte si tu n'en choisis pas une autre.","Usaremos la foto de tu cuenta si no eliges otra."],
@@ -533,7 +533,7 @@ const ROWS=[
 ["Site oficial: não configurado.","Official website: not set.","Site officiel : non configuré.","Sitio web oficial: no configurado."],
 ["Próximos treinos","Upcoming workouts","Prochains entraînements","Próximos entrenamientos"],
 ["Cargos","Roles","Rôles","Roles"],
-["Admin, Moderador e Mentor são atribuídos pela equipa TRIBU. Todos os outros são Atletas.","Admin, Moderator and Mentor roles are assigned by the TRIBU team. Everyone else is an Athlete.","Les rôles Admin, Modérateur et Mentor sont attribués par l'équipe TRIBU. Tous les autres sont Athlètes.","Los roles de Admin, Moderador y Mentor los asigna el equipo TRIBU. Todos los demás son Atletas."],
+["Admin, Moderador e Mentor são aFLYTídos pela equipa FLYT. Todos os outros são Atletas.","Admin, Moderator and Mentor roles are assigned by the FLYT team. Everyone else is an Athlete.","Les rôles Admin, Modérateur et Mentor sont atFLYTés par l'équipe FLYT. Tous les autres sont Athlètes.","Los roles de Admin, Moderador y Mentor los asigna el equipo FLYT. Todos los demás son Atletas."],
 ["Sem treinos marcados.","No workouts scheduled.","Aucun entraînement prévu.","No hay entrenamientos programados."],
 ["Moderador","Moderator","Modérateur","Moderador"],
 ["Atleta","Athlete","Athlète","Atleta"],
@@ -568,8 +568,8 @@ const ROWS=[
 ["Foto atualizada","Photo updated","Photo mise à jour","Foto actualizada"],
 ["A usar a foto da conta","Using account photo","Utilisation de la photo du compte","Usando la foto de la cuenta"],
 ["Natação em águas abertas","Open-water swimming","Natation en eau libre","Natación en aguas abiertas"],
-["Usa capacete, respeita o código da estrada e leva material de reparação.","Wear a helmet, follow traffic rules and carry repair gear.","Porte un casque, respecte le code de la route et emporte du matériel de réparation.","Usa casco, respeta el código de circulación y lleva material de reparación."],
-["Leva água, usa roupa visível e respeita o teu ritmo.","Bring water, wear visible clothing and respect your own pace.","Emporte de l'eau, porte des vêtements visibles et respecte ton rythme.","Lleva agua, usa ropa visible y respeta tu ritmo."],
+["Usa caFLYTte, respeita o código da estrada e leva material de reparação.","Wear a helmet, follow traffic rules and carry repair gear.","Porte un casque, respecte le code de la route et emporte du matériel de réparation.","Usa casco, respeta el código de circulación y lleva material de reparación."],
+["Leva água, usa roupa visível e respeita o teu ritmo.","Bring water, wear visible clothing and respect your own FLYT.","Emporte de l'eau, porte des vêtements visibles et respecte ton rythme.","Lleva agua, usa ropa visible y respeta tu ritmo."],
 ["Nada sempre acompanhado, com boia de segurança, e confirma as condições do mar.","Always swim accompanied, with a safety buoy, and check sea conditions.","Nage toujours accompagné, avec une bouée de sécurité, et vérifie les conditions de la mer.","Nada siempre acompañado, con boya de seguridad, y comprueba las condiciones del mar."],
 ["Usa sempre pontos de encontro públicos, nunca moradas privadas.","Always use public meeting points, never private addresses.","Utilise toujours des points de rendez-vous publics, jamais des adresses privées.","Usa siempre puntos de encuentro públicos, nunca domicilios privados."],
 ["Inscrição confirmada","Registration confirmed","Inscription confirmée","Inscripción confirmada"],
@@ -611,14 +611,14 @@ const ROWS=[
 ["Morada do ponto de encontro (opcional)","Meeting point address (optional)","Adresse du point de rendez-vous (facultatif)","Dirección del punto de encuentro (opcional)"],
 ["Distância (km)","Distance (km)","Distance (km)","Distancia (km)"],
 ["Velocidade média (km/h, opcional)","Average speed (km/h, optional)","Vitesse moyenne (km/h, facultatif)","Velocidad media (km/h, opcional)"],
-["Ritmo (min/km, ex.: 5:30, opcional)","Pace (min/km, e.g. 5:30, optional)","Allure (min/km, ex. : 5:30, facultatif)","Ritmo (min/km, p. ej.: 5:30, opcional)"],
+["Ritmo (min/km, ex.: 5:30, opcional)","FLYT (min/km, e.g. 5:30, optional)","Allure (min/km, ex. : 5:30, facultatif)","Ritmo (min/km, p. ej.: 5:30, opcional)"],
 ["Duração (minutos, opcional)","Duration (minutes, optional)","Durée (minutes, facultatif)","Duración (minutos, opcional)"],
 ["Descrição","Description","Description","Descripción"],
 ["Limite de participantes","Participant limit","Limite de participants","Límite de participantes"],
 ["Dificuldade","Difficulty","Difficulté","Dificultad"],
 ["Ganho de elevação (m, opcional)","Elevation gain (m, optional)","Dénivelé positif (m, facultatif)","Desnivel positivo (m, opcional)"],
 ["Tipo de treino (opcional)","Workout type (optional)","Type d'entraînement (facultatif)","Tipo de entrenamiento (opcional)"],
-["Ritmo constante","Steady pace","Allure constante","Ritmo constante"],
+["Ritmo constante","Steady FLYT","Allure constante","Ritmo constante"],
 ["Intervalos","Intervals","Fractionné","Intervalos"],
 ["Longo","Long","Sortie longue","Largo"],
 ["Técnica","Technique","Technique","Técnica"],
@@ -680,7 +680,7 @@ const ROWS=[
 ["Voltar ao início","Back to home","Retour à l'accueil","Volver al inicio"],
 ["Agora não","Not now","Pas maintenant","Ahora no"],
 ["Escreve-nos para","Write to us at","Écris-nous à","Escríbenos a"],
-["A denúncia é enviada à equipa TRIBU para revisão.","Your report is sent to the TRIBU team for review.","Le signalement est envoyé à l'équipe TRIBU pour examen.","La denuncia se envía al equipo TRIBU para su revisión."],
+["A denúncia é enviada à equipa FLYT para revisão.","Your report is sent to the FLYT team for review.","Le signalement est envoyé à l'équipe FLYT pour examen.","La denuncia se envía al equipo FLYT para su revisión."],
 ["Motivo","Reason","Motif","Motivo"],
 ["Descreve o problema","Describe the problem","Décris le problème","Describe el problema"],
 ["Enviar denúncia","Send report","Envoyer le signalement","Enviar denuncia"],
@@ -706,7 +706,7 @@ const ROWS=[
 ["Termos","Terms","Conditions","Términos"],
 ["Segurança nos treinos","Workout safety","Sécurité à l'entraînement","Seguridad en los entrenamientos"],
 ["Instagram ainda não configurado (CONFIG.instagramUrl).","Instagram not set up yet (CONFIG.instagramUrl).","Instagram pas encore configuré (CONFIG.instagramUrl).","Instagram aún no está configurado (CONFIG.instagramUrl)."],
-["TRIBU é um projeto independente e não tem qualquer afiliação oficial com a IRONMAN. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares.","TRIBU is an independent project and has no official affiliation with IRONMAN. IRONMAN and IRONMAN 70.3 are trademarks of their respective owners.","TRIBU est un projet indépendant et n'a aucune affiliation officielle avec IRONMAN. IRONMAN et IRONMAN 70.3 sont des marques de leurs titulaires respectifs.","TRIBU es un proyecto independiente y no tiene ninguna afiliación oficial con IRONMAN. IRONMAN e IRONMAN 70.3 son marcas de sus respectivos titulares."],
+["FLYT é um projeto independente e não tem qualquer afiliação oficial com a IRONMAN. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares.","FLYT is an independent project and has no official affiliation with IRONMAN. IRONMAN and IRONMAN 70.3 are trademarks of their respective owners.","FLYT est un projet indépendant et n'a aucune affiliation officielle avec IRONMAN. IRONMAN et IRONMAN 70.3 sont des marques de leurs titulaires respectifs.","FLYT es un proyecto independiente y no tiene ninguna afiliación oficial con IRONMAN. IRONMAN e IRONMAN 70.3 son marcas de sus respectivos titulares."],
 ["Faz login para entrares no canal, falares com outros atletas e combinares treinos.","Sign in to join the channel, chat with other athletes and plan workouts.","Connecte-toi pour rejoindre le canal, discuter avec d'autres athlètes et organiser des entraînements.","Inicia sesión para unirte al canal, hablar con otros atletas y organizar entrenamientos."],
 ["Ainda não existe um contacto oficial configurado. Quando existir, será definido em CONFIG.contactEmail.","There is no official contact set up yet. Once there is, it will be defined in CONFIG.contactEmail.","Aucun contact officiel n'est encore configuré. Il sera défini dans CONFIG.contactEmail.","Todavía no hay un contacto oficial configurado. Cuando exista, se definirá en CONFIG.contactEmail."],
 ["Traduzir","Translate","Traduire","Traducir"],
@@ -730,7 +730,7 @@ const ROWS=[
 ["Atletas","Athletes","Athlètes","Atletas"],
 ["Sugerir prova","Suggest a race","Suggérer une course","Sugerir carrera"],
 ["Não encontras a tua prova?","Can't find your race?","Tu ne trouves pas ta course ?","¿No encuentras tu carrera?"],
-["Diz-nos qual é e nós acrescentamo-la à TRIBU.","Tell us which one and we'll add it to TRIBU.","Dis-nous laquelle et nous l'ajouterons à TRIBU.","Dinos cuál es y la añadiremos a TRIBU."],
+["Diz-nos qual é e nós acrescentamo-la à FLYT.","Tell us which one and we'll add it to FLYT.","Dis-nous laquelle et nous l'ajouterons à FLYT.","Dinos cuál es y la añadiremos a FLYT."],
 ["Nome da prova","Race name","Nom de la course","Nombre de la carrera"],
 ["Tipo de prova","Race type","Type de course","Tipo de carrera"],
 ["Data ou mês (opcional)","Date or month (optional)","Date ou mois (facultatif)","Fecha o mes (opcional)"],
@@ -755,7 +755,7 @@ const ROWS=[
 ["Material de bike, corrida e natação com condições para a comunidade.","Bike, run and swim gear with perks for the community.","Matériel vélo, course et natation avec avantages pour la communauté.","Material de bici, carrera y natación con ventajas para la comunidad."],
 ["Planos de treino personalizados e acompanhamento.","Personalised training plans and follow-up.","Plans d'entraînement personnalisés et suivi.","Planes de entrenamiento personalizados y seguimiento."],
 ["Em breve","Coming soon","Bientôt","Próximamente"],
-["Negócios e profissionais escolhidos para ajudar a comunidade TRIBU a treinar melhor.","Businesses and professionals chosen to help the TRIBU community train better.","Entreprises et professionnels choisis pour aider la communauté TRIBU à mieux s'entraîner.","Negocios y profesionales elegidos para ayudar a la comunidad TRIBU a entrenar mejor."],
+["Negócios e profissionais escolhidos para ajudar a comunidade FLYT a treinar melhor.","Businesses and professionals chosen to help the FLYT community train better.","Entreprises et professionnels choisis pour aider la communauté FLYT à mieux s'entraîner.","Negocios y profesionales elegidos para ayudar a la comunidad FLYT a entrenar mejor."],
 ["Tens um negócio para atletas?","Do you run a business for athletes?","Tu as une activité pour les athlètes ?","¿Tienes un negocio para atletas?"],
 ["Torna-te parceiro e chega a quem treina todos os dias.","Become a partner and reach people who train every day.","Deviens partenaire et touche ceux qui s'entraînent tous les jours.","Hazte socio y llega a quienes entrenan cada día."],
 ["Quero ser parceiro","I want to be a partner","Je veux devenir partenaire","Quiero ser socio"],
@@ -772,10 +772,10 @@ const ROWS=[
 ["Mês seguinte","Next month","Mois suivant","Mes siguiente"],
 ["Sem eventos neste dia.","No events on this day.","Aucun événement ce jour-là.","Sin eventos este día."],
 ["Prova","Race","Course","Carrera"],
-["Parceiros TRIBU","TRIBU partners","Partenaires TRIBU","Socios TRIBU"],
+["Parceiros FLYT","FLYT partners","Partenaires FLYT","Socios FLYT"],
 ["Mecânicos, bike fit, regeneração e muito mais.","Mechanics, bike fit, recovery and more.","Mécaniciens, bike fit, récupération et plus encore.","Mecánicos, bike fit, recuperación y mucho más."],
 ["Ver parceiros","View partners","Voir les partenaires","Ver socios"],
-["Segue a TRIBU no Instagram","Follow TRIBU on Instagram","Suis TRIBU sur Instagram","Sigue a TRIBU en Instagram"],
+["Segue a FLYT no Instagram","Follow FLYT on Instagram","Suis FLYT sur Instagram","Sigue a FLYT en Instagram"],
 ["Novidades, provas e histórias da comunidade.","News, races and stories from the community.","Actualités, courses et histoires de la communauté.","Novedades, carreras e historias de la comunidad."],
 ["Seguir no Instagram","Follow on Instagram","Suivre sur Instagram","Seguir en Instagram"]
 ];
@@ -840,27 +840,27 @@ function trNode(n){
  list.forEach(trNode);
  [n,...n.querySelectorAll('[placeholder],[aria-label],[title]')].forEach(e=>{
   if(noTrA(e))return;
-  ['placeholder','aria-label','title'].forEach(a=>{if(e.hasAttribute(a)){const v=e.getAttribute(a),r=tr(v);if(r!==v)e.setAttribute(a,r)}})})}
+  ['placeholder','aria-label','title'].forEach(a=>{if(e.hasAtFLYTte(a)){const v=e.getAtFLYTte(a),r=tr(v);if(r!==v)e.setAtFLYTte(a,r)}})})}
 new MutationObserver(ms=>{if(L==='pt')return;ms.forEach(m=>m.addedNodes.forEach(trNode))}).observe(document.body,{childList:true,subtree:true});
 function setTitle(){document.title=S.route==="home"?CONFIG.name+" — "+CONFIG.slogan:tr(pageTitle())+" · "+CONFIG.name}
 function setLang(l){
  if(l!=='pt'&&l!=='en'&&l!=='fr'&&l!=='es')return;
- L=l;try{localStorage.setItem('pace_lang',l)}catch(_){}
+ L=l;try{localStorage.setItem('FLYT_lang',l)}catch(_){}
  document.documentElement.lang={pt:'pt-PT',en:'en',fr:'fr',es:'es'}[l];
  const m=document.getElementById('modal');if(m&&m.dataset.k!=='det')closeModal();
  S._vk='';refresh();setTitle()}
 function langSel(){return `<select class="lang" aria-label="Idioma">${[['pt','PT'],['en','EN'],['fr','FR'],['es','ES']].map(([k,v])=>`<option value="${k}" ${L===k?'selected':''}>${v}</option>`).join('')}</select>`}
 const INFOT={
 en:{
-sobre:`<p>TRIBU is a free social platform for amateur athletes taking part in marathons, half marathons and IRONMAN 70.3 races in Portugal. It helps you find people going to the same race as you, with similar goals, and to arrange in-person bike, run and open-water swim workouts.</p>
+sobre:`<p>FLYT is a free social platform for amateur athletes taking part in marathons, half marathons and IRONMAN 70.3 races in Portugal. It helps you find people going to the same race as you, with similar goals, and to arrange in-person bike, run and open-water swim workouts.</p>
 <h2>How it works</h2>
 <p>Every race has its own channel. When you join, you see who else is going, chat with them and can create or join workouts scheduled in the calendar. It all comes down to one simple idea: a race is easier when you don't prepare for it alone.</p>
 <h2>Who it's for</h2>
 <p>For people who train for the love of it: first-time marathoners or 70.3 athletes, those who want to improve their time, and anyone just looking for company on the long sessions. You don't need to be fast, you just need to want to train together.</p>
 <h2>Independence</h2>
-<p>TRIBU is an independent project with no official affiliation with IRONMAN or the race organisers. IRONMAN and IRONMAN 70.3 are trademarks of their respective owners. Workouts are organized by the athletes themselves, not by TRIBU.</p>`,
+<p>FLYT is an independent project with no official affiliation with IRONMAN or the race organisers. IRONMAN and IRONMAN 70.3 are trademarks of their respective owners. Workouts are organized by the athletes themselves, not by FLYT.</p>`,
 privacidade:`<p class="upd">Last updated: November 2026</p>
-<p>This page explains what personal data TRIBU processes, why, and how you can control it. TRIBU is an independent project and is responsible for the processing of the data described below.</p>
+<p>This page explains what personal data FLYT processes, why, and how you can control it. FLYT is an independent project and is responsible for the processing of the data described below.</p>
 <h2>What data we collect</h2>
 <ul><li><strong>Account:</strong> sign-in uses your Google account. We receive the name and photo from the account. The email is used only for authentication, is managed by the authentication service, and does not appear on your profile or get shown to other athletes.</li>
 <li><strong>Profile:</strong> username, country, city or area, bio, target race, time goal, training area and the photo you choose.</li>
@@ -871,41 +871,41 @@ privacidade:`<p class="upd">Last updated: November 2026</p>
 <h2>What we use the data for</h2>
 <p>To create and show your profile, connect you with athletes in the same race, enable chat and workout organization, send you notices about your workouts, review suggestions and partnership requests and handle reports of abusive behavior. We do not sell your data and do not use it for advertising.</p>
 <h2>Third-party services</h2>
-<p>TRIBU uses Google services: Firebase (authentication and database, on servers in Europe where indicated) and Google Fonts (typeface). When the page loads, your IP address is seen by these services. We do not use advertising or tracking cookies; the browser stores locally only what is needed to keep you signed in. If you use the Translate button in the chat, that message's text is translated in your browser when it supports this or, otherwise, sent to an external translation service (MyMemory), which processes it to return the translation.</p>
+<p>FLYT uses Google services: Firebase (authentication and database, on servers in Europe where indicated) and Google Fonts (typeface). When the page loads, your IP address is seen by these services. We do not use advertising or tracking cookies; the browser stores locally only what is needed to keep you signed in. If you use the Translate button in the chat, that message's text is translated in your browser when it supports this or, otherwise, sent to an external translation service (MyMemory), which processes it to return the translation.</p>
 <h2>How long we keep it</h2>
 <p>We keep the data while your account exists. You can request deletion of your account and associated data at any time.</p>
 <h2>Your rights</h2>
 <p>Under the GDPR, you have the right of access, rectification, erasure, restriction, objection and portability of your data. You can correct most information directly in Edit profile. For other requests use the Contact page. If you believe the processing violates the law, you may lodge a complaint with the Portuguese data protection authority (CNPD).</p>
 <h2>Minimum age</h2>
-<p>TRIBU is intended for people aged 18 or over.</p>
+<p>FLYT is intended for people aged 18 or over.</p>
 <h2>Changes</h2>
 <p>If this policy changes significantly, we will update the date at the top of this page.</p>`,
 termos:`<p class="upd">Last updated: November 2026</p>
-<p>By creating an account and using TRIBU you accept these terms. If you do not agree, do not use the service.</p>
+<p>By creating an account and using FLYT you accept these terms. If you do not agree, do not use the service.</p>
 <h2>1. The service</h2>
-<p>TRIBU is a free platform that lets amateur athletes meet, chat and arrange workouts for marathons, half marathons and IRONMAN 70.3 races. TRIBU does not organize workouts, is not a sports body and does not provide medical, training or nutrition advice.</p>
+<p>FLYT is a free platform that lets amateur athletes meet, chat and arrange workouts for marathons, half marathons and IRONMAN 70.3 races. FLYT does not organize workouts, is not a sports body and does not provide medical, training or nutrition advice.</p>
 <h2>2. Account</h2>
 <p>You sign in with your Google account. You are responsible for your account and for the accuracy of your profile information. You may only have one account, and your username cannot be changed once created.</p>
 <h2>3. Conduct</h2>
 <p>Treat others with respect. Harassment, threats, discrimination, spam, illegal or offensive content, and sharing other people's personal data without permission are not allowed. You can report messages and profiles and block athletes.</p>
 <h2>4. Your content</h2>
-<p>What you post (messages, workout descriptions, bio, photo) remains yours. By posting it, you allow TRIBU to show it to other athletes within the service. You guarantee that you have the right to post it.</p>
+<p>What you post (messages, workout descriptions, bio, photo) remains yours. By posting it, you allow FLYT to show it to other athletes within the service. You guarantee that you have the right to post it.</p>
 <h2>5. In-person workouts and liability</h2>
-<p>Workouts are arranged and carried out between athletes, on their own initiative. You take part at your own risk and must assess whether you are physically fit to do so. TRIBU does not verify the identity, fitness or behavior of athletes and, to the extent permitted by law, is not responsible for injuries, accidents, losses or disputes occurring before, during or after a workout. Read the Workout safety page.</p>
+<p>Workouts are arranged and carried out between athletes, on their own initiative. You take part at your own risk and must assess whether you are physically fit to do so. FLYT does not verify the identity, fitness or behavior of athletes and, to the extent permitted by law, is not responsible for injuries, accidents, losses or disputes occurring before, during or after a workout. Read the Workout safety page.</p>
 <h2>6. Moderation</h2>
 <p>We may remove content and limit or suspend accounts that violate these terms or put other athletes at risk.</p>
 <h2>7. Availability</h2>
 <p>The service is provided as is, may be interrupted or changed, and we do not guarantee that it will always be available or error-free.</p>
 <h2>8. Trademarks</h2>
-<p>TRIBU has no affiliation with IRONMAN or the race organisers. IRONMAN and IRONMAN 70.3 are trademarks of their respective owners.</p>
+<p>FLYT has no affiliation with IRONMAN or the race organisers. IRONMAN and IRONMAN 70.3 are trademarks of their respective owners.</p>
 <h2>9. Changes and applicable law</h2>
 <p>We may update these terms; continued use after a change means acceptance. Portuguese law applies.</p>`,
-seguranca:`<p>Training in a group is more fun and safer, as long as a few precautions are taken. TRIBU connects athletes, but everyone is responsible for their own safety. These principles apply to all workouts.</p>
+seguranca:`<p>Training in a group is more fun and safer, as long as a few precautions are taken. FLYT connects athletes, but everyone is responsible for their own safety. These principles apply to all workouts.</p>
 <h2>Before you go</h2>
 <ul><li>Arrange to meet in public, well-known places, preferably in daylight.</li>
 <li>Tell someone you trust the route, the expected time and who you are going with.</li>
 <li>Do not share private addresses. Use public meeting points.</li>
-<li>Read the description, distance, pace and difficulty. If you are not sure you can keep up, ask in the chat or choose a beginner workout.</li>
+<li>Read the description, distance, FLYT and difficulty. If you are not sure you can keep up, ask in the chat or choose a beginner workout.</li>
 <li>Check the weather and the state of the sea or road. If conditions are bad, postpone.</li>
 <li>Bring a charged phone, water and ID. If you have health problems, talk to your doctor first.</li></ul>
 <h2>Bike</h2>
@@ -915,7 +915,7 @@ seguranca:`<p>Training in a group is more fun and safer, as long as a few precau
 <li>In a group, keep your distance and warn others about obstacles and stops.</li></ul>
 <h2>Run</h2>
 <ul><li>Bring water and wear visible clothing, especially at sunrise and sunset.</li>
-<li>Respect your own pace; nobody is obliged to keep up with the fastest.</li>
+<li>Respect your own FLYT; nobody is obliged to keep up with the fastest.</li>
 <li>On the road, run facing traffic when there is no pavement.</li></ul>
 <h2>Open-water swimming</h2>
 <ul><li>Always swim accompanied, never alone.</li>
@@ -923,18 +923,18 @@ seguranca:`<p>Training in a group is more fun and safer, as long as a few precau
 <li>Check sea conditions, currents and water temperature before getting in.</li>
 <li>Agree on a signal for help and get out of the water at the first sign of tiredness or excessive cold.</li></ul>
 <h2>If something goes wrong</h2>
-<p>In an emergency, call 112. If someone behaves inappropriately or you feel unsafe, walk away and report the person on TRIBU using the Report button, or block them on their profile.</p>`
+<p>In an emergency, call 112. If someone behaves inappropriately or you feel unsafe, walk away and report the person on FLYT using the Report button, or block them on their profile.</p>`
 },
 fr:{
-sobre:`<p>TRIBU est une plateforme sociale gratuite pour les athlètes amateurs qui participent à des marathons, semi-marathons et courses IRONMAN 70.3 au Portugal. Elle t'aide à trouver des personnes qui vont à la même course que toi, avec des objectifs similaires, et à organiser des entraînements en présentiel de vélo, de course à pied et de natation en eau libre.</p>
+sobre:`<p>FLYT est une plateforme sociale gratuite pour les athlètes amateurs qui participent à des marathons, semi-marathons et courses IRONMAN 70.3 au Portugal. Elle t'aide à trouver des personnes qui vont à la même course que toi, avec des objectifs similaires, et à organiser des entraînements en présentiel de vélo, de course à pied et de natation en eau libre.</p>
 <h2>Comment ça marche</h2>
 <p>Chaque course a son propre canal. En le rejoignant, tu vois qui d'autre y va, tu discutes avec eux et tu peux créer ou rejoindre des entraînements planifiés dans le calendrier. Tout repose sur une idée simple : une course est plus facile quand on ne la prépare pas seul.</p>
 <h2>Pour qui</h2>
 <p>Pour ceux qui s'entraînent par plaisir : ceux qui font leur premier marathon ou 70.3, ceux qui veulent améliorer leur temps et ceux qui cherchent simplement de la compagnie pour les sorties longues. Pas besoin d'être rapide, il suffit d'avoir envie de s'entraîner à plusieurs.</p>
 <h2>Indépendance</h2>
-<p>TRIBU est un projet indépendant, sans aucune affiliation officielle avec IRONMAN ni avec les organisateurs des courses. IRONMAN et IRONMAN 70.3 sont des marques de leurs titulaires respectifs. Les entraînements sont organisés par les athlètes eux-mêmes, pas par TRIBU.</p>`,
+<p>FLYT est un projet indépendant, sans aucune affiliation officielle avec IRONMAN ni avec les organisateurs des courses. IRONMAN et IRONMAN 70.3 sont des marques de leurs titulaires respectifs. Les entraînements sont organisés par les athlètes eux-mêmes, pas par FLYT.</p>`,
 privacidade:`<p class="upd">Dernière mise à jour : novembre 2026</p>
-<p>Cette page explique quelles données personnelles TRIBU traite, pourquoi, et comment tu peux les contrôler. TRIBU est un projet indépendant et est responsable du traitement des données décrites ci-dessous.</p>
+<p>Cette page explique quelles données personnelles FLYT traite, pourquoi, et comment tu peux les contrôler. FLYT est un projet indépendant et est responsable du traitement des données décrites ci-dessous.</p>
 <h2>Quelles données nous collectons</h2>
 <ul><li><strong>Compte :</strong> la connexion se fait avec ton compte Google. Nous recevons le nom et la photo du compte. L'e-mail sert uniquement à l'authentification, est géré par le service d'authentification et n'apparaît pas sur ton profil ni n'est montré aux autres athlètes.</li>
 <li><strong>Profil :</strong> nom d'utilisateur, pays, ville ou zone, biographie, course cible, objectif de temps, zone d'entraînement et la photo que tu choisis.</li>
@@ -945,36 +945,36 @@ privacidade:`<p class="upd">Dernière mise à jour : novembre 2026</p>
 <h2>À quoi servent les données</h2>
 <p>À créer et afficher ton profil, te mettre en relation avec des athlètes de la même course, permettre le chat et l'organisation d'entraînements, t'envoyer des avis sur tes entraînements, examiner les suggestions et demandes de partenariat et traiter les signalements de comportements abusifs. Nous ne vendons pas tes données et ne les utilisons pas à des fins publicitaires.</p>
 <h2>Services tiers</h2>
-<p>TRIBU utilise des services Google : Firebase (authentification et base de données, sur des serveurs en Europe lorsque c'est indiqué) et Google Fonts (police de caractères). Au chargement de la page, ton adresse IP est vue par ces services. Nous n'utilisons pas de cookies publicitaires ni de suivi ; le navigateur ne conserve localement que ce qui est nécessaire pour garder ta session ouverte. Si tu utilises le bouton Traduire du chat, le texte de ce message est traduit dans ton navigateur lorsqu'il le permet ou, sinon, envoyé à un service de traduction externe (MyMemory), qui le traite pour renvoyer la traduction.</p>
+<p>FLYT utilise des services Google : Firebase (authentification et base de données, sur des serveurs en Europe lorsque c'est indiqué) et Google Fonts (police de caractères). Au chargement de la page, ton adresse IP est vue par ces services. Nous n'utilisons pas de cookies publicitaires ni de suivi ; le navigateur ne conserve localement que ce qui est nécessaire pour garder ta session ouverte. Si tu utilises le bouton Traduire du chat, le texte de ce message est traduit dans ton navigateur lorsqu'il le permet ou, sinon, envoyé à un service de traduction externe (MyMemory), qui le traite pour renvoyer la traduction.</p>
 <h2>Durée de conservation</h2>
 <p>Nous conservons les données tant que ton compte existe. Tu peux demander la suppression de ton compte et des données associées à tout moment.</p>
 <h2>Tes droits</h2>
 <p>Conformément au RGPD, tu disposes d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité de tes données. Tu peux corriger la plupart des informations directement dans Modifier le profil. Pour les autres demandes, utilise la page Contact. Si tu estimes que le traitement viole la loi, tu peux déposer une plainte auprès de l'autorité portugaise de protection des données (CNPD).</p>
 <h2>Âge minimum</h2>
-<p>TRIBU s'adresse aux personnes de 18 ans ou plus.</p>
+<p>FLYT s'adresse aux personnes de 18 ans ou plus.</p>
 <h2>Modifications</h2>
 <p>Si cette politique change de façon significative, nous mettrons à jour la date en haut de cette page.</p>`,
 termos:`<p class="upd">Dernière mise à jour : novembre 2026</p>
-<p>En créant un compte et en utilisant TRIBU, tu acceptes ces conditions. Si tu n'es pas d'accord, n'utilise pas le service.</p>
+<p>En créant un compte et en utilisant FLYT, tu acceptes ces conditions. Si tu n'es pas d'accord, n'utilise pas le service.</p>
 <h2>1. Le service</h2>
-<p>TRIBU est une plateforme gratuite qui permet aux athlètes amateurs de se rencontrer, de discuter et d'organiser des entraînements pour des marathons, semi-marathons et courses IRONMAN 70.3. TRIBU n'organise pas d'entraînements, n'est pas une entité sportive et ne fournit aucun conseil médical, d'entraînement ou de nutrition.</p>
+<p>FLYT est une plateforme gratuite qui permet aux athlètes amateurs de se rencontrer, de discuter et d'organiser des entraînements pour des marathons, semi-marathons et courses IRONMAN 70.3. FLYT n'organise pas d'entraînements, n'est pas une entité sportive et ne fournit aucun conseil médical, d'entraînement ou de nutrition.</p>
 <h2>2. Compte</h2>
 <p>Tu te connectes avec ton compte Google. Tu es responsable de ton compte et de l'exactitude des informations de ton profil. Tu ne peux avoir qu'un seul compte, et le nom d'utilisateur ne peut pas être modifié une fois créé.</p>
 <h2>3. Conduite</h2>
 <p>Traite les autres avec respect. Le harcèlement, les menaces, la discrimination, le spam, les contenus illégaux ou offensants et le partage de données personnelles de tiers sans autorisation sont interdits. Tu peux signaler des messages et des profils et bloquer des athlètes.</p>
 <h2>4. Ton contenu</h2>
-<p>Ce que tu publies (messages, descriptions d'entraînements, biographie, photo) reste à toi. En le publiant, tu autorises TRIBU à l'afficher aux autres athlètes dans le service. Tu garantis avoir le droit de le publier.</p>
+<p>Ce que tu publies (messages, descriptions d'entraînements, biographie, photo) reste à toi. En le publiant, tu autorises FLYT à l'afficher aux autres athlètes dans le service. Tu garantis avoir le droit de le publier.</p>
 <h2>5. Entraînements en présentiel et responsabilité</h2>
-<p>Les entraînements sont convenus et réalisés entre athlètes, de leur propre initiative. Tu participes à tes propres risques et tu dois évaluer si tu es en condition physique pour le faire. TRIBU ne vérifie ni l'identité, ni l'aptitude, ni le comportement des athlètes et, dans la mesure permise par la loi, n'est pas responsable des blessures, accidents, pertes ou conflits survenus avant, pendant ou après un entraînement. Lis la page Sécurité à l'entraînement.</p>
+<p>Les entraînements sont convenus et réalisés entre athlètes, de leur propre initiative. Tu participes à tes propres risques et tu dois évaluer si tu es en condition physique pour le faire. FLYT ne vérifie ni l'identité, ni l'aptitude, ni le comportement des athlètes et, dans la mesure permise par la loi, n'est pas responsable des blessures, accidents, pertes ou conflits survenus avant, pendant ou après un entraînement. Lis la page Sécurité à l'entraînement.</p>
 <h2>6. Modération</h2>
 <p>Nous pouvons supprimer des contenus, limiter ou suspendre des comptes qui enfreignent ces conditions ou mettent d'autres athlètes en danger.</p>
 <h2>7. Disponibilité</h2>
 <p>Le service est fourni tel quel, peut subir des interruptions ou des modifications, et nous ne garantissons pas qu'il soit toujours disponible ou exempt d'erreurs.</p>
 <h2>8. Marques</h2>
-<p>TRIBU n'a aucune affiliation avec IRONMAN ni avec les organisateurs des courses. IRONMAN et IRONMAN 70.3 sont des marques de leurs titulaires respectifs.</p>
+<p>FLYT n'a aucune affiliation avec IRONMAN ni avec les organisateurs des courses. IRONMAN et IRONMAN 70.3 sont des marques de leurs titulaires respectifs.</p>
 <h2>9. Modifications et loi applicable</h2>
 <p>Nous pouvons mettre à jour ces conditions ; la poursuite de l'utilisation après modification vaut acceptation. La loi portugaise s'applique.</p>`,
-seguranca:`<p>S'entraîner en groupe est plus amusant et plus sûr, à condition de prendre quelques précautions. TRIBU met les athlètes en relation, mais chacun est responsable de sa propre sécurité. Ces principes s'appliquent à tous les entraînements.</p>
+seguranca:`<p>S'entraîner en groupe est plus amusant et plus sûr, à condition de prendre quelques précautions. FLYT met les athlètes en relation, mais chacun est responsable de sa propre sécurité. Ces principes s'appliquent à tous les entraînements.</p>
 <h2>Avant de partir</h2>
 <ul><li>Fixe le rendez-vous dans des lieux publics et connus, de préférence de jour.</li>
 <li>Préviens une personne de confiance du parcours, de l'heure prévue et des personnes avec qui tu pars.</li>
@@ -997,18 +997,18 @@ seguranca:`<p>S'entraîner en groupe est plus amusant et plus sûr, à condition
 <li>Vérifie les conditions de la mer, le courant et la température de l'eau avant d'entrer.</li>
 <li>Convenez d'un signal d'aide et sors de l'eau dès les premiers signes de fatigue ou de froid excessif.</li></ul>
 <h2>Si quelque chose ne va pas</h2>
-<p>En cas d'urgence, appelle le 112. Si quelqu'un se comporte de façon inappropriée ou si tu te sens en danger, éloigne-toi et signale la personne sur TRIBU avec le bouton Signaler, ou bloque-la sur son profil.</p>`
+<p>En cas d'urgence, appelle le 112. Si quelqu'un se comporte de façon inappropriée ou si tu te sens en danger, éloigne-toi et signale la personne sur FLYT avec le bouton Signaler, ou bloque-la sur son profil.</p>`
 },
 es:{
-sobre:`<p>TRIBU es una plataforma social gratuita para atletas aficionados que participan en maratones, medias maratones y carreras IRONMAN 70.3 en Portugal. Te ayuda a encontrar personas que van a la misma carrera que tú, con objetivos parecidos, y a organizar entrenamientos presenciales de bici, carrera a pie y natación en aguas abiertas.</p>
+sobre:`<p>FLYT es una plataforma social gratuita para atletas aficionados que participan en maratones, medias maratones y carreras IRONMAN 70.3 en Portugal. Te ayuda a encontrar personas que van a la misma carrera que tú, con objetivos parecidos, y a organizar entrenamientos presenciales de bici, carrera a pie y natación en aguas abiertas.</p>
 <h2>Cómo funciona</h2>
 <p>Cada carrera tiene su propio canal. Al unirte, ves quién más va a la carrera, hablas con ellos en el chat y puedes crear o apuntarte a entrenamientos programados en el calendario. Todo gira en torno a una idea sencilla: una carrera es más fácil cuando no la preparas solo.</p>
 <h2>Para quién es</h2>
 <p>Para quien entrena por gusto: quien va a hacer su primer maratón o 70.3, quien quiere mejorar su tiempo y quien solo busca compañía para las salidas largas. No hace falta ser rápido, hace falta querer entrenar acompañado.</p>
 <h2>Independencia</h2>
-<p>TRIBU es un proyecto independiente y no tiene ninguna afiliación oficial con IRONMAN ni con las organizaciones de las carreras. IRONMAN e IRONMAN 70.3 son marcas de sus respectivos titulares. Los entrenamientos los organizan los propios atletas, no TRIBU.</p>`,
+<p>FLYT es un proyecto independiente y no tiene ninguna afiliación oficial con IRONMAN ni con las organizaciones de las carreras. IRONMAN e IRONMAN 70.3 son marcas de sus respectivos titulares. Los entrenamientos los organizan los propios atletas, no FLYT.</p>`,
 privacidade:`<p class="upd">Última actualización: noviembre de 2026</p>
-<p>Esta página explica qué datos personales trata TRIBU, para qué, y cómo puedes controlarlos. TRIBU es un proyecto independiente y es responsable del tratamiento de los datos descritos a continuación.</p>
+<p>Esta página explica qué datos personales trata FLYT, para qué, y cómo puedes controlarlos. FLYT es un proyecto independiente y es responsable del tratamiento de los datos descritos a continuación.</p>
 <h2>Qué datos recogemos</h2>
 <ul><li><strong>Cuenta:</strong> el inicio de sesión se hace con tu cuenta de Google. Recibimos el nombre y la foto de la cuenta. El correo electrónico solo sirve para la autenticación, lo gestiona el servicio de autenticación y no aparece en tu perfil ni se muestra a otros atletas.</li>
 <li><strong>Perfil:</strong> nombre de usuario, país, ciudad o zona, biografía, carrera objetivo, objetivo de tiempo, zona de entrenamiento y la foto que elijas.</li>
@@ -1019,36 +1019,36 @@ privacidade:`<p class="upd">Última actualización: noviembre de 2026</p>
 <h2>Para qué usamos los datos</h2>
 <p>Para crear y mostrar tu perfil, conectarte con atletas de la misma carrera, permitir el chat y la organización de entrenamientos, enviarte avisos sobre tus entrenamientos, revisar sugerencias y solicitudes de colaboración y tramitar denuncias de comportamientos abusivos. No vendemos tus datos ni los usamos para publicidad.</p>
 <h2>Servicios de terceros</h2>
-<p>TRIBU usa servicios de Google: Firebase (autenticación y base de datos, en servidores en Europa cuando así se indica) y Google Fonts (tipo de letra). Al cargar la página, estos servicios ven tu dirección IP. No usamos cookies de publicidad ni de seguimiento; el navegador guarda localmente solo lo necesario para mantener tu sesión iniciada. Si usas el botón Traducir del chat, el texto de ese mensaje se traduce en tu navegador cuando este lo admite o, si no, se envía a un servicio de traducción externo (MyMemory), que lo procesa para devolver la traducción.</p>
+<p>FLYT usa servicios de Google: Firebase (autenticación y base de datos, en servidores en Europa cuando así se indica) y Google Fonts (tipo de letra). Al cargar la página, estos servicios ven tu dirección IP. No usamos cookies de publicidad ni de seguimiento; el navegador guarda localmente solo lo necesario para mantener tu sesión iniciada. Si usas el botón Traducir del chat, el texto de ese mensaje se traduce en tu navegador cuando este lo admite o, si no, se envía a un servicio de traducción externo (MyMemory), que lo procesa para devolver la traducción.</p>
 <h2>Durante cuánto tiempo</h2>
 <p>Conservamos los datos mientras tu cuenta exista. Puedes pedir la eliminación de la cuenta y de los datos asociados en cualquier momento.</p>
 <h2>Tus derechos</h2>
 <p>Conforme al RGPD, tienes derecho de acceso, rectificación, supresión, limitación, oposición y portabilidad de tus datos. Puedes corregir la mayor parte de la información directamente en Editar perfil. Para el resto de solicitudes usa la página Contacto. Si consideras que el tratamiento infringe la ley, puedes presentar una reclamación ante la autoridad portuguesa de protección de datos (CNPD).</p>
 <h2>Edad mínima</h2>
-<p>TRIBU está dirigida a personas de 18 años o más.</p>
+<p>FLYT está dirigida a personas de 18 años o más.</p>
 <h2>Cambios</h2>
 <p>Si esta política cambia de forma relevante, actualizaremos la fecha en la parte superior de esta página.</p>`,
 termos:`<p class="upd">Última actualización: noviembre de 2026</p>
-<p>Al crear una cuenta y usar TRIBU aceptas estos términos. Si no estás de acuerdo, no uses el servicio.</p>
+<p>Al crear una cuenta y usar FLYT aceptas estos términos. Si no estás de acuerdo, no uses el servicio.</p>
 <h2>1. El servicio</h2>
-<p>TRIBU es una plataforma gratuita que permite a atletas aficionados conocerse, conversar y organizar entrenamientos para maratones, medias maratones y carreras IRONMAN 70.3. TRIBU no organiza entrenamientos, no es una entidad deportiva y no ofrece asesoramiento médico, de entrenamiento ni de nutrición.</p>
+<p>FLYT es una plataforma gratuita que permite a atletas aficionados conocerse, conversar y organizar entrenamientos para maratones, medias maratones y carreras IRONMAN 70.3. FLYT no organiza entrenamientos, no es una entidad deportiva y no ofrece asesoramiento médico, de entrenamiento ni de nutrición.</p>
 <h2>2. Cuenta</h2>
 <p>Inicias sesión con tu cuenta de Google. Eres responsable de tu cuenta y de la veracidad de la información del perfil. Solo puedes tener una cuenta, y el nombre de usuario no se puede cambiar una vez creado.</p>
 <h2>3. Conducta</h2>
 <p>Trata a los demás con respeto. No está permitido acosar, amenazar, discriminar, enviar spam, publicar contenido ilegal u ofensivo, ni compartir datos personales de terceros sin autorización. Puedes denunciar mensajes y perfiles y bloquear atletas.</p>
 <h2>4. Tu contenido</h2>
-<p>Lo que publicas (mensajes, descripciones de entrenamientos, biografía, foto) sigue siendo tuyo. Al publicarlo, permites que TRIBU lo muestre a otros atletas dentro del servicio. Garantizas que tienes derecho a publicarlo.</p>
+<p>Lo que publicas (mensajes, descripciones de entrenamientos, biografía, foto) sigue siendo tuyo. Al publicarlo, permites que FLYT lo muestre a otros atletas dentro del servicio. Garantizas que tienes derecho a publicarlo.</p>
 <h2>5. Entrenamientos presenciales y responsabilidad</h2>
-<p>Los entrenamientos se acuerdan y se realizan entre atletas, por iniciativa propia. Participas por tu cuenta y riesgo y debes valorar si estás en condiciones físicas de hacerlo. TRIBU no verifica la identidad, la aptitud ni el comportamiento de los atletas y, en la medida permitida por la ley, no se responsabiliza de lesiones, accidentes, pérdidas o conflictos ocurridos antes, durante o después de un entrenamiento. Lee la página Seguridad en los entrenamientos.</p>
+<p>Los entrenamientos se acuerdan y se realizan entre atletas, por iniciativa propia. Participas por tu cuenta y riesgo y debes valorar si estás en condiciones físicas de hacerlo. FLYT no verifica la identidad, la aptitud ni el comportamiento de los atletas y, en la medida permitida por la ley, no se responsabiliza de lesiones, accidentes, pérdidas o conflictos ocurridos antes, durante o después de un entrenamiento. Lee la página Seguridad en los entrenamientos.</p>
 <h2>6. Moderación</h2>
 <p>Podemos eliminar contenido, limitar o suspender cuentas que infrinjan estos términos o pongan en riesgo a otros atletas.</p>
 <h2>7. Disponibilidad</h2>
 <p>El servicio se ofrece tal cual, puede sufrir interrupciones o cambios y no garantizamos que esté siempre disponible ni libre de errores.</p>
 <h2>8. Marcas</h2>
-<p>TRIBU no tiene afiliación con IRONMAN ni con las organizaciones de las carreras. IRONMAN e IRONMAN 70.3 son marcas de sus respectivos titulares.</p>
+<p>FLYT no tiene afiliación con IRONMAN ni con las organizaciones de las carreras. IRONMAN e IRONMAN 70.3 son marcas de sus respectivos titulares.</p>
 <h2>9. Cambios y ley aplicable</h2>
 <p>Podemos actualizar estos términos; el uso continuado tras el cambio implica su aceptación. Se aplica la ley portuguesa.</p>`,
-seguranca:`<p>Entrenar en grupo es más divertido y más seguro, siempre que se tomen algunas precauciones. TRIBU conecta atletas, pero cada uno es responsable de su propia seguridad. Estos principios se aplican a todos los entrenamientos.</p>
+seguranca:`<p>Entrenar en grupo es más divertido y más seguro, siempre que se tomen algunas precauciones. FLYT conecta atletas, pero cada uno es responsable de su propia seguridad. Estos principios se aplican a todos los entrenamientos.</p>
 <h2>Antes de salir</h2>
 <ul><li>Quedad en lugares públicos y conocidos, preferiblemente de día.</li>
 <li>Avisa a alguien de confianza del recorrido, de la hora prevista y de con quién vas.</li>
@@ -1071,7 +1071,7 @@ seguranca:`<p>Entrenar en grupo es más divertido y más seguro, siempre que se 
 <li>Comprueba las condiciones del mar, la corriente y la temperatura del agua antes de entrar.</li>
 <li>Acordad una señal de ayuda y sal del agua a la primera señal de cansancio o de frío excesivo.</li></ul>
 <h2>Si algo sale mal</h2>
-<p>En caso de emergencia, llama al 112. Si alguien se comporta de forma inadecuada o te sientes inseguro, aléjate y denuncia a la persona en TRIBU con el botón Denunciar, o bloquéala en su perfil.</p>`
+<p>En caso de emergencia, llama al 112. Si alguien se comporta de forma inadecuada o te sientes inseguro, aléjate y denuncia a la persona en FLYT con el botón Denunciar, o bloquéala en su perfil.</p>`
 }};
 function infoBody(k){if(k==='contacto')return contactBody();const o=INFOT[L];return (o&&o[k])||INFO[k][1]}
 function contactBody(){return CONFIG.contactEmail?`<p>Escreve-nos para <a href="mailto:${esc(CONFIG.contactEmail)}">${esc(CONFIG.contactEmail)}</a>.</p>`:INFO.contacto[1]}
@@ -1082,7 +1082,7 @@ function cleanAct(x){
  x.org=idr.test(String(x.org))?String(x.org):'';x.race=String(x.race||'');
  x.max=Math.max(0,Math.floor(num(x.max)));x.dist=num(x.dist);x.spd=num(x.spd)||0;
  x.dur=x.dur?(num(x.dur)||''):'';x.elev=x.elev?(num(x.elev)||''):'';
- x.pace=/^\d{1,2}:[0-5]\d$/.test(x.pace)?x.pace:'';
+ x.FLYT=/^\d{1,2}:[0-5]\d$/.test(x.FLYT)?x.FLYT:'';
  x.tm=/^\d\d:\d\d$/.test(x.tm)?x.tm:'00:00';
  x.date=/^\d{4}-\d\d-\d\d$/.test(x.date)?x.date:'1970-01-01';
  x.diff=['Fácil','Moderado','Difícil'].includes(x.diff)?x.diff:'Moderado';
@@ -1219,7 +1219,7 @@ function footer(){
  return `<footer><div class="wrap"><div class="fb"><span class="logo">${LOGO}</span><span class="wm">${esc(CONFIG.name)}</span></div><p class="note" style="margin-top:6px">${esc(CONFIG.slogan)}</p>
  <div class="links">${Object.entries(INFO).map(([k,v])=>`<button data-act="info" data-k="${k}">${v[0]}</button>`).join("")}
  ${CONFIG.instagramUrl?`<a href="${esc(CONFIG.instagramUrl)}" target="_blank" rel="noopener">Instagram</a>`:`<button data-act="toast" data-m="Instagram ainda não configurado (CONFIG.instagramUrl).">Instagram</button>`}</div>
- <p class="disc">TRIBU é um projeto independente e não tem qualquer afiliação oficial com a IRONMAN. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares.</p></div></footer>`}
+ <p class="disc">FLYT é um projeto independente e não tem qualquer afiliação oficial com a IRONMAN. IRONMAN e IRONMAN 70.3 são marcas dos respetivos titulares.</p></div></footer>`}
 function bnav(){return `<nav class="bn" aria-label="Navegação móvel">${[['home','Início','home'],['treinos','Treinos','bolt'],['calendario','Calendário','cal'],['parceiros','Parceiros','star'],['perfil','Perfil','user']].map(([k,l,i])=>`<button data-act="go" data-r="${k}" ${S.route===k?'aria-current="page"':''}>${ic(i)}<span>${l}</span></button>`).join("")}</nav>`}
 function hero(){
  const im=CONFIG.HERO_IMAGES,sl=im.map((src,i)=>`<div class="slide${i===S.slide?' on':''}"><img src="${esc(src)}" data-fb="${i}" alt="">${''}</div>`).join(''),
@@ -1240,16 +1240,16 @@ function cats(){return `<section class="sec"><div class="wrap"><div class="head 
  <select id="rtype" aria-label="Filtrar por tipo"><option value="">Todos os tipos</option>${Object.entries(TYPES).map(([k,v])=>`<option value="${k}" ${S.type===k?"selected":""}>${v}</option>`).join("")}</select>
  <select id="sort" aria-label="Ordenar"><option value="rel" ${S.sort==="rel"?"selected":""}>Relevância</option>${hasDates()?`<option value="date" ${S.sort==="date"?"selected":""}>Data</option>`:""}</select></div>
  <div id="grid">${raceGrid()}</div>
- <div class="sug rv"><div><h3>Não encontras a tua prova?</h3><p>Diz-nos qual é e nós acrescentamo-la à TRIBU.</p></div><button class="btn btn-p" data-act="sug">${ic('plus')} Sugerir prova</button></div></div></section>
+ <div class="sug rv"><div><h3>Não encontras a tua prova?</h3><p>Diz-nos qual é e nós acrescentamo-la à FLYT.</p></div><button class="btn btn-p" data-act="sug">${ic('plus')} Sugerir prova</button></div></div></section>
  <section class="sec steps"><div class="wrap"><div class="head rv"><h2>Três passos até à linha de partida</h2></div><ol>
  <li class="rv"><h3>Escolhe a prova</h3><p>Entra no canal da prova em que vais participar.</p></li>
  <li class="rv" style="--d:90ms"><h3>Encontra atletas como tu</h3><p>Descobre quem tem objetivos e ritmos semelhantes.</p></li>
  <li class="rv" style="--d:180ms"><h3>Combina treinos</h3><p>Organiza saídas de bike, corrida e natação em águas abertas.</p></li></ol></div></section>
- <section class="sec"><div class="wrap"><div class="teaser rv"><div><h2>Parceiros TRIBU</h2><p>Mecânicos, bike fit, regeneração e muito mais.</p></div><button class="btn btn-g" data-act="go" data-r="parceiros">Ver parceiros ${ic('arrow')}</button></div></div></section>
- <section class="sec" style="padding-top:0"><div class="wrap"><div class="teaser ig rv"><div><h2>Segue a TRIBU no Instagram</h2><p>Novidades, provas e histórias da comunidade.</p></div>${IG('btn btn-g',ic('insta')+' Seguir no Instagram','Instagram')}</div></div></section>
+ <section class="sec"><div class="wrap"><div class="teaser rv"><div><h2>Parceiros FLYT</h2><p>Mecânicos, bike fit, regeneração e muito mais.</p></div><button class="btn btn-g" data-act="go" data-r="parceiros">Ver parceiros ${ic('arrow')}</button></div></div></section>
+ <section class="sec" style="padding-top:0"><div class="wrap"><div class="teaser ig rv"><div><h2>Segue a FLYT no Instagram</h2><p>Novidades, provas e histórias da comunidade.</p></div>${IG('btn btn-g',ic('insta')+' Seguir no Instagram','Instagram')}</div></div></section>
  ${S.user?'':`<section class="sec" style="padding-top:0"><div class="wrap"><div class="final rv"><h2>Uma prova é mais fácil quando não a preparas sozinho.</h2><button class="btn btn-g" data-act="login">Encontrar a minha comunidade</button></div></div></section>`}`}
 function parceiros(){
- return `<div class="wrap page"><h1>Parceiros</h1><p style="color:var(--muted);max-width:620px">Negócios e profissionais escolhidos para ajudar a comunidade TRIBU a treinar melhor.</p>
+ return `<div class="wrap page"><h1>Parceiros</h1><p style="color:var(--muted);max-width:620px">Negócios e profissionais escolhidos para ajudar a comunidade FLYT a treinar melhor.</p>
  <div class="pgrid">${PCATS.map(([k,t,d,i],n)=>{const ps=PARTNERS.filter(p=>p.cat===k);return `<article class="card pc rv" style="--d:${(n%3)*80}ms"><span class="pci">${ic(i)}</span><h3>${t}</h3><p>${d}</p>${ps.length?`<ul class="pl">${ps.map(p=>`<li><strong translate="no">${esc(p.name)}</strong>${p.city?' · '+esc(p.city):''}${p.perk?`<br><span class="note" translate="no">${esc(p.perk)}</span>`:''}${/^https?:\/\//.test(p.url||'')?` <a href="${esc(p.url)}" target="_blank" rel="noopener">Website</a>`:''}</li>`).join('')}</ul>`:`<span class="badge" style="align-self:flex-start">Em breve</span>`}</article>`}).join('')}</div>
  <div class="teaser rv"><div><h2>Tens um negócio para atletas?</h2><p>Torna-te parceiro e chega a quem treina todos os dias.</p></div><button class="btn btn-g" data-act="par">Quero ser parceiro ${ic('arrow')}</button></div></div>`}
 function needLogin(){return `<div class="wrap page"><h1>Faz login para continuar</h1><div class="box"><p style="margin-bottom:18px;color:var(--muted)">Esta área é só para atletas com sessão iniciada. Faz login para criares o teu perfil e participares nos canais.</p>${gbtn()}</div></div>`}
@@ -1259,7 +1259,7 @@ function register(){
  return `<div class="wrap page"><h1>Sessão iniciada</h1><div class="box"><p>Olá, ${esc(S.user.name)}.</p><div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap"><button class="btn btn-p" data-act="go" data-r="home">Ver provas</button></div></div></div>`}
 const optList=(m,v,blank)=>(blank?`<option value=''>${blank}</option>`:'')+Object.entries(m).map(([k,t])=>`<option value='${k}' ${v===k?'selected':''}>${t}</option>`).join('');
 const sportChecks=(name,sel)=>Object.entries(SPORTS).map(([k,v])=>`<label style='font-weight:500;display:flex;gap:8px;align-items:center'><input type='checkbox' name='${name}' value='${k}' ${(sel||[]).includes(k)?'checked':''} style='width:auto;min-height:0'> ${v}</label>`).join('');
-function onboarding(){const u=S.user;return `<div class='wrap page'><h1>Bem-vindo à TRIBU</h1><div class='box'><p style='margin-bottom:16px;color:var(--muted)'>Completa o teu perfil. O nome, o username e a cidade são obrigatórios; o resto podes mudar depois no teu perfil.</p>
+function onboarding(){const u=S.user;return `<div class='wrap page'><h1>Bem-vindo à FLYT</h1><div class='box'><p style='margin-bottom:16px;color:var(--muted)'>Completa o teu perfil. O nome, o username e a cidade são obrigatórios; o resto podes mudar depois no teu perfil.</p>
  <div class='pf' style='margin:0 0 16px'>${av(S.tmpPhoto?{id:u.id,name:u.name,photo:S.tmpPhoto}:u,72)}<div><label class='btn btn-o btn-sm' for='o-ph' style='cursor:pointer'>Escolher foto</label><input id='o-ph' type='file' accept='image/*' class='sr'><p class='note' style='margin-top:6px'>Usamos a foto da tua conta se não escolheres outra.</p></div></div>
  <form id='onb' novalidate>
  <div class='row'><label for='o-n'>Nome</label><input id='o-n' autocomplete='name' value='${esc(u.name)}'><span class='err' data-e='n'></span></div>
@@ -1297,7 +1297,7 @@ const FR=(id,l,x='',t='text')=>`<div class='row'><label for='${id}'>${l}</label>
 function askLogin(msg){modal(`<h2>Login</h2><p style='margin-bottom:6px'>${msg}</p><div class='acts'>${gbtn()}<button class='btn btn-o' data-act='close'>Agora não</button></div>`)}
 function sugForm(){
  if(!S.user)return askLogin('Inicia sessão para sugerir uma prova.');
- modal(`<h2>Sugerir prova</h2><p class='note' style='margin-bottom:12px'>Diz-nos qual é e nós acrescentamo-la à TRIBU.</p><form id='sgf' novalidate>${FR('sg-n','Nome da prova','maxlength=80')}${FR('sg-c','Cidade/zona','maxlength=60')}<div class='row'><label for='sg-t'>Tipo de prova</label><select id='sg-t' style='width:100%'>${Object.entries(TYPES).map(([k,v])=>`<option value='${k}'>${v}</option>`).join('')}<option value='outro'>Outro</option></select></div>${FR('sg-d','Data ou mês (opcional)','maxlength=60')}${FR('sg-u','Website da prova (opcional)','inputmode=url maxlength=200','url')}<div class='row'><label for='sg-m'>Notas adicionais (opcional)</label><textarea id='sg-m' maxlength='300'></textarea></div><div class='acts'><button class='btn btn-p' type='submit'>Enviar sugestão</button><button class='btn btn-o' type='button' data-act='close'>Cancelar</button></div></form>`);
+ modal(`<h2>Sugerir prova</h2><p class='note' style='margin-bottom:12px'>Diz-nos qual é e nós acrescentamo-la à FLYT.</p><form id='sgf' novalidate>${FR('sg-n','Nome da prova','maxlength=80')}${FR('sg-c','Cidade/zona','maxlength=60')}<div class='row'><label for='sg-t'>Tipo de prova</label><select id='sg-t' style='width:100%'>${Object.entries(TYPES).map(([k,v])=>`<option value='${k}'>${v}</option>`).join('')}<option value='outro'>Outro</option></select></div>${FR('sg-d','Data ou mês (opcional)','maxlength=60')}${FR('sg-u','Website da prova (opcional)','inputmode=url maxlength=200','url')}<div class='row'><label for='sg-m'>Notas adicionais (opcional)</label><textarea id='sg-m' maxlength='300'></textarea></div><div class='acts'><button class='btn btn-p' type='submit'>Enviar sugestão</button><button class='btn btn-o' type='button' data-act='close'>Cancelar</button></div></form>`);
  $('#sg-n').focus()}
 async function sugSend(){
  const g=id=>$('#'+id),v=id=>g(id).value.trim(),er={};
@@ -1421,7 +1421,7 @@ function canal(){
  const r=RACES.find(x=>x.id===S.param);if(!r){S.route='404';return view()}
  const j=isMember(r.id),t=S.tab,m=Object.values(USERS).filter(u=>(u.channels||[]).includes(r.id)&&u.onboarded).sort((a,b)=>ROLES.indexOf(a.role||'Atleta')-ROLES.indexOf(b.role||'Atleta')||(a.name||'').localeCompare(b.name||''));
  const tb=(k,l,c)=>`<button role='tab' class='${c||''}' data-act='tab' data-t='${k}' aria-selected='${t===k}'>${l}</button>`;
- return `<div class='wrap com-w'><div class='chead'><div class='thumb'>${waves(r.tone)}</div><div class='ci'><div><span class='note'>${CONFIG.name} / ${r.country} / ${esc(r.name)}</span><h1>${esc(r.name)}</h1><span class='meta'>${ic('pin')}${esc(r.city)}, ${r.country} · ${m.length} atletas · ${nAct(r.id)} treinos</span></div><div class='ac'><button class='btn btn-o btn-sm' data-act='atl'>Ver atletas</button><button class='btn btn-o btn-sm' data-act='share'>Partilhar canal</button>${j?`<button class='btn btn-o btn-sm' data-act='leave' data-id='${r.id}'>Sair do canal</button>`:`<button class='btn btn-p btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button>`}</div></div></div><div class='tabs' role='tablist'>${tb('chat','Chat')}${tb('atividades','Atividades')}${tb('membros','Membros','mob')}${tb('detalhes','Detalhes','mob')}</div>${t==='atividades'?`<div class='com' data-t='atividades'><section class='actp'>${acList(r.id)}</section></div>`:`<div class='com' data-t='${t}'><aside class='sb' aria-label='Membros'><h2>Membros</h2><ul class='ml'>${m.map(a=>`<li><button class='mem' data-act='atleta' data-id='${esc(a.id)}'>${av(a,36)}<span class='mn'><span class='nm-${roleOf(a)}'>${esc(a.name)}</span><small>${rb(a.role||'Atleta')}</small></span></button></li>`).join('')||`<li class='note'>Ainda sem membros.</li>`}</ul></aside><section class='ctr'><p class='note dm'>Chat em tempo real: todos os membros com sessão iniciada veem as mensagens. Sê respeitador.</p><div class='msgs' id='msgs' tabindex='0' aria-live='polite'>${msgsHtml(r.id)}</div>${j?`<div class='comp'><textarea id='cin' rows='1' maxlength='500' placeholder='Escreve uma mensagem' aria-label='Mensagem'></textarea><button class='btn btn-g btn-sm' data-act='newact'>Atividade</button><button class='btn btn-p btn-sm' data-act='send'>Enviar</button></div>`:`<div class='comp'><span>Entra no canal para escrever.</span><button class='btn btn-g btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button></div>`}</section><aside class='dt'><h2>Sobre a prova</h2><p class='meta'>${ic('pin')}${esc(r.city)}, ${r.country}</p><p class='meta'>${ic('cal')}${racedate(r)}</p><p class='meta'>${ic('users')}${m.length} atletas · ${nAct(r.id)} treinos</p><p class='note'>Site oficial: não configurado.</p><h3>Próximos treinos</h3>${upc(r.id)}<h3>Cargos</h3><p class='note'>Admin, Moderador e Mentor são atribuídos pela equipa TRIBU. Todos os outros são Atletas.</p></aside></div>`}</div>`}
+ return `<div class='wrap com-w'><div class='chead'><div class='thumb'>${waves(r.tone)}</div><div class='ci'><div><span class='note'>${CONFIG.name} / ${r.country} / ${esc(r.name)}</span><h1>${esc(r.name)}</h1><span class='meta'>${ic('pin')}${esc(r.city)}, ${r.country} · ${m.length} atletas · ${nAct(r.id)} treinos</span></div><div class='ac'><button class='btn btn-o btn-sm' data-act='atl'>Ver atletas</button><button class='btn btn-o btn-sm' data-act='share'>Partilhar canal</button>${j?`<button class='btn btn-o btn-sm' data-act='leave' data-id='${r.id}'>Sair do canal</button>`:`<button class='btn btn-p btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button>`}</div></div></div><div class='tabs' role='tablist'>${tb('chat','Chat')}${tb('atividades','Atividades')}${tb('membros','Membros','mob')}${tb('detalhes','Detalhes','mob')}</div>${t==='atividades'?`<div class='com' data-t='atividades'><section class='actp'>${acList(r.id)}</section></div>`:`<div class='com' data-t='${t}'><aside class='sb' aria-label='Membros'><h2>Membros</h2><ul class='ml'>${m.map(a=>`<li><button class='mem' data-act='atleta' data-id='${esc(a.id)}'>${av(a,36)}<span class='mn'><span class='nm-${roleOf(a)}'>${esc(a.name)}</span><small>${rb(a.role||'Atleta')}</small></span></button></li>`).join('')||`<li class='note'>Ainda sem membros.</li>`}</ul></aside><section class='ctr'><p class='note dm'>Chat em tempo real: todos os membros com sessão iniciada veem as mensagens. Sê respeitador.</p><div class='msgs' id='msgs' tabindex='0' aria-live='polite'>${msgsHtml(r.id)}</div>${j?`<div class='comp'><textarea id='cin' rows='1' maxlength='500' placeholder='Escreve uma mensagem' aria-label='Mensagem'></textarea><button class='btn btn-g btn-sm' data-act='newact'>Atividade</button><button class='btn btn-p btn-sm' data-act='send'>Enviar</button></div>`:`<div class='comp'><span>Entra no canal para escrever.</span><button class='btn btn-g btn-sm' data-act='enter' data-id='${r.id}'>Entrar no canal</button></div>`}</section><aside class='dt'><h2>Sobre a prova</h2><p class='meta'>${ic('pin')}${esc(r.city)}, ${r.country}</p><p class='meta'>${ic('cal')}${racedate(r)}</p><p class='meta'>${ic('users')}${m.length} atletas · ${nAct(r.id)} treinos</p><p class='note'>Site oficial: não configurado.</p><h3>Próximos treinos</h3>${upc(r.id)}<h3>Cargos</h3><p class='note'>Admin, Moderador e Mentor são aFLYTídos pela equipa FLYT. Todos os outros são Atletas.</p></aside></div>`}</div>`}
 function atleta(id){
  const a=ath(id);if(!a){S.route='404';return view()}
  const r=RACES.find(x=>x.id===a.raceId),me=S.user&&a.id===S.user.id,bl=BL.has(a.id),
@@ -1460,7 +1460,7 @@ async function saveSettings(){
  document.querySelectorAll('#setf [data-e]').forEach(s=>s.textContent=tr(er[s.dataset.e]||''));if(Object.keys(er).length)return;
  try{await updateDoc(doc(db,'users',UID()),{name:v('s-n').slice(0,60),country:g('s-c').value,city:v('s-city').slice(0,60),bio:v('s-b').slice(0,200),goal:g('s-g').value,gt:v('s-gt').slice(0,20),zone:v('s-z').slice(0,80),hid:g('s-h').checked});toast('Perfil guardado')}catch(e){subErr(e)}}
 /* ============ CÓDIGOS DE CARGO ============ */
-function codeForm(){modal(`<h2>Submeter código</h2><p class='note' style='margin-bottom:10px'>Introduz o código que recebeste da equipa TRIBU.</p><div class='row'><label for='rc-in'>Código</label><input id='rc-in' autocomplete='off' autocapitalize='characters' spellcheck='false' maxlength='40'><span class='err' id='rc-e'></span></div><div class='acts'><button class='btn btn-p' data-act='rcsub'>Submeter</button><button class='btn btn-o' data-act='close'>Cancelar</button></div>`);$('#rc-in').focus()}
+function codeForm(){modal(`<h2>Submeter código</h2><p class='note' style='margin-bottom:10px'>Introduz o código que recebeste da equipa FLYT.</p><div class='row'><label for='rc-in'>Código</label><input id='rc-in' autocomplete='off' autocapitalize='characters' spellcheck='false' maxlength='40'><span class='err' id='rc-e'></span></div><div class='acts'><button class='btn btn-p' data-act='rcsub'>Submeter</button><button class='btn btn-o' data-act='close'>Cancelar</button></div>`);$('#rc-in').focus()}
 async function redeem(){
  const el=$('#rc-in'),er=$('#rc-e'),code=(el.value||'').trim().toUpperCase(),bad=tr('Código inválido ou já utilizado.');
  if(!/^[A-Z0-9-]{8,40}$/.test(code)){er.textContent=bad;return}
@@ -1482,7 +1482,7 @@ async function genCode(){
   $('#gc-out').innerHTML=`<p class='note'>Código gerado (uso único):</p><p><strong translate='no' style='font-size:1.25rem;letter-spacing:.06em'>${code}</strong></p><button class='btn btn-o btn-sm' data-act='cpcode' data-c='${code}'>Copiar código</button>`
  }catch(e){subErr(e)}}
 /* ============ ATIVIDADES ============ */
-const A=id=>ACT.find(x=>x.id===id),full=a=>a.max>0&&a.p.length>=a.max,fmt=a=>new Date(a.date+'T12:00').toLocaleDateString(LOC(),{weekday:'short',day:'numeric',month:'short'})+' · '+a.tm,perf=a=>a.sport==='bike'?(a.spd?a.spd+' km/h':''):a.sport==='run'?(a.pace?a.pace+' min/km':''):(a.dur?a.dur+' min':''),vag=a=>a.max?`${a.p.length}/${a.max} confirmados · ${full(a)?'Lotado':(a.max-a.p.length)+' vagas'}`:`${a.p.length} confirmados · Sem limite`;
+const A=id=>ACT.find(x=>x.id===id),full=a=>a.max>0&&a.p.length>=a.max,fmt=a=>new Date(a.date+'T12:00').toLocaleDateString(LOC(),{weekday:'short',day:'numeric',month:'short'})+' · '+a.tm,perf=a=>a.sport==='bike'?(a.spd?a.spd+' km/h':''):a.sport==='run'?(a.FLYT?a.FLYT+' min/km':''):(a.dur?a.dur+' min':''),vag=a=>a.max?`${a.p.length}/${a.max} confirmados · ${full(a)?'Lotado':(a.max-a.p.length)+' vagas'}`:`${a.p.length} confirmados · Sem limite`;
 const byDate=(a,b)=>(a.date+a.tm).localeCompare(b.date+b.tm);
 async function notifyUsers(uids,x){[...new Set(uids)].filter(Boolean).forEach(u=>addDoc(collection(db,'users',u,'notifs'),{x,r:false,ts:serverTimestamp()}).catch(()=>{}))}
 const unread=()=>NT.filter(n=>!n.r).length;
@@ -1513,7 +1513,7 @@ function showDet(id){
 const RW=(id,l,x='',t='text')=>`<div class='row'><label for='a-${id}'>${l}</label><input id='a-${id}' type='${t}' ${x}><span class='err' data-e='${id}'></span></div>`;
 function sf(sp){return sp==='bike'?`<div class='row'><label for='a-v'>Velocidade média (km/h, opcional)</label><input id='a-v' inputmode='decimal'><span class='err' data-e='v'></span></div>`:sp==='run'?`<div class='row'><label for='a-p'>Ritmo (min/km, ex.: 5:30, opcional)</label><input id='a-p'><span class='err' data-e='p'></span></div>`:`<div class='row'><label for='a-d'>Duração (minutos, opcional)</label><input id='a-d' inputmode='numeric'><span class='err' data-e='d'></span></div>`}
 function restore(){Object.entries(S.draft).forEach(([k,v])=>{const e=$('#'+k);if(e)e.type==='checkbox'?e.checked=v:e.value=v})}
-function draftOf(a){return{'a-s':a.sport,'a-t':a.title,'a-dt':a.date,'a-tm':a.tm,'a-pl':a.place,'a-ad':a.addr||'','a-k':a.dist,'a-v':a.spd||'','a-p':a.pace||'','a-d':a.dur||'','a-ds':a.desc,'a-m':a.max||'','a-u':!a.max,'a-df':a.diff,'a-b':a.beg,'a-el':a.elev||'','a-ty':a.tipo||'','a-ma':a.mat||'','a-no':a.nota||'','a-pr':!!a.pr}}
+function draftOf(a){return{'a-s':a.sport,'a-t':a.title,'a-dt':a.date,'a-tm':a.tm,'a-pl':a.place,'a-ad':a.addr||'','a-k':a.dist,'a-v':a.spd||'','a-p':a.FLYT||'','a-d':a.dur||'','a-ds':a.desc,'a-m':a.max||'','a-u':!a.max,'a-df':a.diff,'a-b':a.beg,'a-el':a.elev||'','a-ty':a.tipo||'','a-ma':a.mat||'','a-no':a.nota||'','a-pr':!!a.pr}}
 function actForm(ed){if(ed){S.draft=draftOf(A(ed))}else if(S.edit)S.draft={};S.edit=ed||null;const sp=S.draft['a-s']||'bike';modal(`<h2>${S.edit?'Editar':'Nova'} atividade</h2><p class='note' style='margin-bottom:12px'>O rascunho é guardado se cancelares.</p><form id='af' novalidate><div class='row'><label for='a-s'>Modalidade</label><select id='a-s' style='width:100%'>${Object.entries(SPORTS).map(([k,v])=>`<option value='${k}'>${v}</option>`).join('')}</select></div>${RW('t','Título')}<div class='two'>${RW('dt','Data','','date')}${RW('tm','Hora de encontro','','time')}</div>${RW('pl','Local de encontro (público)')}${RW('ad','Morada do ponto de encontro (opcional)')}${RW('k','Distância (km)','inputmode=decimal')}<div id='sfw'>${sf(sp)}</div><div class='row'><label for='a-ds'>Descrição</label><textarea id='a-ds'></textarea><span class='err' data-e='ds'></span></div>${RW('m','Limite de participantes','inputmode=numeric')}<label class='ck'><input type='checkbox' id='a-u'> Sem limite</label><div class='row' style='margin-top:12px'><label for='a-df'>Dificuldade</label><select id='a-df' style='width:100%'><option value='Fácil'>Fácil</option><option value='Moderado' selected>Moderado</option><option value='Difícil'>Difícil</option></select></div><div class='two'>${RW('el','Ganho de elevação (m, opcional)','inputmode=numeric')}<div class='row'><label for='a-ty'>Tipo de treino (opcional)</label><select id='a-ty' style='width:100%'><option value=''>—</option><option value='Ritmo constante'>Ritmo constante</option><option value='Intervalos'>Intervalos</option><option value='Longo'>Longo</option><option value='Técnica'>Técnica</option><option value='Recuperação'>Recuperação</option></select></div></div>${RW('ma','Material necessário (opcional)')}${RW('no','Notas adicionais (opcional)')}<label class='ck'><input type='checkbox' id='a-pr'> Faz parte da preparação para esta prova</label><label class='ck'><input type='checkbox' id='a-b'> Indicado para iniciantes</label><div class='acts'><button class='btn btn-p' type='submit'>${S.edit?'Guardar':'Publicar'}</button><button class='btn btn-o' type='button' data-act='close'>Cancelar</button></div></form>`);restore();$('#a-t').focus()}
 async function pubAct(){
  const g=id=>$('#'+id),v=id=>g(id)?g(id).value.trim():'',er={},sp=v('a-s'),today=(n=>n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0'))(new Date()),un=g('a-u').checked,mx=parseInt(v('a-m'),10);
@@ -1522,7 +1522,7 @@ async function pubAct(){
  if(sp==='bike'&&v('a-v')&&!(parseFloat(v('a-v'))>0))er.v='Valor inválido.';if(sp==='run'&&v('a-p')&&!/^\d{1,2}:[0-5]\d$/.test(v('a-p')))er.p='Usa o formato 5:30.';if(sp==='swim'&&v('a-d')&&!(parseInt(v('a-d'),10)>0))er.d='Valor inválido.';
  document.querySelectorAll('#af [data-e]').forEach(s=>s.textContent=tr(er[s.dataset.e]||''));
  const k=Object.keys(er)[0];if(k){const e=$('#af [data-e='+k+']').parentNode.querySelector('input,textarea');e&&e.focus();return}
- const base={sport:sp,title:v('a-t').slice(0,80),date:v('a-dt'),tm:v('a-tm'),place:v('a-pl').slice(0,120),addr:v('a-ad').slice(0,160),dist:parseFloat(v('a-k')),spd:parseFloat(v('a-v'))||0,pace:v('a-p'),dur:parseInt(v('a-d'),10)||'',diff:v('a-df'),max:un?0:mx,beg:g('a-b').checked,desc:v('a-ds').slice(0,600),elev:parseInt(v('a-el'),10)||'',tipo:v('a-ty'),mat:v('a-ma').slice(0,120),nota:v('a-no').slice(0,200),pr:g('a-pr').checked};
+ const base={sport:sp,title:v('a-t').slice(0,80),date:v('a-dt'),tm:v('a-tm'),place:v('a-pl').slice(0,120),addr:v('a-ad').slice(0,160),dist:parseFloat(v('a-k')),spd:parseFloat(v('a-v'))||0,FLYT:v('a-p'),dur:parseInt(v('a-d'),10)||'',diff:v('a-df'),max:un?0:mx,beg:g('a-b').checked,desc:v('a-ds').slice(0,600),elev:parseInt(v('a-el'),10)||'',tipo:v('a-ty'),mat:v('a-ma').slice(0,120),nota:v('a-no').slice(0,200),pr:g('a-pr').checked};
  const btn=$('#af button[type=submit]');btn.disabled=true;
  try{
   if(S.edit){
@@ -1628,7 +1628,7 @@ async function enter(id){
  if(S.user){if(!isMember(id)){await joinRace(id);toast('Entraste no canal')}S.pendingRace=null;return go('canal',id)}
  modal(`<h2>Entrar em ${esc(r.name)}</h2><p>Faz login para entrares no canal, falares com outros atletas e combinares treinos.</p><div class="acts">${gbtn()}<button class="btn btn-o" data-act="close">Agora não</button></div>`)}
 function share(){const h=(S.det&&$('#modal'))?'#/atividade/'+S.det:(location.hash||'#/home'),u=location.href.split('#')[0]+h;try{navigator.clipboard.writeText(u).then(()=>toast('Ligação copiada'),()=>toast(u))}catch(_){toast(u)}}
-function ics(id){const a=A(id),p=n=>String(n).padStart(2,'0'),st=new Date(a.date+'T'+a.tm),en=new Date(st.getTime()+(a.dur?a.dur:120)*6e4),f=d=>d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'T'+p(d.getHours())+p(d.getMinutes())+'00',cl=x=>String(x).replace(/[,;\n]/g,' ');const t=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TRIBU//PT','BEGIN:VEVENT','UID:'+a.id+'@tribu','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z','DTSTART:'+f(st),'DTEND:'+f(en),'SUMMARY:'+cl(a.title),'LOCATION:'+cl(a.place),'END:VEVENT','END:VCALENDAR'].join('\r\n');try{const u=URL.createObjectURL(new Blob([t],{type:'text/calendar'})),l=document.createElement('a');l.href=u;l.download='treino-'+a.id+'.ics';document.body.appendChild(l);l.click();l.remove();toast('Ficheiro .ics gerado')}catch(_){toast('Não foi possível gerar o .ics')}}
+function ics(id){const a=A(id),p=n=>String(n).padStart(2,'0'),st=new Date(a.date+'T'+a.tm),en=new Date(st.getTime()+(a.dur?a.dur:120)*6e4),f=d=>d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'T'+p(d.getHours())+p(d.getMinutes())+'00',cl=x=>String(x).replace(/[,;\n]/g,' ');const t=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//FLYT//PT','BEGIN:VEVENT','UID:'+a.id+'@FLYT','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z','DTSTART:'+f(st),'DTEND:'+f(en),'SUMMARY:'+cl(a.title),'LOCATION:'+cl(a.place),'END:VEVENT','END:VCALENDAR'].join('\r\n');try{const u=URL.createObjectURL(new Blob([t],{type:'text/calendar'})),l=document.createElement('a');l.href=u;l.download='treino-'+a.id+'.ics';document.body.appendChild(l);l.click();l.remove();toast('Ficheiro .ics gerado')}catch(_){toast('Não foi possível gerar o .ics')}}
 function fromHash(){const m=location.hash.match(/^#\/(\w+)(?:\/([\w-]+))?/);if(!m)return;const r=m[1],p=m[2]||null;if(r==='atividade'){S.pendAct=p;return}if(r==='info'&&!INFO[p])return;if(['canal','atleta','info','registo'].includes(r)||NAV.some(n=>n[0]===r))go(r,p,true)}
 /* ============ EVENTOS ============ */
 document.addEventListener("click",async e=>{
@@ -1636,7 +1636,7 @@ document.addEventListener("click",async e=>{
  const a=t.dataset.act,d=t.dataset;
  switch(a){
   case'go':closeModal();$("#drawer")&&$("#drawer").classList.remove("open");go(d.r);break;
-  case'menu':{const dr=$("#drawer");dr.classList.toggle("open");const bg=$(".burger");bg.setAttribute("aria-expanded",dr.classList.contains("open"));break}
+  case'menu':{const dr=$("#drawer");dr.classList.toggle("open");const bg=$(".burger");bg.setAtFLYTte("aria-expanded",dr.classList.contains("open"));break}
   case'login':closeModal();$("#drawer")&&$("#drawer").classList.remove("open");signIn();break;
   case'logout':closeModal();$("#drawer")&&$("#drawer").classList.remove("open");try{await signOut(auth);toast('Sessão terminada');go('home')}catch(_){toast('Não foi possível terminar a sessão.')}break;
   case'enter':enter(d.id);break;
@@ -1669,7 +1669,7 @@ document.addEventListener("click",async e=>{
   case'send':sendMsg();break;
   case'trm':trMsg(d.k);break;
   case'copy':{const m=(CHAT[S.param]||[]).find(x=>x.k===d.k);if(m)try{navigator.clipboard.writeText(m.text).then(()=>toast('Texto copiado'),()=>toast('Não foi possível copiar'))}catch(_){toast('Não foi possível copiar')}break}
-  case'rep':modal(`<h2>Denunciar</h2><p class='note' style='margin-bottom:10px'>A denúncia é enviada à equipa TRIBU para revisão.</p><label for='rp-t'>Motivo</label><textarea id='rp-t' maxlength='300' placeholder='Descreve o problema'></textarea><div class='acts'><button class='btn btn-p' data-act='sendrep' data-uid='${esc(d.uid||'')}' data-k='${esc(d.k||'')}'>Enviar denúncia</button><button class='btn btn-o' data-act='close'>Cancelar</button></div>`);break;
+  case'rep':modal(`<h2>Denunciar</h2><p class='note' style='margin-bottom:10px'>A denúncia é enviada à equipa FLYT para revisão.</p><label for='rp-t'>Motivo</label><textarea id='rp-t' maxlength='300' placeholder='Descreve o problema'></textarea><div class='acts'><button class='btn btn-p' data-act='sendrep' data-uid='${esc(d.uid||'')}' data-k='${esc(d.k||'')}'>Enviar denúncia</button><button class='btn btn-o' data-act='close'>Cancelar</button></div>`);break;
   case'sendrep':{const tx=($('#rp-t')||{}).value||'';if(tx.trim().length<3)return toast('Indica o motivo.');try{await addDoc(collection(db,'reports'),{by:UID(),target:d.uid||'',msgKey:d.k||'',race:S.param&&S.route==='canal'?S.param:'',text:tx.trim().slice(0,300),ts:serverTimestamp()});closeModal();toast('Denúncia enviada')}catch(er){subErr(er)}break}
   case'blk':try{const has=BL.has(d.id);await updateDoc(doc(db,'users',UID()),{blocked:has?arrayRemove(d.id):arrayUnion(d.id)});toast(has?'Atleta desbloqueado':'Atleta bloqueado: as mensagens ficam ocultas')}catch(er){subErr(er)}break;
   case'back':history.length>1?history.back():go('home');break;
