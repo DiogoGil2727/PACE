@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#174B35">
-<title>FLYT — Find your FLYT. Find your tribe.</title>
+<title>FLYT — Same goals. Different stories. One team.</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%23174B35'/%3E%3Cpath d='M7 15Q20 7 33 15' stroke='%2375C99A' stroke-width='4' stroke-linecap='round' fill='none'/%3E%3Cpath d='M20 14V32M12.5 19V30M27.5 19V30' stroke='%23fff' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -41,7 +41,7 @@ header.top.sc{box-shadow:0 6px 24px rgba(11,31,23,.10)}
 .logo svg{width:100%;height:100%;display:block}
 .wm{font-family:var(--fd);font-weight:900;font-style:italic;letter-spacing:.14em;font-size:1.3rem;color:var(--green-d)}
 nav.main{display:flex;gap:2px;margin-left:auto;align-items:center}
-nav.main button{background:none;border:0;padding:8px 8px;border-radius:999px;font-weight:600;font-size:.88rem;color:var(--muted);white-sFLYT:nowrap;transition:background .2s,color .2s}
+nav.main button{background:none;border:0;padding:8px 8px;border-radius:999px;font-weight:600;font-size:.88rem;color:var(--muted);white-space:nowrap;transition:background .2s,color .2s}
 nav.main button:hover{color:var(--green-d);background:var(--green-l)}
 nav.main button[aria-current="page"]{color:var(--green-d);background:var(--green-l)}
 .burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:12px;width:44px;height:44px;place-items:center}
@@ -77,11 +77,11 @@ nav.main button[aria-current="page"]{color:var(--green-d);background:var(--green
 @keyframes prog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 /* band + marquee */
 .band{background:var(--ink);color:#fff}
-.band .wrap{display:flex;flex-wrap:wrap;justify-content:sFLYT-around;gap:16px 28px;padding-top:26px;padding-bottom:26px}
+.band .wrap{display:flex;flex-wrap:wrap;justify-content:space-around;gap:16px 28px;padding-top:26px;padding-bottom:26px}
 .bi{display:flex;align-items:baseline;gap:10px}
 .bi b{font-family:var(--fd);font-size:clamp(1.9rem,5vw,2.7rem);font-weight:900;color:var(--green);font-variant-numeric:tabular-nums;line-height:1}
 .bi span{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:#B8D4C5;font-weight:700}
-.marq{background:var(--green);color:var(--green-d);overflow:hidden;white-sFLYT:nowrap;padding:13px 0}
+.marq{background:var(--green);color:var(--green-d);overflow:hidden;white-space:nowrap;padding:13px 0}
 .mt{display:inline-flex;animation:mq 50s linear infinite}
 .marq:hover .mt{animation-play-state:paused}
 .mt span{font-family:var(--fd);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.88rem;padding:0 24px;display:inline-flex;align-items:center;gap:48px}
@@ -133,9 +133,9 @@ main.pgin{animation:pgin .5s cubic-bezier(.2,.7,.2,1) both}
 .cat small{opacity:.88;font-weight:600}
 .cat svg.i{position:absolute;right:20px;bottom:20px;transition:transform .3s}
 /* suggest + teaser */
-.sug{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:sFLYT-between;gap:16px;background:var(--green-l);border:1.5px dashed var(--green);border-radius:20px;padding:22px 26px}
+.sug{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;background:var(--green-l);border:1.5px dashed var(--green);border-radius:20px;padding:22px 26px}
 .sug h3{font-size:1.25rem}.sug p{color:#3d5a4b;margin-top:2px}
-.teaser{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:sFLYT-between;background:var(--ink);color:#fff;border-radius:26px;padding:44px 36px;position:relative;overflow:hidden}
+.teaser{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;background:var(--ink);color:#fff;border-radius:26px;padding:44px 36px;position:relative;overflow:hidden}
 .teaser::before{content:"";position:absolute;right:-60px;bottom:-90px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(117,201,154,.38),transparent 70%)}
 .teaser>*{position:relative}
 .teaser h2{color:#fff;font-size:clamp(1.6rem,4vw,2.3rem)}.teaser p{color:#B8D4C5;margin-top:6px}
@@ -158,7 +158,7 @@ main.pgin{animation:pgin .5s cubic-bezier(.2,.7,.2,1) both}
 .final{text-align:center;background:var(--green-d);color:#fff;border-radius:24px;padding:64px 24px}
 .final h2{color:#fff;max-width:620px;margin:0 auto 24px;font-size:clamp(1.8rem,4vw,2.5rem)}
 /* page shells */
-.page{padding:56px 20px 80px;min-height:60vh}
+.page{padding:56px 0 80px;min-height:60vh}
 .page h1{font-size:clamp(2rem,5vw,3rem);margin-bottom:12px}
 .badge{display:inline-block;background:var(--green-l);color:var(--green-d);font-weight:700;font-size:.82rem;padding:4px 12px;border-radius:999px}
 .box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--sh);max-width:560px}
@@ -186,13 +186,13 @@ footer .disc{color:var(--muted);font-size:.88rem;max-width:720px}
 .skel{height:300px;border-radius:18px;background:linear-gradient(90deg,#edf3ef 25%,#f7faf8 50%,#edf3ef 75%);background-size:200% 100%;animation:sk 1.2s infinite}
 @keyframes sk{to{background-position:-200% 0}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1}}
-.av{display:inline-grid;place-items:center;border-radius:50%;color:#fff;font-weight:700;flex:none;overflow:hidden}.rb{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--green-l);color:var(--green-d)}.r-Admin{background:var(--green-d);color:#fff}.r-Moderador{background:#CFE9DA}.r-Mentor{background:#FFF1CC;color:#6a4b00}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.com-w{max-width:1280px;padding:16px 20px 40px}.chead{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:14px}.chead .thumb{height:70px}.chead .ci{padding:14px 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.chead h1{font-size:1.5rem}.chead .ac{margin-left:auto;display:flex;flex-wrap:wrap;gap:8px}.tabs{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto}.tabs button{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-weight:600;white-sFLYT:nowrap}.tabs button[aria-selected=true]{background:var(--green-d);color:#fff;border-color:var(--green-d)}.tabs .mob{display:none}.com{display:grid;grid-template-columns:250px minmax(0,1fr) 270px;gap:14px;align-items:start}.sb,.dt{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;max-height:calc(100vh - 100px);overflow:auto;position:sticky;top:76px}.sb h2,.dt h2{font-size:1rem;margin-bottom:8px}.dt h3{font-size:.95rem;margin:14px 0 4px}.dt .meta{margin-bottom:6px}.ml{list-style:none;margin:0 0 10px;padding:0}.chb{display:block;width:100%;text-align:left;background:none;border:0;padding:8px 10px;border-radius:10px;font-weight:600;color:var(--muted)}.chb[aria-current=page]{background:var(--green-l);color:var(--green-d)}.mem{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:6px 8px;border-radius:12px;text-align:left;position:relative}.mem:hover{background:var(--green-l)}.mn{display:flex;flex-direction:column;font-weight:600;font-size:.93rem;line-height:1.3}.ctr{background:#fff;border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;height:calc(100vh - 190px);height:calc(100dvh - 190px);min-height:460px}.dm{padding:8px 16px;background:var(--green-l);border-radius:18px 18px 0 0}.msgs{flex:1;overflow-y:auto;padding:6px 16px 14px}.msg{display:flex;gap:10px;padding:2px 0}.msg:not(.cont){margin-top:12px}.msg .sp{width:40px;flex:none}.avb{background:none;border:0;padding:0;height:40px}.mb{min-width:0;flex:1}.mh{display:flex;align-items:center;flex-wrap:wrap;gap:6px}.an{background:none;border:0;padding:0;font-weight:700;color:var(--green-d);text-align:left}.mh time{font-size:.78rem;color:var(--muted)}.mb p{white-sFLYT:pre-wrap;overflow-wrap:anywhere}.ma{display:flex;gap:12px}.ma button{background:none;border:0;padding:2px 0;font-size:.78rem;color:var(--muted);text-decoration:underline}.day{display:flex;justify-content:center;margin:16px 0 4px}.day span{font-size:.78rem;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:2px 12px}.blk{margin:8px 0}.comp{display:flex;gap:10px;padding:12px;border-top:1px solid var(--line);align-items:flex-end}.comp textarea{flex:1;min-height:46px;max-height:120px;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;resize:none;font:inherit}.comp span{flex:1;color:var(--muted)}.pf{display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin:20px 0 0}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.chips span{background:var(--green-l);color:var(--green-d);font-weight:600;font-size:.85rem;padding:4px 12px;border-radius:999px}.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin:16px 0}.kv dt{color:var(--muted)}.kv dd{margin:0;font-weight:600}.ac2{display:flex;flex-wrap:wrap;gap:8px}.com>*,.comp textarea{min-width:0}@media (max-width:1023px){.com{grid-template-columns:minmax(0,1fr)}.comp{flex-wrap:wrap}.com>*{display:none}.com[data-t=chat]>.ctr,.com[data-t=atividades]>.ctr{display:flex}.com[data-t=membros]>.sb,.com[data-t=detalhes]>.dt{display:block}.sb,.dt{position:static;max-height:none}.tabs .mob{display:block}.ctr{height:calc(100vh - 250px);height:calc(100dvh - 330px);min-height:360px}}.acard{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--green-l);display:flex;flex-direction:column;gap:6px;margin-top:6px;max-width:420px}.acard.canc{opacity:.6}.grid .acard{max-width:none;background:#fff;box-shadow:var(--sh);margin:0}.ah{display:flex;justify-content:sFLYT-between;align-items:center}.tg{display:inline-block;background:var(--green-d);color:#fff;font-size:.75rem;font-weight:700;padding:2px 10px;border-radius:999px}.ab{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}.ck{display:flex;align-items:center;gap:6px;font-weight:500}.ck input{width:auto;min-height:0}.dlg{max-height:90vh;overflow:auto}.map{height:90px;border-radius:12px;background:repeating-linear-gradient(45deg,#EAF7EF,#EAF7EF 10px,#dff1e6 10px,#dff1e6 20px);display:grid;place-items:center;color:var(--muted);font-size:.85rem;margin:10px 0}textarea#a-ds,textarea#s-b,textarea#rp-t,textarea#sg-m,textarea#pt-m{min-height:80px;border:1.5px solid var(--line);border-radius:12px;padding:10px;font:inherit;width:100%}.bn{display:none}.nbtn{position:relative;display:inline-grid;place-items:center;width:44px;height:44px;flex:none;padding:0;border-radius:50%;background:#fff;border:1.5px solid var(--line);color:var(--green-d)}.nbtn:hover,.nbtn[aria-current]{background:var(--green-l);border-color:var(--green)}.nb{position:absolute;top:-5px;right:-5px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--danger);color:#fff;font-size:.72rem;font-weight:800;line-height:1;display:grid;place-items:center;border:2px solid #fff}
+.av{display:inline-grid;place-items:center;border-radius:50%;color:#fff;font-weight:700;flex:none;overflow:hidden}.rb{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--green-l);color:var(--green-d)}.r-Admin{background:var(--green-d);color:#fff}.r-Moderador{background:#CFE9DA}.r-Mentor{background:#FFF1CC;color:#6a4b00}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.com-w{max-width:1280px;padding:16px 20px 40px}.chead{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:14px}.chead .thumb{height:70px}.chead .ci{padding:14px 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.chead h1{font-size:1.5rem}.chead .ac{margin-left:auto;display:flex;flex-wrap:wrap;gap:8px}.tabs{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto}.tabs button{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-weight:600;white-space:nowrap}.tabs button[aria-selected=true]{background:var(--green-d);color:#fff;border-color:var(--green-d)}.tabs .mob{display:none}.com{display:grid;grid-template-columns:250px minmax(0,1fr) 270px;gap:14px;align-items:start}.sb,.dt{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;max-height:calc(100vh - 100px);overflow:auto;position:sticky;top:76px}.sb h2,.dt h2{font-size:1rem;margin-bottom:8px}.dt h3{font-size:.95rem;margin:14px 0 4px}.dt .meta{margin-bottom:6px}.ml{list-style:none;margin:0 0 10px;padding:0}.chb{display:block;width:100%;text-align:left;background:none;border:0;padding:8px 10px;border-radius:10px;font-weight:600;color:var(--muted)}.chb[aria-current=page]{background:var(--green-l);color:var(--green-d)}.mem{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:6px 8px;border-radius:12px;text-align:left;position:relative}.mem:hover{background:var(--green-l)}.mn{display:flex;flex-direction:column;font-weight:600;font-size:.93rem;line-height:1.3}.ctr{background:#fff;border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;height:calc(100vh - 190px);height:calc(100dvh - 190px);min-height:460px}.dm{padding:8px 16px;background:var(--green-l);border-radius:18px 18px 0 0}.msgs{flex:1;overflow-y:auto;padding:6px 16px 14px}.msg{display:flex;gap:10px;padding:2px 0}.msg:not(.cont){margin-top:12px}.msg .sp{width:40px;flex:none}.avb{background:none;border:0;padding:0;height:40px}.mb{min-width:0;flex:1}.mh{display:flex;align-items:center;flex-wrap:wrap;gap:6px}.an{background:none;border:0;padding:0;font-weight:700;color:var(--green-d);text-align:left}.mh time{font-size:.78rem;color:var(--muted)}.mb p{white-space:pre-wrap;overflow-wrap:anywhere}.ma{display:flex;gap:12px}.ma button{background:none;border:0;padding:2px 0;font-size:.78rem;color:var(--muted);text-decoration:underline}.day{display:flex;justify-content:center;margin:16px 0 4px}.day span{font-size:.78rem;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:2px 12px}.blk{margin:8px 0}.comp{display:flex;gap:10px;padding:12px;border-top:1px solid var(--line);align-items:flex-end}.comp textarea{flex:1;min-height:46px;max-height:120px;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;resize:none;font:inherit}.comp span{flex:1;color:var(--muted)}.pf{display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin:20px 0 0}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.chips span{background:var(--green-l);color:var(--green-d);font-weight:600;font-size:.85rem;padding:4px 12px;border-radius:999px}.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin:16px 0}.kv dt{color:var(--muted)}.kv dd{margin:0;font-weight:600}.ac2{display:flex;flex-wrap:wrap;gap:8px}.com>*,.comp textarea{min-width:0}@media (max-width:1023px){.com{grid-template-columns:minmax(0,1fr)}.comp{flex-wrap:wrap}.com>*{display:none}.com[data-t=chat]>.ctr,.com[data-t=atividades]>.ctr{display:flex}.com[data-t=membros]>.sb,.com[data-t=detalhes]>.dt{display:block}.sb,.dt{position:static;max-height:none}.tabs .mob{display:block}.ctr{height:calc(100vh - 250px);height:calc(100dvh - 330px);min-height:360px}}.acard{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--green-l);display:flex;flex-direction:column;gap:6px;margin-top:6px;max-width:420px}.acard.canc{opacity:.6}.grid .acard{max-width:none;background:#fff;box-shadow:var(--sh);margin:0}.ah{display:flex;justify-content:space-between;align-items:center}.tg{display:inline-block;background:var(--green-d);color:#fff;font-size:.75rem;font-weight:700;padding:2px 10px;border-radius:999px}.ab{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}.ck{display:flex;align-items:center;gap:6px;font-weight:500}.ck input{width:auto;min-height:0}.dlg{max-height:90vh;overflow:auto}.map{height:90px;border-radius:12px;background:repeating-linear-gradient(45deg,#EAF7EF,#EAF7EF 10px,#dff1e6 10px,#dff1e6 20px);display:grid;place-items:center;color:var(--muted);font-size:.85rem;margin:10px 0}textarea#a-ds,textarea#s-b,textarea#rp-t,textarea#sg-m,textarea#pt-m{min-height:80px;border:1.5px solid var(--line);border-radius:12px;padding:10px;font:inherit;width:100%}.bn{display:none}.nbtn{position:relative;display:inline-grid;place-items:center;width:44px;height:44px;flex:none;padding:0;border-radius:50%;background:#fff;border:1.5px solid var(--line);color:var(--green-d)}.nbtn:hover,.nbtn[aria-current]{background:var(--green-l);border-color:var(--green)}.nb{position:absolute;top:-5px;right:-5px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--danger);color:#fff;font-size:.72rem;font-weight:800;line-height:1;display:grid;place-items:center;border:2px solid #fff}
 .sysm{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--green-l);border-radius:12px;padding:8px 12px;margin:10px 0;font-size:.92rem;color:var(--green-d)}.sysm svg.i{width:16px;height:16px}.sysm button{background:none;border:0;padding:0;margin-left:auto;font-weight:700;text-decoration:underline;color:var(--green-d)}
-.com[data-t=atividades]{grid-template-columns:minmax(0,1fr)}.com[data-t=atividades]>.actp{display:block}.actp{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;min-width:0}.ah2{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:sFLYT-between;margin-bottom:18px}.ah2 h2{font-size:1.5rem}.fl{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-bottom:20px}.chip{background:#fff;border:1.5px solid var(--line);border-radius:999px;min-height:40px;padding:0 16px;font-weight:600}.chip:hover{border-color:var(--green)}.chip[aria-pressed=true]{background:var(--green-d);color:#fff;border-color:var(--green-d)}.fl .ck{margin-left:8px}
+.com[data-t=atividades]{grid-template-columns:minmax(0,1fr)}.com[data-t=atividades]>.actp{display:block}.actp{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;min-width:0}.ah2{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:18px}.ah2 h2{font-size:1.5rem}.fl{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-bottom:20px}.chip{background:#fff;border:1.5px solid var(--line);border-radius:999px;min-height:40px;padding:0 16px;font-weight:600}.chip:hover{border-color:var(--green)}.chip[aria-pressed=true]{background:var(--green-d);color:#fff;border-color:var(--green-d)}.fl .ck{margin-left:8px}
 .tile .tdate{display:flex;align-items:center;gap:14px;padding:14px 16px}.tile .dn{display:grid;place-items:center;background:#fff;border-radius:12px;width:54px;height:58px;color:var(--green-d);line-height:1;flex:none}.tile .dn b{font-size:1.5rem;display:block}.tile .dn span{font-size:.72rem;text-transform:uppercase;font-weight:700}.tile .tw{display:flex;flex-direction:column;gap:4px;font-size:.88rem;color:var(--green-d);font-weight:600;text-transform:capitalize}.tile .tw .tg{align-self:flex-start;text-transform:none}.tile .fv{margin-left:auto;background:#fff;border:0;border-radius:50%;width:38px;height:38px;font-size:1.1rem;color:var(--green-d);flex:none}.tdesc{color:var(--muted);font-size:.92rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.pg{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:6px}.pg span{display:block;height:100%;background:var(--green)}.tile .ab{margin-top:auto}
 @media (max-width:760px){.badge.reg{display:none}}
 @media (max-width:1280px){nav.main{display:none}.burger{display:grid}.bar .btn-sm.reg{display:none}.nbtn{margin-left:auto}}
-.chipu{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:3px 14px 3px 3px;font-weight:700;color:var(--green-d);margin-left:8px;max-width:180px}.chipu span{overflow:hidden;text-overflow:ellipsis;white-sFLYT:nowrap}.chipu:hover{border-color:var(--green)}
+.chipu{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:3px 14px 3px 3px;font-weight:700;color:var(--green-d);margin-left:8px;max-width:180px}.chipu span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.chipu:hover{border-color:var(--green)}
 @media (max-width:1280px){.chipu{margin-left:auto}.nbtn{margin-left:0}.burger{margin-left:0}}
 @media (max-width:520px){.chipu span{display:none}.chipu{padding:3px}}
 .lang{width:auto;min-width:0;min-height:38px;padding:0 8px;border-radius:999px;font-weight:700;font-size:.88rem;background:#fff;cursor:pointer}select.lang{min-width:0}.lang-d{display:none;margin:12px 0 0;align-self:flex-start}@media (max-width:520px){.bar>.lang{display:none}.lang-d{display:block}}
@@ -214,7 +214,7 @@ footer .disc{color:var(--muted);font-size:.88rem;max-width:720px}
 .mc-d.td b{background:var(--green-d);color:#fff}
 .mc-d.sel{border-color:var(--green-d);box-shadow:inset 0 0 0 1.5px var(--green-d);background:var(--green-l)}
 .mc-ev{display:flex;flex-direction:column;gap:2px;min-width:0;width:100%}
-.mc-ev i{display:block;font-style:normal;font-size:.7rem;font-weight:700;color:#fff;border-radius:6px;padding:1px 6px;white-sFLYT:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc-ev i{display:block;font-style:normal;font-size:.7rem;font-weight:700;color:#fff;border-radius:6px;padding:1px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mc-ev i em{font-style:normal}
 .mc-ev small{font-size:.7rem;color:var(--muted);font-weight:700}
 .k-bike{background:#2E86A8}.k-run{background:#D9822B}.k-swim{background:#2FA37A}.k-race{background:var(--gold)}
@@ -229,7 +229,7 @@ footer .disc{color:var(--muted);font-size:.88rem;max-width:720px}
 @media (max-width:760px){
  .wrap{padding:0 22px}
  section.sec{padding:52px 0}
- .page{padding:32px 22px 56px}
+ .page{padding:32px 0 56px}
  .hero{min-height:min(84vh,640px);min-height:min(84svh,640px)}
  .hero .in{padding:72px 22px 36px}
  .hero .cta .btn{flex:1 1 auto}
@@ -258,9 +258,9 @@ footer .disc{color:var(--muted);font-size:.88rem;max-width:720px}
 /* instagram, perfil, filtros mobile */
 .igb{display:inline-grid}
 @media (max-width:1280px){.igb{margin-left:auto}}
-.pcov{height:110px;background:#FFFFFF}
 .teaser.ig{background:linear-gradient(135deg,#174B35,#2FA37A)}
 .prof .pcard{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--sh);overflow:hidden;margin-top:16px;max-width:760px}
+.pcov{height:110px;background:linear-gradient(135deg,var(--green-d),var(--green))}
 .phead{display:flex;gap:16px;align-items:flex-end;padding:0 22px;margin-top:-44px}
 .phead .av{border:4px solid #fff;box-shadow:var(--sh)}
 .pid{flex:1;min-width:0;padding-bottom:4px}
@@ -291,10 +291,10 @@ import {getDatabase,ref as rref,push,onChildAdded,query as rquery,limitToLast,se
 /* ============ FIREBASE ============ */
 const firebaseConfig={
   apiKey:"AIzaSyDwxoHADhbynmBlZ4dwS5X2uo800_ihFPg",
-  authDomain:"FLYT-9a435.firebaseapp.com",
-  databaseURL:"https://FLYT-9a435-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId:"FLYT-9a435",
-  storageBucket:"FLYT-9a435.firebasestorage.app",
+  authDomain:"pace-9a435.firebaseapp.com",
+  databaseURL:"https://pace-9a435-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId:"pace-9a435",
+  storageBucket:"pace-9a435.firebasestorage.app",
   messagingSenderId:"786937813391",
   appId:"1:786937813391:web:3a84a09e548ba6abb853fa",
   measurementId:"G-EQ1S7XCL8J"
@@ -303,8 +303,8 @@ const fbApp=initializeApp(firebaseConfig),auth=getAuth(fbApp),db=getFirestore(fb
  
 /* ============ CONFIG CENTRAL ============ */
 const CONFIG={
-  name:"FLYT",
-  slogan:"Find your FLYT. Find your tribe.",
+  name:"PACE",
+  slogan:"Find your pace. Find your tribe.",
   /* 3 imagens do banner rotativo. Se uma não existir, aparece uma ilustração no lugar. */
   HERO_IMAGES:["half.jpg"],
   instagramUrl:"",
@@ -383,7 +383,7 @@ const INFO={
 <li>Vê a meteorologia e o estado do mar ou da estrada. Se as condições forem más, adia.</li>
 <li>Leva telemóvel carregado, água e identificação. Se tiveres problemas de saúde, fala primeiro com o teu médico.</li></ul>
 <h2>Bike</h2>
-<ul><li>Usa caFLYTte, luzes e roupa visível.</li>
+<ul><li>Usa capacete, luzes e roupa visível.</li>
 <li>Respeita o código da estrada e não corras riscos para acompanhar o grupo.</li>
 <li>Leva material de reparação, câmara de ar e o essencial para um furo.</li>
 <li>Em grupo, mantém distâncias e avisa os outros de obstáculos e paragens.</li></ul>
@@ -401,13 +401,13 @@ const INFO={
 };
 const COUNTRIES=["Portugal","Espanha"];
 const GOALS={fin:'Terminar a prova',s7:'Sub 7h',s6:'Sub 6h',s530:'Sub 5h30',s5:'Sub 5h',cus:'Objetivo personalizado'},ROLES=['Admin','Moderador','Mentor','Atleta'],SPORTS={bike:'Bike',run:'Run',swim:'Natação em águas abertas'};
-const SAFE={bike:'Usa caFLYTte, respeita o código da estrada e leva material de reparação.',run:'Leva água, usa roupa visível e respeita o teu ritmo.',swim:'Nada sempre acompanhado, com boia de segurança, e confirma as condições do mar.'};
+const SAFE={bike:'Usa capacete, respeita o código da estrada e leva material de reparação.',run:'Leva água, usa roupa visível e respeita o teu ritmo.',swim:'Nada sempre acompanhado, com boia de segurança, e confirma as condições do mar.'};
 /* parceiros: preencher aqui quando houver. {cat:'mec',name:'',city:'',perk:'',url:'https://...'} */
 const PCATS=[['mec','Mecânicos de bike','Revisões, afinações e preparação da bike para o dia da prova.','wrench'],['fit','Bike fit','Posição e ergonomia à medida para pedalar mais rápido e sem dores.','bike'],['reg','Regeneração e fisioterapia','Massagem, fisioterapia e recuperação para treinares mais e melhor.','heart'],['nut','Nutrição','Planos alimentares e suplementação para treino e prova.','apple'],['loj','Lojas e material','Material de bike, corrida e natação com condições para a comunidade.','bag'],['tre','Treinadores e coaching','Planos de treino personalizados e acompanhamento.','bolt']];
 const PARTNERS=[];
 /* ============ IDIOMAS (PT / EN / FR / ES) ============ */
 let L='pt';
-try{const s=localStorage.getItem('FLYT_lang');if(s==='pt'||s==='en'||s==='fr'||s==='es')L=s}catch(_){}
+try{const s=localStorage.getItem('pace_lang');if(s==='pt'||s==='en'||s==='fr'||s==='es')L=s}catch(_){}
 document.documentElement.lang={pt:'pt-PT',en:'en',fr:'fr',es:'es'}[L];
 const LOC=()=>({pt:'pt-PT',en:'en-GB',fr:'fr-FR',es:'es-ES'}[L]);
 /* [português, inglês, francês, espanhol] */
@@ -463,7 +463,7 @@ const ROWS=[
 ["Escolhe a prova","Choose your race","Choisis ta course","Elige tu carrera"],
 ["Entra no canal da prova em que vais participar.","Join the channel of the race you're entering.","Rejoins le canal de la course à laquelle tu participes.","Únete al canal de la carrera en la que vas a participar."],
 ["Encontra atletas como tu","Find athletes like you","Trouve des athlètes comme toi","Encuentra atletas como tú"],
-["Descobre quem tem objetivos e ritmos semelhantes.","Discover who has similar goals and FLYT.","Découvre qui a des objectifs et un rythme similaires.","Descubre quién tiene objetivos y ritmos parecidos."],
+["Descobre quem tem objetivos e ritmos semelhantes.","Discover who has similar goals and pace.","Découvre qui a des objectifs et un rythme similaires.","Descubre quién tiene objetivos y ritmos parecidos."],
 ["Combina treinos","Plan workouts","Organise des entraînements","Organiza entrenamientos"],
 ["Organiza saídas de bike, corrida e natação em águas abertas.","Set up bike rides, runs and open-water swims.","Organise des sorties vélo, course à pied et natation en eau libre.","Organiza salidas de bici, carrera a pie y natación en aguas abiertas."],
 ["Uma prova é mais fácil quando não a preparas sozinho.","A race is easier when you don't prepare alone.","Une course est plus facile quand on ne la prépare pas seul.","Una carrera es más fácil cuando no la preparas solo."],
@@ -477,7 +477,7 @@ const ROWS=[
 ["Experimenta outro nome ou remove o filtro de tipo.","Try another name or remove the type filter.","Essaie un autre nom ou retire le filtre de type.","Prueba con otro nombre o quita el filtro de tipo."],
 ["Limpar filtros","Clear filters","Effacer les filtres","Borrar filtros"],
 ["Faz login para continuar","Sign in to continue","Connecte-toi pour continuer","Inicia sesión para continuar"],
-["Esta área é só para atletas com sessão iniciada. Faz login para criares o teu perfil e participares nos canais.","This area is for signed-in athletes only. Sign in to create your profile and join channels.","Cet esFLYT est réservé aux athlètes connectés. Connecte-toi pour créer ton profil et rejoindre les canaux.","Esta zona es solo para atletas con la sesión iniciada. Inicia sesión para crear tu perfil y participar en los canales."],
+["Esta área é só para atletas com sessão iniciada. Faz login para criares o teu perfil e participares nos canais.","This area is for signed-in athletes only. Sign in to create your profile and join channels.","Cet espace est réservé aux athlètes connectés. Connecte-toi pour créer ton profil et rejoindre les canaux.","Esta zona es solo para atletas con la sesión iniciada. Inicia sesión para crear tu perfil y participar en los canales."],
 ["Sessão iniciada","Signed in","Connecté","Sesión iniciada"],
 ["Ver provas","View races","Voir les courses","Ver carreras"],
 ["Bem-vindo à FLYT","Welcome to FLYT","Bienvenue sur FLYT","Bienvenido a FLYT"],
@@ -568,8 +568,8 @@ const ROWS=[
 ["Foto atualizada","Photo updated","Photo mise à jour","Foto actualizada"],
 ["A usar a foto da conta","Using account photo","Utilisation de la photo du compte","Usando la foto de la cuenta"],
 ["Natação em águas abertas","Open-water swimming","Natation en eau libre","Natación en aguas abiertas"],
-["Usa caFLYTte, respeita o código da estrada e leva material de reparação.","Wear a helmet, follow traffic rules and carry repair gear.","Porte un casque, respecte le code de la route et emporte du matériel de réparation.","Usa casco, respeta el código de circulación y lleva material de reparación."],
-["Leva água, usa roupa visível e respeita o teu ritmo.","Bring water, wear visible clothing and respect your own FLYT.","Emporte de l'eau, porte des vêtements visibles et respecte ton rythme.","Lleva agua, usa ropa visible y respeta tu ritmo."],
+["Usa capacete, respeita o código da estrada e leva material de reparação.","Wear a helmet, follow traffic rules and carry repair gear.","Porte un casque, respecte le code de la route et emporte du matériel de réparation.","Usa casco, respeta el código de circulación y lleva material de reparación."],
+["Leva água, usa roupa visível e respeita o teu ritmo.","Bring water, wear visible clothing and respect your own pace.","Emporte de l'eau, porte des vêtements visibles et respecte ton rythme.","Lleva agua, usa ropa visible y respeta tu ritmo."],
 ["Nada sempre acompanhado, com boia de segurança, e confirma as condições do mar.","Always swim accompanied, with a safety buoy, and check sea conditions.","Nage toujours accompagné, avec une bouée de sécurité, et vérifie les conditions de la mer.","Nada siempre acompañado, con boya de seguridad, y comprueba las condiciones del mar."],
 ["Usa sempre pontos de encontro públicos, nunca moradas privadas.","Always use public meeting points, never private addresses.","Utilise toujours des points de rendez-vous publics, jamais des adresses privées.","Usa siempre puntos de encuentro públicos, nunca domicilios privados."],
 ["Inscrição confirmada","Registration confirmed","Inscription confirmée","Inscripción confirmada"],
@@ -611,14 +611,14 @@ const ROWS=[
 ["Morada do ponto de encontro (opcional)","Meeting point address (optional)","Adresse du point de rendez-vous (facultatif)","Dirección del punto de encuentro (opcional)"],
 ["Distância (km)","Distance (km)","Distance (km)","Distancia (km)"],
 ["Velocidade média (km/h, opcional)","Average speed (km/h, optional)","Vitesse moyenne (km/h, facultatif)","Velocidad media (km/h, opcional)"],
-["Ritmo (min/km, ex.: 5:30, opcional)","FLYT (min/km, e.g. 5:30, optional)","Allure (min/km, ex. : 5:30, facultatif)","Ritmo (min/km, p. ej.: 5:30, opcional)"],
+["Ritmo (min/km, ex.: 5:30, opcional)","Pace (min/km, e.g. 5:30, optional)","Allure (min/km, ex. : 5:30, facultatif)","Ritmo (min/km, p. ej.: 5:30, opcional)"],
 ["Duração (minutos, opcional)","Duration (minutes, optional)","Durée (minutes, facultatif)","Duración (minutos, opcional)"],
 ["Descrição","Description","Description","Descripción"],
 ["Limite de participantes","Participant limit","Limite de participants","Límite de participantes"],
 ["Dificuldade","Difficulty","Difficulté","Dificultad"],
 ["Ganho de elevação (m, opcional)","Elevation gain (m, optional)","Dénivelé positif (m, facultatif)","Desnivel positivo (m, opcional)"],
 ["Tipo de treino (opcional)","Workout type (optional)","Type d'entraînement (facultatif)","Tipo de entrenamiento (opcional)"],
-["Ritmo constante","Steady FLYT","Allure constante","Ritmo constante"],
+["Ritmo constante","Steady pace","Allure constante","Ritmo constante"],
 ["Intervalos","Intervals","Fractionné","Intervalos"],
 ["Longo","Long","Sortie longue","Largo"],
 ["Técnica","Technique","Technique","Técnica"],
@@ -845,7 +845,7 @@ new MutationObserver(ms=>{if(L==='pt')return;ms.forEach(m=>m.addedNodes.forEach(
 function setTitle(){document.title=S.route==="home"?CONFIG.name+" — "+CONFIG.slogan:tr(pageTitle())+" · "+CONFIG.name}
 function setLang(l){
  if(l!=='pt'&&l!=='en'&&l!=='fr'&&l!=='es')return;
- L=l;try{localStorage.setItem('FLYT_lang',l)}catch(_){}
+ L=l;try{localStorage.setItem('pace_lang',l)}catch(_){}
  document.documentElement.lang={pt:'pt-PT',en:'en',fr:'fr',es:'es'}[l];
  const m=document.getElementById('modal');if(m&&m.dataset.k!=='det')closeModal();
  S._vk='';refresh();setTitle()}
@@ -905,7 +905,7 @@ seguranca:`<p>Training in a group is more fun and safer, as long as a few precau
 <ul><li>Arrange to meet in public, well-known places, preferably in daylight.</li>
 <li>Tell someone you trust the route, the expected time and who you are going with.</li>
 <li>Do not share private addresses. Use public meeting points.</li>
-<li>Read the description, distance, FLYT and difficulty. If you are not sure you can keep up, ask in the chat or choose a beginner workout.</li>
+<li>Read the description, distance, pace and difficulty. If you are not sure you can keep up, ask in the chat or choose a beginner workout.</li>
 <li>Check the weather and the state of the sea or road. If conditions are bad, postpone.</li>
 <li>Bring a charged phone, water and ID. If you have health problems, talk to your doctor first.</li></ul>
 <h2>Bike</h2>
@@ -915,7 +915,7 @@ seguranca:`<p>Training in a group is more fun and safer, as long as a few precau
 <li>In a group, keep your distance and warn others about obstacles and stops.</li></ul>
 <h2>Run</h2>
 <ul><li>Bring water and wear visible clothing, especially at sunrise and sunset.</li>
-<li>Respect your own FLYT; nobody is obliged to keep up with the fastest.</li>
+<li>Respect your own pace; nobody is obliged to keep up with the fastest.</li>
 <li>On the road, run facing traffic when there is no pavement.</li></ul>
 <h2>Open-water swimming</h2>
 <ul><li>Always swim accompanied, never alone.</li>
@@ -1082,7 +1082,7 @@ function cleanAct(x){
  x.org=idr.test(String(x.org))?String(x.org):'';x.race=String(x.race||'');
  x.max=Math.max(0,Math.floor(num(x.max)));x.dist=num(x.dist);x.spd=num(x.spd)||0;
  x.dur=x.dur?(num(x.dur)||''):'';x.elev=x.elev?(num(x.elev)||''):'';
- x.FLYT=/^\d{1,2}:[0-5]\d$/.test(x.FLYT)?x.FLYT:'';
+ x.pace=/^\d{1,2}:[0-5]\d$/.test(x.pace)?x.pace:'';
  x.tm=/^\d\d:\d\d$/.test(x.tm)?x.tm:'00:00';
  x.date=/^\d{4}-\d\d-\d\d$/.test(x.date)?x.date:'1970-01-01';
  x.diff=['Fácil','Moderado','Difícil'].includes(x.diff)?x.diff:'Moderado';
@@ -1482,7 +1482,7 @@ async function genCode(){
   $('#gc-out').innerHTML=`<p class='note'>Código gerado (uso único):</p><p><strong translate='no' style='font-size:1.25rem;letter-spacing:.06em'>${code}</strong></p><button class='btn btn-o btn-sm' data-act='cpcode' data-c='${code}'>Copiar código</button>`
  }catch(e){subErr(e)}}
 /* ============ ATIVIDADES ============ */
-const A=id=>ACT.find(x=>x.id===id),full=a=>a.max>0&&a.p.length>=a.max,fmt=a=>new Date(a.date+'T12:00').toLocaleDateString(LOC(),{weekday:'short',day:'numeric',month:'short'})+' · '+a.tm,perf=a=>a.sport==='bike'?(a.spd?a.spd+' km/h':''):a.sport==='run'?(a.FLYT?a.FLYT+' min/km':''):(a.dur?a.dur+' min':''),vag=a=>a.max?`${a.p.length}/${a.max} confirmados · ${full(a)?'Lotado':(a.max-a.p.length)+' vagas'}`:`${a.p.length} confirmados · Sem limite`;
+const A=id=>ACT.find(x=>x.id===id),full=a=>a.max>0&&a.p.length>=a.max,fmt=a=>new Date(a.date+'T12:00').toLocaleDateString(LOC(),{weekday:'short',day:'numeric',month:'short'})+' · '+a.tm,perf=a=>a.sport==='bike'?(a.spd?a.spd+' km/h':''):a.sport==='run'?(a.pace?a.pace+' min/km':''):(a.dur?a.dur+' min':''),vag=a=>a.max?`${a.p.length}/${a.max} confirmados · ${full(a)?'Lotado':(a.max-a.p.length)+' vagas'}`:`${a.p.length} confirmados · Sem limite`;
 const byDate=(a,b)=>(a.date+a.tm).localeCompare(b.date+b.tm);
 async function notifyUsers(uids,x){[...new Set(uids)].filter(Boolean).forEach(u=>addDoc(collection(db,'users',u,'notifs'),{x,r:false,ts:serverTimestamp()}).catch(()=>{}))}
 const unread=()=>NT.filter(n=>!n.r).length;
@@ -1513,7 +1513,7 @@ function showDet(id){
 const RW=(id,l,x='',t='text')=>`<div class='row'><label for='a-${id}'>${l}</label><input id='a-${id}' type='${t}' ${x}><span class='err' data-e='${id}'></span></div>`;
 function sf(sp){return sp==='bike'?`<div class='row'><label for='a-v'>Velocidade média (km/h, opcional)</label><input id='a-v' inputmode='decimal'><span class='err' data-e='v'></span></div>`:sp==='run'?`<div class='row'><label for='a-p'>Ritmo (min/km, ex.: 5:30, opcional)</label><input id='a-p'><span class='err' data-e='p'></span></div>`:`<div class='row'><label for='a-d'>Duração (minutos, opcional)</label><input id='a-d' inputmode='numeric'><span class='err' data-e='d'></span></div>`}
 function restore(){Object.entries(S.draft).forEach(([k,v])=>{const e=$('#'+k);if(e)e.type==='checkbox'?e.checked=v:e.value=v})}
-function draftOf(a){return{'a-s':a.sport,'a-t':a.title,'a-dt':a.date,'a-tm':a.tm,'a-pl':a.place,'a-ad':a.addr||'','a-k':a.dist,'a-v':a.spd||'','a-p':a.FLYT||'','a-d':a.dur||'','a-ds':a.desc,'a-m':a.max||'','a-u':!a.max,'a-df':a.diff,'a-b':a.beg,'a-el':a.elev||'','a-ty':a.tipo||'','a-ma':a.mat||'','a-no':a.nota||'','a-pr':!!a.pr}}
+function draftOf(a){return{'a-s':a.sport,'a-t':a.title,'a-dt':a.date,'a-tm':a.tm,'a-pl':a.place,'a-ad':a.addr||'','a-k':a.dist,'a-v':a.spd||'','a-p':a.pace||'','a-d':a.dur||'','a-ds':a.desc,'a-m':a.max||'','a-u':!a.max,'a-df':a.diff,'a-b':a.beg,'a-el':a.elev||'','a-ty':a.tipo||'','a-ma':a.mat||'','a-no':a.nota||'','a-pr':!!a.pr}}
 function actForm(ed){if(ed){S.draft=draftOf(A(ed))}else if(S.edit)S.draft={};S.edit=ed||null;const sp=S.draft['a-s']||'bike';modal(`<h2>${S.edit?'Editar':'Nova'} atividade</h2><p class='note' style='margin-bottom:12px'>O rascunho é guardado se cancelares.</p><form id='af' novalidate><div class='row'><label for='a-s'>Modalidade</label><select id='a-s' style='width:100%'>${Object.entries(SPORTS).map(([k,v])=>`<option value='${k}'>${v}</option>`).join('')}</select></div>${RW('t','Título')}<div class='two'>${RW('dt','Data','','date')}${RW('tm','Hora de encontro','','time')}</div>${RW('pl','Local de encontro (público)')}${RW('ad','Morada do ponto de encontro (opcional)')}${RW('k','Distância (km)','inputmode=decimal')}<div id='sfw'>${sf(sp)}</div><div class='row'><label for='a-ds'>Descrição</label><textarea id='a-ds'></textarea><span class='err' data-e='ds'></span></div>${RW('m','Limite de participantes','inputmode=numeric')}<label class='ck'><input type='checkbox' id='a-u'> Sem limite</label><div class='row' style='margin-top:12px'><label for='a-df'>Dificuldade</label><select id='a-df' style='width:100%'><option value='Fácil'>Fácil</option><option value='Moderado' selected>Moderado</option><option value='Difícil'>Difícil</option></select></div><div class='two'>${RW('el','Ganho de elevação (m, opcional)','inputmode=numeric')}<div class='row'><label for='a-ty'>Tipo de treino (opcional)</label><select id='a-ty' style='width:100%'><option value=''>—</option><option value='Ritmo constante'>Ritmo constante</option><option value='Intervalos'>Intervalos</option><option value='Longo'>Longo</option><option value='Técnica'>Técnica</option><option value='Recuperação'>Recuperação</option></select></div></div>${RW('ma','Material necessário (opcional)')}${RW('no','Notas adicionais (opcional)')}<label class='ck'><input type='checkbox' id='a-pr'> Faz parte da preparação para esta prova</label><label class='ck'><input type='checkbox' id='a-b'> Indicado para iniciantes</label><div class='acts'><button class='btn btn-p' type='submit'>${S.edit?'Guardar':'Publicar'}</button><button class='btn btn-o' type='button' data-act='close'>Cancelar</button></div></form>`);restore();$('#a-t').focus()}
 async function pubAct(){
  const g=id=>$('#'+id),v=id=>g(id)?g(id).value.trim():'',er={},sp=v('a-s'),today=(n=>n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0'))(new Date()),un=g('a-u').checked,mx=parseInt(v('a-m'),10);
@@ -1522,7 +1522,7 @@ async function pubAct(){
  if(sp==='bike'&&v('a-v')&&!(parseFloat(v('a-v'))>0))er.v='Valor inválido.';if(sp==='run'&&v('a-p')&&!/^\d{1,2}:[0-5]\d$/.test(v('a-p')))er.p='Usa o formato 5:30.';if(sp==='swim'&&v('a-d')&&!(parseInt(v('a-d'),10)>0))er.d='Valor inválido.';
  document.querySelectorAll('#af [data-e]').forEach(s=>s.textContent=tr(er[s.dataset.e]||''));
  const k=Object.keys(er)[0];if(k){const e=$('#af [data-e='+k+']').parentNode.querySelector('input,textarea');e&&e.focus();return}
- const base={sport:sp,title:v('a-t').slice(0,80),date:v('a-dt'),tm:v('a-tm'),place:v('a-pl').slice(0,120),addr:v('a-ad').slice(0,160),dist:parseFloat(v('a-k')),spd:parseFloat(v('a-v'))||0,FLYT:v('a-p'),dur:parseInt(v('a-d'),10)||'',diff:v('a-df'),max:un?0:mx,beg:g('a-b').checked,desc:v('a-ds').slice(0,600),elev:parseInt(v('a-el'),10)||'',tipo:v('a-ty'),mat:v('a-ma').slice(0,120),nota:v('a-no').slice(0,200),pr:g('a-pr').checked};
+ const base={sport:sp,title:v('a-t').slice(0,80),date:v('a-dt'),tm:v('a-tm'),place:v('a-pl').slice(0,120),addr:v('a-ad').slice(0,160),dist:parseFloat(v('a-k')),spd:parseFloat(v('a-v'))||0,pace:v('a-p'),dur:parseInt(v('a-d'),10)||'',diff:v('a-df'),max:un?0:mx,beg:g('a-b').checked,desc:v('a-ds').slice(0,600),elev:parseInt(v('a-el'),10)||'',tipo:v('a-ty'),mat:v('a-ma').slice(0,120),nota:v('a-no').slice(0,200),pr:g('a-pr').checked};
  const btn=$('#af button[type=submit]');btn.disabled=true;
  try{
   if(S.edit){
